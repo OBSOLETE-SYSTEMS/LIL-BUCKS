@@ -1,0 +1,25 @@
+# Strategic / pre-engagement working docs — never commit
+BRAND_THESIS.md
+CLAUDE.md
+PARTNER_PREP.md
+
+# Future exports + signal-pipeline working files
+exports/
+scripts/
+*.csv
+*.local
+
+# Mac + editor cruft
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*~
+
+# Node modules (in case anything gets added)
+node_modules/
+
+# Local environment
+.env
+.env.local
+.env.*.local
