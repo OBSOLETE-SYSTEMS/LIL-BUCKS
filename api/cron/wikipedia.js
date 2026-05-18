@@ -1,8 +1,4 @@
 // Wikipedia Pageviews worker — Stage 2 of the OBSOLETE Signal Pipeline.
-//
-// Multi-tenant: loops over every active client, pulls each client's wikipedia
-// watchlist from pipeline.client_sources, fetches pageview deltas, scores
-// velocity + client_tonal, upserts into pipeline.signals.
 
 import { supa, startRun, finishRun, isAuthorizedCron } from "../lib/supabase.js";
 import {
@@ -13,8 +9,19 @@ import {
 
 const WIKI_USER_AGENT = "OBSOLETE-Signal-Pipeline/0.1 (https://obsolete.systems; alex@obsolete.systems)";
 const SOURCE = "wikipedia";
+const DEFAULT_FETCH_TIMEOUT_MS = 8000;
 
 function fmtDate(d) { return d.toISOString().slice(0, 10).replace(/-/g, ""); }
+
+async function fetchWithTimeout(url, opts = {}, timeoutMs = DEFAULT_FETCH_TIMEOUT_MS) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    return await fetch(url, { ...opts, signal: ctrl.signal });
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 async function fetchPageviews(articleTitle, daysBack = 8) {
   const end = new Date();
@@ -25,10 +32,12 @@ async function fetchPageviews(articleTitle, daysBack = 8) {
   const url =
     `https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/` +
     `en.wikipedia/all-access/all-agents/${encoded}/daily/${fmtDate(start)}/${fmtDate(end)}`;
-  const res = await fetch(url, { headers: { "User-Agent": WIKI_USER_AGENT, "Accept": "application/json" } });
+  const res = await fetchWithTimeout(url, {
+    headers: { "User-Agent": WIKI_USER_AGENT, "Accept": "application/json" }
+  });
   if (!res.ok) {
     if (res.status === 404) return null;
-    throw new Error(`Wikipedia ${res.status} for ${articleTitle}`);
+    throw new Error(`Wikipedia pageviews ${res.status} for ${articleTitle}`);
   }
   return await res.json();
 }
@@ -36,15 +45,81 @@ async function fetchPageviews(articleTitle, daysBack = 8) {
 async function fetchSummary(articleTitle) {
   const encoded = encodeURIComponent(articleTitle.replace(/ /g, "_"));
   const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encoded}`;
-  const res = await fetch(url, { headers: { "User-Agent": WIKI_USER_AGENT, "Accept": "application/json" } });
-  if (!res.ok) return null;
-  const data = await res.json();
-  return {
-    title: data.title,
-    extract: data.extract,
-    url: data.content_urls?.desktop?.page,
-    timestamp: data.timestamp
-  };
+  try {
+    const res = await fetchWithTimeout(url, {
+      headers: { "User-Agent": WIKI_USER_AGENT, "Accept": "application/json" }
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return {
+      title: data.title,
+      extract: data.extract,
+      url: data.content_urls?.desktop?.page,
+      timestamp: data.timestamp
+    };
+  } catch (err) {
+    // Summary is nice-to-have; never block ingestion if it fails
+    return null;
+  }
+}
+
+// Process one source — returns { processed, skipped, error }
+async function processSource(src, { clientId, agentId, byPillar, meta }) {
+  const tStart = Date.now();
+  try {
+    const pageviews = await fetchPageviews(src.target, 8);
+    if (!pageviews?.items || pageviews.items.length < 2) {
+      return { target: src.target, status: "no_data", ms: Date.now() - tStart };
+    }
+
+    const items = pageviews.items;
+    const today = items[items.length - 1];
+    const prior = items.slice(0, -1);
+    const rollingAvg7 = prior.reduce((sum, x) => sum + x.views, 0) / Math.max(prior.length, 1);
+    const velocity = wikiVelocity({ todayViews: today.views, rollingAvg7 });
+
+    if (velocity < 1.3 && today.views < 10000) {
+      return { target: src.target, status: "below_threshold", views: today.views, velocity, ms: Date.now() - tStart };
+    }
+
+    const sum = await fetchSummary(src.target);
+    const title = sum?.title || src.target_display || src.target;
+    const body = sum?.extract ||
+      `Wikipedia pageviews on ${src.target}: ${today.views} views (vs. 7-day avg ${Math.round(rollingAvg7)})`;
+    const url = sum?.url ||
+      `https://en.wikipedia.org/wiki/${encodeURIComponent(src.target.replace(/ /g, "_"))}`;
+
+    const tonal = scoreTonal(`${title} ${body}`, byPillar);
+    const bm = detectBrandMatch(`${title} ${body}`, meta);
+
+    const source_id = `wikipedia:${src.target}:${today.timestamp.slice(0, 8)}`;
+    const { error: upErr } = await supa().from("signals").upsert({
+      client_id: clientId,
+      source: SOURCE,
+      source_id,
+      source_url: url,
+      target: src.target,
+      lane: src.lane,
+      agent_id: agentId,
+      occurred_at: new Date(
+        `${today.timestamp.slice(0, 4)}-${today.timestamp.slice(4, 6)}-${today.timestamp.slice(6, 8)}T00:00:00Z`
+      ).toISOString(),
+      raw: { pageviews: items, summary: sum, watchlist_meta: src.meta || {} },
+      title,
+      body_excerpt: body.slice(0, 500),
+      metric_score: velocity,
+      client_tonal: tonal.score,
+      pillar_hint: tonal.pillar,
+      brand_match: bm.brand_match,
+      competitor_match: bm.competitor_match,
+      status: "fresh"
+    }, { onConflict: "client_id,source,source_id" });
+
+    if (upErr) return { target: src.target, status: "upsert_error", error: upErr.message, ms: Date.now() - tStart };
+    return { target: src.target, status: "ingested", views: today.views, velocity: velocity.toFixed(2), tonal: tonal.score.toFixed(2), pillar: tonal.pillar, ms: Date.now() - tStart };
+  } catch (err) {
+    return { target: src.target, status: "fetch_error", error: String(err.message || err), ms: Date.now() - tStart };
+  }
 }
 
 function jsonResponse(body, status = 200) {
@@ -54,7 +129,7 @@ function jsonResponse(body, status = 200) {
   });
 }
 
-// ---------- Main worker (defensive — returns clean diagnostic on any failure) ----------
+// ---------- Main handler ----------
 
 export default async function handler(req) {
   const startTime = Date.now();
@@ -62,7 +137,20 @@ export default async function handler(req) {
   try {
     if (!isAuthorizedCron(req)) return jsonResponse({ error: "unauthorized" }, 401);
 
-    const summary = { clients: 0, agent_runs: 0, sources: 0, ingested: 0, errors: [] };
+    // Parse ?limit=N from URL for testing
+    const url = new URL(req.url || "http://x/?", "http://x");
+    const limitRaw = url.searchParams.get("limit");
+    const limit = limitRaw ? parseInt(limitRaw, 10) : null;
+
+    const summary = {
+      clients_processed: 0,
+      agent_runs: 0,
+      sources_total: 0,
+      sources_processed: 0,
+      ingested: 0,
+      per_source: [],
+      errors: []
+    };
 
     const { data: clients, error: cErr } = await supa()
       .from("clients").select("id, name").eq("active", true);
@@ -71,8 +159,9 @@ export default async function handler(req) {
       return jsonResponse({ status: "no_active_clients", duration_ms: Date.now() - startTime });
     }
 
+    outer:
     for (const client of clients) {
-      summary.clients++;
+      summary.clients_processed++;
 
       const { data: sources, error: sErr } = await supa()
         .from("client_sources")
@@ -83,9 +172,12 @@ export default async function handler(req) {
       if (sErr) { summary.errors.push({ client: client.id, error: sErr.message }); continue; }
       if (!sources || sources.length === 0) continue;
 
+      summary.sources_total += sources.length;
+
       const byPillar = await getClientKeywords(client.id);
       const meta = await getClientMeta(client.id);
 
+      // Group by agent
       const byAgent = new Map();
       for (const s of sources) {
         if (!byAgent.has(s.agent_id)) byAgent.set(s.agent_id, []);
@@ -95,83 +187,42 @@ export default async function handler(req) {
       for (const [agentId, agentSources] of byAgent) {
         summary.agent_runs++;
         const runId = await startRun({ clientId: client.id, agentId, source: SOURCE });
-        let ingested = 0;
-        let scored = 0;
-        const runErrors = [];
 
-        for (const src of agentSources) {
-          summary.sources++;
-          try {
-            const pageviews = await fetchPageviews(src.target, 8);
-            if (!pageviews?.items || pageviews.items.length < 2) continue;
+        // Apply limit at the agent level — process up to N more sources total
+        const remainingLimit = limit ? Math.max(0, limit - summary.sources_processed) : agentSources.length;
+        const toProcess = agentSources.slice(0, remainingLimit);
 
-            const items = pageviews.items;
-            const today = items[items.length - 1];
-            const prior = items.slice(0, -1);
-            const rollingAvg7 = prior.reduce((sum, x) => sum + x.views, 0) / prior.length;
-            const velocity = wikiVelocity({ todayViews: today.views, rollingAvg7 });
+        // Parallelize within the agent batch
+        const results = await Promise.all(toProcess.map(src =>
+          processSource(src, { clientId: client.id, agentId, byPillar, meta })
+        ));
 
-            if (velocity < 1.3 && today.views < 10000) continue;
+        summary.sources_processed += results.length;
+        summary.per_source.push(...results.map(r => ({ ...r, client: client.id, agent: agentId })));
 
-            const sum = await fetchSummary(src.target);
-            const title = sum?.title || src.target_display || src.target;
-            const body = sum?.extract ||
-              `Wikipedia pageviews on ${src.target}: ${today.views} views (vs. 7-day avg ${Math.round(rollingAvg7)})`;
-            const url = sum?.url ||
-              `https://en.wikipedia.org/wiki/${encodeURIComponent(src.target.replace(/ /g, "_"))}`;
-
-            const tonal = scoreTonal(`${title} ${body}`, byPillar);
-            const bm = detectBrandMatch(`${title} ${body}`, meta);
-            scored++;
-
-            const source_id = `wikipedia:${src.target}:${today.timestamp.slice(0, 8)}`;
-            const { error: upErr } = await supa().from("signals").upsert({
-              client_id: client.id,
-              source: SOURCE,
-              source_id,
-              source_url: url,
-              target: src.target,
-              lane: src.lane,
-              agent_id: agentId,
-              occurred_at: new Date(
-                `${today.timestamp.slice(0, 4)}-${today.timestamp.slice(4, 6)}-${today.timestamp.slice(6, 8)}T00:00:00Z`
-              ).toISOString(),
-              raw: { pageviews: items, summary: sum, watchlist_meta: src.meta || {} },
-              title,
-              body_excerpt: body.slice(0, 500),
-              metric_score: velocity,
-              client_tonal: tonal.score,
-              pillar_hint: tonal.pillar,
-              brand_match: bm.brand_match,
-              competitor_match: bm.competitor_match,
-              status: "fresh"
-            }, { onConflict: "client_id,source,source_id" });
-
-            if (upErr) { runErrors.push({ target: src.target, error: upErr.message }); continue; }
-            ingested++;
-          } catch (err) {
-            runErrors.push({ target: src.target, error: String(err.message || err) });
-          }
-          await new Promise(r => setTimeout(r, 100));
-        }
+        const ingested = results.filter(r => r.status === "ingested").length;
+        const scored = results.filter(r => r.status === "ingested" || r.status === "below_threshold").length;
+        const errs = results.filter(r => r.status?.endsWith("_error")).map(r => ({ target: r.target, error: r.error }));
 
         summary.ingested += ingested;
-        if (runErrors.length) summary.errors.push(...runErrors.map(e => ({ ...e, client: client.id, agent: agentId })));
+        if (errs.length) summary.errors.push(...errs.map(e => ({ ...e, client: client.id, agent: agentId })));
 
         await finishRun(runId, {
           signalsIngested: ingested,
           signalsNew: ingested,
           signalsScored: scored,
-          errors: runErrors,
-          status: runErrors.length > 0 ? "partial" : "success"
+          errors: errs,
+          status: errs.length > 0 ? "partial" : "success"
         });
+
+        if (limit && summary.sources_processed >= limit) break outer;
       }
     }
 
     summary.duration_ms = Date.now() - startTime;
+    summary.limit_applied = limit;
     return jsonResponse(summary);
   } catch (err) {
-    // Top-level catch — returns the actual error so we don't get a generic FUNCTION_INVOCATION_FAILED
     return jsonResponse({
       error: "handler_threw",
       message: err.message || String(err),
