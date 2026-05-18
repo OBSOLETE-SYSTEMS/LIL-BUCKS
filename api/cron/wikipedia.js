@@ -137,10 +137,60 @@ export default async function handler(req) {
   try {
     if (!isAuthorizedCron(req)) return jsonResponse({ error: "unauthorized" }, 401);
 
-    // Parse ?limit=N from URL for testing
+    // Parse query params
     const url = new URL(req.url || "http://x/?", "http://x");
     const limitRaw = url.searchParams.get("limit");
     const limit = limitRaw ? parseInt(limitRaw, 10) : null;
+    const debug = url.searchParams.get("debug");
+
+    // Short-circuit: ?debug=env returns env diagnostic, no Supabase calls
+    if (debug === "env") {
+      return jsonResponse({
+        status: "debug_env",
+        env: {
+          SUPABASE_URL_set: !!process.env.SUPABASE_URL,
+          SUPABASE_URL_prefix: process.env.SUPABASE_URL?.slice(0, 40) || null,
+          SUPABASE_URL_endsWith_supabase_co: process.env.SUPABASE_URL?.endsWith(".supabase.co") || false,
+          SUPABASE_SERVICE_ROLE_KEY_set: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+          SUPABASE_SERVICE_ROLE_KEY_len: process.env.SUPABASE_SERVICE_ROLE_KEY?.length || 0,
+          SUPABASE_SERVICE_ROLE_KEY_starts_with_eyJ: process.env.SUPABASE_SERVICE_ROLE_KEY?.startsWith("eyJ") || false,
+          SUPABASE_ANON_KEY_set: !!process.env.SUPABASE_ANON_KEY,
+          SUPABASE_ANON_KEY_len: process.env.SUPABASE_ANON_KEY?.length || 0,
+          node_version: process.version,
+          region: process.env.VERCEL_REGION || null,
+          deployment_id: process.env.VERCEL_DEPLOYMENT_ID || null
+        },
+        duration_ms: Date.now() - startTime
+      });
+    }
+
+    // Short-circuit: ?debug=ping does a single Supabase select with a 5s timeout
+    if (debug === "ping") {
+      const ctrl = new AbortController();
+      const pingTimeout = setTimeout(() => ctrl.abort(), 5000);
+      try {
+        const { data, error, status } = await supa()
+          .from("clients").select("id, name").eq("active", true)
+          .abortSignal(ctrl.signal);
+        return jsonResponse({
+          status: "debug_ping",
+          supabase_status: status,
+          supabase_error: error?.message || null,
+          rows: data?.length || 0,
+          row_ids: (data || []).map(r => r.id),
+          duration_ms: Date.now() - startTime
+        });
+      } catch (err) {
+        return jsonResponse({
+          status: "debug_ping_failed",
+          error: err.message || String(err),
+          aborted: ctrl.signal.aborted,
+          duration_ms: Date.now() - startTime
+        }, 500);
+      } finally {
+        clearTimeout(pingTimeout);
+      }
+    }
 
     const summary = {
       clients_processed: 0,
