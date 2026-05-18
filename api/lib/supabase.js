@@ -1,29 +1,33 @@
 // Shared Supabase client for the OBSOLETE Signal Pipeline.
-// Server-side (workers) uses the service_role key — bypasses RLS for upserts.
-// Browser/dashboard uses the anon key with RLS read policies.
+// Lazy init pattern: env-var check happens at first call, NOT at module load,
+// so import never crashes the function — handler can return a clean diagnostic.
 
 import { createClient } from "@supabase/supabase-js";
 
-const URL = process.env.SUPABASE_URL;
-const SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+let _supa = null;
 
-if (!URL) {
-  throw new Error("Missing SUPABASE_URL env var");
+export function supa() {
+  if (_supa) return _supa;
+  const URL = process.env.SUPABASE_URL;
+  const KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!URL || !KEY) {
+    throw new Error(
+      `Missing Supabase env vars. SUPABASE_URL set: ${!!URL}, ` +
+      `SUPABASE_SERVICE_ROLE_KEY set: ${!!KEY}. ` +
+      `Add them in Vercel Project Settings → Environment Variables (all 3 envs checked).`
+    );
+  }
+  _supa = createClient(URL, KEY, {
+    db: { schema: "pipeline" },
+    auth: { persistSession: false, autoRefreshToken: false }
+  });
+  return _supa;
 }
-if (!SERVICE_ROLE_KEY) {
-  throw new Error("Missing SUPABASE_SERVICE_ROLE_KEY env var");
-}
-
-// Schema-scoped client so we don't have to write `pipeline.` everywhere.
-export const supa = createClient(URL, SERVICE_ROLE_KEY, {
-  db: { schema: "pipeline" },
-  auth: { persistSession: false, autoRefreshToken: false }
-});
 
 // ---------- Telemetry helpers ----------
 
 export async function startRun({ clientId, agentId, source }) {
-  const { data, error } = await supa
+  const { data, error } = await supa()
     .from("agent_runs")
     .insert({ client_id: clientId, agent_id: agentId, source, status: "running" })
     .select("id")
@@ -33,7 +37,7 @@ export async function startRun({ clientId, agentId, source }) {
 }
 
 export async function finishRun(runId, { signalsIngested, signalsNew, signalsScored, errors = [], status = "success" }) {
-  const { error } = await supa
+  const { error } = await supa()
     .from("agent_runs")
     .update({
       finished_at: new Date().toISOString(),
@@ -50,9 +54,10 @@ export async function finishRun(runId, { signalsIngested, signalsNew, signalsSco
 // ---------- Verify Vercel cron auth ----------
 
 export function isAuthorizedCron(req) {
-  // Vercel cron sets this header automatically with CRON_SECRET env var.
   const secret = process.env.CRON_SECRET;
   if (!secret) return true; // dev / no secret set — allow
-  const auth = req.headers.get?.("authorization") || req.headers.authorization;
+  const auth = (typeof req.headers?.get === "function")
+    ? req.headers.get("authorization")
+    : req.headers?.authorization;
   return auth === `Bearer ${secret}`;
 }
