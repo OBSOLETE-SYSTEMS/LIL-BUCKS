@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Lil Bucks strategic intelligence engine — OBSOLETE Signal Pipeline V1, multi-tenant",
   "private": true,
+  "type": "module",
   "engines": {
     "node": ">=20"
   },
