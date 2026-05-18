@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "crons": [
+    {
+      "path": "/api/cron/wikipedia?source=cron",
+      "schedule": "0 13 * * *"
+    }
+  ],
+  "functions": {
+    "api/cron/wikipedia.js": {
+      "maxDuration": 60
+    }
+  }
+}

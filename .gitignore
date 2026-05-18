@@ -2,6 +2,14 @@
 BRAND_THESIS.md
 CLAUDE.md
 PARTNER_PREP.md
+SIGNAL_SOURCES.md
+
+# Pipeline migrations — contain brand watchlists + competitive intel + keyword vocab
+migrations/
+
+# Local pipeline scratch / seed files
+api/lib/seed*.js
+api/lib/seed*.ts
 
 # Future exports + signal-pipeline working files
 exports/
