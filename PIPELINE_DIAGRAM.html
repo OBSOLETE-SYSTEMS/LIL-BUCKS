@@ -49,7 +49,6 @@ body::before{
   pointer-events:none;z-index:10000;
 }
 
-/* Type primitives */
 .display{font-family:var(--font-display);line-height:0.9;letter-spacing:0.02em;text-transform:uppercase}
 .label{font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-meta)}
 .label-yellow{color:var(--neon-yellow)}
@@ -68,16 +67,24 @@ body::before{
 .status-text{color:var(--neon-green)}
 .status-meta{color:var(--text-meta)}
 
-/* HERO */
-.hero{padding:36px 0 72px;border-bottom:1px solid var(--border)}
+/* HERO — multi-tenant headline */
+.hero{padding:36px 0 60px;border-bottom:1px solid var(--border);margin-bottom:48px}
 .hero-label{margin-bottom:24px}
-.hero-title{font-family:var(--font-display);font-size:128px;line-height:0.88;letter-spacing:-0.005em;color:var(--white);margin-bottom:28px;text-transform:uppercase}
+.hero-headline{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end}
+.hero-title{font-family:var(--font-display);font-size:128px;line-height:0.88;letter-spacing:-0.005em;color:var(--white);text-transform:uppercase}
 .hero-title em{color:var(--neon-yellow);font-style:normal}
-.hero-sub{font-size:18px;line-height:1.55;color:var(--text-dim);max-width:740px;margin-bottom:8px}
+.hero-sub{font-size:16px;line-height:1.75;color:var(--text-dim);padding-bottom:12px}
 .hero-sub strong{color:var(--text);font-weight:500}
 
+/* Hero stats — multi-tenant proof */
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:48px}
+.hero-stat{background:var(--card);padding:24px 22px}
+.hero-stat-num{font-family:var(--font-display);font-size:64px;line-height:0.9;color:var(--neon-yellow);letter-spacing:0.005em;margin-bottom:8px}
+.hero-stat-label{font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;color:var(--text);font-weight:500;text-transform:uppercase;margin-bottom:6px}
+.hero-stat-detail{font-size:12px;color:var(--text-dim);line-height:1.5}
+
 /* TOP FLOWCHART */
-.flowchart-section{padding:64px 0;border-bottom:1px solid var(--border)}
+.flowchart-section{padding:48px 0 64px;border-bottom:1px solid var(--border)}
 .flowchart-title{font-family:var(--font-display);font-size:54px;line-height:0.95;letter-spacing:0.005em;margin:18px 0 36px;text-transform:uppercase;max-width:840px;color:var(--white)}
 .flowchart-title em{color:var(--neon-yellow);font-style:normal}
 .flowchart{display:grid;grid-template-columns:repeat(5,1fr);gap:0;background:var(--dark);border:1px solid var(--border);position:relative}
@@ -87,65 +94,73 @@ body::before{
 .flow-node-name{font-family:var(--font-display);font-size:30px;line-height:0.95;letter-spacing:0.01em;color:var(--white);margin-bottom:10px;text-transform:uppercase}
 .flow-node-stat{font-family:var(--font-mono);font-size:11px;color:var(--neon-amber);font-weight:500;letter-spacing:0.05em;margin-bottom:16px;text-transform:uppercase}
 .flow-node-desc{font-size:13px;line-height:1.6;color:var(--text-dim);margin-top:auto}
-/* Tiny → arrow between nodes */
 .flow-node::after{content:'→';position:absolute;top:50%;right:-10px;transform:translateY(-50%);background:var(--black);color:var(--neon-yellow);font-family:var(--font-mono);font-size:14px;font-weight:600;width:20px;height:20px;display:flex;align-items:center;justify-content:center;z-index:2;border:1px solid var(--border)}
 .flow-node:last-of-type::after{display:none}
 
 /* SECTION BLOCKS */
 .section{padding:64px 0;border-bottom:1px solid var(--border)}
+.section:last-child{border-bottom:none}
 .section-head{display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:end;margin-bottom:36px;padding-bottom:18px;border-bottom:1px solid var(--border)}
 .section-num{font-family:var(--font-mono);font-size:11px;letter-spacing:0.2em;color:var(--neon-yellow);font-weight:500;text-transform:uppercase}
 .section-title{font-family:var(--font-display);font-size:64px;line-height:0.9;letter-spacing:0.005em;color:var(--white);text-transform:uppercase}
 .section-meta{font-family:var(--font-mono);font-size:11px;letter-spacing:0.05em;color:var(--text-dim);text-align:right;line-height:1.6;max-width:300px;text-transform:none}
 
-/* SOURCES grid */
-.source-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
-.source-card{background:var(--card);padding:24px 22px;display:flex;flex-direction:column;gap:6px;min-height:220px;transition:background 0.2s}
-.source-card:hover{background:var(--card-hover)}
-.source-platform{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--neon-yellow);font-weight:500;text-transform:uppercase;margin-bottom:4px}
-.source-name{font-family:var(--font-display);font-size:28px;line-height:0.95;color:var(--white);letter-spacing:0.005em;margin-bottom:8px;text-transform:uppercase}
-.source-stat{font-family:var(--font-mono);font-size:11px;color:var(--text-dim);font-weight:400;letter-spacing:0.02em;margin-bottom:12px}
-.source-detail{font-size:13px;color:var(--text-dim);line-height:1.6;margin-top:auto;flex:1}
-.source-status{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
-.status-live{color:var(--neon-green)}
-.status-gated{color:var(--neon-amber)}
-.status-aggregator{color:var(--neon-cyan)}
-.status-live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--neon-green);box-shadow:0 0 6px var(--neon-green)}
-.status-gated::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--neon-amber)}
-.status-aggregator::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--neon-cyan)}
+/* SOURCES — compact collapsible list */
+.source-list{background:var(--card);border:1px solid var(--border)}
+.source-row{border-bottom:1px solid var(--border);transition:background 0.15s}
+.source-row:last-child{border-bottom:none}
+.source-row[open]{background:var(--card-hover)}
+.source-row summary{display:grid;grid-template-columns:160px 1fr 130px;gap:24px;align-items:center;padding:16px 24px;cursor:pointer;list-style:none;user-select:none}
+.source-row summary::-webkit-details-marker{display:none}
+.source-row summary::marker{display:none}
+.source-row summary:hover{background:var(--card-hover)}
+.source-platform{font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;color:var(--neon-yellow);font-weight:600;text-transform:uppercase}
+.source-row-name{font-family:var(--font-body);font-size:14px;color:var(--text);font-weight:500;line-height:1.4}
+.source-row-name strong{color:var(--white);font-weight:600}
+.source-row-status{font-family:var(--font-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.source-row-status::before{content:'';width:6px;height:6px;border-radius:50%}
+.source-row-status.live{color:var(--neon-green)}
+.source-row-status.live::before{background:var(--neon-green);box-shadow:0 0 6px var(--neon-green)}
+.source-row-status.aggregator{color:var(--neon-cyan)}
+.source-row-status.aggregator::before{background:var(--neon-cyan)}
+.source-row-status.gated{color:var(--neon-amber)}
+.source-row-status.gated::before{background:var(--neon-amber)}
+.source-row-status::after{content:'+';margin-left:8px;color:var(--text-meta);font-size:14px;font-weight:400}
+.source-row[open] .source-row-status::after{content:'−'}
+.source-detail-body{padding:0 24px 22px 184px;font-size:13px;line-height:1.65;color:var(--text-dim)}
 
-/* AGENTS grid */
+/* AGENTS — generic functions with client examples */
 .agent-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
-.agent-card{background:var(--card);padding:28px 26px;min-height:180px;transition:background 0.2s}
+.agent-card{background:var(--card);padding:28px 26px;min-height:220px;display:flex;flex-direction:column;transition:background 0.2s}
 .agent-card:hover{background:var(--card-hover)}
-.agent-name-line{display:flex;align-items:baseline;gap:14px;margin-bottom:10px;flex-wrap:wrap}
-.agent-emoji{font-size:30px;line-height:1;margin-right:2px;filter:grayscale(0.15)}
-.agent-name{font-family:var(--font-display);font-size:36px;line-height:0.95;color:var(--white);letter-spacing:0.005em;text-transform:uppercase}
-.agent-function{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--neon-yellow);text-transform:uppercase;font-weight:500;padding:3px 9px;border:1px solid var(--border);border-radius:0}
-.agent-desc{font-size:13.5px;color:var(--text-dim);line-height:1.65;margin-bottom:18px}
-.agent-sources{font-family:var(--font-mono);font-size:11px;color:var(--text);font-weight:500;padding-top:14px;border-top:1px solid var(--border);letter-spacing:0.02em}
+.agent-fn-line{display:flex;align-items:baseline;gap:14px;margin-bottom:12px;flex-wrap:wrap}
+.agent-fn-name{font-family:var(--font-display);font-size:32px;line-height:0.95;color:var(--white);letter-spacing:0.005em;text-transform:uppercase}
+.agent-fn-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;color:var(--neon-yellow);text-transform:uppercase;font-weight:500;padding:3px 9px;border:1px solid var(--border);border-radius:0}
+.agent-desc{font-size:13.5px;color:var(--text-dim);line-height:1.65;margin-bottom:18px;flex:1}
+.agent-examples{padding-top:14px;border-top:1px solid var(--border)}
+.agent-examples-label{font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.18em;color:var(--text-meta);font-weight:500;text-transform:uppercase;margin-bottom:6px}
+.agent-example{font-family:var(--font-mono);font-size:11.5px;color:var(--text);line-height:1.7}
+.agent-example .client{color:var(--neon-yellow);font-weight:500}
 
-/* DATABASE */
-.db-block{background:var(--card);border:1px solid var(--border);padding:36px 36px;position:relative}
+/* DATABASE — moved to be technical-spec section */
+.db-block{background:var(--card);border:1px solid var(--border);padding:32px 32px;position:relative}
 .db-block::before{content:'';position:absolute;top:-1px;left:0;width:60px;height:2px;background:var(--neon-yellow)}
-.db-grid{display:grid;grid-template-columns:1fr 1.8fr;gap:48px;align-items:start}
-.db-eyebrow{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--neon-yellow);font-weight:500;margin-bottom:18px}
-.db-title{font-family:var(--font-display);font-size:48px;line-height:0.95;color:var(--white);letter-spacing:0.005em;margin-bottom:22px;text-transform:uppercase}
-.db-desc{font-size:14px;line-height:1.75;color:var(--text-dim);font-family:var(--font-body)}
-.db-desc strong{color:var(--text);font-weight:500}
-.db-tables{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
+.db-tables{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
 .db-table{background:var(--card-hover);padding:16px 18px}
 .db-table-name{font-family:var(--font-mono);font-weight:500;font-size:13px;color:var(--neon-yellow);margin-bottom:5px;letter-spacing:0.04em}
 .db-table-desc{font-size:12px;color:var(--text-dim);line-height:1.55}
 
 @media (max-width:980px){
-  .hero-title{font-size:72px}
+  .hero-title{font-size:64px}
+  .hero-headline{grid-template-columns:1fr;gap:24px}
+  .hero-stats{grid-template-columns:1fr 1fr}
   .flowchart{grid-template-columns:1fr 1fr}
   .flow-node{border-right:none;border-bottom:1px solid var(--border)}
   .flow-node::after{transform:translate(-50%,50%) rotate(90deg);top:auto;bottom:0;right:auto;left:50%}
-  .source-grid{grid-template-columns:1fr 1fr}
+  .source-row summary{grid-template-columns:1fr;gap:8px}
+  .source-detail-body{padding:0 24px 22px 24px}
   .agent-grid{grid-template-columns:1fr}
-  .db-grid{grid-template-columns:1fr;gap:24px}
+  .db-tables{grid-template-columns:1fr}
   .section-head{grid-template-columns:1fr;gap:8px}
   .section-meta{text-align:left;max-width:none}
   .section-title{font-size:42px}
@@ -170,11 +185,36 @@ body::before{
   </div>
 </header>
 
-<!-- HERO -->
+<!-- HERO — Multi-tenant from day one (the partner-facing headline) -->
 <section class="hero">
-  <div class="hero-label label label-yellow">// HOW THE ENGINE WORKS</div>
-  <h1 class="hero-title display">One pipeline.<br/>Multi-tenant.<br/><em>Auto-discovers what's hitting.</em></h1>
-  <p class="hero-sub"><strong>Workers run automatically across 100+ sources spanning music, TV/film, memes, viral recipes, competitor ads, regen-ag press, retail conversation, and policy discourse.</strong> Each signal scored against the client's voice + brand vocabulary, stamped with the right lane + agent, stored in a single multi-tenant database powering every client's dashboard from one infrastructure.</p>
+  <div class="hero-label label label-yellow">// THE INFRASTRUCTURE BEHIND EVERY OBSOLETE ENGINE</div>
+  <div class="hero-headline">
+    <h1 class="hero-title display">Multi-tenant <em>from day one.</em></h1>
+    <p class="hero-sub"><strong>One Supabase schema. One set of worker code. Powers every client's engine from one infrastructure.</strong> Each worker queries every active client, fetches that client's watchlist, scores against that client's brand vocabulary, and writes signals stamped with the right client_id. When a new brand onboards, it's one SQL INSERT — workers pick them up on the next cron tick. Zero code changes. Zero marginal infrastructure cost. The engine the client owns at the end of the engagement.</p>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num display">100+</div>
+      <div class="hero-stat-label">Active sources</div>
+      <div class="hero-stat-detail">across 12 platforms — Wikipedia, RSS, Reddit, GDELT, Pinterest, YouTube, Letterboxd, Apple Podcasts, more</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num display">10</div>
+      <div class="hero-stat-label">Cron workers</div>
+      <div class="hero-stat-detail">daily ingest, staggered 12pm–9pm UTC. one dispatcher endpoint, one project</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num display">6</div>
+      <div class="hero-stat-label">Generic functions</div>
+      <div class="hero-stat-detail">sensory · sustainability · cultural · competitive · voice · strategist. each client names their own roster.</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num display">∞</div>
+      <div class="hero-stat-label">Clients</div>
+      <div class="hero-stat-detail">new client onboarding = config exercise, not engineering. ~1hr from thesis to live ingest.</div>
+    </div>
+  </div>
 </section>
 
 <!-- TOP FLOWCHART -->
@@ -188,7 +228,7 @@ body::before{
         <div class="flow-node-name display">Internet + Culture</div>
         <div class="flow-node-stat">100+ sources · 12 platforms</div>
       </div>
-      <div class="flow-node-desc">Wikipedia · RSS clusters · GDELT · Reddit · Google Trends · YouTube · Letterboxd · Pinterest · Apple Podcasts · Press releases · Trade press · Trend aggregators.</div>
+      <div class="flow-node-desc">Wikipedia · RSS clusters · GDELT · Reddit · Google Trends · YouTube · Letterboxd · Pinterest · Apple Podcasts · Press releases · Trend aggregators.</div>
     </div>
     <div class="flow-node">
       <div>
@@ -196,7 +236,7 @@ body::before{
         <div class="flow-node-name display">10 Cron Functions</div>
         <div class="flow-node-stat">Daily · staggered 12pm–9pm UTC</div>
       </div>
-      <div class="flow-node-desc">Each worker fetches that platform's data, scores velocity + tonal match against the client's vocabulary, dedupes, writes signals stamped with lane + agent.</div>
+      <div class="flow-node-desc">Each worker fetches platform data, scores velocity + tonal match against the client's vocabulary, dedupes, writes signals stamped with lane + agent.</div>
     </div>
     <div class="flow-node">
       <div>
@@ -204,7 +244,7 @@ body::before{
         <div class="flow-node-name display">Supabase Pipeline</div>
         <div class="flow-node-stat">6 tables · 2 views · RLS</div>
       </div>
-      <div class="flow-node-desc">One database. Every row stamped with client_id. New client = config exercise (SQL INSERT), not engineering. Workers pick up new clients on next cron tick.</div>
+      <div class="flow-node-desc">One database. Every row stamped with client_id. New client = config exercise (SQL INSERT). Workers pick up new clients on next cron tick.</div>
     </div>
     <div class="flow-node">
       <div>
@@ -225,208 +265,248 @@ body::before{
   </div>
 </section>
 
-<!-- SECTION 01 — SOURCES -->
+<!-- SECTION 01 — SOURCES (compact collapsible list) -->
 <section class="section">
   <div class="section-head">
     <div class="section-num">// SECTION 01</div>
     <h2 class="section-title display">What We Listen To</h2>
-    <div class="section-meta">12 platform types · free APIs + RSS + responsible scraping · zero paid SaaS listening tools</div>
+    <div class="section-meta">12 platform types · free APIs + RSS + responsible scraping · click any row to expand</div>
   </div>
 
-  <div class="source-grid">
-    <div class="source-card">
-      <div class="source-platform">WIKIPEDIA</div>
-      <div class="source-name display">Pageviews</div>
-      <div class="source-stat">22 watched pages</div>
-      <div class="source-detail">Pageview spikes on competitor pages, music figures, cultural events. Cleanest velocity proxy in tech.</div>
-      <div class="source-status status-live">Live · no auth</div>
-    </div>
-    <div class="source-card">
-      <div class="source-platform">RSS</div>
-      <div class="source-name display">Feed Cluster</div>
-      <div class="source-stat">25+ feeds · 4 source-types</div>
-      <div class="source-detail">Cultural newsletters (Garbage Day, Culture Study, Today in Tabs) · trade (NOSH, Snaxshot) · music (NPR, Bandcamp) · policy (EWG, Civil Eats) · peer-set (Cherry Bombe, NYMag Strategist).</div>
-      <div class="source-status status-live">Live · no auth</div>
-    </div>
-    <div class="source-card">
-      <div class="source-platform">GDELT 2.0</div>
-      <div class="source-name display">Global News</div>
-      <div class="source-stat">Themes + brand-mention overlay</div>
-      <div class="source-detail">Global news + media DB with 15-minute refresh cadence. Catches mass-cultural events + competitor mentions across global press.</div>
-      <div class="source-status status-live">Live · no auth</div>
-    </div>
-    <div class="source-card">
-      <div class="source-platform">REDDIT</div>
-      <div class="source-name display">Aggregators</div>
-      <div class="source-stat">16 watched subreddits</div>
-      <div class="source-detail">r/popculturechat · r/TikTokCringe · r/Fauxmoi · r/oddlysatisfying · r/FoodPorn · r/FoodTok · r/CPG · r/regenerativeag · and 8 more.</div>
-      <div class="source-status status-live">Live · public JSON</div>
-    </div>
-    <div class="source-card">
-      <div class="source-platform">GOOGLE TRENDS</div>
-      <div class="source-name display">Search Velocity</div>
-      <div class="source-stat">Aggressive discovery mode</div>
-      <div class="source-detail">Daily US trending search velocity by region. v2 worker ingests every trending term that scores tonal ≥ 0.15 or matches a brand/competitor.</div>
-      <div class="source-status status-live">Live · no auth</div>
-    </div>
-    <div class="source-card">
-      <div class="source-platform">PINTEREST</div>
-      <div class="source-name display">Visual Culture</div>
-      <div class="source-stat">Newsroom + Business + 4 Trends queries</div>
-      <div class="source-detail">Audience-INTENT signal (what people SAVE, not just search). Pinterest defines aesthetic language 3–6 months before mainstream adopts it.</div>
-      <div class="source-status status-live">Live · RSS + scrape</div>
-    </div>
-    <div class="source-card">
-      <div class="source-platform">APPLE PODCASTS</div>
-      <div class="source-name display">Top Charts</div>
-      <div class="source-stat">Top 50 · Society &amp; Culture</div>
-      <div class="source-detail">What the wellness-curious audience is listening to. Rank-based velocity scoring + tonal-match overlay.</div>
-      <div class="source-status status-live">Live · no auth</div>
-    </div>
-    <div class="source-card">
-      <div class="source-platform">YOUTUBE</div>
-      <div class="source-name display">Channel RSS</div>
-      <div class="source-stat">5 watched creators</div>
-      <div class="source-detail">Brian Lagerstrom · @feelgoodfoodie · Mary Neilis · Sohla &amp; Ham · Carla Lalli Music. New uploads + recipe drops.</div>
-      <div class="source-status status-live">Live · no auth</div>
-    </div>
-    <div class="source-card">
-      <div class="source-platform">LETTERBOXD</div>
-      <div class="source-name display">Film Culture</div>
-      <div class="source-stat">A24 + 2 critic accounts</div>
-      <div class="source-detail">A24 official · Karina Longworth · Bilge Ebiri. Cultural-commentary film taste signal — most CPG engines forget this exists.</div>
-      <div class="source-status status-live">Live · no auth</div>
-    </div>
-    <div class="source-card">
-      <div class="source-platform">PR NEWSWIRE</div>
-      <div class="source-name display">Press Releases</div>
-      <div class="source-stat">BFY food vertical</div>
-      <div class="source-detail">Every competitor launch hits here 24–72h before trade press picks it up. Half-week competitive lead time.</div>
-      <div class="source-status status-live">Live · no auth</div>
-    </div>
-    <div class="source-card">
-      <div class="source-platform">TIKTOK</div>
-      <div class="source-name display">Trend Aggregators</div>
-      <div class="source-stat">5 specialist RSS feeds</div>
-      <div class="source-detail">Tubefilter · Marketing Brew · Social Media Today · Later · Adweek Social. Discovery layer — what's breaking on TikTok via pro curation.</div>
-      <div class="source-status status-aggregator">Aggregator coverage</div>
-    </div>
-    <div class="source-card">
-      <div class="source-platform">META</div>
-      <div class="source-name display">Ad Library</div>
-      <div class="source-stat">Worker shipped · auth gated</div>
-      <div class="source-detail">Competitor ad creative + spend signal. Meta tightened access mid-2024 (verification + Live mode). Worker fires the moment access lands.</div>
-      <div class="source-status status-gated">Auth gated</div>
-    </div>
+  <div class="source-list">
+    <details class="source-row" open>
+      <summary>
+        <span class="source-platform">WIKIPEDIA</span>
+        <span class="source-row-name"><strong>Pageviews</strong> — pageview spikes on watched pages</span>
+        <span class="source-row-status live">Live</span>
+      </summary>
+      <div class="source-detail-body">Cleanest velocity proxy in tech. Spikes on competitor pages, music figures, cultural events, viral moments. 22 watched pages per client.</div>
+    </details>
+
+    <details class="source-row">
+      <summary>
+        <span class="source-platform">RSS</span>
+        <span class="source-row-name"><strong>Feed Cluster</strong> — 25+ feeds across 4 source-types</span>
+        <span class="source-row-status live">Live</span>
+      </summary>
+      <div class="source-detail-body">Cultural newsletters (Garbage Day, Culture Study, Today in Tabs) · trade press (NOSH, Snaxshot) · music (NPR, Bandcamp, Stereogum) · policy (EWG, Civil Eats) · peer-set (Cherry Bombe, NYMag Strategist). Single worker handles RSS + Letterboxd RSS + YouTube channel RSS + press-release RSS.</div>
+    </details>
+
+    <details class="source-row">
+      <summary>
+        <span class="source-platform">GDELT 2.0</span>
+        <span class="source-row-name"><strong>Global News DB</strong> — theme + brand-mention overlay, 15min refresh</span>
+        <span class="source-row-status live">Live</span>
+      </summary>
+      <div class="source-detail-body">Global news + media database. Catches mass-cultural events + competitor mentions across worldwide press within 15 minutes of publication. Theme-coded for ENTERTAINMENT, CELEBRITY, MUSIC, etc. + brand-name overlay queries.</div>
+    </details>
+
+    <details class="source-row">
+      <summary>
+        <span class="source-platform">REDDIT</span>
+        <span class="source-row-name"><strong>Aggregator Subs</strong> — 16 watched subreddits, public JSON (no auth)</span>
+        <span class="source-row-status live">Live</span>
+      </summary>
+      <div class="source-detail-body">r/popculturechat · r/TikTokCringe · r/Fauxmoi · r/oddlysatisfying · r/FoodPorn · r/FoodTok · r/CPG · r/regenerativeag · r/Target · r/TraderJoes · r/ScienceBasedParenting · and 5 more. Pulled via public /hot.json + /rising.json endpoints with browser-style User-Agent. Sequential 150ms pacing keeps us under 60 req/min rate limit.</div>
+    </details>
+
+    <details class="source-row">
+      <summary>
+        <span class="source-platform">GOOGLE TRENDS</span>
+        <span class="source-row-name"><strong>Daily Search Velocity</strong> — aggressive discovery mode (v2)</span>
+        <span class="source-row-status live">Live</span>
+      </summary>
+      <div class="source-detail-body">Daily US trending search RSS by region. v2 worker ingests every trending term that scores tonal ≥ 0.15 or matches a brand/competitor term — converts Google Trends into a discovery surface instead of just a tracker.</div>
+    </details>
+
+    <details class="source-row">
+      <summary>
+        <span class="source-platform">PINTEREST</span>
+        <span class="source-row-name"><strong>Visual Culture</strong> — Newsroom + Business + 4 Trends Explorer queries</span>
+        <span class="source-row-status live">Live</span>
+      </summary>
+      <div class="source-detail-body">Audience-INTENT signal (what people SAVE, not just search). Pinterest defines aesthetic language 3–6 months before mainstream adopts it. Three approaches: Newsroom RSS (Pinterest Predicts reports), Business blog RSS (Pinterest's own trend analysis), Trends Explorer direct scrape (food + lifestyle + wellness + parenting categories).</div>
+    </details>
+
+    <details class="source-row">
+      <summary>
+        <span class="source-platform">APPLE PODCASTS</span>
+        <span class="source-row-name"><strong>Top Charts</strong> — Top 50 podcasts in watched categories</span>
+        <span class="source-row-status live">Live</span>
+      </summary>
+      <div class="source-detail-body">What the audience is listening to, not just watching. Rank-based velocity scoring + tonal-match overlay. iTunes RSS JSON endpoint, no auth needed.</div>
+    </details>
+
+    <details class="source-row">
+      <summary>
+        <span class="source-platform">YOUTUBE</span>
+        <span class="source-row-name"><strong>Channel RSS</strong> — 5 watched creators, no API key needed</span>
+        <span class="source-row-status live">Live</span>
+      </summary>
+      <div class="source-detail-body">Every YouTube channel publishes a public Atom feed. No quotas, no API key. New uploads from watchlist creators surface within minutes. Per-client creator roster (Brian Lagerstrom, @feelgoodfoodie, Mary Neilis, Sohla &amp; Ham, Carla Lalli Music for Lil Bucks).</div>
+    </details>
+
+    <details class="source-row">
+      <summary>
+        <span class="source-platform">LETTERBOXD</span>
+        <span class="source-row-name"><strong>Film Culture RSS</strong> — A24 + critic accounts</span>
+        <span class="source-row-status live">Live</span>
+      </summary>
+      <div class="source-detail-body">A24 official · Karina Longworth · Bilge Ebiri · Justin Chang. Cultural-commentary film taste signal — most CPG engines forget this exists. Pinterest of the prestige-film world.</div>
+    </details>
+
+    <details class="source-row">
+      <summary>
+        <span class="source-platform">PR NEWSWIRE</span>
+        <span class="source-row-name"><strong>Press Releases</strong> — BFY food vertical RSS</span>
+        <span class="source-row-status live">Live</span>
+      </summary>
+      <div class="source-detail-body">Every BFY competitor launch hits here 24–72h before trade press picks it up. Half-week competitive lead time. Pre-trade press signal for new products, partnerships, retail expansion.</div>
+    </details>
+
+    <details class="source-row">
+      <summary>
+        <span class="source-platform">TIKTOK</span>
+        <span class="source-row-name"><strong>Trend Aggregators</strong> — 5 specialist publications (covered indirectly)</span>
+        <span class="source-row-status aggregator">Aggregator</span>
+      </summary>
+      <div class="source-detail-body">Tubefilter · Marketing Brew · Social Media Today · Later · Adweek Social. Discovery layer for what's breaking on TikTok via professional curation. More defensible than raw firehose scraping — implies we know cultural commentary matters more than raw feed data for our use case. Direct TikTok scraping deferred until Research API approval lands.</div>
+    </details>
+
+    <details class="source-row">
+      <summary>
+        <span class="source-platform">META AD LIBRARY</span>
+        <span class="source-row-name"><strong>Competitor Ads</strong> — worker shipped, awaiting auth approval</span>
+        <span class="source-row-status gated">Auth Gated</span>
+      </summary>
+      <div class="source-detail-body">Competitor ad creative + spend signal. Meta tightened access mid-2024 (verification + Live mode required). Worker code shipped + ready; fires the moment app access lands. Meanwhile competitive intel is covered via Press Releases + GDELT brand mentions + trade RSS.</div>
+    </details>
   </div>
 </section>
 
-<!-- SECTION 02 — WORKERS -->
+<!-- SECTION 02 — GENERIC AGENT FUNCTIONS (with client-specific naming examples) -->
 <section class="section">
   <div class="section-head">
     <div class="section-num">// SECTION 02</div>
-    <h2 class="section-title display">Six Agents That Process Each Source</h2>
-    <div class="section-meta">Each client defines their own roster · generic functions, brand-specific names · multi-tenant from day one</div>
+    <h2 class="section-title display">Six Functions. Each Client Names Their Own.</h2>
+    <div class="section-meta">generic agent functions are infrastructure · brand-specific names are per-client config · same code base, different rosters</div>
   </div>
 
   <div class="agent-grid">
     <div class="agent-card">
-      <div class="agent-name-line">
-        <div class="agent-emoji">⚙️</div>
-        <div class="agent-name display">Crunch Engine</div>
-        <div class="agent-function">FUNCTION · SENSORY</div>
+      <div class="agent-fn-line">
+        <div class="agent-fn-name display">Sensory Agent</div>
+        <div class="agent-fn-tag">FUNCTION · SENSORY</div>
       </div>
-      <div class="agent-desc">Texture + ingredient + recipe discourse. Surfaces sensory-trend velocity (fibermaxxing, crunch culture, protein discourse) before competitors notice.</div>
-      <div class="agent-sources">18 SOURCES · WIKIPEDIA · GOOGLE_TRENDS · RSS</div>
+      <div class="agent-desc">Texture + ingredient + recipe discourse. Surfaces sensory-trend velocity (fibermaxxing, crunch culture, protein discourse) before competitors notice. Reads from Wikipedia + Google Trends + recipe RSS feeds.</div>
+      <div class="agent-examples">
+        <div class="agent-examples-label">CLIENT-SPECIFIC NAMES</div>
+        <div class="agent-example">⚙️ <span class="client">Lil Bucks</span> calls theirs: Crunch Engine</div>
+        <div class="agent-example">📖 <span class="client">Willa's</span>: Trend Reader</div>
+        <div class="agent-example">☕ <span class="client">Bean Co.</span> (future): Bean Watch</div>
+      </div>
     </div>
+
     <div class="agent-card">
-      <div class="agent-name-line">
-        <div class="agent-emoji">📡</div>
-        <div class="agent-name display">Cultural Pulse Tracker</div>
-        <div class="agent-function">FUNCTION · CULTURAL</div>
+      <div class="agent-fn-line">
+        <div class="agent-fn-name display">Cultural Agent</div>
+        <div class="agent-fn-tag">FUNCTION · CULTURAL</div>
       </div>
-      <div class="agent-desc">Music drops, TV peaks, meme velocity, archetype waves. Listens across 10 platform types — Wikipedia, Google Trends, RSS, Reddit, YouTube, Letterboxd, Apple Podcasts, GDELT, Pinterest, TikTok aggregators.</div>
-      <div class="agent-sources">62+ SOURCES · 10 PLATFORM TYPES</div>
+      <div class="agent-desc">Music drops, TV peaks, meme velocity, archetype waves, festival timing. Listens across 10 platform types — the deepest agent in any client's roster. Surfaces what's culturally hitting that the brand can ride.</div>
+      <div class="agent-examples">
+        <div class="agent-examples-label">CLIENT-SPECIFIC NAMES</div>
+        <div class="agent-example">📡 <span class="client">Lil Bucks</span> &amp; <span class="client">Willa's</span>: Cultural Pulse Tracker</div>
+        <div class="agent-example">→ same generic function, often kept under same name across clients</div>
+      </div>
     </div>
+
     <div class="agent-card">
-      <div class="agent-name-line">
-        <div class="agent-emoji">🌾</div>
-        <div class="agent-name display">Soil Scout</div>
-        <div class="agent-function">FUNCTION · SUSTAINABILITY</div>
+      <div class="agent-fn-line">
+        <div class="agent-fn-name display">Sustainability Agent</div>
+        <div class="agent-fn-tag">FUNCTION · SUSTAINABILITY</div>
       </div>
-      <div class="agent-desc">Regen-ag, ROC certification, Soil Health Champ movement, climate-positive farming, EWG glyphosate cycles, food-policy news.</div>
-      <div class="agent-sources">6 SOURCES · WIKIPEDIA · TRENDS · RSS · REDDIT</div>
+      <div class="agent-desc">Sourcing, supply chain, regen-ag, certifications, climate-positive farming. Per-client framing depends on the brand's sustainability narrative — regen-ag for some, fair-trade for others, ROC for the cleanest.</div>
+      <div class="agent-examples">
+        <div class="agent-examples-label">CLIENT-SPECIFIC NAMES</div>
+        <div class="agent-example">🌾 <span class="client">Lil Bucks</span>: Soil Scout <em style="color:var(--text-meta)">(regen-ag + farmer-direct)</em></div>
+        <div class="agent-example">🌾 <span class="client">Willa's</span>: Origin Farm <em style="color:var(--text-meta)">(organic + glyphosate-free)</em></div>
+      </div>
     </div>
+
     <div class="agent-card">
-      <div class="agent-name-line">
-        <div class="agent-emoji">🛒</div>
-        <div class="agent-name display">Shelf Watch</div>
-        <div class="agent-function">FUNCTION · COMPETITIVE</div>
+      <div class="agent-fn-line">
+        <div class="agent-fn-name display">Competitive Agent</div>
+        <div class="agent-fn-tag">FUNCTION · COMPETITIVE</div>
       </div>
-      <div class="agent-desc">Competitor launches, retail moves, ad-creative intel, at-shelf UGC. Catches launches 7–14 days pre-retail via press-release feeds + 8–12 weeks via trade-show announcements.</div>
-      <div class="agent-sources">15 SOURCES · 7 PLATFORM TYPES</div>
+      <div class="agent-desc">Competitor launches, retail moves, ad-creative intel, at-shelf UGC. Catches launches 7–14 days pre-retail via press-release feeds + 8–12 weeks ahead via trade-show announcements.</div>
+      <div class="agent-examples">
+        <div class="agent-examples-label">CLIENT-SPECIFIC NAMES</div>
+        <div class="agent-example">🛒 <span class="client">Lil Bucks</span>: Shelf Watch</div>
+        <div class="agent-example">👀 <span class="client">Willa's</span>: Competitor Watch</div>
+      </div>
     </div>
+
     <div class="agent-card">
-      <div class="agent-name-line">
-        <div class="agent-emoji">💬</div>
-        <div class="agent-name display">Voice Compass</div>
-        <div class="agent-function">FUNCTION · VOICE</div>
+      <div class="agent-fn-line">
+        <div class="agent-fn-name display">Voice Agent</div>
+        <div class="agent-fn-tag">FUNCTION · VOICE</div>
       </div>
-      <div class="agent-desc">Internal-only. Audits every brief draft against the client's Voice Compass — lowercase warmth, founder signature, music-lane match, emoji palette.</div>
-      <div class="agent-sources">NO EXTERNAL SOURCES · PER-BRIEF AUDIT</div>
+      <div class="agent-desc">Internal-only. Audits every brief draft against the client's Voice Compass — register, founder signature, music-lane match, emoji palette. No external sources; operates per-brief on the agent-generated drafts.</div>
+      <div class="agent-examples">
+        <div class="agent-examples-label">CLIENT-SPECIFIC NAMES</div>
+        <div class="agent-example">💬 <span class="client">All clients</span>: Voice Compass</div>
+        <div class="agent-example">→ universal name — the function maps 1:1 to a single concept</div>
+      </div>
     </div>
+
     <div class="agent-card">
-      <div class="agent-name-line">
-        <div class="agent-emoji">🧠</div>
-        <div class="agent-name display">The Strategist</div>
-        <div class="agent-function">FUNCTION · STRATEGIST</div>
+      <div class="agent-fn-line">
+        <div class="agent-fn-name display">Strategist Agent</div>
+        <div class="agent-fn-tag">FUNCTION · STRATEGIST</div>
       </div>
-      <div class="agent-desc">On-demand riff partner inside the dashboard's Studio. Drafts alternatives, pressure-tests against the operating model, runs counter-scenarios. Powered by Claude API with full client context.</div>
-      <div class="agent-sources">CLAUDE API · LIVE WEB SEARCH</div>
+      <div class="agent-desc">On-demand riff partner inside the dashboard's Studio. Drafts alternatives, pressure-tests against the operating model, runs counter-scenarios. Powered by Claude API with full client context loaded.</div>
+      <div class="agent-examples">
+        <div class="agent-examples-label">CLIENT-SPECIFIC NAMES</div>
+        <div class="agent-example">🧠 <span class="client">All clients</span>: The Strategist</div>
+        <div class="agent-example">→ on-demand · live web search · full engine context</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 03 — STORAGE -->
-<section class="section" style="border-bottom:none">
+<!-- SECTION 03 — Database schema (technical spec only — multi-tenancy explained above) -->
+<section class="section">
   <div class="section-head">
     <div class="section-num">// SECTION 03</div>
-    <h2 class="section-title display">One Database, Every Client</h2>
-    <div class="section-meta">single Supabase pipeline schema · every row stamped with client_id, lane, and agent for routing</div>
+    <h2 class="section-title display">The Database Schema</h2>
+    <div class="section-meta">supabase pipeline schema · 6 tables · every row stamped with client_id, lane, and agent for routing</div>
   </div>
 
   <div class="db-block">
-    <div class="db-grid">
-      <div>
-        <div class="db-eyebrow">// SUPABASE · PIPELINE SCHEMA</div>
-        <h3 class="db-title display">Multi-tenant from day one</h3>
-        <p class="db-desc">Every worker queries <strong>all active clients</strong> from one table, fetches each client's watchlist, and writes results into a unified <span class="mono" style="color:var(--neon-yellow)">signals</span> table stamped with the right client. When client #3 lands, it's <strong>one SQL INSERT</strong> into the clients + sources tables — zero code changes, workers pick them up on the next cron tick.</p>
+    <div class="db-tables">
+      <div class="db-table">
+        <div class="db-table-name">clients</div>
+        <div class="db-table-desc">Each engine deployment. Pillars + brand_terms + competitor_terms + audience_notes.</div>
       </div>
-      <div class="db-tables">
-        <div class="db-table">
-          <div class="db-table-name">clients</div>
-          <div class="db-table-desc">Each engine deployment. Pillars + brand_terms + competitor_terms + audience_notes.</div>
-        </div>
-        <div class="db-table">
-          <div class="db-table-name">client_agents</div>
-          <div class="db-table-desc">Per-client agent roster. Generic <span class="mono">function</span>, brand-specific <span class="mono">display_name</span>.</div>
-        </div>
-        <div class="db-table">
-          <div class="db-table-name">client_sources</div>
-          <div class="db-table-desc">Watchlist per client. Each row carries its <em>why</em> rationale — strategy queryable as data.</div>
-        </div>
-        <div class="db-table">
-          <div class="db-table-name">client_keywords</div>
-          <div class="db-table-desc">Vocabulary per pillar with weights. Drives tonal scoring on every signal.</div>
-        </div>
-        <div class="db-table">
-          <div class="db-table-name">signals</div>
-          <div class="db-table-desc">Every ingested signal. Stamped with client_id + lane + agent. Deduped by source_id.</div>
-        </div>
-        <div class="db-table">
-          <div class="db-table-name">agent_runs</div>
-          <div class="db-table-desc">Telemetry per worker invocation. Drives the live counts in How It Works UI.</div>
-        </div>
+      <div class="db-table">
+        <div class="db-table-name">client_agents</div>
+        <div class="db-table-desc">Per-client agent roster. Generic <span class="mono">function</span>, brand-specific <span class="mono">display_name</span>.</div>
+      </div>
+      <div class="db-table">
+        <div class="db-table-name">client_sources</div>
+        <div class="db-table-desc">Watchlist per client. Each row carries its <em>why</em> rationale — strategy queryable as data.</div>
+      </div>
+      <div class="db-table">
+        <div class="db-table-name">client_keywords</div>
+        <div class="db-table-desc">Vocabulary per pillar with weights. Drives tonal scoring on every signal.</div>
+      </div>
+      <div class="db-table">
+        <div class="db-table-name">signals</div>
+        <div class="db-table-desc">Every ingested signal. Stamped with client_id + lane + agent. Deduped by source_id.</div>
+      </div>
+      <div class="db-table">
+        <div class="db-table-name">agent_runs</div>
+        <div class="db-table-desc">Telemetry per worker invocation. Drives the live counts in How It Works UI.</div>
       </div>
     </div>
   </div>
