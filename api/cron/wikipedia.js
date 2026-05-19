@@ -1,4 +1,8 @@
-// Wikipedia Pageviews worker — Stage 2 of the OBSOLETE Signal Pipeline.
+// Wikipedia Pageviews worker — Express-style handler (Vercel Node).
+//
+// Multi-tenant: loops over every active client, pulls each client's wikipedia
+// watchlist from pipeline.client_sources, fetches pageview deltas, scores
+// velocity + client_tonal, upserts into pipeline.signals.
 
 import { supa, startRun, finishRun, isAuthorizedCron } from "../../lib/supabase.js";
 import {
@@ -16,11 +20,8 @@ function fmtDate(d) { return d.toISOString().slice(0, 10).replace(/-/g, ""); }
 async function fetchWithTimeout(url, opts = {}, timeoutMs = DEFAULT_FETCH_TIMEOUT_MS) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), timeoutMs);
-  try {
-    return await fetch(url, { ...opts, signal: ctrl.signal });
-  } finally {
-    clearTimeout(timer);
-  }
+  try { return await fetch(url, { ...opts, signal: ctrl.signal }); }
+  finally { clearTimeout(timer); }
 }
 
 async function fetchPageviews(articleTitle, daysBack = 8) {
@@ -32,54 +33,52 @@ async function fetchPageviews(articleTitle, daysBack = 8) {
   const url =
     `https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/` +
     `en.wikipedia/all-access/all-agents/${encoded}/daily/${fmtDate(start)}/${fmtDate(end)}`;
-  const res = await fetchWithTimeout(url, {
+  const r = await fetchWithTimeout(url, {
     headers: { "User-Agent": WIKI_USER_AGENT, "Accept": "application/json" }
   });
-  if (!res.ok) {
-    if (res.status === 404) return null;
-    throw new Error(`Wikipedia pageviews ${res.status} for ${articleTitle}`);
+  if (!r.ok) {
+    if (r.status === 404) return null;
+    throw new Error(`Wikipedia pageviews ${r.status} for ${articleTitle}`);
   }
-  return await res.json();
+  return await r.json();
 }
 
 async function fetchSummary(articleTitle) {
   const encoded = encodeURIComponent(articleTitle.replace(/ /g, "_"));
   const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encoded}`;
   try {
-    const res = await fetchWithTimeout(url, {
+    const r = await fetchWithTimeout(url, {
       headers: { "User-Agent": WIKI_USER_AGENT, "Accept": "application/json" }
     });
-    if (!res.ok) return null;
-    const data = await res.json();
+    if (!r.ok) return null;
+    const data = await r.json();
     return {
       title: data.title,
       extract: data.extract,
       url: data.content_urls?.desktop?.page,
       timestamp: data.timestamp
     };
-  } catch (err) {
-    // Summary is nice-to-have; never block ingestion if it fails
+  } catch (e) {
     return null;
   }
 }
 
-// Process one source — returns { processed, skipped, error }
 async function processSource(src, { clientId, agentId, byPillar, meta }) {
-  const tStart = Date.now();
+  const t0 = Date.now();
   try {
     const pageviews = await fetchPageviews(src.target, 8);
     if (!pageviews?.items || pageviews.items.length < 2) {
-      return { target: src.target, status: "no_data", ms: Date.now() - tStart };
+      return { target: src.target, status: "no_data", ms: Date.now() - t0 };
     }
 
     const items = pageviews.items;
     const today = items[items.length - 1];
     const prior = items.slice(0, -1);
-    const rollingAvg7 = prior.reduce((sum, x) => sum + x.views, 0) / Math.max(prior.length, 1);
+    const rollingAvg7 = prior.reduce((s, x) => s + x.views, 0) / Math.max(prior.length, 1);
     const velocity = wikiVelocity({ todayViews: today.views, rollingAvg7 });
 
     if (velocity < 1.3 && today.views < 10000) {
-      return { target: src.target, status: "below_threshold", views: today.views, velocity, ms: Date.now() - tStart };
+      return { target: src.target, status: "below_threshold", views: today.views, velocity, ms: Date.now() - t0 };
     }
 
     const sum = await fetchSummary(src.target);
@@ -93,121 +92,55 @@ async function processSource(src, { clientId, agentId, byPillar, meta }) {
     const bm = detectBrandMatch(`${title} ${body}`, meta);
 
     const source_id = `wikipedia:${src.target}:${today.timestamp.slice(0, 8)}`;
-    const { error: upErr } = await supa().from("signals").upsert({
-      client_id: clientId,
-      source: SOURCE,
-      source_id,
-      source_url: url,
-      target: src.target,
-      lane: src.lane,
-      agent_id: agentId,
+    const { error } = await supa().from("signals").upsert({
+      client_id: clientId, source: SOURCE, source_id,
+      source_url: url, target: src.target, lane: src.lane, agent_id: agentId,
       occurred_at: new Date(
         `${today.timestamp.slice(0, 4)}-${today.timestamp.slice(4, 6)}-${today.timestamp.slice(6, 8)}T00:00:00Z`
       ).toISOString(),
       raw: { pageviews: items, summary: sum, watchlist_meta: src.meta || {} },
-      title,
-      body_excerpt: body.slice(0, 500),
-      metric_score: velocity,
-      client_tonal: tonal.score,
-      pillar_hint: tonal.pillar,
-      brand_match: bm.brand_match,
-      competitor_match: bm.competitor_match,
+      title, body_excerpt: body.slice(0, 500),
+      metric_score: velocity, client_tonal: tonal.score, pillar_hint: tonal.pillar,
+      brand_match: bm.brand_match, competitor_match: bm.competitor_match,
       status: "fresh"
     }, { onConflict: "client_id,source,source_id" });
 
-    if (upErr) return { target: src.target, status: "upsert_error", error: upErr.message, ms: Date.now() - tStart };
-    return { target: src.target, status: "ingested", views: today.views, velocity: velocity.toFixed(2), tonal: tonal.score.toFixed(2), pillar: tonal.pillar, ms: Date.now() - tStart };
+    if (error) return { target: src.target, status: "upsert_error", error: error.message, ms: Date.now() - t0 };
+    return { target: src.target, status: "ingested", views: today.views, velocity: velocity.toFixed(2), tonal: tonal.score.toFixed(2), pillar: tonal.pillar, ms: Date.now() - t0 };
   } catch (err) {
-    return { target: src.target, status: "fetch_error", error: String(err.message || err), ms: Date.now() - tStart };
+    return { target: src.target, status: "fetch_error", error: String(err.message || err), ms: Date.now() - t0 };
   }
 }
 
-function jsonResponse(body, status = 200) {
-  return new Response(JSON.stringify(body, null, 2), {
-    status,
-    headers: { "Content-Type": "application/json" }
-  });
-}
-
-// ---------- Main handler ----------
-
-export default async function handler(req) {
-  const startTime = Date.now();
-
+export default async function handler(req, res) {
+  const t0 = Date.now();
   try {
-    if (!isAuthorizedCron(req)) return jsonResponse({ error: "unauthorized" }, 401);
+    if (!isAuthorizedCron(req)) return res.status(401).json({ error: "unauthorized" });
 
-    // Parse query params
-    const url = new URL(req.url || "http://x/?", "http://x");
-    const limitRaw = url.searchParams.get("limit");
-    const limit = limitRaw ? parseInt(limitRaw, 10) : null;
-    const debug = url.searchParams.get("debug");
+    const q = req.query || {};
+    const limit = q.limit ? parseInt(q.limit, 10) : null;
+    const debug = q.debug;
 
-    // Short-circuit: ?debug=env returns env diagnostic, no Supabase calls
     if (debug === "env") {
-      return jsonResponse({
+      return res.status(200).json({
         status: "debug_env",
         env: {
           SUPABASE_URL_set: !!process.env.SUPABASE_URL,
           SUPABASE_URL_prefix: process.env.SUPABASE_URL?.slice(0, 40) || null,
-          SUPABASE_URL_endsWith_supabase_co: process.env.SUPABASE_URL?.endsWith(".supabase.co") || false,
           SUPABASE_SERVICE_ROLE_KEY_set: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
-          SUPABASE_SERVICE_ROLE_KEY_len: process.env.SUPABASE_SERVICE_ROLE_KEY?.length || 0,
-          SUPABASE_SERVICE_ROLE_KEY_starts_with_eyJ: process.env.SUPABASE_SERVICE_ROLE_KEY?.startsWith("eyJ") || false,
-          SUPABASE_ANON_KEY_set: !!process.env.SUPABASE_ANON_KEY,
-          SUPABASE_ANON_KEY_len: process.env.SUPABASE_ANON_KEY?.length || 0,
           node_version: process.version,
-          region: process.env.VERCEL_REGION || null,
-          deployment_id: process.env.VERCEL_DEPLOYMENT_ID || null
+          region: process.env.VERCEL_REGION || null
         },
-        duration_ms: Date.now() - startTime
+        duration_ms: Date.now() - t0
       });
     }
 
-    // Short-circuit: ?debug=ping does a single Supabase select with a 5s timeout
-    if (debug === "ping") {
-      const ctrl = new AbortController();
-      const pingTimeout = setTimeout(() => ctrl.abort(), 5000);
-      try {
-        const { data, error, status } = await supa()
-          .from("clients").select("id, name").eq("active", true)
-          .abortSignal(ctrl.signal);
-        return jsonResponse({
-          status: "debug_ping",
-          supabase_status: status,
-          supabase_error: error?.message || null,
-          rows: data?.length || 0,
-          row_ids: (data || []).map(r => r.id),
-          duration_ms: Date.now() - startTime
-        });
-      } catch (err) {
-        return jsonResponse({
-          status: "debug_ping_failed",
-          error: err.message || String(err),
-          aborted: ctrl.signal.aborted,
-          duration_ms: Date.now() - startTime
-        }, 500);
-      } finally {
-        clearTimeout(pingTimeout);
-      }
-    }
-
-    const summary = {
-      clients_processed: 0,
-      agent_runs: 0,
-      sources_total: 0,
-      sources_processed: 0,
-      ingested: 0,
-      per_source: [],
-      errors: []
-    };
+    const summary = { clients_processed: 0, agent_runs: 0, sources_total: 0, sources_processed: 0, ingested: 0, per_source: [], errors: [] };
 
     const { data: clients, error: cErr } = await supa()
       .from("clients").select("id, name").eq("active", true);
-    if (cErr) return jsonResponse({ error: "clients_fetch_failed", details: cErr.message }, 500);
-    if (!clients || clients.length === 0) {
-      return jsonResponse({ status: "no_active_clients", duration_ms: Date.now() - startTime });
-    }
+    if (cErr) return res.status(500).json({ error: "clients_fetch_failed", details: cErr.message });
+    if (!clients?.length) return res.status(200).json({ status: "no_active_clients", duration_ms: Date.now() - t0 });
 
     outer:
     for (const client of clients) {
@@ -220,14 +153,12 @@ export default async function handler(req) {
         .eq("source", SOURCE)
         .eq("active", true);
       if (sErr) { summary.errors.push({ client: client.id, error: sErr.message }); continue; }
-      if (!sources || sources.length === 0) continue;
+      if (!sources?.length) continue;
 
       summary.sources_total += sources.length;
-
       const byPillar = await getClientKeywords(client.id);
       const meta = await getClientMeta(client.id);
 
-      // Group by agent
       const byAgent = new Map();
       for (const s of sources) {
         if (!byAgent.has(s.agent_id)) byAgent.set(s.agent_id, []);
@@ -238,11 +169,9 @@ export default async function handler(req) {
         summary.agent_runs++;
         const runId = await startRun({ clientId: client.id, agentId, source: SOURCE });
 
-        // Apply limit at the agent level — process up to N more sources total
-        const remainingLimit = limit ? Math.max(0, limit - summary.sources_processed) : agentSources.length;
-        const toProcess = agentSources.slice(0, remainingLimit);
+        const remaining = limit ? Math.max(0, limit - summary.sources_processed) : agentSources.length;
+        const toProcess = agentSources.slice(0, remaining);
 
-        // Parallelize within the agent batch
         const results = await Promise.all(toProcess.map(src =>
           processSource(src, { clientId: client.id, agentId, byPillar, meta })
         ));
@@ -269,22 +198,19 @@ export default async function handler(req) {
       }
     }
 
-    summary.duration_ms = Date.now() - startTime;
+    summary.duration_ms = Date.now() - t0;
     summary.limit_applied = limit;
-    return jsonResponse(summary);
+    return res.status(200).json(summary);
   } catch (err) {
-    return jsonResponse({
+    return res.status(500).json({
       error: "handler_threw",
       message: err.message || String(err),
       stack: (err.stack || "").split("\n").slice(0, 6),
       env_diagnostic: {
         SUPABASE_URL_set: !!process.env.SUPABASE_URL,
-        SUPABASE_URL_prefix: process.env.SUPABASE_URL?.slice(0, 30) || null,
-        SUPABASE_SERVICE_ROLE_KEY_set: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
-        SUPABASE_ANON_KEY_set: !!process.env.SUPABASE_ANON_KEY,
-        node_version: process.version
+        SUPABASE_SERVICE_ROLE_KEY_set: !!process.env.SUPABASE_SERVICE_ROLE_KEY
       },
-      duration_ms: Date.now() - startTime
-    }, 500);
+      duration_ms: Date.now() - t0
+    });
   }
 }

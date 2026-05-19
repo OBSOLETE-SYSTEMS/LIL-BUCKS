@@ -1,9 +1,10 @@
-// Supabase connectivity test — touches Supabase but with a hard 5s timeout.
-// Diagnoses whether `supa().from(...)` hangs in the Vercel runtime.
+// Supabase connectivity test — Express-style.
+// Tests createClient + a 5s-timeout query so we get a clean diagnostic
+// instead of waiting 60s for the function-level timeout.
 
 import { createClient } from "@supabase/supabase-js";
 
-export default async function handler(req) {
+export default async function handler(req, res) {
   const t0 = Date.now();
   const result = {
     env: {
@@ -15,8 +16,7 @@ export default async function handler(req) {
   };
 
   if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
-    return new Response(JSON.stringify({ ...result, status: "missing_env_vars", duration_ms: Date.now() - t0 }, null, 2),
-      { status: 500, headers: { "Content-Type": "application/json" } });
+    return res.status(500).json({ ...result, status: "missing_env_vars", duration_ms: Date.now() - t0 });
   }
 
   try {
@@ -27,11 +27,10 @@ export default async function handler(req) {
     );
     result.client_created_ms = Date.now() - t0;
 
-    // Race the query against a 5s hard timeout so we don't hit the function-level 60s wall
     const queryStart = Date.now();
-    const query = supa.from("clients").select("id, name").eq("active", true);
     const race = await Promise.race([
-      query.then(r => ({ kind: "result", r })),
+      supa.from("clients").select("id, name").eq("active", true)
+        .then(r => ({ kind: "result", r })),
       new Promise(resolve => setTimeout(() => resolve({ kind: "timeout" }), 5000))
     ]);
     result.query_ms = Date.now() - queryStart;
@@ -39,8 +38,7 @@ export default async function handler(req) {
     if (race.kind === "timeout") {
       result.status = "supabase_query_timeout_at_5s";
       result.duration_ms = Date.now() - t0;
-      return new Response(JSON.stringify(result, null, 2),
-        { status: 504, headers: { "Content-Type": "application/json" } });
+      return res.status(504).json(result);
     }
 
     const { data, error } = race.r;
@@ -49,14 +47,12 @@ export default async function handler(req) {
     result.rows = data?.length || 0;
     result.row_ids = (data || []).map(r => r.id);
     result.duration_ms = Date.now() - t0;
-    return new Response(JSON.stringify(result, null, 2),
-      { status: error ? 500 : 200, headers: { "Content-Type": "application/json" } });
+    return res.status(error ? 500 : 200).json(result);
   } catch (err) {
     result.status = "handler_threw";
     result.error = err.message || String(err);
     result.stack = (err.stack || "").split("\n").slice(0, 6);
     result.duration_ms = Date.now() - t0;
-    return new Response(JSON.stringify(result, null, 2),
-      { status: 500, headers: { "Content-Type": "application/json" } });
+    return res.status(500).json(result);
   }
 }

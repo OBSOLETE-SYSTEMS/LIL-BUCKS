@@ -1,8 +1,5 @@
-// RSS aggregator worker — Stage 5 of the OBSOLETE Signal Pipeline.
-//
-// Single worker handles all RSS feeds across all clients. Each feed is one
-// row in pipeline.client_sources where source = 'rss' and target = feed URL.
-// Supports both RSS 2.0 and Atom feeds via fast-xml-parser.
+// RSS aggregator worker — Express-style handler (Vercel Node).
+// Single worker handles all RSS feeds across all clients.
 
 import { XMLParser } from "fast-xml-parser";
 import { supa, startRun, finishRun, isAuthorizedCron } from "../../lib/supabase.js";
@@ -27,7 +24,6 @@ async function fetchWithTimeout(url, opts = {}, timeoutMs = FETCH_TIMEOUT_MS) {
   finally { clearTimeout(timer); }
 }
 
-// Normalize an RSS/Atom entry into a flat shape
 function normalizeItem(it, format) {
   if (format === "atom") {
     const link = Array.isArray(it.link)
@@ -43,7 +39,6 @@ function normalizeItem(it, format) {
       description: summary || content || ""
     };
   }
-  // RSS 2.0
   const guidObj = typeof it.guid === "object" ? it.guid["#text"] : it.guid;
   const desc = typeof it.description === "object" ? it.description["#text"] : it.description;
   return {
@@ -58,10 +53,7 @@ function normalizeItem(it, format) {
 function detectFormat(parsed) {
   if (parsed?.rss?.channel) return { format: "rss", channel: parsed.rss.channel };
   if (parsed?.feed) return { format: "atom", channel: parsed.feed };
-  if (parsed?.["rdf:RDF"]) {
-    // RSS 1.0 (RDF)
-    return { format: "rss", channel: parsed["rdf:RDF"] };
-  }
+  if (parsed?.["rdf:RDF"]) return { format: "rss", channel: parsed["rdf:RDF"] };
   return null;
 }
 
@@ -69,8 +61,6 @@ function stripHtml(s) {
   return (s || "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
 }
 
-// Recency-based velocity for RSS items (no engagement available)
-// 1.0 for today, halves every 24 hours
 function rssVelocity(occurredAt) {
   const ageDays = (Date.now() - new Date(occurredAt).getTime()) / 86_400_000;
   return Math.pow(0.5, Math.max(0, ageDays));
@@ -79,31 +69,23 @@ function rssVelocity(occurredAt) {
 async function processFeed(src, { clientId, agentId, byPillar, meta }) {
   const t0 = Date.now();
   const result = { target: src.target, status: "unknown", ingested: 0, items_seen: 0, ms: 0 };
-
   try {
-    const res = await fetchWithTimeout(src.target, {
+    const r = await fetchWithTimeout(src.target, {
       headers: { "User-Agent": USER_AGENT, "Accept": "application/rss+xml, application/atom+xml, application/xml, text/xml" }
     });
-    if (!res.ok) {
-      result.status = `fetch_${res.status}`;
-      return result;
-    }
-    const xml = await res.text();
+    if (!r.ok) { result.status = `fetch_${r.status}`; return result; }
+    const xml = await r.text();
     let parsed;
     try { parsed = xmlParser.parse(xml); }
-    catch (e) {
-      result.status = "parse_error";
-      result.error = e.message;
-      return result;
-    }
+    catch (e) { result.status = "parse_error"; result.error = e.message; return result; }
     const det = detectFormat(parsed);
     if (!det) { result.status = "format_unrecognized"; return result; }
 
     const items = det.format === "atom"
       ? (Array.isArray(det.channel.entry) ? det.channel.entry : (det.channel.entry ? [det.channel.entry] : []))
       : (Array.isArray(det.channel.item) ? det.channel.item : (det.channel.item ? [det.channel.item] : []));
-
     result.items_seen = items.length;
+
     const cutoff = Date.now() - ITEM_MAX_AGE_DAYS * 86_400_000;
     const upserts = [];
 
@@ -118,27 +100,19 @@ async function processFeed(src, { clientId, agentId, byPillar, meta }) {
       const tonal = scoreTonal(fulltext, byPillar);
       const bm = detectBrandMatch(fulltext, meta);
 
-      // Only ingest if there's signal — tonal match OR brand/competitor mention
       if (tonal.score < 0.25 && !bm.brand_match && !bm.competitor_match) continue;
 
-      const source_id = `rss:${src.target}:${item.guid || item.link}`;
       upserts.push({
-        client_id: clientId,
-        source: SOURCE,
-        source_id,
-        source_url: item.link,
-        target: src.target,
-        lane: src.lane,
-        agent_id: agentId,
+        client_id: clientId, source: SOURCE,
+        source_id: `rss:${src.target}:${item.guid || item.link}`,
+        source_url: item.link, target: src.target,
+        lane: src.lane, agent_id: agentId,
         occurred_at: new Date(pubMs).toISOString(),
         raw: { item: raw, feed_meta: src.meta || {}, feed_title: det.channel.title || src.target_display },
-        title: item.title.slice(0, 500),
-        body_excerpt: body.slice(0, 500),
+        title: item.title.slice(0, 500), body_excerpt: body.slice(0, 500),
         metric_score: rssVelocity(pubMs),
-        client_tonal: tonal.score,
-        pillar_hint: tonal.pillar,
-        brand_match: bm.brand_match,
-        competitor_match: bm.competitor_match,
+        client_tonal: tonal.score, pillar_hint: tonal.pillar,
+        brand_match: bm.brand_match, competitor_match: bm.competitor_match,
         status: "fresh"
       });
     }
@@ -148,7 +122,6 @@ async function processFeed(src, { clientId, agentId, byPillar, meta }) {
       if (error) { result.status = "upsert_error"; result.error = error.message; return result; }
       result.ingested = upserts.length;
     }
-
     result.status = "ok";
     return result;
   } catch (err) {
@@ -160,31 +133,25 @@ async function processFeed(src, { clientId, agentId, byPillar, meta }) {
   }
 }
 
-function jsonResponse(body, status = 200) {
-  return new Response(JSON.stringify(body, null, 2), {
-    status, headers: { "Content-Type": "application/json" }
-  });
-}
-
-export default async function handler(req) {
+export default async function handler(req, res) {
   const t0 = Date.now();
   try {
-    if (!isAuthorizedCron(req)) return jsonResponse({ error: "unauthorized" }, 401);
+    if (!isAuthorizedCron(req)) return res.status(401).json({ error: "unauthorized" });
 
-    const url = new URL(req.url || "http://x/?", "http://x");
-    const limit = url.searchParams.get("limit") ? parseInt(url.searchParams.get("limit"), 10) : null;
-    if (url.searchParams.get("debug") === "env") {
-      return jsonResponse({ status: "debug_env_rss",
+    const q = req.query || {};
+    const limit = q.limit ? parseInt(q.limit, 10) : null;
+    if (q.debug === "env") {
+      return res.status(200).json({
+        status: "debug_env_rss",
         SUPABASE_URL_set: !!process.env.SUPABASE_URL,
         SUPABASE_SERVICE_ROLE_KEY_set: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
-        node_version: process.version });
+        node_version: process.version
+      });
     }
 
     const summary = { clients: 0, agent_runs: 0, feeds_total: 0, feeds_processed: 0, ingested: 0, per_feed: [], errors: [] };
-
-    const { data: clients, error: cErr } = await supa()
-      .from("clients").select("id, name").eq("active", true);
-    if (cErr) return jsonResponse({ error: "clients_fetch_failed", details: cErr.message }, 500);
+    const { data: clients, error: cErr } = await supa().from("clients").select("id, name").eq("active", true);
+    if (cErr) return res.status(500).json({ error: "clients_fetch_failed", details: cErr.message });
 
     outer:
     for (const client of clients || []) {
@@ -195,8 +162,8 @@ export default async function handler(req) {
         .eq("client_id", client.id).eq("source", SOURCE).eq("active", true);
       if (sErr) { summary.errors.push({ client: client.id, error: sErr.message }); continue; }
       if (!sources?.length) continue;
-
       summary.feeds_total += sources.length;
+
       const byPillar = await getClientKeywords(client.id);
       const meta = await getClientMeta(client.id);
 
@@ -219,6 +186,7 @@ export default async function handler(req) {
 
         summary.feeds_processed += results.length;
         summary.per_feed.push(...results.map(r => ({ ...r, client: client.id, agent: agentId })));
+
         const ingested = results.reduce((sum, r) => sum + (r.ingested || 0), 0);
         const errs = results.filter(r => r.status?.endsWith("_error") || r.status === "format_unrecognized")
           .map(r => ({ target: r.target, error: r.error || r.status }));
@@ -238,13 +206,13 @@ export default async function handler(req) {
     }
 
     summary.duration_ms = Date.now() - t0;
-    return jsonResponse(summary);
+    return res.status(200).json(summary);
   } catch (err) {
-    return jsonResponse({
+    return res.status(500).json({
       error: "handler_threw",
       message: err.message || String(err),
       stack: (err.stack || "").split("\n").slice(0, 6),
       duration_ms: Date.now() - t0
-    }, 500);
+    });
   }
 }
