@@ -1,22 +1,17 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "crons": [
-    {
-      "path": "/api/cron/rss?source=cron",
-      "schedule": "0 12 * * *"
-    },
-    {
-      "path": "/api/cron/wikipedia?source=cron",
-      "schedule": "0 13 * * *"
-    },
-    {
-      "path": "/api/cron/gdelt?source=cron",
-      "schedule": "0 14 * * *"
-    }
+    { "path": "/api/cron/rss?source=cron",             "schedule": "0 12 * * *" },
+    { "path": "/api/cron/wikipedia?source=cron",       "schedule": "0 13 * * *" },
+    { "path": "/api/cron/gdelt?source=cron",           "schedule": "0 14 * * *" },
+    { "path": "/api/cron/apple_podcasts?source=cron",  "schedule": "0 15 * * *" },
+    { "path": "/api/cron/spotify?source=cron",         "schedule": "0 16 * * *" }
   ],
   "functions": {
-    "api/cron/wikipedia.js": { "maxDuration": 60 },
-    "api/cron/rss.js": { "maxDuration": 60 },
-    "api/cron/gdelt.js": { "maxDuration": 60 }
+    "api/cron/wikipedia.js":      { "maxDuration": 60 },
+    "api/cron/rss.js":            { "maxDuration": 60 },
+    "api/cron/gdelt.js":          { "maxDuration": 60 },
+    "api/cron/apple_podcasts.js": { "maxDuration": 60 },
+    "api/cron/spotify.js":        { "maxDuration": 60 }
   }
 }

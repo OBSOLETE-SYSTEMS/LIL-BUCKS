@@ -5,7 +5,9 @@ import { XMLParser } from "fast-xml-parser";
 import { supa, startRun, finishRun, isAuthorizedCron } from "../../lib/supabase.js";
 import { getClientKeywords, scoreTonal, getClientMeta, detectBrandMatch } from "../../lib/scoring.js";
 
-const SOURCE = "rss";
+// Single worker handles every RSS/Atom-shaped source.
+// Each row carries its actual source_type for routing + provenance.
+const RSS_SOURCE_TYPES = ["rss", "letterboxd_rss", "youtube_rss", "press_release_rss"];
 const FETCH_TIMEOUT_MS = 8000;
 const ITEM_MAX_AGE_DAYS = 14;
 const USER_AGENT = "OBSOLETE-Signal-Pipeline/0.1 (+https://obsolete.systems)";
@@ -68,7 +70,7 @@ function rssVelocity(occurredAt) {
 
 async function processFeed(src, { clientId, agentId, byPillar, meta }) {
   const t0 = Date.now();
-  const result = { target: src.target, status: "unknown", ingested: 0, items_seen: 0, ms: 0 };
+  const result = { target: src.target, source_type: src.source, status: "unknown", ingested: 0, items_seen: 0, ms: 0 };
   try {
     const r = await fetchWithTimeout(src.target, {
       headers: { "User-Agent": USER_AGENT, "Accept": "application/rss+xml, application/atom+xml, application/xml, text/xml" }
@@ -103,8 +105,8 @@ async function processFeed(src, { clientId, agentId, byPillar, meta }) {
       if (tonal.score < 0.25 && !bm.brand_match && !bm.competitor_match) continue;
 
       upserts.push({
-        client_id: clientId, source: SOURCE,
-        source_id: `rss:${src.target}:${item.guid || item.link}`,
+        client_id: clientId, source: src.source,
+        source_id: `${src.source}:${src.target}:${item.guid || item.link}`,
         source_url: item.link, target: src.target,
         lane: src.lane, agent_id: agentId,
         occurred_at: new Date(pubMs).toISOString(),
@@ -145,11 +147,12 @@ export default async function handler(req, res) {
         status: "debug_env_rss",
         SUPABASE_URL_set: !!process.env.SUPABASE_URL,
         SUPABASE_SERVICE_ROLE_KEY_set: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+        source_types_handled: RSS_SOURCE_TYPES,
         node_version: process.version
       });
     }
 
-    const summary = { clients: 0, agent_runs: 0, feeds_total: 0, feeds_processed: 0, ingested: 0, per_feed: [], errors: [] };
+    const summary = { clients: 0, agent_runs: 0, feeds_total: 0, feeds_processed: 0, ingested: 0, by_source_type: {}, per_feed: [], errors: [] };
     const { data: clients, error: cErr } = await supa().from("clients").select("id, name").eq("active", true);
     if (cErr) return res.status(500).json({ error: "clients_fetch_failed", details: cErr.message });
 
@@ -158,8 +161,8 @@ export default async function handler(req, res) {
       summary.clients++;
       const { data: sources, error: sErr } = await supa()
         .from("client_sources")
-        .select("target, target_display, lane, agent_id, meta")
-        .eq("client_id", client.id).eq("source", SOURCE).eq("active", true);
+        .select("source, target, target_display, lane, agent_id, meta")
+        .eq("client_id", client.id).in("source", RSS_SOURCE_TYPES).eq("active", true);
       if (sErr) { summary.errors.push({ client: client.id, error: sErr.message }); continue; }
       if (!sources?.length) continue;
       summary.feeds_total += sources.length;
@@ -167,15 +170,18 @@ export default async function handler(req, res) {
       const byPillar = await getClientKeywords(client.id);
       const meta = await getClientMeta(client.id);
 
-      const byAgent = new Map();
+      // Group by (agent_id, source_type) so telemetry attributes per (client, agent, source_type)
+      const byAgentSource = new Map();
       for (const s of sources) {
-        if (!byAgent.has(s.agent_id)) byAgent.set(s.agent_id, []);
-        byAgent.get(s.agent_id).push(s);
+        const key = `${s.agent_id}::${s.source}`;
+        if (!byAgentSource.has(key)) byAgentSource.set(key, { agentId: s.agent_id, source: s.source, list: [] });
+        byAgentSource.get(key).list.push(s);
       }
 
-      for (const [agentId, agentSources] of byAgent) {
+      for (const [key, group] of byAgentSource) {
+        const { agentId, source: sourceType, list: agentSources } = group;
         summary.agent_runs++;
-        const runId = await startRun({ clientId: client.id, agentId, source: SOURCE });
+        const runId = await startRun({ clientId: client.id, agentId, source: sourceType });
 
         const remaining = limit ? Math.max(0, limit - summary.feeds_processed) : agentSources.length;
         const toProcess = agentSources.slice(0, remaining);
@@ -191,7 +197,8 @@ export default async function handler(req, res) {
         const errs = results.filter(r => r.status?.endsWith("_error") || r.status === "format_unrecognized")
           .map(r => ({ target: r.target, error: r.error || r.status }));
         summary.ingested += ingested;
-        if (errs.length) summary.errors.push(...errs.map(e => ({ ...e, client: client.id, agent: agentId })));
+        summary.by_source_type[sourceType] = (summary.by_source_type[sourceType] || 0) + ingested;
+        if (errs.length) summary.errors.push(...errs.map(e => ({ ...e, client: client.id, agent: agentId, source_type: sourceType })));
 
         await finishRun(runId, {
           signalsIngested: ingested,
