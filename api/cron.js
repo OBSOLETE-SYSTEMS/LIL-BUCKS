@@ -11,15 +11,16 @@
 //   /api/cron?worker=wikipedia&debug=env → diagnostic
 //   /api/cron                            → return list of available workers
 
-import wikipedia      from "../lib/workers/wikipedia.js";
-import rss            from "../lib/workers/rss.js";
-import gdelt          from "../lib/workers/gdelt.js";
-import apple_podcasts from "../lib/workers/apple_podcasts.js";
-import spotify        from "../lib/workers/spotify.js";
-import reddit         from "../lib/workers/reddit.js";
+import wikipedia       from "../lib/workers/wikipedia.js";
+import rss             from "../lib/workers/rss.js";
+import gdelt           from "../lib/workers/gdelt.js";
+import apple_podcasts  from "../lib/workers/apple_podcasts.js";
+import spotify         from "../lib/workers/spotify.js";
+import reddit          from "../lib/workers/reddit.js";
 import meta_ad_library from "../lib/workers/meta_ad_library.js";
-import google_trends  from "../lib/workers/google_trends.js";
-import tiktok_cc      from "../lib/workers/tiktok_cc.js";
+import google_trends   from "../lib/workers/google_trends.js";
+import tiktok_cc       from "../lib/workers/tiktok_cc.js";
+import pinterest       from "../lib/workers/pinterest.js";
 
 const WORKERS = {
   wikipedia,
@@ -30,7 +31,8 @@ const WORKERS = {
   reddit,
   meta_ad_library,
   google_trends,
-  tiktok_cc
+  tiktok_cc,
+  pinterest
 };
 
 export default async function handler(req, res) {
