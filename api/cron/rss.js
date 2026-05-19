@@ -68,11 +68,23 @@ function rssVelocity(occurredAt) {
   return Math.pow(0.5, Math.max(0, ageDays));
 }
 
+// Build the actual feed URL based on source_type — handles platforms where
+// the target stored in client_sources is an ID/handle rather than a full URL.
+function buildFeedUrl(src) {
+  if (src.source === "youtube_rss") {
+    // YouTube channel RSS: target is channel ID, construct full feed URL
+    return `https://www.youtube.com/feeds/videos.xml?channel_id=${src.target}`;
+  }
+  // rss, letterboxd_rss, press_release_rss — target is already a full URL
+  return src.target;
+}
+
 async function processFeed(src, { clientId, agentId, byPillar, meta }) {
   const t0 = Date.now();
-  const result = { target: src.target, source_type: src.source, status: "unknown", ingested: 0, items_seen: 0, ms: 0 };
+  const feedUrl = buildFeedUrl(src);
+  const result = { target: src.target, feed_url: feedUrl, source_type: src.source, status: "unknown", ingested: 0, items_seen: 0, ms: 0 };
   try {
-    const r = await fetchWithTimeout(src.target, {
+    const r = await fetchWithTimeout(feedUrl, {
       headers: { "User-Agent": USER_AGENT, "Accept": "application/rss+xml, application/atom+xml, application/xml, text/xml" }
     });
     if (!r.ok) { result.status = `fetch_${r.status}`; return result; }
