@@ -1,25 +1,17 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "crons": [
-    { "path": "/api/cron/rss?source=cron",             "schedule": "0 12 * * *" },
-    { "path": "/api/cron/wikipedia?source=cron",       "schedule": "0 13 * * *" },
-    { "path": "/api/cron/gdelt?source=cron",           "schedule": "0 14 * * *" },
-    { "path": "/api/cron/apple_podcasts?source=cron",  "schedule": "0 15 * * *" },
-    { "path": "/api/cron/spotify?source=cron",         "schedule": "0 16 * * *" },
-    { "path": "/api/cron/reddit?source=cron",          "schedule": "0 17 * * *" },
-    { "path": "/api/cron/meta_ad_library?source=cron", "schedule": "0 18 * * *" },
-    { "path": "/api/cron/google_trends?source=cron",   "schedule": "0 19 * * *" },
-    { "path": "/api/cron/tiktok_cc?source=cron",       "schedule": "0 20 * * *" }
+    { "path": "/api/cron?worker=rss&source=cron",             "schedule": "0 12 * * *" },
+    { "path": "/api/cron?worker=wikipedia&source=cron",       "schedule": "0 13 * * *" },
+    { "path": "/api/cron?worker=gdelt&source=cron",           "schedule": "0 14 * * *" },
+    { "path": "/api/cron?worker=apple_podcasts&source=cron",  "schedule": "0 15 * * *" },
+    { "path": "/api/cron?worker=spotify&source=cron",         "schedule": "0 16 * * *" },
+    { "path": "/api/cron?worker=reddit&source=cron",          "schedule": "0 17 * * *" },
+    { "path": "/api/cron?worker=meta_ad_library&source=cron", "schedule": "0 18 * * *" },
+    { "path": "/api/cron?worker=google_trends&source=cron",   "schedule": "0 19 * * *" },
+    { "path": "/api/cron?worker=tiktok_cc&source=cron",       "schedule": "0 20 * * *" }
   ],
   "functions": {
-    "api/cron/wikipedia.js":      { "maxDuration": 60 },
-    "api/cron/rss.js":            { "maxDuration": 60 },
-    "api/cron/gdelt.js":          { "maxDuration": 60 },
-    "api/cron/apple_podcasts.js": { "maxDuration": 60 },
-    "api/cron/spotify.js":        { "maxDuration": 60 },
-    "api/cron/reddit.js":         { "maxDuration": 60 },
-    "api/cron/meta_ad_library.js":{ "maxDuration": 60 },
-    "api/cron/google_trends.js":  { "maxDuration": 60 },
-    "api/cron/tiktok_cc.js":      { "maxDuration": 60 }
+    "api/cron.js": { "maxDuration": 60 }
   }
 }
