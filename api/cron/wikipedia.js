@@ -1,11 +1,11 @@
 // Wikipedia Pageviews worker — Stage 2 of the OBSOLETE Signal Pipeline.
 
-import { supa, startRun, finishRun, isAuthorizedCron } from "../lib/supabase.js";
+import { supa, startRun, finishRun, isAuthorizedCron } from "../../lib/supabase.js";
 import {
   getClientKeywords, scoreTonal,
   getClientMeta, detectBrandMatch,
   wikiVelocity
-} from "../lib/scoring.js";
+} from "../../lib/scoring.js";
 
 const WIKI_USER_AGENT = "OBSOLETE-Signal-Pipeline/0.1 (https://obsolete.systems; alex@obsolete.systems)";
 const SOURCE = "wikipedia";

@@ -7,8 +7,8 @@
 // GDELT Doc API: https://blog.gdeltproject.org/gdelt-doc-2-0-api-debuts/
 //   https://api.gdeltproject.org/api/v2/doc/doc?query=<TERM>&mode=ArtList&format=json
 
-import { supa, startRun, finishRun, isAuthorizedCron } from "../lib/supabase.js";
-import { getClientKeywords, scoreTonal, getClientMeta, detectBrandMatch } from "../lib/scoring.js";
+import { supa, startRun, finishRun, isAuthorizedCron } from "../../lib/supabase.js";
+import { getClientKeywords, scoreTonal, getClientMeta, detectBrandMatch } from "../../lib/scoring.js";
 
 const SOURCE = "gdelt";
 const FETCH_TIMEOUT_MS = 8000;

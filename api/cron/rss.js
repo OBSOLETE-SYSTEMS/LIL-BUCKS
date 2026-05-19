@@ -5,8 +5,8 @@
 // Supports both RSS 2.0 and Atom feeds via fast-xml-parser.
 
 import { XMLParser } from "fast-xml-parser";
-import { supa, startRun, finishRun, isAuthorizedCron } from "../lib/supabase.js";
-import { getClientKeywords, scoreTonal, getClientMeta, detectBrandMatch } from "../lib/scoring.js";
+import { supa, startRun, finishRun, isAuthorizedCron } from "../../lib/supabase.js";
+import { getClientKeywords, scoreTonal, getClientMeta, detectBrandMatch } from "../../lib/scoring.js";
 
 const SOURCE = "rss";
 const FETCH_TIMEOUT_MS = 8000;
