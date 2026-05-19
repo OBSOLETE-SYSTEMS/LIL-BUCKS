@@ -1067,6 +1067,16 @@ function StudioModal({onClose}){
 }
 
 function HowItWorksModal({onClose}){
+  const [liveAgents, setLiveAgents] = useState(null);
+  const [liveLoading, setLiveLoading] = useState(true);
+  useEffect(()=>{
+    fetch('/api/agents?client=lilbucks')
+      .then(r=>r.json())
+      .then(d=>{ if(d.agents?.length) setLiveAgents(d.agents); setLiveLoading(false); })
+      .catch(()=>setLiveLoading(false));
+  },[]);
+  const liveByAgent = new Map((liveAgents||[]).map(a=>[a.agent_id, a]));
+  const fmtRun = iso => iso ? new Date(iso).toISOString().slice(0,16).replace('T',' ')+' UTC' : null;
   return (<div className="modal-bg" onClick={onClose}>
     <div className="modal" onClick={e=>e.stopPropagation()}>
       <div className="modal-head"><h2 className="serif">How the engine works</h2><button className="modal-close" onClick={onClose}>×</button></div>
@@ -1086,15 +1096,43 @@ function HowItWorksModal({onClose}){
           <p>This is the V0.1 Impact Slice — one populated week (May 18–24, 2026) showing the Welcome Issue, Intelligence Brief (Cultural Pulse + Category + Competitor + Ambassadors), and Content Briefs. Studio + Weekly Playbook + Performance wire up at the start of OPERATE.</p>
         </div>
         <div className="how-section">
-          <h3 className="serif">Six agents, one operating model</h3>
-          {AGENTS.map(a=>(<div key={a.id} style={{display:"flex",gap:14,alignItems:"flex-start",padding:"9px 0",borderBottom:"1px solid #F2EBD3"}}>
-            <span style={{fontSize:22}}>{a.icon}</span>
-            <div style={{flex:1}}>
-              <div style={{fontWeight:700,fontSize:14}} className="serif">{a.name}</div>
-              <div style={{fontSize:12.5,color:"var(--ink-soft)",lineHeight:1.5}}>{a.focus}</div>
+          <h3 className="serif" style={{display:'flex',alignItems:'center',gap:10}}>
+            Six agents, one operating model
+            {liveAgents && <span style={{fontSize:10,letterSpacing:'0.14em',background:'#7AB05D',color:'#fff',padding:'3px 8px',borderRadius:4,fontWeight:700,textTransform:'uppercase'}}>● Live</span>}
+          </h3>
+          {AGENTS.map(a=>{
+            const live = liveByAgent.get(a.id);
+            const ingested = live?.ingested_24h;
+            const lastRunLive = fmtRun(live?.last_run_at);
+            const sourcesCount = live?.sources_count;
+            const sourceTypes = live?.source_types;
+            return (<div key={a.id} style={{display:"flex",gap:14,alignItems:"flex-start",padding:"9px 0",borderBottom:"1px solid #F2EBD3"}}>
+              <span style={{fontSize:22}}>{a.icon}</span>
+              <div style={{flex:1}}>
+                <div style={{fontWeight:700,fontSize:14}} className="serif">{a.name}</div>
+                <div style={{fontSize:12.5,color:"var(--ink-soft)",lineHeight:1.5}}>{a.focus}</div>
+                {live && sourceTypes && sourceTypes.length > 0 && (
+                  <div style={{fontSize:10.5,color:'var(--brown)',marginTop:4,fontFamily:"'JetBrains Mono',monospace"}}>
+                    {sourcesCount} sources · {sourceTypes.join(' · ')}
+                  </div>
+                )}
+              </div>
+              <div style={{fontFamily:"'JetBrains Mono',monospace",fontSize:10.5,color:"var(--brown)",textAlign:"right",minWidth:140}}>
+                {live ? (<>
+                  <div style={{fontWeight:700,color:'#7AB05D'}}>{ingested ?? 0} signals · 24h</div>
+                  <div style={{marginTop:2}}>{lastRunLive || 'no runs yet'}</div>
+                </>) : (<>
+                  <div>{a.signals != null ? `${a.signals} signals` : 'on demand'}</div>
+                  <div style={{marginTop:2}}>Last run<br/>{a.lastRun}</div>
+                </>)}
+              </div>
+            </div>);
+          })}
+          {!liveAgents && !liveLoading && (
+            <div style={{fontSize:11,color:'var(--ink-soft)',marginTop:8,fontStyle:'italic'}}>
+              · Live counts pending — workers waiting on Supabase env vars in Vercel. Static counts shown.
             </div>
-            <div style={{fontFamily:"'JetBrains Mono',monospace",fontSize:10.5,color:"var(--brown)",textAlign:"right"}}>Last run<br/>{a.lastRun}</div>
-          </div>))}
+          )}
         </div>
         <div className="how-section">
           <h3 className="serif">Decisions the engine made this week</h3>
