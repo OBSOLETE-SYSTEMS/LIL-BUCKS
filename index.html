@@ -244,6 +244,183 @@ a{color:inherit;text-decoration:none}
 .move-why{font-size:11.5px;color:var(--ink-soft);line-height:1.5}
 
 /* Studio modal */
+/* COUNTER-STRIKE — 90-min comp response receipts */
+.cs-view{padding:8px 0 24px}
+.cs-header{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:flex-end;margin-bottom:22px;padding:24px 28px;background:linear-gradient(135deg,var(--cobalt-deep) 0%,var(--cobalt) 100%);color:#fff;border-radius:14px;position:relative;overflow:hidden}
+.cs-header::after{content:"⚡";position:absolute;top:18px;right:200px;font-size:42px;opacity:0.18}
+.cs-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.18em;font-weight:700;text-transform:uppercase;opacity:0.85;margin-bottom:8px}
+.cs-title{font-family:'Lilita One',serif;font-weight:400;font-size:30px;letter-spacing:0.005em;line-height:1.05;color:#fff;margin:0 0 10px;text-wrap:balance;max-width:680px}
+.cs-sub{font-family:'Fraunces';font-size:14.5px;line-height:1.5;font-weight:500;color:rgba(255,255,255,0.92);max-width:680px;letter-spacing:-0.005em;margin:0}
+.cs-live-btn{background:var(--magenta);color:#fff;border:0;padding:13px 22px;border-radius:99px;font-family:'Lilita One',serif;font-weight:400;font-size:15px;letter-spacing:0.01em;cursor:pointer;transition:background 0.15s,transform 0.1s;white-space:nowrap;box-shadow:0 4px 14px rgba(213,88,120,0.4);flex-shrink:0;align-self:center}
+.cs-live-btn:hover{background:var(--magenta-deep);transform:translateY(-1px)}
+
+.cs-live-panel{background:var(--butter-light);border:2px dashed var(--magenta);border-radius:14px;padding:22px 24px;margin-bottom:22px}
+.cs-live-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.18em;color:var(--magenta-deep);font-weight:700;text-transform:uppercase;margin-bottom:10px}
+.cs-live-input{width:100%;font-family:'Inter',sans-serif;font-size:14px;padding:12px 14px;border:1.5px solid var(--cobalt-light);border-radius:10px;background:#fff;color:var(--cobalt-deep);resize:vertical;line-height:1.5;outline:none;transition:border-color 0.15s}
+.cs-live-input:focus{border-color:var(--cobalt);box-shadow:0 0 0 3px rgba(53,133,224,0.15)}
+.cs-live-row{display:flex;justify-content:flex-end;margin-top:10px}
+.cs-live-run{background:var(--cobalt);color:#fff;border:0;padding:11px 20px;border-radius:99px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;transition:background 0.15s,transform 0.1s}
+.cs-live-run:hover:not(:disabled){background:var(--cobalt-deep);transform:translateY(-1px)}
+.cs-live-run:disabled{opacity:0.5;cursor:not-allowed}
+.cs-live-error{background:rgba(232,144,125,0.18);color:#9E3F31;padding:10px 14px;border-radius:8px;font-size:13px;margin-top:12px}
+.cs-live-result{margin-top:14px;padding-top:14px;border-top:1px dashed rgba(213,88,120,0.4)}
+
+.cs-log{display:flex;flex-direction:column;gap:18px}
+.cs-entry{background:var(--butter-light);border:1.5px solid var(--cobalt);border-radius:14px;padding:22px 24px;box-shadow:0 2px 0 var(--cobalt)}
+.cs-entry-head{display:grid;grid-template-columns:1fr auto;gap:24px;padding-bottom:16px;margin-bottom:14px;border-bottom:1px solid var(--cobalt-light)}
+.cs-entry-trigger{min-width:0}
+.cs-entry-stamp{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--magenta-deep);font-weight:700;text-transform:uppercase;margin-bottom:6px}
+.cs-entry-comp{font-family:'Lilita One',serif;font-weight:400;font-size:22px;letter-spacing:0.005em;color:var(--cobalt-deep);line-height:1;margin-bottom:8px}
+.cs-entry-detail{font-size:13.5px;line-height:1.5;color:var(--ink-soft);max-width:720px;margin-bottom:6px}
+.cs-entry-source{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--cobalt);font-weight:600;letter-spacing:0.04em}
+.cs-entry-meta{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
+.cs-entry-time{font-family:'Lilita One',serif;font-size:32px;font-weight:400;color:var(--magenta);letter-spacing:0.005em;line-height:1}
+.cs-entry-resp{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-soft);letter-spacing:0.04em}
+.cs-entry-status{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:800;padding:4px 11px;border-radius:99px;margin-top:4px}
+.cs-status-shipped{background:#E7F0DD;color:#3B6B2D}
+.cs-status-ready{background:#FAEED1;color:#8B6F1F}
+
+.cs-summary{font-family:'Fraunces';font-size:15px;line-height:1.5;color:var(--cobalt-deep);font-weight:500;font-style:italic;padding:12px 16px;background:rgba(53,133,224,0.06);border-left:3px solid var(--cobalt);border-radius:0 8px 8px 0;margin-bottom:14px;letter-spacing:-0.005em}
+.cs-time-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:var(--magenta-deep);background:rgba(234,126,154,0.16);padding:5px 12px;border-radius:99px;font-weight:700;margin-bottom:14px}
+
+.cs-briefs{display:flex;flex-direction:column;gap:10px}
+.cs-brief{background:#fff;border:1px solid var(--cobalt-light);border-radius:10px;padding:14px 16px}
+.cs-brief-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.cs-brief-id{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--cobalt);background:rgba(53,133,224,0.12);padding:3px 8px;border-radius:99px;font-weight:700}
+.cs-brief-platform{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;color:var(--cobalt-deep);font-weight:700;text-transform:uppercase}
+.cs-brief-dna{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;color:var(--magenta-deep);background:rgba(234,126,154,0.14);padding:3px 8px;border-radius:99px;font-weight:600}
+.cs-brief-timing{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);margin-left:auto;letter-spacing:0.04em}
+.cs-brief-hook{font-family:'Fraunces';font-size:17px;line-height:1.3;font-weight:600;letter-spacing:-0.01em;color:var(--cobalt-deep);margin-bottom:6px}
+.cs-brief-concept{font-size:13px;line-height:1.5;color:var(--ink-soft);margin-bottom:10px}
+.cs-brief-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cs-brief-cell{font-size:12px;line-height:1.4;padding:8px 10px;background:rgba(53,133,224,0.04);border-radius:6px;display:flex;flex-direction:column;gap:2px}
+.cs-brief-cell-tag{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cobalt);font-weight:700}
+.cs-brief-why{grid-column:1/-1;background:rgba(234,126,154,0.08);border:1px solid rgba(234,126,154,0.25)}
+.cs-brief-why .cs-brief-cell-tag{color:var(--magenta-deep)}
+
+@media (max-width:820px){
+  .cs-header{grid-template-columns:1fr;gap:14px}
+  .cs-entry-head{grid-template-columns:1fr}
+  .cs-entry-meta{align-items:flex-start;flex-direction:row;flex-wrap:wrap;gap:12px}
+  .cs-brief-grid{grid-template-columns:1fr}
+}
+
+/* CRUNCH BUNCH PANEL — synthetic-audience pre-test on each brief */
+.panel-section{background:linear-gradient(135deg,rgba(53,133,224,0.05) 0%,rgba(234,126,154,0.05) 100%);border:1.5px solid var(--cobalt-light);border-radius:14px;padding:22px 24px;margin-top:18px}
+.panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:16px}
+.panel-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.18em;color:var(--cobalt);font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.panel-title{font-family:'Lilita One',serif;font-weight:400;font-size:22px;letter-spacing:0.005em;color:var(--cobalt-deep);line-height:1}
+.panel-avg{display:flex;align-items:baseline;gap:3px;padding:8px 14px;border-radius:99px;font-weight:700;flex-shrink:0;font-family:'Lilita One',serif}
+.panel-avg span:first-child{font-size:22px;line-height:1;letter-spacing:0.01em}
+.panel-avg span:last-child{font-size:11px;letter-spacing:0.04em;font-family:'JetBrains Mono',monospace;font-weight:600}
+.panel-avg-high{background:#E7F0DD;color:#3B6B2D}
+.panel-avg-mid{background:#FAEED1;color:#8B6F1F}
+.panel-avg-low{background:#F8DCD7;color:#9E3F31}
+
+.panel-headline{font-family:'Fraunces';font-size:15px;line-height:1.5;color:var(--cobalt-deep);font-weight:500;font-style:italic;padding:12px 16px;background:#fff;border-left:3px solid var(--cobalt);border-radius:0 8px 8px 0;margin-bottom:16px;letter-spacing:-0.005em}
+
+.panel-error{background:rgba(232,144,125,0.18);color:#9E3F31;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:12px}
+
+.panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.panel-card{background:#fff;border:1.5px solid var(--cobalt-light);border-radius:10px;padding:13px 15px;display:flex;flex-direction:column;gap:8px}
+.panel-card-head{display:grid;grid-template-columns:auto 1fr auto;gap:11px;align-items:center}
+.panel-card-emoji{font-size:24px;line-height:1;flex-shrink:0}
+.panel-card-id{min-width:0}
+.panel-card-name{font-family:'Lilita One',serif;font-weight:400;font-size:15px;letter-spacing:0.005em;color:var(--cobalt-deep);line-height:1}
+.panel-card-age{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:500;color:var(--ink-soft);letter-spacing:0.04em}
+.panel-card-role{font-size:11px;color:var(--ink-soft);margin-top:3px;line-height:1.35}
+.panel-score{display:flex;align-items:baseline;gap:1px;padding:5px 10px;border-radius:99px;font-weight:800;flex-shrink:0}
+.panel-score-num{font-family:'Lilita One',serif;font-size:18px;font-weight:400;letter-spacing:0.01em;line-height:1}
+.panel-score-denom{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:0.04em;opacity:0.7}
+.panel-score-high{background:#E7F0DD;color:#3B6B2D}
+.panel-score-mid{background:#FAEED1;color:#8B6F1F}
+.panel-score-low{background:#F8DCD7;color:#9E3F31}
+.panel-score-loading{background:rgba(53,133,224,0.12);color:var(--cobalt);font-family:'JetBrains Mono',monospace;letter-spacing:0.1em;animation:panel-pulse-loading 1.4s ease-in-out infinite}
+@keyframes panel-pulse-loading{0%,100%{opacity:0.5}50%{opacity:1}}
+.panel-card-quote{font-family:'Fraunces';font-size:14px;line-height:1.45;color:var(--cobalt-deep);font-style:italic;font-weight:500;letter-spacing:-0.005em}
+.panel-card-edit{display:flex;gap:8px;align-items:flex-start;padding-top:8px;border-top:1px dashed var(--cobalt-light);font-size:12px;line-height:1.4}
+.panel-card-edit-tag{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.14em;color:var(--magenta-deep);font-weight:700;text-transform:uppercase;padding:2px 7px;background:rgba(234,126,154,0.14);border-radius:99px;flex-shrink:0;margin-top:1px}
+.panel-card-edit-text{color:var(--ink-soft);flex:1}
+.panel-card-pulse{height:48px;background:linear-gradient(90deg,rgba(53,133,224,0.06) 0%,rgba(234,126,154,0.1) 50%,rgba(53,133,224,0.06) 100%);background-size:200% 100%;animation:panel-shimmer 1.6s ease-in-out infinite;border-radius:6px}
+@keyframes panel-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+@media (max-width:680px){
+  .panel-grid{grid-template-columns:1fr}
+}
+
+/* MEMO STORY — IG-style click-through strategic memo */
+.memo-bg{position:fixed;inset:0;background:rgba(15,30,60,0.78);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:24px 16px;z-index:300}
+.memo-story{position:relative;width:100%;max-width:440px;aspect-ratio:9/16;max-height:90vh;border-radius:22px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,0.4),0 0 0 1px rgba(255,255,255,0.12)}
+
+/* Accent backgrounds */
+.memo-accent-cobalt{background:linear-gradient(160deg,var(--cobalt) 0%,#2A6FC4 100%);color:#fff}
+.memo-accent-magenta{background:linear-gradient(160deg,var(--magenta) 0%,#D55878 100%);color:#fff}
+.memo-accent-butter{background:linear-gradient(160deg,#FFFAD9 0%,#F2EBC0 100%);color:var(--cobalt-deep)}
+.memo-accent-cobalt-deep{background:linear-gradient(160deg,var(--cobalt-deep) 0%,#0F2350 100%);color:#fff}
+.memo-accent-gradient{background:linear-gradient(135deg,var(--cobalt) 0%,var(--magenta) 100%);color:#fff}
+
+/* Progress bar */
+.memo-progress{display:flex;gap:4px;padding:14px 16px 0;z-index:5;position:relative}
+.memo-progress-seg{flex:1;height:3px;background:rgba(255,255,255,0.25);border-radius:99px;transition:background 0.3s}
+.memo-progress-seg.done{background:rgba(255,255,255,0.85)}
+.memo-progress-seg.active{background:#fff}
+.memo-accent-butter .memo-progress-seg{background:rgba(26,58,110,0.18)}
+.memo-accent-butter .memo-progress-seg.done{background:rgba(26,58,110,0.7)}
+.memo-accent-butter .memo-progress-seg.active{background:var(--cobalt-deep)}
+
+/* Close button */
+.memo-close{position:absolute;top:18px;right:18px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.18);color:#fff;font-size:22px;display:flex;align-items:center;justify-content:center;z-index:10;cursor:pointer;transition:background 0.15s;line-height:1}
+.memo-close:hover{background:rgba(255,255,255,0.32)}
+.memo-accent-butter .memo-close{background:rgba(26,58,110,0.15);color:var(--cobalt-deep)}
+.memo-accent-butter .memo-close:hover{background:rgba(26,58,110,0.28)}
+
+/* Card body */
+.memo-card{position:relative;flex:1;display:flex;flex-direction:column;padding:50px 36px 36px;cursor:pointer;z-index:4}
+.memo-card-top{flex-shrink:0}
+.memo-card-mid{flex:1;display:flex;flex-direction:column;justify-content:center;gap:18px}
+.memo-card-bottom{flex-shrink:0;display:flex;justify-content:space-between;align-items:flex-end;gap:14px;padding-top:18px}
+
+.memo-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;font-weight:700;text-transform:uppercase;opacity:0.85;margin-bottom:6px}
+
+.memo-big{font-family:'Lilita One',serif;font-weight:400;font-size:48px;line-height:1.02;letter-spacing:0.005em;text-wrap:balance}
+.memo-accent-butter .memo-big{color:var(--cobalt-deep)}
+
+.memo-support{font-family:'Fraunces';font-weight:500;font-size:18px;line-height:1.45;letter-spacing:-0.005em;opacity:0.92;text-wrap:balance}
+
+.memo-meta{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.06em;line-height:1.55;padding:10px 14px;background:rgba(255,255,255,0.14);border-radius:8px;border:1px solid rgba(255,255,255,0.22);margin-top:6px;text-transform:uppercase;font-weight:500}
+.memo-accent-butter .memo-meta{background:rgba(26,58,110,0.08);color:var(--cobalt-deep);border-color:rgba(26,58,110,0.22)}
+
+.memo-sub{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;opacity:0.75;margin-top:8px;text-transform:uppercase;font-weight:600}
+
+/* Ledger (killed + queued) */
+.memo-ledger{display:flex;flex-direction:column;gap:14px;margin-top:6px}
+.memo-ledger-row{display:flex;gap:12px;align-items:flex-start}
+.memo-ledger-tag{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.16em;font-weight:800;padding:5px 9px;border-radius:99px;flex-shrink:0;margin-top:2px}
+.memo-ledger-tag.killed{background:rgba(232,144,125,0.28);color:#FFD9D2}
+.memo-ledger-tag.queued{background:rgba(244,183,62,0.28);color:#FFE6A8}
+.memo-ledger-text{font-family:'Fraunces';font-size:14.5px;line-height:1.45;font-weight:500;opacity:0.92}
+
+/* CTA + tap hint */
+.memo-tap-hint{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;opacity:0.6;text-transform:uppercase;font-weight:600;margin-left:auto}
+.memo-cta{background:#fff;color:var(--cobalt-deep);border:0;padding:14px 22px;border-radius:99px;font-family:'Lilita One',serif;font-weight:400;font-size:16px;letter-spacing:0.01em;cursor:pointer;transition:transform 0.12s,box-shadow 0.15s;margin-left:auto;box-shadow:0 6px 20px rgba(0,0,0,0.25)}
+.memo-cta:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,0.35)}
+
+/* Sparkles — decorative */
+.memo-sparkle{position:absolute;opacity:0.55;font-size:24px;pointer-events:none;z-index:2}
+.memo-sparkle-1{top:80px;right:30px;font-size:32px;opacity:0.35}
+.memo-sparkle-2{bottom:120px;left:32px;font-size:18px;opacity:0.45}
+
+/* Side-tap zones */
+.memo-side{position:absolute;top:0;bottom:0;width:30%;z-index:3;cursor:pointer}
+.memo-side-prev{left:0}
+.memo-side-next{right:0;width:70%}
+
+@media (max-width:520px){
+  .memo-story{max-width:100%;aspect-ratio:auto;max-height:96vh;border-radius:16px}
+  .memo-big{font-size:38px}
+  .memo-card{padding:46px 26px 28px}
+}
+
 /* STUDIO — The Strategist chat UI */
 .studio-modal{max-width:920px;width:100%;max-height:88vh;display:flex;flex-direction:column;background:var(--butter);border-radius:16px;overflow:hidden}
 .studio-head{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;padding:18px 24px;background:var(--cobalt);color:#fff;border-bottom:2px solid var(--cobalt-deep);flex-shrink:0}
@@ -468,6 +645,24 @@ const PILLAR_COLOR = {
 const PILLAR_PIP = { "FUEL":"pip-fuel", "THE BOWL":"pip-bowl", "SOIL":"pip-soil", "CRUNCH BUNCH":"pip-crunch" };
 
 // ===== WELCOME HIGHLIGHTS — the magazine cover of the week =====
+// ===== THE MONDAY MEMO — IG-Story-format strategic memo from The Strategist =====
+// Generated weekly. Tap-to-advance click-through. Replaces the V0.1 Welcome Popup.
+const MONDAY_MEMO = {
+  generatedAt: "MON MAY 20 · 6:14 AM ET",
+  weekRange: "May 18–24, 2026",
+  signature: "— The Strategist",
+  cards: [
+    { kind:"cover",   accent:"cobalt",      eyebrow:"// MON MAY 20 · 6:14 AM",  big:"this is your week.",                sub:"— the strategist" },
+    { kind:"read",    accent:"magenta",     eyebrow:"// the read",                big:"the protein wave just got loud.",   support:"magic spoon · costco.  purely elizabeth · target.  catalina · first national ad." },
+    { kind:"call",    accent:"butter",      eyebrow:"// the call",                big:"don't chase it.",                   support:"magic spoon owns the protein number. we own the seed." },
+    { kind:"move",    accent:"cobalt",      eyebrow:"// move 01 · monday 12pm",   big:"founder reel.",                     support:"\"the protein-granola lane just got crowded. we've been here since 2017.\"", meta:"FUEL · Original Clusterbucks · founder-emily · Corinne Bailey Rae" },
+    { kind:"move",    accent:"magenta",     eyebrow:"// move 02 · wednesday 6pm", big:"hot honey ride.",                   support:"snak club just put hot honey in salty snacks. clusterbucks lives there already.", meta:"FUEL · Hot Honey Clusterbucks · shelf-spotted · lo-fi indie" },
+    { kind:"move",    accent:"butter",      eyebrow:"// move 03 · friday 9am",    big:"name the farmer.",                  support:"luke + ali. a-frame farm. late mother's day pickup.", meta:"⚠ flag dual-edge — seven sundays sources the same farm.  lean on heritage depth + first-roc-buckwheat." },
+    { kind:"ledger",  accent:"cobalt-deep", eyebrow:"// leave the noise",         big:"killed + queued.",                  killed:"protein-number comparison brief.  magic spoon owns that lane.", queued:"ROC cert roadmap.  OUAF IPO ($724M) exit-math.  surface in the diagnostic with you." },
+    { kind:"close",   accent:"gradient",    eyebrow:"// week of " + "May 18–24, 2026",                                                                                          big:"ship it.",                          sub:"— the strategist" }
+  ]
+};
+
 const WELCOME_HIGHLIGHTS = [
   { stat:"May 12", label:"Purely Elizabeth went protein", detail:"Protein Ancient Grain Granola launched at Target — 10g protein from nuts/seeds, no powders. Their first protein expansion. Closest aesthetic competitor just claimed the lane next door.", src:"nosh.com", url:"https://www.nosh.com/pr/2026/05/12/purely-elizabeth-expands-into-protein-with-new-ancient-grain-granola-made-from-real-whole-food-ingredients" },
   { stat:"+126%", label:"Fibermaxxing YoY", detail:"Prebiotic-fiber claims grew 126% year over year — 36% of consumers say 'high in prebiotic fiber' is the claim most likely to prompt trial. Lil Bucks has 5g/serving. Underused.", src:"cnbc.com", url:"https://www.cnbc.com/2025/12/12/fibermaxxing-high-fiber-foods-pepsi-nestle-olipop.html" },
@@ -922,7 +1117,8 @@ const ROOT = ReactDOM.createRoot(document.getElementById('root'));
 function App(){
   const [section,setSection] = useState('howitworks');
   const [intelTab,setIntelTab] = useState('pulse');
-  const [welcomeOpen,setWelcomeOpen] = useState(true);
+  const [welcomeOpen,setWelcomeOpen] = useState(false);
+  const [memoOpen,setMemoOpen] = useState(true);
   const [howOpen,setHowOpen] = useState(false);
   const [studioOpen,setStudioOpen] = useState(false);
   const [briefOpen,setBriefOpen] = useState(null);
@@ -935,6 +1131,7 @@ function App(){
   ];
 
   return (<>
+    {memoOpen && <MemoStory onClose={()=>setMemoOpen(false)} onShipIt={()=>{setMemoOpen(false);setSection('briefs');}} />}
     {welcomeOpen && <WelcomePopup onClose={()=>setWelcomeOpen(false)} onCTA={()=>{setWelcomeOpen(false);setSection('briefs');}} />}
     {howOpen && <HowItWorksModal onClose={()=>setHowOpen(false)} />}
     {studioOpen && <StudioModal onClose={()=>setStudioOpen(false)} />}
@@ -961,7 +1158,7 @@ function App(){
           <strong>Lil Bucks Engine</strong>
           America's Buckwheat Brand™<br/>
           Refreshed {BRAND.refreshed}<br/>
-          <button onClick={()=>setWelcomeOpen(true)} style={{textDecoration:"underline",fontSize:11,marginTop:4,color:"var(--ink-soft)"}}>Re-open Issue 01</button>
+          <button onClick={()=>setMemoOpen(true)} style={{textDecoration:"underline",fontSize:11,marginTop:4,color:"rgba(255,255,255,0.78)"}}>Re-open the Monday Memo</button>
         </div>
       </aside>
 
@@ -992,6 +1189,101 @@ function App(){
 }
 
 // =============== COMPONENTS ===============
+// ===== MemoStory — IG-Story-format strategic memo, click-through =====
+function MemoStory({onClose, onShipIt}){
+  const [idx, setIdx] = useState(0);
+  const cards = MONDAY_MEMO.cards;
+  const total = cards.length;
+  const card = cards[idx];
+
+  const next = () => {
+    if (idx < total - 1) setIdx(idx + 1);
+  };
+  const prev = () => {
+    if (idx > 0) setIdx(idx - 1);
+  };
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "ArrowRight" || e.key === " " || e.key === "Enter") { e.preventDefault(); next(); }
+      else if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
+      else if (e.key === "Escape") { onClose(); }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  });
+
+  const handleTap = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    if (x < rect.width * 0.30) prev();
+    else next();
+  };
+
+  const isLast = idx === total - 1;
+
+  return (<div className="memo-bg" onClick={onClose}>
+    <div className={"memo-story memo-accent-"+card.accent} onClick={e=>e.stopPropagation()}>
+      {/* Progress dots at top */}
+      <div className="memo-progress">
+        {cards.map((_, i) => (
+          <div key={i} className={"memo-progress-seg" + (i < idx ? " done" : "") + (i === idx ? " active" : "")}></div>
+        ))}
+      </div>
+
+      <button className="memo-close" onClick={onClose} aria-label="close">×</button>
+
+      {/* Card body */}
+      <div className="memo-card" onClick={handleTap}>
+        <div className="memo-card-top">
+          <div className="memo-eyebrow">{card.eyebrow}</div>
+        </div>
+
+        <div className="memo-card-mid">
+          {card.kind === "ledger" ? (
+            <>
+              <div className="memo-big">{card.big}</div>
+              <div className="memo-ledger">
+                <div className="memo-ledger-row">
+                  <div className="memo-ledger-tag killed">KILLED</div>
+                  <div className="memo-ledger-text">{card.killed}</div>
+                </div>
+                <div className="memo-ledger-row">
+                  <div className="memo-ledger-tag queued">QUEUED</div>
+                  <div className="memo-ledger-text">{card.queued}</div>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="memo-big">{card.big}</div>
+              {card.support && <div className="memo-support">{card.support}</div>}
+              {card.meta && <div className="memo-meta">{card.meta}</div>}
+              {card.sub && <div className="memo-sub">{card.sub}</div>}
+            </>
+          )}
+        </div>
+
+        <div className="memo-card-bottom">
+          {isLast ? (
+            <button className="memo-cta" onClick={(e)=>{e.stopPropagation();onShipIt();}}>open the dashboard →</button>
+          ) : (
+            <div className="memo-tap-hint">tap →</div>
+          )}
+        </div>
+
+        {/* Decorative sparkles */}
+        <div className="memo-sparkle memo-sparkle-1">✶</div>
+        <div className="memo-sparkle memo-sparkle-2">✶</div>
+      </div>
+
+      {/* Side-tap zones for prev/next */}
+      <div className="memo-side memo-side-prev" onClick={prev}></div>
+      <div className="memo-side memo-side-next" onClick={next}></div>
+    </div>
+  </div>);
+}
+
 function WelcomePopup({onClose,onCTA}){
   return (<div className="welcome-bg" onClick={onClose}>
     <div className="welcome" onClick={e=>e.stopPropagation()}>
@@ -1030,11 +1322,13 @@ function IntelligenceBrief({tab,setTab,openStudio}){
       <button className={"subtab"+(tab==='pulse'?' active':'')} onClick={()=>setTab('pulse')}>Cultural Pulse<span className="subtab-count">{CULTURAL_PULSE.length}</span></button>
       <button className={"subtab"+(tab==='trends'?' active':'')} onClick={()=>setTab('trends')}>Category + Policy<span className="subtab-count">{TRENDS.length}</span></button>
       <button className={"subtab"+(tab==='comps'?' active':'')} onClick={()=>setTab('comps')}>Competitor Watch<span className="subtab-count">{COMPETITORS.length}</span></button>
+      <button className={"subtab"+(tab==='counter'?' active':'')} onClick={()=>setTab('counter')}>Counter-Strike<span className="subtab-count">⚡ {COUNTER_STRIKE_LOG.length}</span></button>
       <button className={"subtab"+(tab==='amb'?' active':'')} onClick={()=>setTab('amb')}>Brand Ambassadors<span className="subtab-count">{AMBASSADORS.length}</span></button>
     </div>
     {tab==='pulse' && <PulseGrid openStudio={openStudio} />}
     {tab==='trends' && <TrendsGrid openStudio={openStudio} />}
     {tab==='comps' && <CompetitorsGrid openStudio={openStudio} />}
+    {tab==='counter' && <CounterStrikeView openStudio={openStudio} />}
     {tab==='amb' && <AmbassadorsGrid />}
   </>);
 }
@@ -1233,11 +1527,278 @@ function BriefDetailModal({brief,onClose,onDrop}){
           </div>
         </div>
 
-        <div style={{marginTop:18,paddingTop:18,borderTop:"1px solid var(--border)",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+        <CrunchBunchPanel brief={brief} />
+
+        <div style={{marginTop:18,paddingTop:18,borderTop:"1px solid var(--cobalt-light)",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
           <span style={{fontSize:11.5,color:"var(--ink-soft)"}}>Want to riff this brief? Send it to the Studio.</span>
           <button className="drop-btn" onClick={onDrop}>↓ Send to Studio</button>
         </div>
       </div>
+    </div>
+  </div>);
+}
+
+// ===== COUNTER-STRIKE LOG — pre-populated entries showing engine response to recent comp moves =====
+const COUNTER_STRIKE_LOG = [
+  {
+    id: "CS-2026-05-12-PE",
+    competitor: "Purely Elizabeth",
+    trigger: "Protein Ancient Grain Granola launched at Target nationwide — 10g protein from nuts/seeds, no powders, $7.99 at Target, LA pop-up May 15–16 with Go Greek froyo truck.",
+    triggerSource: "NOSH · PR Newswire",
+    triggerAt: "2026-05-12 14:00 ET",
+    respondedAt: "2026-05-12 15:27 ET",
+    responseMinutes: 87,
+    status: "shipped",
+    summary: "PE just claimed the lane next door. Counter-position on source story (whole-seed protein) over spec story (protein number). Don't engage on number — they win that.",
+    briefs: [
+      { id:"CS-A", platform:"IG Reel", pillar:"FUEL", flavor:"Original Clusterbucks", dna:"founder-emily", timing:"Mon May 18 · 12pm",
+        hook:"they added protein. we added a soul.",
+        concept:"founder-emily Reel naming the source-story difference without naming the competitor — Emily on counter, lowercase warmth, Xx Emily sign-off",
+        visual:"kitchen light, soft morning. Emily mid-shot with Original Clusterbucks. wooden bowl half-filled. one eyebrow raise on the hook beat. lands on the pouch + the bowl.",
+        audio:"Corinne Bailey Rae · 'Put Your Records On'",
+        tonal:"NOT-A-GRAIN CONFIDENCE + FOUNDER-FROM-A-BOWL",
+        whyCounter:"PE bid on the protein number. We bid on the seed. 'soul' = soil + founder + mission in one syllable." },
+      { id:"CS-B", platform:"TikTok", pillar:"FUEL", flavor:"Original Clusterbucks", dna:"shelf-spotted", timing:"Wed May 20 · 6pm",
+        hook:"the protein granola aisle just got crowded. ours has been here since 2017.",
+        concept:"shelf-spotted reel — Lil Bucks pouch in cart at Whole Foods, with text overlay ticking off the differentiators",
+        visual:"phone-shot in retail aisle. Lil Bucks Original pouch picked up. text overlays cycle: 'sprouted seed not powder' · '5g prebiotic fiber' · 'gluten-free + grain-free' · 'first ROC buckwheat'. pouch goes in cart. fin.",
+        audio:"lo-fi indie · 'bummin out - choppy.wav' tier",
+        tonal:"CRUNCH-AS-DELIGHT + SOIL-FIRST ACTIVISM",
+        whyCounter:"Shelf-spotted format = silent comparison. The receipt is the pouch itself. No words needed about them." },
+      { id:"CS-C", platform:"IG Carousel", pillar:"SOIL", flavor:"Original Clusterbucks", dna:"fact-flip", timing:"Fri May 22 · 9am",
+        hook:"protein from a powder vs. protein from a seed. one of these is a fruit.",
+        concept:"fact-flip carousel — slide 1 the question, slides 2-5 the answer with photos of Luke + Ali's farm, slide 6 the pouch",
+        visual:"slide 1: text-only on butter bg. slides 2-5: A-Frame Farm photography (buckwheat in bloom, Luke + Ali in field, sprouting jars, ROC cert). slide 6: pouch on kitchen counter.",
+        audio:"static format — no audio",
+        tonal:"NOT-A-GRAIN CONFIDENCE + SOIL-FIRST ACTIVISM",
+        whyCounter:"PE makes protein from nuts + seeds (still added). We make protein from THE seed itself. The fact-flip lives in that distinction." }
+    ]
+  },
+  {
+    id: "CS-2026-01-28-MS",
+    competitor: "Magic Spoon",
+    trigger: "Magic Spoon Protein Pastries + Marshmallow Protein Cereal launched nationwide at Costco, Walmart, Target, Kroger. High-protein nostalgia formats expansion.",
+    triggerSource: "PR Newswire",
+    triggerAt: "2026-01-28 09:00 ET",
+    respondedAt: "2026-01-28 10:42 ET",
+    responseMinutes: 102,
+    status: "shipped",
+    summary: "Magic Spoon doubled down on processed-protein nostalgia (pastries, marshmallow cereal). Counter-position on real-food + texture authenticity. Their 'better-for-you' is still built on isolates — our 'real' is a literal seed.",
+    briefs: [
+      { id:"CS-A", platform:"IG Reel", pillar:"FUEL", flavor:"Birthday Cake Clusterbucks", dna:"meme-payload", timing:"Within 24h",
+        hook:"the marshmallow protein cereal walked. these granola clusters could RUN.",
+        concept:"meme-payload riff using Real Housewives 'walked so X could run' audio + Birthday Cake Clusterbucks pour into açai bowl",
+        visual:"playful pour shot of Birthday Cake Clusterbucks onto açai bowl. Emily off-camera laughs. text-overlay punchline times to the beat drop.",
+        audio:"RHOSLC 'walked so X could run' meme audio",
+        tonal:"BUCK-WILD HUMOR + CRUNCH-AS-DELIGHT",
+        whyCounter:"Meme audio = playful counter. We're not in the protein-isolate fight. We're in the real-celebration-snack fight." },
+      { id:"CS-B", platform:"IG Reel", pillar:"FUEL", flavor:"Original Clusterbucks", dna:"crunch-asmr", timing:"Within 24h",
+        hook:"close your eyes. this is the texture difference.",
+        concept:"crunch-asmr reel — close-up audio of Lil Bucks cluster bite, no narration, single text overlay",
+        visual:"extreme close-up of cluster being snapped between fingers. crunch + soft chew on mic. cuts to text overlay: 'real seed. dehydrated, not extruded.' fin on pouch.",
+        audio:"raw ASMR. no music. mic-forward.",
+        tonal:"CRUNCH-AS-DELIGHT",
+        whyCounter:"You can't fake the crack. Extruded protein puffs sound nothing like a sprouted dehydrated seed cluster. The audio IS the proof." },
+      { id:"CS-C", platform:"TikTok", pillar:"SOIL", flavor:"Original Clusterbucks", dna:"soil-story", timing:"Within 48h",
+        hook:"the cleanest protein is the one you grow.",
+        concept:"soil-story TikTok — buckwheat field in bloom, Luke + Ali, sprouting jars, end card on pouch",
+        visual:"30 seconds at A-Frame Farm. Luke holds a handful of buckwheat seed. text overlay: 'we grew this. then sprouted it. then dehydrated it. that's the whole recipe.' fin on pouch on kitchen counter.",
+        audio:"Lyle Workman · film-score warmth",
+        tonal:"SOIL-FIRST ACTIVISM + NOT-A-GRAIN CONFIDENCE",
+        whyCounter:"They can't out-soil us. The pastry's flour came from somewhere — but not from a farmer you can point to. We have a farm. We have names. We have ROC." }
+    ]
+  }
+];
+
+function CounterStrikeView({openStudio}){
+  const [liveOpen, setLiveOpen] = useState(false);
+  const [liveInput, setLiveInput] = useState("");
+  const [liveLoading, setLiveLoading] = useState(false);
+  const [liveResult, setLiveResult] = useState(null);
+  const [liveError, setLiveError] = useState(null);
+
+  async function runLive() {
+    if (!liveInput.trim() || liveLoading) return;
+    setLiveLoading(true); setLiveResult(null); setLiveError(null);
+    try {
+      const res = await fetch('/api/counter-strike', {
+        method: 'POST',
+        headers: {'content-type':'application/json'},
+        body: JSON.stringify({ competitor_move: liveInput.trim() })
+      });
+      const d = await res.json();
+      if (!res.ok) setLiveError(d.detail || d.error || 'failed');
+      else setLiveResult(d);
+    } catch (e) { setLiveError(String(e)); }
+    setLiveLoading(false);
+  }
+
+  return (<div className="cs-view">
+    <div className="cs-header">
+      <div>
+        <div className="cs-eyebrow">// AUTOMATED COMPETITOR RESPONSE</div>
+        <h2 className="cs-title">90 minutes from press release → 3 briefs ready to ship.</h2>
+        <p className="cs-sub">When a competitor moves, the engine drafts the counter-positioning in Emily's voice before her coffee's cold. Below: receipts from the last two big competitive moves the engine responded to.</p>
+      </div>
+      <button className="cs-live-btn" onClick={()=>setLiveOpen(v=>!v)}>
+        {liveOpen ? "× close" : "⚡ run a live counter-strike"}
+      </button>
+    </div>
+
+    {liveOpen && (
+      <div className="cs-live-panel">
+        <div className="cs-live-eyebrow">// LIVE DEMO · paste any competitor move</div>
+        <textarea className="cs-live-input"
+          placeholder="e.g. 'Once Upon a Farm just launched a kids buckwheat pouch with prebiotic fiber, $4.99 at Whole Foods' — paste a real or hypothetical move, hit run, watch the engine draft 3 response briefs in ~30 seconds."
+          value={liveInput} onChange={e=>setLiveInput(e.target.value)} rows={3} />
+        <div className="cs-live-row">
+          <button className="cs-live-run" onClick={runLive} disabled={liveLoading || !liveInput.trim()}>
+            {liveLoading ? "the strategist is drafting..." : "run the counter-strike →"}
+          </button>
+        </div>
+        {liveError && <div className="cs-live-error">⚠ {liveError}</div>}
+        {liveResult && (
+          <div className="cs-live-result">
+            <div className="cs-summary">{liveResult.summary}</div>
+            <div className="cs-time-badge">⚡ generated in {Math.round((liveResult.response_time_ms||0)/1000)}s</div>
+            <div className="cs-briefs">
+              {liveResult.briefs.map((b, i) => <CounterStrikeBrief key={b.id||i} brief={b} />)}
+            </div>
+          </div>
+        )}
+      </div>
+    )}
+
+    <div className="cs-log">
+      {COUNTER_STRIKE_LOG.map(entry => (
+        <div key={entry.id} className="cs-entry">
+          <div className="cs-entry-head">
+            <div className="cs-entry-trigger">
+              <div className="cs-entry-stamp">⚡ TRIGGER · {entry.triggerAt}</div>
+              <div className="cs-entry-comp">{entry.competitor}</div>
+              <div className="cs-entry-detail">{entry.trigger}</div>
+              <div className="cs-entry-source">source: {entry.triggerSource}</div>
+            </div>
+            <div className="cs-entry-meta">
+              <div className="cs-entry-time">+{entry.responseMinutes} min</div>
+              <div className="cs-entry-resp">response at {entry.respondedAt.slice(-8)}</div>
+              <div className={"cs-entry-status cs-status-"+entry.status}>{entry.status === "shipped" ? "✓ shipped" : "ready to ship"}</div>
+            </div>
+          </div>
+          <div className="cs-summary">{entry.summary}</div>
+          <div className="cs-briefs">
+            {entry.briefs.map(b => <CounterStrikeBrief key={b.id} brief={b} />)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>);
+}
+
+function CounterStrikeBrief({brief}){
+  return (<div className="cs-brief">
+    <div className="cs-brief-head">
+      <span className="cs-brief-id">{brief.id}</span>
+      <span className="cs-brief-platform">{brief.platform}</span>
+      <span className="cs-brief-dna">{brief.dna}</span>
+      {brief.timing && <span className="cs-brief-timing">{brief.timing}</span>}
+    </div>
+    <div className="cs-brief-hook">"{brief.hook}"</div>
+    {brief.concept && <div className="cs-brief-concept">{brief.concept}</div>}
+    <div className="cs-brief-grid">
+      {brief.visual && <div className="cs-brief-cell"><span className="cs-brief-cell-tag">visual</span><span>{brief.visual}</span></div>}
+      {brief.audio && <div className="cs-brief-cell"><span className="cs-brief-cell-tag">audio</span><span>{brief.audio}</span></div>}
+      {brief.tonal && <div className="cs-brief-cell"><span className="cs-brief-cell-tag">tonal</span><span>{brief.tonal}</span></div>}
+      {(brief.whyCounter || brief.why_it_counters) && <div className="cs-brief-cell cs-brief-why"><span className="cs-brief-cell-tag">why it counters</span><span>{brief.whyCounter || brief.why_it_counters}</span></div>}
+    </div>
+  </div>);
+}
+
+// ===== Crunch Bunch — 5 synthetic personas the panel runs against =====
+const CRUNCH_BUNCH_PERSONAS = [
+  { id:"Sarah",  emoji:"🧘", name:"Sarah",  age:"34", role:"yoga + mom of 2 · boulder, CO" },
+  { id:"Marcus", emoji:"🧔", name:"Marcus", age:"41", role:"dad of 3 · suburban atlanta" },
+  { id:"Priya",  emoji:"🎨", name:"Priya",  age:"28", role:"creator · brooklyn" },
+  { id:"Jamie",  emoji:"📚", name:"Jamie",  age:"36", role:"writer · portland" },
+  { id:"Riley",  emoji:"💪", name:"Riley",  age:"24", role:"gen-z fitness · LA" }
+];
+
+function CrunchBunchPanel({brief}){
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true); setData(null); setError(null);
+    fetch('/api/panel', {
+      method: 'POST',
+      headers: {'content-type': 'application/json'},
+      body: JSON.stringify({ brief })
+    })
+      .then(r => r.json())
+      .then(d => {
+        if (cancelled) return;
+        if (d.reactions) setData(d);
+        else setError(d.detail || d.error || 'panel failed');
+        setLoading(false);
+      })
+      .catch(e => { if (!cancelled) { setError(String(e)); setLoading(false); } });
+    return () => { cancelled = true; };
+  }, [brief.id]);
+
+  const scoreColor = (s) => s >= 8 ? 'high' : s >= 5 ? 'mid' : 'low';
+  const avg = data ? Math.round((data.reactions.reduce((a,r)=>a+r.score,0) / data.reactions.length) * 10) / 10 : null;
+
+  return (<div className="modal-section panel-section">
+    <div className="panel-head">
+      <div>
+        <div className="panel-eyebrow">// THE CRUNCH BUNCH READS THIS</div>
+        <div className="panel-title">5 synthetic customers · panel pre-test</div>
+      </div>
+      {avg != null && <div className={"panel-avg panel-avg-"+scoreColor(avg)}><span>{avg}</span><span>/10 avg</span></div>}
+    </div>
+
+    {data?.headline_insight && (
+      <div className="panel-headline">{data.headline_insight}</div>
+    )}
+
+    {error && <div className="panel-error">⚠ {error}</div>}
+
+    <div className="panel-grid">
+      {CRUNCH_BUNCH_PERSONAS.map(p => {
+        const reaction = data?.reactions?.find(r => r.persona === p.id);
+        return (<div key={p.id} className="panel-card">
+          <div className="panel-card-head">
+            <div className="panel-card-emoji">{p.emoji}</div>
+            <div className="panel-card-id">
+              <div className="panel-card-name">{p.name} <span className="panel-card-age">· {p.age}</span></div>
+              <div className="panel-card-role">{p.role}</div>
+            </div>
+            {reaction ? (
+              <div className={"panel-score panel-score-"+scoreColor(reaction.score)}>
+                <span className="panel-score-num">{reaction.score}</span>
+                <span className="panel-score-denom">/10</span>
+              </div>
+            ) : loading ? (
+              <div className="panel-score panel-score-loading"><span>·</span><span>·</span><span>·</span></div>
+            ) : null}
+          </div>
+          {loading && !reaction ? (
+            <div className="panel-card-pulse"></div>
+          ) : reaction ? (
+            <>
+              <div className="panel-card-quote">"{reaction.reaction}"</div>
+              {reaction.suggested_edit && reaction.suggested_edit !== "null" && (
+                <div className="panel-card-edit">
+                  <span className="panel-card-edit-tag">+ edit</span>
+                  <span className="panel-card-edit-text">{reaction.suggested_edit}</span>
+                </div>
+              )}
+            </>
+          ) : null}
+        </div>);
+      })}
     </div>
   </div>);
 }
