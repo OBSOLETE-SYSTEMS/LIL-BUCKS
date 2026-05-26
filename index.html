@@ -42,16 +42,16 @@ html,body{background:var(--cream);color:var(--ink);font-family:'Inter',system-ui
 .serif{font-family:'Fraunces',Georgia,serif;letter-spacing:-0.01em}
 button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit}
 a{color:inherit;text-decoration:none}
-.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+.app{display:grid;grid-template-columns:200px 1fr;min-height:100vh}
 
 /* Sidebar */
-.sb{background:var(--cobalt);color:#fff;border-right:1px solid var(--cobalt-deep);padding:22px 14px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh}
-.sb-brand{display:flex;align-items:center;gap:10px;padding:4px 8px 18px;border-bottom:1px solid rgba(255,255,255,0.22);margin-bottom:14px}
-.sb-logo{width:38px;height:38px;border-radius:50%;background:var(--magenta);display:flex;align-items:center;justify-content:center;font-family:'Lilita One',serif;font-weight:400;font-size:10px;color:#fff;letter-spacing:0.04em;line-height:1;text-align:center}
-.sb-brand-name{font-family:'Lilita One',serif;font-weight:400;font-size:22px;letter-spacing:0.01em;color:#fff;line-height:1}
-.sb-brand-sub{font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:rgba(255,255,255,0.78);margin-top:3px}
-.sb-section-label{font-size:10px;text-transform:uppercase;letter-spacing:0.16em;color:rgba(255,255,255,0.7);padding:14px 10px 6px;font-weight:600}
-.sb-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;font-weight:500;font-size:13.5px;color:rgba(255,255,255,0.92);position:relative;text-align:left;width:100%}
+.sb{background:var(--cobalt);color:#fff;border-right:1px solid var(--cobalt-deep);padding:18px 12px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;height:100vh}
+.sb-brand{display:flex;align-items:center;gap:9px;padding:2px 6px 14px;border-bottom:1px solid rgba(255,255,255,0.22);margin-bottom:10px}
+.sb-logo{width:32px;height:32px;border-radius:50%;background:var(--magenta);display:flex;align-items:center;justify-content:center;font-family:'Lilita One',serif;font-weight:400;font-size:8.5px;color:#fff;letter-spacing:0.04em;line-height:1;text-align:center}
+.sb-brand-name{font-family:'Lilita One',serif;font-weight:400;font-size:17px;letter-spacing:0.01em;color:#fff;line-height:1}
+.sb-brand-sub{font-size:9px;text-transform:uppercase;letter-spacing:0.14em;color:rgba(255,255,255,0.78);margin-top:3px}
+.sb-section-label{font-size:9.5px;text-transform:uppercase;letter-spacing:0.16em;color:rgba(255,255,255,0.7);padding:11px 8px 4px;font-weight:600}
+.sb-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;font-weight:500;font-size:12.5px;color:rgba(255,255,255,0.92);position:relative;text-align:left;width:100%}
 .sb-item:hover{background:rgba(255,255,255,0.12)}
 .sb-item.active{background:var(--magenta);color:#fff;font-weight:600;box-shadow:0 2px 8px rgba(213,88,120,0.35)}
 .sb-item-icon{width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center}
@@ -65,10 +65,10 @@ a{color:inherit;text-decoration:none}
 .sb-howit-link:hover{color:#fff}
 
 /* Main */
-.main{padding:34px 44px 80px;max-width:1400px}
-.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding-bottom:18px;border-bottom:2px solid var(--cobalt);margin-bottom:28px}
-.page-head h1{font-family:'Lilita One',serif;font-weight:400;font-size:42px;letter-spacing:0.005em;line-height:1;color:var(--cobalt-deep)}
-.page-head .eyebrow{font-size:10.5px;text-transform:uppercase;letter-spacing:0.18em;color:var(--cobalt);margin-bottom:8px;font-weight:700}
+.main{padding:24px 32px 70px;max-width:1380px}
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding-bottom:12px;border-bottom:2px solid var(--cobalt);margin-bottom:20px}
+.page-head h1{font-family:'Lilita One',serif;font-weight:400;font-size:32px;letter-spacing:0.005em;line-height:1;color:var(--cobalt-deep)}
+.page-head .eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:var(--cobalt);margin-bottom:6px;font-weight:700}
 .page-head .meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
 .date-pill{background:var(--magenta);color:#fff;font-weight:700;padding:6px 13px;border-radius:99px;font-size:11px;letter-spacing:0.06em;text-transform:uppercase}
 .refresh-pill{font-size:11px;color:var(--cobalt-deep);display:flex;align-items:center;gap:6px;font-weight:500}
@@ -494,28 +494,28 @@ a{color:inherit;text-decoration:none}
 }
 
 /* DIAGNOSTIC INBOX — top of Intelligence Brief, collaborative engine-asks-human pattern */
-.di-wrap{margin-bottom:22px;background:linear-gradient(135deg,var(--cobalt-deep) 0%,#2C5599 100%);color:#fff;border-radius:16px;padding:24px 28px 26px;position:relative;overflow:hidden;box-shadow:0 8px 24px rgba(26,58,110,0.2)}
-.di-wrap::before{content:"";position:absolute;top:-30px;right:-30px;width:180px;height:180px;background:radial-gradient(circle,rgba(234,126,154,0.28) 0%,transparent 70%);pointer-events:none}
-.di-header{display:grid;grid-template-columns:1fr auto;gap:22px;align-items:center;margin-bottom:18px;position:relative;z-index:2}
-.di-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.18em;color:rgba(255,255,255,0.85);font-weight:700;text-transform:uppercase;margin-bottom:6px}
-.di-title{font-family:'Lilita One',serif;font-weight:400;font-size:30px;letter-spacing:0.005em;line-height:1.05;color:#fff;margin:0 0 6px}
-.di-sub{font-family:'Fraunces';font-size:14px;line-height:1.5;color:rgba(255,255,255,0.88);font-weight:500;letter-spacing:-0.005em;max-width:580px;margin:0}
-.di-progress{display:flex;flex-direction:column;align-items:flex-end;gap:6px;min-width:120px}
-.di-progress-num{font-family:'Lilita One',serif;font-weight:400;font-size:32px;letter-spacing:0.005em;line-height:1;color:#fff}
-.di-progress-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.16em;color:rgba(255,255,255,0.78);font-weight:700;text-transform:uppercase}
-.di-progress-bar{width:100%;height:4px;background:rgba(255,255,255,0.22);border-radius:99px;overflow:hidden}
+.di-wrap{margin-bottom:18px;background:linear-gradient(135deg,var(--cobalt-deep) 0%,#2C5599 100%);color:#fff;border-radius:14px;padding:16px 20px 18px;position:relative;overflow:hidden;box-shadow:0 6px 18px rgba(26,58,110,0.18)}
+.di-wrap::before{content:"";position:absolute;top:-30px;right:-30px;width:150px;height:150px;background:radial-gradient(circle,rgba(234,126,154,0.28) 0%,transparent 70%);pointer-events:none}
+.di-header{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;margin-bottom:12px;position:relative;z-index:2}
+.di-eyebrow{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.18em;color:rgba(255,255,255,0.85);font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.di-title{font-family:'Lilita One',serif;font-weight:400;font-size:22px;letter-spacing:0.005em;line-height:1.05;color:#fff;margin:0 0 4px}
+.di-sub{font-family:'Fraunces';font-size:12.5px;line-height:1.45;color:rgba(255,255,255,0.88);font-weight:500;letter-spacing:-0.005em;max-width:560px;margin:0}
+.di-progress{display:flex;flex-direction:column;align-items:flex-end;gap:4px;min-width:100px}
+.di-progress-num{font-family:'Lilita One',serif;font-weight:400;font-size:24px;letter-spacing:0.005em;line-height:1;color:#fff}
+.di-progress-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.16em;color:rgba(255,255,255,0.78);font-weight:700;text-transform:uppercase}
+.di-progress-bar{width:100%;height:3px;background:rgba(255,255,255,0.22);border-radius:99px;overflow:hidden}
 .di-progress-fill{height:100%;background:linear-gradient(90deg,var(--magenta) 0%,#F4B73E 100%);border-radius:99px;transition:width 0.5s ease-out}
 
-.di-grid{display:flex;flex-direction:column;gap:9px;position:relative;z-index:2}
+.di-grid{display:flex;flex-direction:column;gap:7px;position:relative;z-index:2}
 .di-item{background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.18);border-radius:12px;overflow:hidden;transition:background 0.18s}
 .di-item:hover{background:rgba(255,255,255,0.14)}
 .di-item-answered{border-color:rgba(122,176,93,0.6);background:rgba(122,176,93,0.12)}
 .di-item-answered:hover{background:rgba(122,176,93,0.16)}
 .di-item-open{background:rgba(255,255,255,0.16)}
 
-.di-item-head{width:100%;background:transparent;border:0;color:#fff;padding:14px 18px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:6px}
-.di-item-eyebrow{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.18em;color:rgba(255,255,255,0.78);font-weight:700;text-transform:uppercase}
-.di-item-question{font-family:'Fraunces';font-size:15px;line-height:1.4;color:#fff;font-weight:500;letter-spacing:-0.005em}
+.di-item-head{width:100%;background:transparent;border:0;color:#fff;padding:10px 14px 11px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:4px}
+.di-item-eyebrow{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;color:rgba(255,255,255,0.78);font-weight:700;text-transform:uppercase}
+.di-item-question{font-family:'Fraunces';font-size:13.5px;line-height:1.4;color:#fff;font-weight:500;letter-spacing:-0.005em}
 .di-item-toggle-row{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
 .di-item-status{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.06em;font-weight:700;padding:3px 9px;border-radius:99px}
 .di-item-status-pending{color:rgba(255,255,255,0.78);background:rgba(255,255,255,0.12);border:1px dashed rgba(255,255,255,0.3)}
@@ -2034,14 +2034,14 @@ const DIAGNOSTIC_INBOX = [
   },
   {
     id: "DQ-2",
-    eyebrow: "// THIS WEEK · MEMORIAL DAY PROMO",
-    question: "Memorial Day flash sale — yes / no / test?",
-    why: "Circana shows MDW grocery snacking +18% YoY. Lil Bucks isn't on the promo calendar — but a 48-hour 15%-off flash could land in the wave. Risk: pulls forward velocity from June + might dilute brand-premium positioning.",
-    impact: "If yes, engine slots a 'flash sale opener' Reel as MAY25-IG-R0 + reshuffles the week",
+    eyebrow: "// THIS WEEK · HOT HONEY PRIORITIZATION",
+    question: "Hot honey wave is in its 18th week of acceleration — ride hard with 3 posts (asmr + shelf-spotted + bowl-build), or stay tight with the single cottage-cheese-bowl Reel?",
+    why: "Hot Honey Clusterbucks has lived in this trend since 2024 — Snak Club × Mike's launched 2025-12 confirms the wave is permanent, not peaking. But 3 hot-honey posts in 6 slots under-serves soil + founder + morning-ritual lanes equally hot this week.",
+    impact: "If 3-post push, engine slots a hot-honey-asmr + shelf-spotted Reel and drops one bowl-build for the week",
     options: [
-      { label: "Ship 48h flash", value: "yes" },
-      { label: "Skip — stay evergreen", value: "no" },
-      { label: "Soft test (DTC only)", value: "test" }
+      { label: "3-post push", value: "hard" },
+      { label: "Single Reel + combo", value: "single" },
+      { label: "Hold for June", value: "hold" }
     ]
   },
   {
