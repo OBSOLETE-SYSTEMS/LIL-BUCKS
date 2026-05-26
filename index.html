@@ -2895,7 +2895,7 @@ function BriefDetailModal({brief,onClose,onDrop,onIntelNavigate}){
           </div>
         )}
 
-        {/* VISUAL + MUSE + TIMING — compact strip (less dense than the old grid) */}
+        {/* PRODUCTION NOTES — visual direction + end-card stinger */}
         <div className="modal-section">
           <div className="modal-section-label">Production notes</div>
           <div className="prod-notes">
@@ -2906,10 +2906,6 @@ function BriefDetailModal({brief,onClose,onDrop,onIntelNavigate}){
             {brief.benefitShorthand && <div className="prod-note">
               <div className="prod-note-label">End-card stinger</div>
               <div className="prod-note-text" style={{fontStyle:"italic"}}>{brief.benefitShorthand}</div>
-            </div>}
-            {brief.muse && <div className="prod-note">
-              <div className="prod-note-label">Muse posture (backend)</div>
-              <div className="prod-note-text">{brief.muse}</div>
             </div>}
           </div>
         </div>
