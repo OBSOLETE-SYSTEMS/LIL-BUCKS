@@ -370,16 +370,15 @@ a{color:inherit;text-decoration:none}
 
 /* MEMO STORY — IG-style click-through strategic memo */
 /* Monday Memo trigger button — top of Intelligence Brief */
-.memo-trigger{display:flex;align-items:center;justify-content:space-between;gap:24px;width:100%;background:linear-gradient(135deg,var(--cobalt-deep) 0%,#2C5599 50%,var(--cobalt) 100%);color:#fff;border:0;border-radius:14px;padding:14px 20px;margin-bottom:18px;text-align:left;cursor:pointer;box-shadow:0 6px 18px rgba(26,58,110,0.22);transition:transform 0.12s,box-shadow 0.12s;position:relative;overflow:hidden}
-.memo-trigger::before{content:"";position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:radial-gradient(circle,rgba(234,126,154,0.32) 0%,transparent 70%);pointer-events:none}
-.memo-trigger:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(26,58,110,0.32)}
+.memo-trigger{display:flex;align-items:center;justify-content:space-between;gap:24px;width:100%;background:linear-gradient(135deg,#3585E0 0%,#5BA0F0 60%,#7FB5F5 100%);color:#fff;border:0;border-radius:14px;padding:16px 18px 16px 22px;margin-bottom:18px;text-align:left;cursor:pointer;box-shadow:0 6px 18px rgba(53,133,224,0.32);transition:transform 0.12s,box-shadow 0.12s;position:relative;overflow:hidden}
+.memo-trigger::before{content:"";position:absolute;top:-60px;right:-30px;width:260px;height:260px;background:radial-gradient(circle,rgba(234,126,154,0.45) 0%,transparent 65%);pointer-events:none}
+.memo-trigger:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(53,133,224,0.45)}
 .memo-trigger-left{position:relative;z-index:2}
-.memo-trigger-eye{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.18em;color:rgba(255,255,255,0.78);font-weight:700;text-transform:uppercase;margin-bottom:4px}
-.memo-trigger-title{font-family:'Lilita One',serif;font-weight:400;font-size:22px;letter-spacing:0.005em;line-height:1.05;color:#fff;margin-bottom:3px}
-.memo-trigger-sub{font-family:'Fraunces';font-size:12.5px;line-height:1.4;color:rgba(255,255,255,0.85);font-weight:500;letter-spacing:-0.005em}
-.memo-trigger-right{display:flex;flex-direction:column;align-items:flex-end;gap:3px;position:relative;z-index:2;flex-shrink:0}
-.memo-trigger-arrow{font-family:'Lilita One',serif;font-size:28px;line-height:1;color:var(--magenta);font-weight:400}
-.memo-trigger-cta{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.16em;color:rgba(255,255,255,0.85);font-weight:700;text-transform:uppercase}
+.memo-trigger-title{font-family:'Lilita One',serif;font-weight:400;font-size:24px;letter-spacing:0.005em;line-height:1.05;color:#fff;margin-bottom:4px;text-shadow:0 1px 2px rgba(26,58,110,0.18)}
+.memo-trigger-sub{font-family:'Fraunces';font-size:13px;line-height:1.4;color:rgba(255,255,255,0.95);font-weight:500;letter-spacing:-0.005em}
+.memo-trigger-right{display:flex;align-items:center;gap:8px;background:var(--magenta);color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;font-weight:700;text-transform:uppercase;padding:11px 18px;border-radius:99px;box-shadow:0 4px 12px rgba(213,88,120,0.4);position:relative;z-index:2;flex-shrink:0;transition:background 0.15s,box-shadow 0.15s}
+.memo-trigger:hover .memo-trigger-right{background:var(--magenta-deep);box-shadow:0 6px 16px rgba(213,88,120,0.55)}
+.memo-trigger-arrow{font-family:'Lilita One',serif;font-size:18px;line-height:1;font-weight:400}
 
 /* Monday Memo modal — single popup, magazine card */
 .mmm-bg{position:fixed;inset:0;background:rgba(26,58,110,0.55);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:40px 16px;z-index:300;overflow-y:auto}
@@ -2128,13 +2127,12 @@ function IntelligenceBrief({tab,setTab,openStudio,openMemo}){
   return (<>
     <button className="memo-trigger" onClick={openMemo}>
       <div className="memo-trigger-left">
-        <div className="memo-trigger-eye">// MON MAY 25 · 6:14 AM ET · THE STRATEGIST</div>
         <div className="memo-trigger-title">The Monday Memo</div>
-        <div className="memo-trigger-sub">the read · 3 moves · 5 signals worth riding this week</div>
+        <div className="memo-trigger-sub">5 signals to ride this week</div>
       </div>
       <div className="memo-trigger-right">
+        <span>Open Memo</span>
         <span className="memo-trigger-arrow">→</span>
-        <span className="memo-trigger-cta">open the memo</span>
       </div>
     </button>
     <div className="subtabs">
@@ -2292,7 +2290,7 @@ function CultureMomentum(){
   return (<div className="cm-wrap">
     <div className="cm-header">
       <div>
-        <div className="cm-eyebrow">// CULTURE MOMENTUM · WEEK OF {CULTURE_MOMENTUM.asOf}</div>
+        <div className="cm-eyebrow">// CULTURE MOMENTUM</div>
         <h3 className="cm-title">What's popping. What's cooling.</h3>
         <p className="cm-sub">The wave map — what to ride right now vs. what's past peak. Pulled from Reddit, Pinterest, TikTok aggregators, food press, and our anti-pattern memory.</p>
       </div>
@@ -2458,7 +2456,7 @@ function ContentBriefs({onOpen,openStudio}){
 
   return (<>
     <div className="lede-v2">
-      <div className="lede-v2-eyebrow">✶ THIS WEEK · MAY 25–31 ✶</div>
+      <div className="lede-v2-eyebrow">✶ THIS WEEK ✶</div>
       <div className="lede-v2-grid">
         <div className="lede-v2-stat lede-v2-stat-week">
           <div className="lede-v2-num">{briefCounts.total}</div>
