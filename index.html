@@ -691,6 +691,9 @@ a{color:inherit;text-decoration:none}
 .etf-step-agent{font-size:10px;letter-spacing:0.04em;font-weight:600;text-transform:uppercase;line-height:1.1;text-align:center}
 
 .etf-card{background:#fff;border:1.5px solid var(--cobalt-light);border-radius:14px;padding:24px 26px;margin-bottom:14px;box-shadow:0 2px 0 var(--cobalt-light)}
+.etf-card-watches{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 0 14px;margin-bottom:6px;border-bottom:1px dashed var(--cobalt-light)}
+.etf-card-watches-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.18em;color:var(--cobalt);font-weight:700;text-transform:uppercase;margin-right:4px}
+.etf-card-watch-chip{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;background:rgba(53,133,224,0.08);color:var(--cobalt-deep);padding:3px 9px;border-radius:99px;border:1px solid rgba(53,133,224,0.22);letter-spacing:0.005em}
 
 .etf-card-head{display:flex;gap:14px;align-items:center;padding-bottom:14px;margin-bottom:14px;border-bottom:1px dashed var(--cobalt-light)}
 .etf-card-icon{font-size:38px;line-height:1;flex-shrink:0}
@@ -3853,6 +3856,8 @@ function AntiPatternLibrary(){
 const ENGINE_THINKING_STEPS = [
   {
     id: 1, agent: "Cultural Pulse Tracker", icon: "📡", title: "Signal detected",
+    focus: "Music, TV, memes + cultural moments",
+    watches: ["TikTok aggregators", "Pinterest", "Apple Podcasts", "Letterboxd", "Reddit"],
     what: "The Pulse Tracker spots the cottage-cheese bowl revival on TikTok — 4 creators stitched the same format in 48 hours leading into Memorial Day.",
     filters: [
       "Sources: Pinterest, Reddit, 5 TikTok aggregators all pointing to the same trend",
@@ -3864,6 +3869,8 @@ const ENGINE_THINKING_STEPS = [
   },
   {
     id: 2, agent: "Crunch Engine", icon: "⚙️", title: "Product opportunity scored",
+    focus: "Texture, ingredient + sensory discourse",
+    watches: ["Pinterest", "Google Trends", "Recipe RSS", "Food TikTok"],
     what: "Does this map to a real Lil Bucks use case? Which SKU should lead?",
     filters: [
       "Hot Honey Clusterbucks has lived in this lane since 2024",
@@ -3876,6 +3883,8 @@ const ENGINE_THINKING_STEPS = [
   },
   {
     id: 3, agent: "Shelf Watch", icon: "🛒", title: "Competitive context check",
+    focus: "Competitor launches + retail moves",
+    watches: ["PR Newswire BFY", "GDELT mentions", "NOSH", "Snaxshot"],
     what: "Is anyone else already claiming this moment?",
     filters: [
       "Magic Spoon — not in cottage-cheese pairing",
@@ -3888,6 +3897,8 @@ const ENGINE_THINKING_STEPS = [
   },
   {
     id: 4, agent: "The Strategist", icon: "🧠", title: "Brief drafted",
+    focus: "Reads everything. Decides. Live API in the Studio.",
+    watches: ["All agent output", "Lil Bucks thesis", "Voice corpus", "Powered by Claude"],
     what: "The Strategist pulls the signal, the competitive read, and Emily's voice into a brief.",
     filters: [
       "Pillar: FUEL · Hot Honey as the topping",
@@ -3901,6 +3912,8 @@ const ENGINE_THINKING_STEPS = [
   },
   {
     id: 5, agent: "Crunch Bunch Panel", icon: "👥", title: "Synthetic audience pre-test",
+    focus: "4 synthetic personas pressure-test every brief",
+    watches: ["Sarah · oatmeal power-user", "Marcus · format-confused buyer", "Priya · recipe explorer", "Jamie · raw-vegan science nerd"],
     what: "Four simulated personas — modeled on real Lil Bucks customers — read the draft and score it.",
     filters: [
       "Sarah (oatmeal power-user) — 9/10 · 'finally gets the topping use case'",
@@ -3913,6 +3926,8 @@ const ENGINE_THINKING_STEPS = [
   },
   {
     id: 6, agent: "Voice Compass", icon: "🧭", title: "Brand fidelity scan",
+    focus: "Audits every brief for Emily-voice fidelity",
+    watches: ["Brief drafts", "Voice corpus", "Music lane match", "Anti-pattern library"],
     what: "The Voice Compass scores the draft against Lil Bucks's voice fingerprint.",
     filters: [
       "Hits CRUNCH-AS-DELIGHT, BUILD-YOUR-OWN-BOWL, MORNING RITUAL",
@@ -3925,6 +3940,8 @@ const ENGINE_THINKING_STEPS = [
   },
   {
     id: 7, agent: "The Loop", icon: "🔄", title: "Engine learns",
+    focus: "Closes the loop · performance → next week's calibration",
+    watches: ["Engagement metrics", "Emily's voice notes", "Receipts board", "Panel-vs-actual delta"],
     what: "Once the post ships, performance flows back in. Next week is sharper.",
     filters: [
       "Reach + saves logged to the Receipts board",
@@ -3944,9 +3961,9 @@ function EngineThinkingFlow(){
 
   return (<div className="howit-block etf-wrap">
     <div className="etf-header">
-      <div className="howit-block-eyebrow">// HOW THE ENGINE THINKS</div>
-      <h3>Step through one signal becoming a brief.</h3>
-      <div className="howit-block-sub">Real flow from this week — cottage-cheese-bowl revival hits the pipeline Monday morning → engine drafts a ready-to-ship shelf-spotted Reel for Wednesday 6pm. Click through to watch each agent's filter + verdict.</div>
+      <div className="howit-block-eyebrow">// THE AGENTS · HOW THEY THINK</div>
+      <h3>Five agents do the listening. The Strategist decides.</h3>
+      <div className="howit-block-sub">Real flow from this week — cottage-cheese-bowl revival hits the pipeline Monday morning → engine drafts a ready-to-ship shelf-spotted Reel for Wednesday 6pm. Click through each agent to watch its filter + verdict.</div>
     </div>
 
     <div className="etf-stepper">
@@ -3963,9 +3980,15 @@ function EngineThinkingFlow(){
         <span className="etf-card-icon">{cur.icon}</span>
         <div className="etf-card-id">
           <div className="etf-card-agent">{cur.agent}</div>
-          <div className="etf-card-step-meta">STEP 0{cur.id} OF 0{total}</div>
+          <div className="etf-card-step-meta">STEP 0{cur.id} OF 0{total}{cur.focus ? " · " + cur.focus : ""}</div>
         </div>
       </div>
+      {cur.watches && cur.watches.length > 0 && (
+        <div className="etf-card-watches">
+          <span className="etf-card-watches-label">Watches</span>
+          {cur.watches.map((w,i) => <span key={i} className="etf-card-watch-chip">{w}</span>)}
+        </div>
+      )}
       <h4 className="etf-card-title">{cur.title}</h4>
       <p className="etf-card-what">{cur.what}</p>
       <div className="etf-card-filters">
@@ -4020,54 +4043,7 @@ function HowItWorksTab(){
       <div className="howit-flow-step you"><div className="howit-flow-num">04 · Ship</div><div className="howit-flow-name">You approve.</div><div className="howit-flow-body">Review, edit, ship. Your feedback feeds back. Next week sharper.</div></div>
     </div>
 
-    {/* THE AGENTS — the centerpiece */}
-    <div className="howit-block">
-      <div className="howit-block-eyebrow">// THE AGENTS</div>
-      <h3>Five agents do the listening. The Strategist decides.</h3>
-      <div className="howit-block-sub">Each agent owns a lane. Same engine, every client — names change, the architecture stays.</div>
-      <div className="howit-agents">
-        {ingestionAgents.map(a => {
-          const live = liveByAgent.get(a.id);
-          const ingested = live?.ingested_24h;
-          const lastRunLive = fmtRun(live?.last_run_at);
-          return (<div key={a.id} className="howit-agent">
-            <div className="howit-agent-top">
-              <div className="howit-agent-icon">{a.icon}</div>
-              <div>
-                <div className="howit-agent-name">{a.name}</div>
-                <div className="howit-agent-focus">{a.focus}</div>
-              </div>
-              <div className="howit-agent-count">
-                {live ? (<>
-                  <div><span className="live-dot">●</span> {ingested ?? 0} · 24h</div>
-                  <div>{lastRunLive || 'no runs'}</div>
-                </>) : (<>
-                  <div>{a.signals ?? 0} signals</div>
-                </>)}
-              </div>
-            </div>
-            {a.sources && a.sources.length > 0 && (
-              <div className="howit-agent-sources">
-                <span className="howit-agent-src-label">Watches</span>
-                {a.sources.map(s => <span key={s} className="howit-agent-src">{s}</span>)}
-              </div>
-            )}
-          </div>);
-        })}
-      </div>
-      {strategistAgent && (
-        <div className="howit-strat">
-          <div className="howit-strat-icon">{strategistAgent.icon}</div>
-          <div>
-            <div className="howit-strat-label">// AND ABOVE IT ALL</div>
-            <div className="howit-strat-name">The Strategist</div>
-            <div className="howit-strat-desc">Reads what every agent surfaced, cross-references the Lil Bucks thesis, and decides. Live API, not a worker. Talk to it inside the Studio. Powered by Claude with the full engine context loaded.</div>
-          </div>
-        </div>
-      )}
-    </div>
-
-    {/* ENGINE THINKING — interactive step-through showing how agents trigger each other */}
+    {/* THE AGENTS · HOW THEY THINK — consolidated section (static roster merged into the flow) */}
     <EngineThinkingFlow />
 
     {/* DECISIONS — collapsed by default per Alex's request */}
