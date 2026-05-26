@@ -77,6 +77,7 @@ a{color:inherit;text-decoration:none}
 .main{padding:24px 32px 70px;max-width:1380px}
 .page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding-bottom:12px;border-bottom:2px solid var(--cobalt);margin-bottom:20px}
 .page-head h1{font-family:'Lilita One',serif;font-weight:400;font-size:32px;letter-spacing:0.005em;line-height:1;color:var(--cobalt-deep)}
+.page-dek{font-family:'Fraunces';font-size:13.5px;line-height:1.4;color:var(--ink-soft);font-weight:500;font-style:italic;letter-spacing:-0.005em;margin-top:7px;max-width:540px}
 .page-head .eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:var(--cobalt);margin-bottom:6px;font-weight:700}
 .page-head .meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
 .refresh-pill{font-size:12px;color:var(--cobalt-deep);display:flex;align-items:center;gap:8px;font-weight:500;letter-spacing:0.005em}
@@ -2081,6 +2082,7 @@ function App(){
         <header className="page-head">
           <div>
             <h1 className="serif">{section==='howitworks'?'How It Works':section==='intel'?'Intelligence Brief':section==='briefs'?'Content Briefs':section==='calendar'?'Content Calendar':section==='performance'?'Performance':''}</h1>
+            <div className="page-dek">{section==='howitworks'?'The engine, in motion.':section==='intel'?"What's moving in culture this week — and how Lil Bucks rides it.":section==='briefs'?'Production-ready briefs across the 4 pillars. Hand them to the team. Ship the week.':section==='calendar'?'Your weekly calendar, auto-built from the brief mix. Lives in OPERATE.':section==='performance'?'What hit, what missed, and what the engine learned. Lives in OPERATE.':''}</div>
           </div>
           <div className="meta">
             <div className="refresh-pill">
