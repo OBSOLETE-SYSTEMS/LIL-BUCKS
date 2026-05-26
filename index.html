@@ -3971,23 +3971,10 @@ const ENGINE_THINKING_STEPS = [
 
 function EngineThinkingFlow(){
   const [step, setStep] = useState(0);
-  const [playing, setPlaying] = useState(false);
   const total = ENGINE_THINKING_STEPS.length;
   const cur = ENGINE_THINKING_STEPS[step];
   const prev = step > 0 ? ENGINE_THINKING_STEPS[step-1] : null;
   const fillPct = total > 1 ? (step/(total-1))*100 : 0;
-
-  useEffect(() => {
-    if (!playing) return;
-    if (step >= total - 1) { setPlaying(false); return; }
-    const t = setTimeout(() => setStep(s => Math.min(total-1, s+1)), 2600);
-    return () => clearTimeout(t);
-  }, [playing, step, total]);
-
-  function togglePlay(){
-    if (step === total - 1) { setStep(0); setPlaying(true); return; }
-    setPlaying(p => !p);
-  }
 
   // Short label for the pipeline node ("Pulse Tracker" not "Cultural Pulse Tracker")
   const shortLabel = (agent) => agent
@@ -3999,7 +3986,7 @@ function EngineThinkingFlow(){
     <div className="etf-header">
       <div className="howit-block-eyebrow">// THE AGENTS · HOW THEY THINK</div>
       <h3>Five agents do the listening. The Strategist decides.</h3>
-      <div className="howit-block-sub">Real flow from this week — cottage-cheese-bowl revival hits the pipeline Monday morning → engine drafts a ready-to-ship shelf-spotted Reel for Wednesday 6pm. Hit <strong>▶ play</strong> to watch the engine think, or click any node to jump in.</div>
+      <div className="howit-block-sub">Real flow from this week — cottage-cheese-bowl revival hits the pipeline Monday morning → engine drafts a production-ready shelf-spotted Reel for Wednesday 6pm. Click any agent below to step through.</div>
     </div>
 
     <div className="etf-pipeline">
@@ -4009,7 +3996,7 @@ function EngineThinkingFlow(){
       {ENGINE_THINKING_STEPS.map((s, i) => {
         const cls = "etf-node"+(step===i?" active":"")+(step>i?" done":"");
         return (
-          <button key={s.id} className={cls} onClick={()=>{setPlaying(false); setStep(i);}} title={s.agent}>
+          <button key={s.id} className={cls} onClick={()=>setStep(i)} title={s.agent}>
             <span className="etf-node-circle">
               {step>i ? "✓" : s.icon}
               {step===i && <span className="etf-node-pulse"></span>}
@@ -4057,12 +4044,9 @@ function EngineThinkingFlow(){
     </div>
 
     <div className="etf-controls">
-      <button className="etf-btn" onClick={()=>{setPlaying(false); setStep(s=>Math.max(0,s-1));}} disabled={step===0}>← back</button>
-      <button className={"etf-play"+(playing?" playing":"")} onClick={togglePlay}>
-        {playing ? "⏸ pause" : step===total-1 ? "↻ replay flow" : "▶ play flow"}
-      </button>
+      <button className="etf-btn" onClick={()=>setStep(s=>Math.max(0,s-1))} disabled={step===0}>← back</button>
       <span className="etf-progress">{step+1} / {total}</span>
-      <button className="etf-btn etf-btn-primary" onClick={()=>{setPlaying(false); setStep(s=>Math.min(total-1,s+1));}} disabled={step===total-1}>
+      <button className="etf-btn etf-btn-primary" onClick={()=>setStep(s=>Math.min(total-1,s+1))} disabled={step===total-1}>
         {step===total-1 ? "done ✓" : "next →"}
       </button>
     </div>
