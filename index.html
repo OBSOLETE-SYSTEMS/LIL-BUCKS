@@ -741,6 +741,67 @@ a{color:inherit;text-decoration:none}
 }
 
 /* LEDE V2 — "this week" stats strip, more visually engaging */
+/* INACTIVE BANNER — used at top of Calendar + Performance preview tabs */
+.inactive-banner{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#F4B73E14 0%,#EA7E9A14 100%);border:1.5px dashed var(--magenta);border-radius:12px;padding:12px 18px;margin-bottom:22px}
+.inactive-banner-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:var(--magenta-deep);font-weight:700;text-transform:uppercase;background:var(--magenta);color:#fff;padding:5px 11px;border-radius:99px;flex-shrink:0;letter-spacing:0.14em}
+.inactive-banner-text{font-family:'Fraunces';font-size:13px;line-height:1.5;color:var(--cobalt-deep);font-weight:500;letter-spacing:-0.005em}
+
+/* CONTENT CALENDAR PREVIEW (inactive) */
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:20px;opacity:0.92}
+.cal-col{background:var(--butter-light);border:1px solid var(--cobalt-light);border-radius:10px;padding:10px 9px;min-height:200px;display:flex;flex-direction:column;gap:8px}
+.cal-col-head{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.12em;color:var(--cobalt);font-weight:700;text-transform:uppercase;padding-bottom:6px;border-bottom:1px solid rgba(53,133,224,0.18);text-align:center}
+.cal-slot{background:#fff;border:1px solid var(--border);border-radius:7px;padding:7px 8px;display:flex;flex-direction:column;gap:3px}
+.cal-priority-big{border-left:3px solid var(--magenta)}
+.cal-priority-high{border-left:3px solid var(--cobalt)}
+.cal-priority-standard{border-left:3px solid var(--border)}
+.cal-slot-meta{display:flex;justify-content:space-between;align-items:center;gap:5px}
+.cal-slot-platform{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:0.1em;padding:1px 5px;border-radius:3px;font-weight:700;color:#fff}
+.cal-plat-ig{background:var(--magenta)}
+.cal-plat-tt{background:#1A1A1A}
+.cal-plat-pin{background:#E60023}
+.cal-slot-time{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink-soft);font-weight:600}
+.cal-slot-label{font-family:'Fraunces';font-size:10.5px;line-height:1.3;color:var(--cobalt-deep);font-weight:600;letter-spacing:-0.005em}
+.cal-slot-pillar{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:0.1em;color:var(--ink-soft);font-weight:600;text-transform:uppercase}
+.cal-empty{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--ink-soft);opacity:0.35;text-align:center;padding:30px 0}
+.cal-foot-cluster{display:grid;grid-template-columns:1fr 1.6fr;gap:14px}
+.cal-foot-card{background:var(--butter-light);border:1px solid var(--cobalt-light);border-radius:10px;padding:12px 16px}
+.cal-foot-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.18em;color:var(--cobalt);font-weight:700;text-transform:uppercase;margin-bottom:8px}
+.cal-foot-bar{display:flex;gap:3px;height:30px;border-radius:6px;overflow:hidden}
+.cal-foot-bar>span{display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Lilita One',serif;font-size:12px;letter-spacing:0.005em}
+.cal-foot-amps{display:flex;flex-wrap:wrap;gap:6px}
+.cal-amp-pill{font-family:'Inter',sans-serif;font-size:11px;background:rgba(234,126,154,0.12);color:var(--magenta-deep);border:1px solid rgba(234,126,154,0.4);padding:4px 10px;border-radius:99px;font-weight:600}
+
+/* PERFORMANCE PREVIEW (inactive) */
+.perf-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+.perf-kpi{background:var(--butter-light);border:1px solid var(--cobalt-light);border-radius:12px;padding:16px 18px}
+.perf-kpi-num{font-family:'Lilita One',serif;font-weight:400;font-size:34px;letter-spacing:0.005em;line-height:1;color:var(--cobalt-deep);margin-bottom:6px}
+.perf-kpi-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;color:var(--cobalt);font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.perf-kpi-sub{font-family:'Fraunces';font-size:11.5px;line-height:1.4;color:var(--ink-soft);font-weight:500;letter-spacing:-0.005em}
+.perf-results{background:var(--butter-light);border:1px solid var(--cobalt-light);border-radius:12px;padding:18px 20px}
+.perf-results-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(53,133,224,0.18)}
+.perf-results-eye{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:var(--magenta-deep);font-weight:700;text-transform:uppercase}
+.perf-results-hint{font-family:'Fraunces';font-size:11.5px;color:var(--ink-soft);font-weight:500;letter-spacing:-0.005em}
+.perf-row{display:grid;grid-template-columns:80px 1fr 80px;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(53,133,224,0.1)}
+.perf-row:last-child{border-bottom:0}
+.perf-row-stat{font-family:'Lilita One',serif;font-weight:400;font-size:22px;color:var(--cobalt-deep);text-align:left}
+.perf-row-brief{font-family:'Fraunces';font-size:14px;line-height:1.35;font-weight:600;color:var(--cobalt-deep);letter-spacing:-0.005em;margin-bottom:2px}
+.perf-row-driveby{font-family:'Inter',sans-serif;font-size:11.5px;color:var(--ink-soft);font-weight:500}
+.perf-row-driveby strong{color:var(--cobalt);font-weight:700}
+.perf-row-saves{font-family:'Lilita One',serif;font-weight:400;font-size:22px;color:var(--magenta-deep);text-align:right}
+
+/* RIDE-HERO — simplified Content Briefs lede focused on ride-now beats */
+.ride-hero{display:flex;align-items:center;justify-content:space-between;gap:24px;background:linear-gradient(135deg,var(--cobalt-deep) 0%,#2C5599 60%,var(--magenta-deep) 130%);color:#fff;border-radius:14px;padding:18px 26px;margin-bottom:22px;position:relative;overflow:hidden;box-shadow:0 6px 18px rgba(26,58,110,0.22)}
+.ride-hero::before{content:"";position:absolute;top:-40px;right:-30px;width:220px;height:220px;background:radial-gradient(circle,rgba(234,126,154,0.42) 0%,transparent 65%);pointer-events:none}
+.ride-hero-left{display:flex;align-items:center;gap:18px;position:relative;z-index:2}
+.ride-hero-pill{display:flex;align-items:center;gap:10px;background:var(--magenta);padding:10px 18px;border-radius:99px;box-shadow:0 4px 14px rgba(213,88,120,0.5)}
+.ride-hero-icon{font-size:22px;line-height:1}
+.ride-hero-num{font-family:'Lilita One',serif;font-weight:400;font-size:38px;color:#fff;letter-spacing:0.005em;line-height:1}
+.ride-hero-body{display:flex;flex-direction:column;gap:3px}
+.ride-hero-label{font-family:'Lilita One',serif;font-weight:400;font-size:18px;letter-spacing:0.005em;line-height:1.1;color:#fff}
+.ride-hero-sub{font-family:'Fraunces';font-size:12.5px;line-height:1.4;color:rgba(255,255,255,0.88);font-weight:500;letter-spacing:-0.005em}
+.ride-hero-right{position:relative;z-index:2;flex-shrink:0}
+.ride-hero-mini{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:rgba(255,255,255,0.78);font-weight:600;text-transform:uppercase}
+
 .lede-v2{background:linear-gradient(135deg,var(--cobalt) 0%,var(--cobalt-deep) 100%);color:#fff;border-radius:18px;padding:24px 32px 28px;margin-bottom:24px;position:relative;overflow:hidden;box-shadow:0 8px 28px rgba(26,58,110,0.18)}
 .lede-v2::before{content:"";position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(234,126,154,0.32) 0%,transparent 70%);pointer-events:none}
 .lede-v2::after{content:"";position:absolute;bottom:-30px;left:30%;width:140px;height:140px;background:radial-gradient(circle,rgba(244,183,62,0.22) 0%,transparent 70%);pointer-events:none}
@@ -1873,6 +1934,8 @@ function App(){
   const navItems = [
     {id:'intel',label:'Intelligence Brief',icon:'🔭',active:true},
     {id:'briefs',label:'Content Briefs',icon:'📝',active:true},
+    {id:'calendar',label:'Content Calendar',icon:'📅',active:true,soon:true},
+    {id:'performance',label:'Performance',icon:'📈',active:true,soon:true},
     {id:'studio',label:'Studio',icon:'✷',active:true,onClick:()=>setStudioOpen(true)}
   ];
 
@@ -1922,7 +1985,7 @@ function App(){
       <main className="main">
         <header className="page-head">
           <div>
-            <h1 className="serif">{section==='howitworks'?'How It Works':section==='intel'?'Intelligence Brief':section==='briefs'?'Content Briefs':''}</h1>
+            <h1 className="serif">{section==='howitworks'?'How It Works':section==='intel'?'Intelligence Brief':section==='briefs'?'Content Briefs':section==='calendar'?'Content Calendar':section==='performance'?'Performance':''}</h1>
           </div>
           <div className="meta">
             <div className="refresh-pill">
@@ -1948,6 +2011,8 @@ function App(){
           }
         }} />}
         {section==='briefs' && <ContentBriefs onOpen={setBriefOpen} openStudio={()=>setStudioOpen(true)} />}
+        {section==='calendar' && <CalendarPreview />}
+        {section==='performance' && <PerformancePreview />}
       </main>
     </div>
   </>);
@@ -2148,6 +2213,85 @@ function WelcomePopup({onClose,onCTA}){
       </div>
     </div>
   </div>);
+}
+
+// ===== INACTIVE-TAB PREVIEW BANNER =====
+function InactiveBanner({label, body}){
+  return (<div className="inactive-banner">
+    <span className="inactive-banner-tag">{label}</span>
+    <span className="inactive-banner-text">{body}</span>
+  </div>);
+}
+
+// ===== CALENDAR PREVIEW — FPO mock so Emily sees the surface even though it's inactive =====
+function CalendarPreview(){
+  const days = ["Mon May 25","Tue May 26","Wed May 27","Thu May 28","Fri May 29","Sat May 30","Sun May 31"];
+  const slotsByDay = {
+    "Mon May 25":[{time:"12pm",platform:"IG",pillar:"FUEL",label:"Memorial Day açaí-bowl Reel · founder-emily",priority:"big"}],
+    "Tue May 26":[{time:"9am",platform:"TT",pillar:"BOWL",label:"Hot Honey Clusterbucks shelf-spotted",priority:"big"},{time:"12pm",platform:"IG",pillar:"BOWL",label:"Cottage-cheese × Hot Honey bowl-build carousel",priority:"high"}],
+    "Wed May 27":[{time:"9am",platform:"TT",pillar:"CRUNCH",label:"Buckwheat-fruit-seed fact-flip · Little Birdie",priority:"high"},{time:"12pm",platform:"IG",pillar:"SOIL",label:"Luke + Ali · A-Frame Farm in bloom",priority:"big"}],
+    "Thu May 28":[{time:"10am",platform:"TT",pillar:"FUEL",label:"Crunch-ASMR · Original Clusterbucks close-up",priority:"high"}],
+    "Fri May 29":[{time:"11am",platform:"PIN",pillar:"BOWL",label:"Pinterest SEO pin · the açaí bowl that started Lil Bucks",priority:"standard"},{time:"12pm",platform:"IG",pillar:"CRUNCH",label:"Founder-Emily logistics-honesty post",priority:"standard"}],
+    "Sat May 30":[{time:"11am",platform:"TT",pillar:"BOWL",label:"Saturday morning bowl-build · creator stitch",priority:"standard"}],
+    "Sun May 31":[{time:"10am",platform:"IG",pillar:"FUEL",label:"Sunday meme-payload · 'no, you don't get to ask questions'",priority:"standard"}]
+  };
+  return (<>
+    <InactiveBanner label="LIVE IN OPERATE" body="Inactive preview · turns on with the OPERATE engagement after the 30-day Quest. This is the auto-built calendar from every week's brief mix, drag-drop reschedule, paid-amp markers." />
+    <div className="cal-grid">
+      {days.map(d=>(<div key={d} className="cal-col">
+        <div className="cal-col-head">{d}</div>
+        {(slotsByDay[d]||[]).map((s,i)=>(<div key={i} className={"cal-slot cal-priority-"+s.priority}>
+          <div className="cal-slot-meta"><span className={"cal-slot-platform cal-plat-"+s.platform.toLowerCase()}>{s.platform}</span><span className="cal-slot-time">{s.time}</span></div>
+          <div className="cal-slot-label">{s.label}</div>
+          <div className="cal-slot-pillar">{s.pillar}</div>
+        </div>))}
+        {!(slotsByDay[d]||[]).length && <div className="cal-empty">—</div>}
+      </div>))}
+    </div>
+    <div className="cal-foot-cluster">
+      <div className="cal-foot-card"><div className="cal-foot-label">FORMAT MIX</div><div className="cal-foot-bar"><span style={{flex:6,background:"var(--magenta)"}}>6 IG</span><span style={{flex:4,background:"#1A1A1A",color:"#fff"}}>4 TT</span><span style={{flex:1,background:"#E60023"}}>1 PIN</span></div></div>
+      <div className="cal-foot-card"><div className="cal-foot-label">PAID AMP MARKERS</div><div className="cal-foot-amps"><span className="cal-amp-pill">$300 · Memorial Day Reel</span><span className="cal-amp-pill">$200 · Hot Honey shelf-spotted</span><span className="cal-amp-pill">$150 · Soil-story Reel</span></div></div>
+    </div>
+  </>);
+}
+
+// ===== PERFORMANCE PREVIEW — FPO mock with KPI tiles + a results-grid placeholder =====
+function PerformancePreview(){
+  const kpis = [
+    { label:"Briefs shipped", value:"—", sub:"first cycle lands week of OPERATE-1" },
+    { label:"Aggregate reach", value:"—", sub:"IG + TikTok + Pinterest combined" },
+    { label:"Saves vs prior week", value:"—", sub:"weighted by pillar coverage" },
+    { label:"Voice fidelity avg", value:"—", sub:"Voice Compass score across week" }
+  ];
+  const results = [
+    { id:"PE-1", brief:"Memorial Day açaí-bowl Reel", reach:"—", saves:"—", driveby:"MDW Circana + Pinterest açaí surge" },
+    { id:"PE-2", brief:"Hot Honey Clusterbucks shelf-spotted", reach:"—", saves:"—", driveby:"Snak Club × Mike's wave" },
+    { id:"PE-3", brief:"Luke + Ali · A-Frame Farm bloom", reach:"—", saves:"—", driveby:"Late-spring soil window" }
+  ];
+  return (<>
+    <InactiveBanner label="LIVE IN OPERATE" body="Inactive preview · turns on once Week-1 ships and feedback flows back. Every brief gets reach + saves + engagement against the cultural signal that drove it — engine learns which signals → which DNA → which audience." />
+    <div className="perf-kpis">
+      {kpis.map(k=>(<div key={k.label} className="perf-kpi">
+        <div className="perf-kpi-num">{k.value}</div>
+        <div className="perf-kpi-label">{k.label}</div>
+        <div className="perf-kpi-sub">{k.sub}</div>
+      </div>))}
+    </div>
+    <div className="perf-results">
+      <div className="perf-results-head">
+        <div className="perf-results-eye">// LAST WEEK · BRIEF-BY-BRIEF</div>
+        <div className="perf-results-hint">Tied back to the signal that drove it · engine self-grades</div>
+      </div>
+      {results.map(r=>(<div key={r.id} className="perf-row">
+        <div className="perf-row-stat">{r.reach}</div>
+        <div className="perf-row-body">
+          <div className="perf-row-brief">{r.brief}</div>
+          <div className="perf-row-driveby">driven by: <strong>{r.driveby}</strong></div>
+        </div>
+        <div className="perf-row-saves">{r.saves}</div>
+      </div>))}
+    </div>
+  </>);
 }
 
 function IntelligenceBrief({tab,setTab,openStudio,openMemo,openBriefForSignal}){
@@ -2480,48 +2624,19 @@ function ContentBriefs({onOpen,openStudio}){
   }, []);
 
   return (<>
-    <div className="lede-v2">
-      <div className="lede-v2-eyebrow">✶ THIS WEEK ✶</div>
-      <div className="lede-v2-grid">
-        <div className="lede-v2-stat lede-v2-stat-week">
-          <div className="lede-v2-num">{briefCounts.total}</div>
-          <div className="lede-v2-label">briefs shipping</div>
-          <div className="lede-v2-detail">
-            <span className="lede-v2-detail-strong">{briefCounts.bigSwings} big swing{briefCounts.bigSwings!==1?'s':''}</span>
-            <span className="lede-v2-detail-dot">·</span>
-            <span>all 4 pillars hit</span>
-            <span className="lede-v2-detail-dot">·</span>
-            <span>7 hero formats covered</span>
-          </div>
+    <div className="ride-hero">
+      <div className="ride-hero-left">
+        <div className="ride-hero-pill">
+          <span className="ride-hero-icon">⚡</span>
+          <span className="ride-hero-num">{briefCounts.rideNowCount}</span>
         </div>
-
-        <div className="lede-v2-stat lede-v2-stat-shape">
-          <div className="lede-v2-mini-label">PLATFORM SHAPE</div>
-          <div className="lede-v2-bar">
-            {briefCounts.igCount > 0 && <div className="lede-v2-bar-seg lede-v2-bar-ig" style={{flex:briefCounts.igCount}} title={"IG · "+briefCounts.igCount}><span>{briefCounts.igCount} IG</span></div>}
-            {briefCounts.ttCount > 0 && <div className="lede-v2-bar-seg lede-v2-bar-tt" style={{flex:briefCounts.ttCount}} title={"TikTok · "+briefCounts.ttCount}><span>{briefCounts.ttCount} TT</span></div>}
-            {briefCounts.pinCount > 0 && <div className="lede-v2-bar-seg lede-v2-bar-pin" style={{flex:briefCounts.pinCount}} title={"Pinterest · "+briefCounts.pinCount}><span>{briefCounts.pinCount} PIN</span></div>}
-            {briefCounts.otherCount > 0 && <div className="lede-v2-bar-seg lede-v2-bar-other" style={{flex:briefCounts.otherCount}} title={"Other · "+briefCounts.otherCount}><span>{briefCounts.otherCount}</span></div>}
-          </div>
-          <div className="lede-v2-detail">
-            <span className="lede-v2-detail-strong">{briefCounts.scriptedCount} scripted video</span>
-            <span className="lede-v2-detail-dot">·</span>
-            <span>{briefCounts.total - briefCounts.scriptedCount} static / carousel</span>
-          </div>
+        <div className="ride-hero-body">
+          <div className="ride-hero-label">RIDE-NOW BEATS THIS WEEK</div>
+          <div className="ride-hero-sub">culturally decay-sensitive · ship before the window closes</div>
         </div>
-
-        <div className="lede-v2-stat lede-v2-stat-ride">
-          <div className="lede-v2-ride-pill">
-            <span className="lede-v2-ride-icon">⚡</span>
-            <span className="lede-v2-ride-num">{briefCounts.rideNowCount}</span>
-          </div>
-          <div className="lede-v2-label">ride-now beats</div>
-          <div className="lede-v2-detail">
-            <span>culturally decay-sensitive</span>
-            <span className="lede-v2-detail-dot">·</span>
-            <span className="lede-v2-detail-strong">ship before week's end</span>
-          </div>
-        </div>
+      </div>
+      <div className="ride-hero-right">
+        <span className="ride-hero-mini">{briefCounts.total} total briefs · {briefCounts.scriptedCount} scripted video</span>
       </div>
     </div>
     {byPillar.map(g=>(<section key={g.pillar} className="pillar-section">
@@ -2630,9 +2745,6 @@ function BriefDetailModal({brief,onClose,onDrop,onIntelNavigate}){
       </div>
       <div className="modal-body">
 
-        {/* PHONE-FRAME SHOT LIST — Willa's pattern. Replaces text bullets + sits ABOVE captions per Alex's note. */}
-        <PhoneShotList brief={brief} />
-
         {/* INTEL — compact + clickable back to the source card */}
         <div className="modal-section">
           <div className="modal-section-label">Intel that drove this</div>
@@ -2642,7 +2754,7 @@ function BriefDetailModal({brief,onClose,onDrop,onIntelNavigate}){
           {(!links.trends.length && !links.pulse.length && !links.comps.length) && <div className="intel-row"><span className="intel-tag tag-audience">Internal</span><span>Founder-led brief — no external trigger required.</span></div>}
         </div>
 
-        {/* ALT HOOKS — compact */}
+        {/* ALT HOOKS — leads above the shot list per Alex's note */}
         <div className="modal-section">
           <div className="modal-section-label">Alt hooks (3 options)</div>
           {brief.hooks.map((h,i)=>(<div key={i} className={"hook-row"+(h.recommended?" hook-rec":"")}>
@@ -2650,6 +2762,9 @@ function BriefDetailModal({brief,onClose,onDrop,onIntelNavigate}){
             {h.recommended && <span className="hook-tag">RECOMMENDED</span>}
           </div>))}
         </div>
+
+        {/* PHONE-FRAME SHOT LIST — sits between Alt hooks and Captions per Alex's note */}
+        <PhoneShotList brief={brief} />
 
         {/* CAPTIONS · 3 variants */}
         <div className="modal-section">
