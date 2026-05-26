@@ -493,6 +493,89 @@ a{color:inherit;text-decoration:none}
   .rcpt-metrics{grid-template-columns:repeat(3,1fr)}
 }
 
+/* DIAGNOSTIC INBOX — top of Intelligence Brief, collaborative engine-asks-human pattern */
+.di-wrap{margin-bottom:22px;background:linear-gradient(135deg,var(--cobalt-deep) 0%,#2C5599 100%);color:#fff;border-radius:16px;padding:24px 28px 26px;position:relative;overflow:hidden;box-shadow:0 8px 24px rgba(26,58,110,0.2)}
+.di-wrap::before{content:"";position:absolute;top:-30px;right:-30px;width:180px;height:180px;background:radial-gradient(circle,rgba(234,126,154,0.28) 0%,transparent 70%);pointer-events:none}
+.di-header{display:grid;grid-template-columns:1fr auto;gap:22px;align-items:center;margin-bottom:18px;position:relative;z-index:2}
+.di-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.18em;color:rgba(255,255,255,0.85);font-weight:700;text-transform:uppercase;margin-bottom:6px}
+.di-title{font-family:'Lilita One',serif;font-weight:400;font-size:30px;letter-spacing:0.005em;line-height:1.05;color:#fff;margin:0 0 6px}
+.di-sub{font-family:'Fraunces';font-size:14px;line-height:1.5;color:rgba(255,255,255,0.88);font-weight:500;letter-spacing:-0.005em;max-width:580px;margin:0}
+.di-progress{display:flex;flex-direction:column;align-items:flex-end;gap:6px;min-width:120px}
+.di-progress-num{font-family:'Lilita One',serif;font-weight:400;font-size:32px;letter-spacing:0.005em;line-height:1;color:#fff}
+.di-progress-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.16em;color:rgba(255,255,255,0.78);font-weight:700;text-transform:uppercase}
+.di-progress-bar{width:100%;height:4px;background:rgba(255,255,255,0.22);border-radius:99px;overflow:hidden}
+.di-progress-fill{height:100%;background:linear-gradient(90deg,var(--magenta) 0%,#F4B73E 100%);border-radius:99px;transition:width 0.5s ease-out}
+
+.di-grid{display:flex;flex-direction:column;gap:9px;position:relative;z-index:2}
+.di-item{background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.18);border-radius:12px;overflow:hidden;transition:background 0.18s}
+.di-item:hover{background:rgba(255,255,255,0.14)}
+.di-item-answered{border-color:rgba(122,176,93,0.6);background:rgba(122,176,93,0.12)}
+.di-item-answered:hover{background:rgba(122,176,93,0.16)}
+.di-item-open{background:rgba(255,255,255,0.16)}
+
+.di-item-head{width:100%;background:transparent;border:0;color:#fff;padding:14px 18px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:6px}
+.di-item-eyebrow{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.18em;color:rgba(255,255,255,0.78);font-weight:700;text-transform:uppercase}
+.di-item-question{font-family:'Fraunces';font-size:15px;line-height:1.4;color:#fff;font-weight:500;letter-spacing:-0.005em}
+.di-item-toggle-row{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
+.di-item-status{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.06em;font-weight:700;padding:3px 9px;border-radius:99px}
+.di-item-status-pending{color:rgba(255,255,255,0.78);background:rgba(255,255,255,0.12);border:1px dashed rgba(255,255,255,0.3)}
+.di-item-status-answered{color:#fff;background:rgba(122,176,93,0.4);border:1px solid rgba(122,176,93,0.6)}
+.di-item-chev{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(255,255,255,0.78);font-weight:700}
+
+.di-item-body{padding:0 18px 16px;display:flex;flex-direction:column;gap:14px}
+.di-item-why{padding:11px 14px;background:rgba(255,255,255,0.1);border-radius:8px;border-left:2px solid rgba(255,255,255,0.4)}
+.di-item-why-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.16em;color:rgba(255,255,255,0.78);font-weight:700;text-transform:uppercase;margin-bottom:5px}
+.di-item-why-text{font-family:'Fraunces';font-size:13px;line-height:1.5;color:rgba(255,255,255,0.94);font-weight:500;letter-spacing:-0.005em}
+.di-item-impact{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.78);display:flex;gap:6px;align-items:baseline}
+.di-item-impact-label{color:var(--magenta);font-weight:700;letter-spacing:0.06em}
+.di-item-impact-text{font-family:'Inter',sans-serif;font-size:12px;line-height:1.45;color:rgba(255,255,255,0.88);font-weight:500}
+.di-item-options{display:flex;flex-wrap:wrap;gap:8px}
+.di-option{background:rgba(255,255,255,0.14);color:#fff;border:1px solid rgba(255,255,255,0.3);padding:9px 16px;border-radius:99px;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:0.02em;cursor:pointer;transition:all 0.15s}
+.di-option:hover{background:rgba(255,255,255,0.24);border-color:rgba(255,255,255,0.5)}
+.di-option-selected{background:#fff;color:var(--cobalt-deep);border-color:#fff;font-weight:700}
+.di-item-confirmed{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#C8E0B2;font-weight:600;padding:6px 10px;background:rgba(122,176,93,0.18);border-radius:6px;text-transform:lowercase}
+
+@media (max-width:780px){
+  .di-header{grid-template-columns:1fr}
+  .di-progress{align-items:flex-start}
+}
+
+/* ANTI-PATTERN LIBRARY — the brand fence (How It Works section) */
+.apl-wrap{padding:24px 28px 28px}
+.apl-header{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;margin-bottom:18px}
+.apl-stats{text-align:center;background:linear-gradient(135deg,rgba(232,144,125,0.18) 0%,rgba(213,88,120,0.12) 100%);padding:12px 22px;border-radius:12px;border:1.5px solid rgba(213,88,120,0.35)}
+.apl-stats-num{font-family:'Lilita One',serif;font-weight:400;font-size:32px;letter-spacing:0.005em;line-height:1;color:#9E3F31}
+.apl-stats-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.14em;color:#9E3F31;font-weight:700;text-transform:uppercase;margin-top:4px}
+
+.apl-filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.apl-filter{background:var(--butter-light);color:var(--cobalt-deep);border:1.5px solid var(--cobalt-light);padding:7px 14px;border-radius:99px;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.02em;cursor:pointer;transition:all 0.15s}
+.apl-filter:hover{background:#fff;border-color:var(--cobalt)}
+.apl-filter.active{background:var(--cobalt-deep);color:#fff;border-color:var(--cobalt-deep)}
+
+.apl-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.apl-card{background:#fff;border:1.5px solid var(--cobalt-light);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;box-shadow:0 2px 0 var(--cobalt-light)}
+
+.apl-card-head{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.apl-card-cat{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.16em;font-weight:800;padding:3px 9px;border-radius:99px;background:rgba(213,88,120,0.16);color:var(--magenta-deep);text-transform:uppercase}
+.apl-card-bandate{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.04em;color:var(--ink-soft);font-weight:600}
+
+.apl-card-name{font-family:'Lilita One',serif;font-weight:400;font-size:18px;letter-spacing:0.005em;line-height:1.15;color:var(--cobalt-deep)}
+
+.apl-card-row{display:flex;flex-direction:column;gap:3px}
+.apl-card-bad-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.14em;color:#9E3F31;font-weight:800;text-transform:uppercase}
+.apl-card-bad-text{font-family:'Fraunces';font-size:13px;line-height:1.4;color:#9E3F31;font-style:italic;padding:7px 12px;background:rgba(232,144,125,0.1);border-left:2px solid #C95C46;border-radius:0 6px 6px 0;letter-spacing:-0.005em}
+.apl-card-good-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.14em;color:#3B6B2D;font-weight:800;text-transform:uppercase}
+.apl-card-good-text{font-family:'Fraunces';font-size:13px;line-height:1.45;color:var(--cobalt-deep);padding:7px 12px;background:rgba(122,176,93,0.1);border-left:2px solid #7AB05D;border-radius:0 6px 6px 0;letter-spacing:-0.005em;font-weight:500}
+
+.apl-card-source{display:flex;flex-direction:column;gap:3px;padding-top:6px;border-top:1px dashed var(--cobalt-light)}
+.apl-card-source-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.14em;color:var(--cobalt);font-weight:700;text-transform:uppercase}
+.apl-card-source-text{font-size:11.5px;line-height:1.45;color:var(--ink-soft);font-weight:500}
+
+@media (max-width:780px){
+  .apl-grid{grid-template-columns:1fr}
+  .apl-header{grid-template-columns:1fr}
+}
+
 /* ENGINE THINKING FLOW — interactive step-through in How It Works */
 .etf-wrap{position:relative}
 .etf-header{margin-bottom:18px}
@@ -1198,23 +1281,23 @@ const TOP_PERFORMER_DNA = [
 // ===== BRIEFS — 12 entries for May 25–31, 2026 =====
 const BRIEFS = [
   { id:"MAY25-IG-R1", platform:"IG Reel", pillar:"FUEL", flavor:"Original", dna:"founder-emily", muse:"Patagonia + Once Upon a Farm", priority:"BIG SWING", timing:"Mon May 25 · 12pm",
-    concept:"\"the protein-granola lane just got crowded. we've been here since 2017.\" — founder response to the PE launch",
+    concept:"\"haven't we all had a life-changing açaí bowl?\" — Memorial Day Monday opener pulling on the Sydney 2017 origin",
     hooks:[
-      {text:"the protein-granola lane just got crowded. we've been here.", recommended:true},
-      {text:"every brand is suddenly talking about 'real food protein.' cool. ours is in a seed."},
-      {text:"6g of plant protein. one ingredient. no powder."}
+      {text:"haven't we all had a life-changing açaí bowl? memorial day version. xx emily.", recommended:true},
+      {text:"summer just opened. we've been ready since 2017."},
+      {text:"the bowl that started this whole brand, in the season it was made for."}
     ],
-    visual:"Kitchen light, soft morning. Emily mid-shot, leaning on counter with an Original Clusterbucks pouch + a wooden bowl half-filled. Pulls a few clusters into the bowl, smiles, says the hook to camera. Real surfaces, no studio backdrop. Frame ends on the pouch + the bowl, lowercase text overlay: 'Xx Emily.'",
-    audio:"Corinne Bailey Rae · 'Put Your Records On' (observed in @lilbucksworld audio set, Dec 2025). Founder voiceover live + light kitchen ambient.",
+    visual:"Kitchen light, late morning. Emily mid-shot, building a Memorial Day açaí bowl on her counter — frozen açaí blended, into a bowl, layered with banana + berries + a generous spoon of Original Clusterbucks on top. Real surfaces, no studio backdrop. Last frame: pouch + bowl together with sun-streak across both, lowercase overlay: 'Xx Emily.'",
+    audio:"Corinne Bailey Rae · 'Put Your Records On' — warm late-morning energy, opens summer in lowercase. Founder voiceover live over light kitchen ambient.",
     duration:"22–28 seconds",
     script:[
-      {scene:"1", time:"0:00–0:04", action:"Hand reaches across counter, pulls an Original Clusterbucks pouch into frame. Soft morning light through window. Text overlay fades in: 'the protein wave got loud.'"},
-      {scene:"2", time:"0:04–0:11", action:"Cut to Emily mid-shot, smiling. Pours clusters into wooden bowl with hand. Says: 'every brand is suddenly talking about real-food protein. cool. ours has been in a sprouted seed since 2017.'"},
-      {scene:"3", time:"0:11–0:17", action:"Close-up on the bowl, clusters in shallow focus. Text overlay: '6g protein. 5g fiber. one ingredient. sprouted. organic. no powders.'"},
-      {scene:"4", time:"0:17–0:22", action:"Back to Emily, holds the pouch up next to her face. Soft laugh. 'the original protein crunch was always here. you just didn't know to ask for it.'"},
-      {scene:"5", time:"0:22–0:28", action:"Pouch on counter, sun-streak across the label. End card: 'Xx Emily' in handwriting font. Music fades."}
+      {scene:"1", time:"0:00–0:04", action:"Emily, kitchen counter, holds up an açaí pouch + an Original Clusterbucks pouch. Soft laugh. Text overlay fades in: 'memorial day weekend, 2026.'"},
+      {scene:"2", time:"0:04–0:11", action:"Cut to overhead — blends açaí, pours into a bowl, layers banana + berries. Voiceover: 'haven't we all had a life-changing açaí bowl? in 2017 mine was in sydney. it had sprouted buckwheat on top. that's where this whole thing started.'"},
+      {scene:"3", time:"0:11–0:17", action:"Hand sprinkles Original Clusterbucks across the bowl, crunch audible. Text overlay: 'we started in summer. fitting we open the season here.'"},
+      {scene:"4", time:"0:17–0:22", action:"Back to Emily, spoon in hand, takes a bite, eyes close. 'okay yeah. it's summer.' Soft smile."},
+      {scene:"5", time:"0:22–0:28", action:"End frame: bowl + pouch together, sun-streak across both. Text: 'Xx Emily.' Music fades."}
     ],
-    benefitShorthand:"6g protein. 5g fiber. one ingredient. sprouted.",
+    benefitShorthand:"the bowl that started this brand. summer 2017 → summer 2026.",
     rideNow:true
   },
   { id:"MAY25-TT-1", platform:"TikTok", pillar:"THE BOWL", flavor:"Hot Honey", dna:"shelf-spotted", muse:"Graza", priority:"BIG SWING", timing:"Tue May 26 · 9am",
@@ -1418,9 +1501,9 @@ const BRIEFS = [
 
 const CAPTION_VARIANTS = {
   "MAY25-IG-R1": {
-    direct:"every protein granola is suddenly talking about 'real food protein.' cool. we put ours IN a sprouted seed and called it day one — back in 2017.\n\n6g of plant protein. 5g of prebiotic fiber. one ingredient. organic. sprouted. no powders, no isolates, no protein-from-a-bag.\n\nthe original protein crunch was always here. you just didn't know to ask for it.\n\nXx Emily",
-    warm:"the protein-granola lane just got crowded — and the funny part is we've been here since 2017. one ingredient. one seed. one crunch. that's it 💛",
-    punchy:"we put the protein IN the seed."
+    direct:"haven't we all had a life-changing açaí bowl?\n\nin 2017, mine was in sydney, australia. the cafe topped it with sprouted buckwheat instead of granola. i ate it and immediately thought: this is the move. i need to bring this home.\n\nfast forward to memorial day weekend, 2026. the bowl is back. the brand exists. summer just opened — and this is the bowl that started the whole thing.\n\nrecipe: blended açaí, banana, berries, generous spoonful of Original Clusterbucks crunch on top. 6g protein, 5g prebiotic fiber, one ingredient, sprouted, organic. no powders.\n\nthe season starts here.\n\nXx Emily",
+    warm:"haven't we all had a life-changing açaí bowl? memorial day version 🌅 the bowl that started this whole brand, in the season it was made for. xx emily",
+    punchy:"summer just opened. we've been ready since 2017."
   },
   "MAY25-TT-1": {
     direct:"the hot honey wave came for the snack aisle this week 🍯\n\nwe put hot honey on a sprouted buckwheat seed in a pouch back in 2024. respectfully — the trend caught up to the format.\n\n6g protein. 5g prebiotic fiber. zero seed oil. zero glaze.\n\nhot honey on cottage cheese hits different when the crunch is a fruit seed.",
@@ -1483,21 +1566,23 @@ const CAPTION_VARIANTS = {
 const FOOTAGE_INSPO = {
   "MAY25-IG-R1": {
     shoot: [
-      "Emily at her kitchen counter, soft morning window light, Original Clusterbucks pouch + wooden bowl half-filled",
-      "Cluster-by-cluster pour into wooden bowl, slow-mo at 240fps for the crunch shot",
-      "Hands-only sequence — pouch open, cluster scoop, sprinkle onto bowl"
+      "Emily at her kitchen counter, late-morning window light. Pouch of Original Clusterbucks + frozen açaí packet + banana + berries on counter together",
+      "Overhead build of the açaí bowl: pour into bowl, layer banana, layer berries, sprinkle Clusterbucks crunch on top — slow-mo on the crunch sprinkle",
+      "Emily mid-shot taking the first spoonful, eyes close on the bite, soft smile — the 'oh yeah it's summer' beat",
+      "Hero end-frame: bowl + pouch together with sun-streak across both"
     ],
     found: [
-      "Stitch/duet: any creator response to the Purely Elizabeth Target launch May 12 — let their footage be the 'context' frame, you respond in frame 2",
-      "Pull a 3-sec clip from Emily's existing Whole Foods Midwest sampling-tour archive (Feb 2024) as the 'we've been here' B-roll cutaway"
+      "Pinterest 'açaí bowl' pin board screenshots — show the search-trend surge for caption-context overlay",
+      "Stitch potential: any Memorial Day weekend creator unboxing an açaí pack as the 'season is opening' cultural frame",
+      "Emily's 2018 Chicago fitness-festival sampling-tour archive (the original launch) — 2-sec cutaway as the '2017 origin' B-roll"
     ],
     memes: [
-      "Bravo/RHOSLC 'walked so X could run' meme format — works for the protein-wave-vs-source-story counter-position",
-      "Lo-fi 'one ingredient' text-overlay format trending on FoodTok (May 2026 week)"
+      "TikTok 'POV: it's the bowl that started the brand you love' format — Memorial Day variant trending",
+      "Lo-fi 'one ingredient' text-overlay format — pair with Corinne Bailey Rae 'Put Your Records On' opening bars"
     ],
     archive: [
-      "Lil Bucks's own factory-floor BTS footage (the cluster-drop-into-bin clip from March)",
-      "A-Frame Farm 4K stock from the Luke + Ali shoot in 2024 — buckwheat in bloom"
+      "Emily's original 2017 Sydney photo (Bare Naked Bowls in Bronte) — license + recolor as the 'where it started' frame",
+      "Lil Bucks 2018 Chicago launch footage — sampling-table cluster pour, founder-honest energy"
     ]
   },
   "MAY25-TT-1": {
@@ -1561,12 +1646,12 @@ const FOOTAGE_INSPO = {
 // ===== AMPLIFY PLANS — per-brief paid media plan (Willa's pattern) =====
 const AMPLIFY_PLANS = {
   "MAY25-IG-R1": {
-    headline: "Founder-led Reel + protein-wave counter-position — ride the PE launch news cycle with source-story posture, not number-chase",
+    headline: "Memorial Day founder-Reel · açaí-bowl origin frame — ride the MDW summer-snack open with brand-heritage posture",
     totalBudget: 320,
     testWindow: "5 days (Tue May 26 → Sat May 30)",
     objective: "Saves + Profile Visits",
     guardrail: "Auto-pause if CPM > $11 or sentiment drops below 0.85",
-    why: "Purely Elizabeth's protein launch is the dominant adjacent-set news cycle. Emily's 'we've been here since 2017' counter-position has high earned-pickup potential — paid amplification should target the audience already engaging with PE without naming them. Source-story messaging outperformed protein-spec messaging 2.3x in last quarter's tests.",
+    why: "Memorial Day Monday + the açaí-bowl-origin story is Lil Bucks's biggest brand-fit moment of Q2. Pinterest açaí-bowl searches +47% MoM into MDW. Emily on camera + her 2017 Sydney origin = high earned-pickup potential. Paid amplifies what's already culturally pulling — the season is opening exactly where Lil Bucks started.",
     placements: [
       { platform:"Meta", format:"IG Reels Ad + FB Reels", budget:200,
         audience:"Interest: Purely Elizabeth, BFY granola, regen-ag, organic snacks · Age 28–48 · Whole Foods + Sprouts shopper behavior · Engaged with sprouted/clean-label content (30 days)",
@@ -1916,6 +2001,7 @@ function WelcomePopup({onClose,onCTA}){
 
 function IntelligenceBrief({tab,setTab,openStudio}){
   return (<>
+    <DiagnosticInbox />
     <div className="subtabs">
       <button className={"subtab"+(tab==='pulse'?' active':'')} onClick={()=>setTab('pulse')}>Cultural Pulse<span className="subtab-count">{CULTURAL_PULSE.length}</span></button>
       <button className={"subtab"+(tab==='trends'?' active':'')} onClick={()=>setTab('trends')}>Category + Policy<span className="subtab-count">{TRENDS.length}</span></button>
@@ -1929,6 +2015,113 @@ function IntelligenceBrief({tab,setTab,openStudio}){
     {tab==='counter' && <CounterStrikeView openStudio={openStudio} />}
     {tab==='amb' && <AmbassadorsGrid />}
   </>);
+}
+
+// ===== DIAGNOSTIC INBOX — questions the engine needs the human to answer =====
+// Generic pattern — data-driven, drop in a different array per client and the component reuses cleanly.
+const DIAGNOSTIC_INBOX = [
+  {
+    id: "DQ-1",
+    eyebrow: "// STRATEGIC · ROC ROADMAP",
+    question: "Pursue ROC certification for the Snickerdoodle SKU, or hold and own Soil Health Champ as the differentiated alternative?",
+    why: "ROC growing +22% YoY (3× USDA Organic). Snickerdoodle is the heritage-nostalgia SKU — adding ROC would unlock retail-buyer doors but adds cost. Soil Health Champ alternative is already Lil Bucks-owned + uniquely yours.",
+    impact: "Changes whether next 3 SOIL-pillar briefs lead with ROC or SHC framing",
+    options: [
+      { label: "Pursue ROC", value: "roc" },
+      { label: "Own SHC alternative", value: "shc" },
+      { label: "More info first", value: "info" }
+    ]
+  },
+  {
+    id: "DQ-2",
+    eyebrow: "// THIS WEEK · MEMORIAL DAY PROMO",
+    question: "Memorial Day flash sale — yes / no / test?",
+    why: "Circana shows MDW grocery snacking +18% YoY. Lil Bucks isn't on the promo calendar — but a 48-hour 15%-off flash could land in the wave. Risk: pulls forward velocity from June + might dilute brand-premium positioning.",
+    impact: "If yes, engine slots a 'flash sale opener' Reel as MAY25-IG-R0 + reshuffles the week",
+    options: [
+      { label: "Ship 48h flash", value: "yes" },
+      { label: "Skip — stay evergreen", value: "no" },
+      { label: "Soft test (DTC only)", value: "test" }
+    ]
+  },
+  {
+    id: "DQ-3",
+    eyebrow: "// PRODUCT · EVERYTHING BUCKS SUMMER",
+    question: "Everything Bucks Seasoning — 3-brief summer mini-series in June, or stay in the weekly mix?",
+    why: "Everything-bagel-on-everything wave hit 4M+ TikTok views Memorial Day weekend. Everything Bucks Seasoning is the engine's underused summer SKU — savory crossover lane is wide open. June 3-brief mini-series would claim the moment; staying weekly keeps it dispersed.",
+    impact: "If mini-series, engine builds 3 connected briefs for June 8-22 (BBQ + grilled corn + savory bowl-build)",
+    options: [
+      { label: "3-brief mini-series", value: "series" },
+      { label: "Keep weekly mix", value: "weekly" },
+      { label: "Need supply check", value: "supply" }
+    ]
+  }
+];
+
+function DiagnosticInbox(){
+  const [answers, setAnswers] = useState({});
+  const [openItem, setOpenItem] = useState(null);
+  const answeredCount = Object.keys(answers).length;
+  const total = DIAGNOSTIC_INBOX.length;
+
+  function answer(qid, value) {
+    setAnswers(prev => ({ ...prev, [qid]: value }));
+  }
+
+  return (<div className="di-wrap">
+    <div className="di-header">
+      <div>
+        <div className="di-eyebrow">// FROM THE ENGINE · 3 QUESTIONS FOR YOU</div>
+        <h3 className="di-title">Your input shapes the next mix.</h3>
+        <p className="di-sub">Each answer changes downstream briefs. 30 seconds per question — engine sharpens overnight.</p>
+      </div>
+      <div className="di-progress">
+        <div className="di-progress-num">{answeredCount}/{total}</div>
+        <div className="di-progress-label">answered</div>
+        <div className="di-progress-bar"><div className="di-progress-fill" style={{width:(answeredCount/total*100)+'%'}}></div></div>
+      </div>
+    </div>
+    <div className="di-grid">
+      {DIAGNOSTIC_INBOX.map(q => {
+        const ans = answers[q.id];
+        const isOpen = openItem === q.id;
+        return (<div key={q.id} className={"di-item"+(ans?" di-item-answered":"")+(isOpen?" di-item-open":"")}>
+          <button className="di-item-head" onClick={()=>setOpenItem(isOpen ? null : q.id)}>
+            <div className="di-item-eyebrow">{q.eyebrow}</div>
+            <div className="di-item-question">{q.question}</div>
+            <div className="di-item-toggle-row">
+              {ans ? (
+                <span className="di-item-status di-item-status-answered">✓ {q.options.find(o=>o.value===ans)?.label || 'answered'}</span>
+              ) : (
+                <span className="di-item-status di-item-status-pending">awaiting input</span>
+              )}
+              <span className="di-item-chev">{isOpen ? "▴" : "▾"}</span>
+            </div>
+          </button>
+          {isOpen && (
+            <div className="di-item-body">
+              <div className="di-item-why">
+                <div className="di-item-why-label">WHY THIS MATTERS</div>
+                <div className="di-item-why-text">{q.why}</div>
+              </div>
+              <div className="di-item-impact">
+                <span className="di-item-impact-label">↳ IF ANSWERED</span>
+                <span className="di-item-impact-text">{q.impact}</span>
+              </div>
+              <div className="di-item-options">
+                {q.options.map(o => (
+                  <button key={o.value} className={"di-option"+(ans===o.value?" di-option-selected":"")} onClick={()=>answer(q.id, o.value)}>
+                    {ans===o.value && "✓ "}{o.label}
+                  </button>
+                ))}
+              </div>
+              {ans && <div className="di-item-confirmed">your call locked in. engine will reflect this in next monday's mix.</div>}
+            </div>
+          )}
+        </div>);
+      })}
+    </div>
+  </div>);
 }
 
 // ===== CULTURE MOMENTUM — popping/cooling view at top of Cultural Pulse =====
@@ -3110,6 +3303,126 @@ function StudioModal({onClose}){
   </div>);
 }
 
+// ===== ANTI-PATTERN LIBRARY — the brand fence (data-driven, portable to other client engines) =====
+const ANTI_PATTERNS = [
+  // VOICE
+  { id:"AP-V1", category:"VOICE", name:"Lead with the protein number",
+    bad:"\"13g of plant protein.\"",
+    instead:"Lead with the source story. *\"6g of plant protein from a single sprouted seed.\"* Numbers belong in caption, not in the hook.",
+    learned:"Jan 2026 (Magic Spoon Protein Pastries launch · Jan 28)",
+    source:"Magic Spoon owns 'highest protein' — that lane is permanently theirs. Lil Bucks's defensible moat is FIBER + SOIL + ROC, not number-chase." },
+  { id:"AP-V2", category:"VOICE", name:"Adaptogenic as front-and-center positioning",
+    bad:"\"Adaptogenic Buckwheat Clusters — meet our mushroom-blend nutrition stack.\"",
+    instead:"Adaptogens stay IN the formulation, not in the positioning. Lead with crunch + texture + use case. Adaptogens are a footnote in spec, not the hook.",
+    learned:"2020 lesson (Emily's own — original product line pivot)",
+    source:"Emily's words: \"adaptogenic served the airline consumer and no one else.\" Pivoted to 'gut friendly granola clusters' after A/B testing. Permanent anti-pattern." },
+  { id:"AP-V3", category:"VOICE", name:"Supplement-brand register",
+    bad:"\"Supports overall wellness through our unique nutrient profile.\"",
+    instead:"Say what the food does in food language. *\"6g protein. 5g prebiotic fiber. From a sprouted fruit seed. That's it.\"*",
+    learned:"Voice Compass calibration · ongoing",
+    source:"'Supports overall ___' is a clinical-trial register. The Lil Bucks audience reads Substack on Sundays, not supplement labels." },
+  { id:"AP-V4", category:"VOICE", name:"ALL CAPS everywhere",
+    bad:"\"OUR BIGGEST LAUNCH EVER · NEW · LIMITED · GET IT NOW\"",
+    instead:"Lowercase warmth as the default. ALL CAPS reserved for milestone celebrations only — *\"PINCH US!!\"* · *\"GET IN BELLY\"* · *\"BEHOLD THE NEW LIL BUCKS BRAND.\"* Anywhere else dilutes the voice.",
+    learned:"Observed @lilbucksworld voice · 18 IG + 8 TikTok captions",
+    source:"Loud-everywhere = loud-nowhere. Emily's milestone-only ALL CAPS is the punchline; routine ALL CAPS undermines it." },
+
+  // COMPETITIVE
+  { id:"AP-C1", category:"COMPETITIVE", name:"Punch at named competitors",
+    bad:"\"Unlike Magic Spoon, our protein doesn't come from isolates.\"",
+    instead:"Category critique only. *\"Most protein granolas use isolates. Ours is in a seed.\"* Let the audience connect the dots.",
+    learned:"Brand thesis · permanent",
+    source:"Naming competitors validates them + drags Lil Bucks into their fight. Category critique keeps the higher ground." },
+  { id:"AP-C2", category:"COMPETITIVE", name:"Call buckwheat a grain",
+    bad:"\"Made from whole grains.\"",
+    instead:"Buckwheat is a fruit seed (pseudocereal, closer to rhubarb than wheat). The category-jujitsu IS the brand. *\"Buckwheat is a fruit seed. We sprout it.\"*",
+    learned:"Founder thesis · permanent",
+    source:"The 'not-a-grain confidence' tonal territory is unique to Lil Bucks. Losing it = losing the moat." },
+
+  // FORMAT
+  { id:"AP-F1", category:"FORMAT", name:"Assume audience knows what buckwheat is",
+    bad:"Brief opens with the pouch + cluster pour, no use-case context",
+    instead:"Every brief must clarify TOPPER not snack via visual + caption. Show IN USE on yogurt/oatmeal/bowl/avocado toast — never standalone bag-pour.",
+    learned:"Amazon review data + Marcus persona recalibration",
+    source:"Real reviewer KP: *\"I love the nutrition profile but they aren't a good substitute for granola — I wouldn't recommend eating them straight out of the bag.\"* Format-confusion is the brand's biggest conversion blocker." },
+  { id:"AP-F2", category:"FORMAT", name:"Standalone bag-pour as hero visual",
+    bad:"Brief opens with the pouch + cluster pour, no use-case context",
+    instead:"Always show the product IN USE. Yogurt bowl + Original Crunchy Toppers sprinkled. Hot Honey Clusterbucks on cottage-cheese bowl. The use case IS the proof.",
+    learned:"Amazon texture-objection cluster · 5+ reviews",
+    source:"Standalone bag-pour triggers the 'dry/sandy/cardboard' texture objection. In-use shots preempt it." },
+  { id:"AP-F3", category:"FORMAT", name:"Spec-stack hooks",
+    bad:"\"6g of plant protein. 5g of prebiotic fiber. 25% of your daily magnesium.\"",
+    instead:"Lead with the source story. Numbers go in caption, not hook. Spec stacks score <40 on Voice Compass — pattern-flagged.",
+    learned:"Voice Compass scoring history",
+    source:"Spec stacks read like supplement-brand register + format-confused-buyer can't tell what to do with them. Lead with the seed, the founder, or the use case." },
+
+  // AUDIO / VISUAL
+  { id:"AP-A1", category:"AUDIO + VISUAL", name:"Sunset-light wellness aesthetic",
+    bad:"Golden-hour grain bowl with affirmation overlay + script font.",
+    instead:"Daylight + kitchen-window + farm-field light only. Real surfaces, no studio backdrop. Emily's actual register is sun-bright, not sunset-soft.",
+    learned:"Observed @lilbucksworld visual register",
+    source:"Sunset aesthetic = death of the voice. Lives next to the supplement-brand register. Stay out of it." },
+  { id:"AP-A2", category:"AUDIO + VISUAL", name:"Trending audio outside the observed music lane",
+    bad:"\"Top 40 hit of the week / hype-EDM\" as default audio choice.",
+    instead:"Observed music lane: Lo-fi indie · RHOSLC/Bravo meme audios · Thundercat · Corinne Bailey Rae · Lyle Workman film score · creator originals. Eclectic + warm-leaning + meme-fluent. Trending audio outside this register needs justification.",
+    learned:"@lilbucksworld TikTok + IG audio observation (8 + 10 posts)",
+    source:"The earlier 'Olivia Dean / ELO / Portishead / Cranberries' assumption was unverified — engine pulled it after observing actual music choices." },
+  { id:"AP-A3", category:"AUDIO + VISUAL", name:"8+ emoji on IG",
+    bad:"\"hi babes 🌸✨💕☀️🥰🌅💜🍯🌾🥬\"",
+    instead:"IG: 1-2 emoji from a soft palette (🌾 🥬 🍯 💜 ✨ 🌅). LinkedIn: 3-5 emoji is the lane. TikTok: text-overlay does the visual work; emoji minimal. Platform modulates.",
+    learned:"Observed voice corpus · IG-vs-TikTok-vs-LinkedIn distinction",
+    source:"8+ emoji on IG reads chronically-online + dilutes the lowercase-warmth register. Platform-aware modulation is the rule." }
+];
+
+function AntiPatternLibrary(){
+  const [filter, setFilter] = useState("ALL");
+  const categories = ["ALL", ...new Set(ANTI_PATTERNS.map(p=>p.category))];
+  const filtered = filter === "ALL" ? ANTI_PATTERNS : ANTI_PATTERNS.filter(p=>p.category===filter);
+
+  return (<div className="howit-block apl-wrap">
+    <div className="apl-header">
+      <div>
+        <div className="howit-block-eyebrow">// THE BRAND FENCE</div>
+        <h3>What the engine refuses to do.</h3>
+        <div className="howit-block-sub">A living library of the patterns the engine flags + why each one is banned. Send this to creators, agencies, and freelancers as the brand's anti-pattern doc. Every entry traces back to a lesson, a date, and a source.</div>
+      </div>
+      <div className="apl-stats"><div className="apl-stats-num">{ANTI_PATTERNS.length}</div><div className="apl-stats-label">patterns banned</div></div>
+    </div>
+
+    <div className="apl-filters">
+      {categories.map(c => (
+        <button key={c} className={"apl-filter"+(filter===c?" active":"")} onClick={()=>setFilter(c)}>
+          {c === "ALL" ? `All · ${ANTI_PATTERNS.length}` : `${c} · ${ANTI_PATTERNS.filter(p=>p.category===c).length}`}
+        </button>
+      ))}
+    </div>
+
+    <div className="apl-grid">
+      {filtered.map(p => (
+        <div key={p.id} className="apl-card">
+          <div className="apl-card-head">
+            <span className="apl-card-cat">{p.category}</span>
+            <span className="apl-card-bandate">{p.learned}</span>
+          </div>
+          <div className="apl-card-name">✕ {p.name}</div>
+          <div className="apl-card-row">
+            <div className="apl-card-bad-label">DON'T</div>
+            <div className="apl-card-bad-text">{p.bad}</div>
+          </div>
+          <div className="apl-card-row">
+            <div className="apl-card-good-label">DO INSTEAD</div>
+            <div className="apl-card-good-text">{p.instead}</div>
+          </div>
+          <div className="apl-card-source">
+            <span className="apl-card-source-label">▸ WHY BANNED</span>
+            <span className="apl-card-source-text">{p.source}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>);
+}
+
 // ===== ENGINE THINKING FLOW — interactive step-through showing how a signal becomes a brief =====
 const ENGINE_THINKING_STEPS = [
   {
@@ -3359,6 +3672,9 @@ function HowItWorksTab(){
 
     {/* RECEIPTS — engine track record, now embedded in How It Works */}
     <ReceiptsView />
+
+    {/* ANTI-PATTERN LIBRARY — the brand fence Emily can share with creators + agencies */}
+    <AntiPatternLibrary />
 
     {/* DEEPER LOOKS — expandable */}
     <details className="howit-acc">
