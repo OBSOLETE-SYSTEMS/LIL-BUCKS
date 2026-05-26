@@ -493,6 +493,137 @@ a{color:inherit;text-decoration:none}
   .rcpt-metrics{grid-template-columns:repeat(3,1fr)}
 }
 
+/* ENGINE THINKING FLOW — interactive step-through in How It Works */
+.etf-wrap{position:relative}
+.etf-header{margin-bottom:18px}
+.etf-stepper{display:flex;gap:4px;background:rgba(53,133,224,0.06);padding:4px;border-radius:12px;overflow-x:auto;margin-bottom:18px}
+.etf-step-tab{flex:1;min-width:110px;background:transparent;border:0;padding:9px 8px;border-radius:8px;cursor:pointer;display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center;transition:all 0.15s;color:var(--ink-soft);font-family:'JetBrains Mono',monospace}
+.etf-step-tab:hover{background:rgba(53,133,224,0.1);color:var(--cobalt-deep)}
+.etf-step-tab.active{background:var(--cobalt);color:#fff;box-shadow:0 2px 8px rgba(53,133,224,0.35)}
+.etf-step-tab.done{color:var(--cobalt)}
+.etf-step-tab.done:not(.active){opacity:0.7}
+.etf-step-num{font-size:9px;letter-spacing:0.12em;font-weight:700;opacity:0.75}
+.etf-step-agent{font-size:10px;letter-spacing:0.04em;font-weight:600;text-transform:uppercase;line-height:1.1;text-align:center}
+
+.etf-card{background:#fff;border:1.5px solid var(--cobalt-light);border-radius:14px;padding:24px 26px;margin-bottom:14px;box-shadow:0 2px 0 var(--cobalt-light)}
+
+.etf-card-head{display:flex;gap:14px;align-items:center;padding-bottom:14px;margin-bottom:14px;border-bottom:1px dashed var(--cobalt-light)}
+.etf-card-icon{font-size:38px;line-height:1;flex-shrink:0}
+.etf-card-id{flex:1;min-width:0}
+.etf-card-agent{font-family:'Lilita One',serif;font-weight:400;font-size:22px;letter-spacing:0.005em;color:var(--cobalt-deep);line-height:1}
+.etf-card-step-meta{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;color:var(--cobalt);font-weight:700;text-transform:uppercase;margin-top:4px}
+
+.etf-card-title{font-family:'Lilita One',serif;font-weight:400;font-size:30px;letter-spacing:0.005em;line-height:1.05;color:var(--cobalt-deep);margin:0 0 10px}
+.etf-card-what{font-family:'Fraunces';font-size:15.5px;line-height:1.55;color:var(--cobalt-deep);font-weight:500;letter-spacing:-0.005em;margin:0 0 18px}
+
+.etf-card-filters{margin-bottom:14px;padding:14px 16px;background:rgba(53,133,224,0.05);border-radius:10px;border-left:3px solid var(--cobalt)}
+.etf-card-filters-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;color:var(--cobalt);font-weight:700;text-transform:uppercase;margin-bottom:8px}
+.etf-card-filters ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+.etf-card-filters li{font-size:13px;line-height:1.5;color:var(--cobalt-deep);font-family:'Inter',sans-serif}
+
+.etf-card-verdict{margin-bottom:14px;padding:14px 16px;background:linear-gradient(135deg,rgba(122,176,93,0.12) 0%,rgba(244,183,62,0.1) 100%);border-radius:10px;border-left:3px solid #7AB05D}
+.etf-card-verdict-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;color:#3B6B2D;font-weight:700;text-transform:uppercase;margin-bottom:6px}
+.etf-card-verdict-text{font-family:'Fraunces';font-size:14.5px;line-height:1.5;color:var(--cobalt-deep);font-weight:500;letter-spacing:-0.005em}
+
+.etf-card-next{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.04em;color:var(--magenta-deep);font-weight:600;padding-top:10px;border-top:1px dashed var(--cobalt-light)}
+
+.etf-controls{display:flex;justify-content:space-between;align-items:center;gap:14px}
+.etf-btn{background:var(--butter-light);color:var(--cobalt-deep);border:1.5px solid var(--cobalt-light);padding:10px 18px;border-radius:99px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.02em;cursor:pointer;transition:all 0.15s}
+.etf-btn:hover:not(:disabled){background:#fff;border-color:var(--cobalt)}
+.etf-btn:disabled{opacity:0.4;cursor:not-allowed}
+.etf-btn-primary{background:var(--cobalt);color:#fff;border-color:var(--cobalt)}
+.etf-btn-primary:hover:not(:disabled){background:var(--cobalt-deep);border-color:var(--cobalt-deep)}
+.etf-progress{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--ink-soft);font-weight:600}
+
+@media (max-width:780px){
+  .etf-stepper{display:grid;grid-template-columns:repeat(4,1fr)}
+  .etf-step-tab{min-width:0}
+}
+
+/* CULTURE MOMENTUM — what's popping / what's cooling at the top of Cultural Pulse */
+.cm-wrap{margin-bottom:24px;background:var(--butter-light);border:1.5px solid var(--cobalt-light);border-radius:14px;padding:20px 24px 22px}
+.cm-header{margin-bottom:18px}
+.cm-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.18em;color:var(--cobalt);font-weight:700;text-transform:uppercase;margin-bottom:6px}
+.cm-title{font-family:'Lilita One',serif;font-weight:400;font-size:28px;letter-spacing:0.005em;line-height:1.05;color:var(--cobalt-deep);margin:0 0 6px}
+.cm-sub{font-family:'Fraunces';font-size:14px;line-height:1.55;color:var(--ink-soft);max-width:720px;letter-spacing:-0.005em;margin:0}
+
+.cm-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+.cm-col{background:#fff;border-radius:12px;padding:16px 18px;border:2px solid transparent}
+.cm-col-popping{border-color:#7AB05D;background:linear-gradient(180deg,#fff 0%,#F4FAF0 100%)}
+.cm-col-cooling{border-color:rgba(232,144,125,0.45);background:linear-gradient(180deg,#fff 0%,#FCF1ED 100%)}
+
+.cm-col-head{display:flex;align-items:baseline;gap:10px;padding-bottom:10px;margin-bottom:12px;border-bottom:1.5px dashed rgba(0,0,0,0.08)}
+.cm-col-icon{font-size:22px;line-height:1;font-weight:800}
+.cm-col-popping .cm-col-icon{color:#3B6B2D}
+.cm-col-cooling .cm-col-icon{color:#9E3F31}
+.cm-col-label{font-family:'Lilita One',serif;font-size:22px;letter-spacing:0.01em;color:var(--cobalt-deep)}
+.cm-col-meta{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;color:var(--ink-soft);font-weight:600;margin-left:auto;text-transform:uppercase}
+
+.cm-item{padding:10px 12px;border-radius:8px;margin-bottom:8px;background:rgba(0,0,0,0.02);border-left:3px solid transparent}
+.cm-item:last-child{margin-bottom:0}
+.cm-item-pop{border-left-color:#7AB05D}
+.cm-item-pop:nth-child(2){border-left-color:#5B8B47}
+.cm-item-cool{border-left-color:rgba(232,144,125,0.6)}
+
+.cm-item-meta{display:flex;gap:10px;align-items:baseline;margin-bottom:5px}
+.cm-item-mom{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;font-weight:800;padding:2px 8px;border-radius:99px}
+.cm-mom-1-pop{background:#E7F0DD;color:#3B6B2D}
+.cm-mom-2-pop{background:#C8E0B2;color:#2D5421}
+.cm-mom-3-pop{background:#7AB05D;color:#fff}
+.cm-mom-1-cool{background:#F8DCD7;color:#9E3F31}
+.cm-mom-2-cool{background:#EA9F95;color:#7A2A1F}
+.cm-mom-3-cool{background:#C95C46;color:#fff}
+.cm-item-since{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);letter-spacing:0.04em;font-weight:600}
+
+.cm-item-signal{font-family:'Lilita One',serif;font-size:15px;color:var(--cobalt-deep);line-height:1.15;margin-bottom:6px;letter-spacing:0.005em}
+
+.cm-item-ride,.cm-item-note{display:flex;flex-direction:column;gap:2px;font-size:11.5px;line-height:1.4}
+.cm-item-ride-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.14em;color:#3B6B2D;font-weight:700;text-transform:uppercase}
+.cm-item-ride-text{color:var(--cobalt-deep);font-weight:500}
+.cm-item-note-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.14em;color:#9E3F31;font-weight:700;text-transform:uppercase}
+.cm-item-note-text{color:var(--ink-soft);font-style:italic}
+
+@media (max-width:780px){
+  .cm-grid{grid-template-columns:1fr}
+}
+
+/* LEDE V2 — "this week" stats strip, more visually engaging */
+.lede-v2{background:linear-gradient(135deg,var(--cobalt) 0%,var(--cobalt-deep) 100%);color:#fff;border-radius:18px;padding:24px 32px 28px;margin-bottom:24px;position:relative;overflow:hidden;box-shadow:0 8px 28px rgba(26,58,110,0.18)}
+.lede-v2::before{content:"";position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(234,126,154,0.32) 0%,transparent 70%);pointer-events:none}
+.lede-v2::after{content:"";position:absolute;bottom:-30px;left:30%;width:140px;height:140px;background:radial-gradient(circle,rgba(244,183,62,0.22) 0%,transparent 70%);pointer-events:none}
+.lede-v2-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.24em;color:rgba(255,255,255,0.85);font-weight:700;text-transform:uppercase;margin-bottom:20px;text-align:center;position:relative;z-index:2}
+
+.lede-v2-grid{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:24px;align-items:stretch;position:relative;z-index:2}
+.lede-v2-stat{background:rgba(255,255,255,0.08);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;justify-content:center;gap:8px;min-height:140px}
+
+.lede-v2-num{font-family:'Lilita One',serif;font-weight:400;font-size:54px;letter-spacing:0.005em;line-height:1;color:#fff}
+.lede-v2-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;color:rgba(255,255,255,0.92);font-weight:700;text-transform:uppercase}
+.lede-v2-detail{font-family:'Fraunces';font-size:13px;line-height:1.5;color:rgba(255,255,255,0.88);font-weight:500;display:flex;flex-wrap:wrap;gap:5px;align-items:baseline;letter-spacing:-0.005em}
+.lede-v2-detail-strong{color:#fff;font-weight:700}
+.lede-v2-detail-dot{color:rgba(255,255,255,0.5);font-weight:300}
+
+/* The platform-mix center stat */
+.lede-v2-mini-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;color:rgba(255,255,255,0.85);font-weight:700;text-transform:uppercase;margin-bottom:2px}
+.lede-v2-bar{display:flex;gap:3px;height:48px;border-radius:10px;overflow:hidden;background:rgba(255,255,255,0.08);margin:4px 0}
+.lede-v2-bar-seg{display:flex;align-items:center;justify-content:center;font-family:'Lilita One',serif;font-size:18px;color:#fff;letter-spacing:0.005em;border-radius:8px;min-width:50px;transition:flex 0.4s}
+.lede-v2-bar-seg span{font-family:'Lilita One',serif;font-size:15px;letter-spacing:0.01em}
+.lede-v2-bar-ig{background:linear-gradient(135deg,var(--magenta) 0%,var(--magenta-deep) 100%)}
+.lede-v2-bar-tt{background:linear-gradient(135deg,#1a1a1a 0%,#333 100%)}
+.lede-v2-bar-pin{background:linear-gradient(135deg,#E60023 0%,#B30019 100%)}
+.lede-v2-bar-other{background:linear-gradient(135deg,#F4B73E 0%,#E89A2E 100%);color:var(--cobalt-deep)}
+
+/* The ride-now pill */
+.lede-v2-ride-pill{display:flex;align-items:baseline;gap:6px;background:linear-gradient(135deg,var(--magenta) 0%,var(--magenta-deep) 100%);padding:10px 18px;border-radius:99px;align-self:flex-start;box-shadow:0 4px 16px rgba(213,88,120,0.4)}
+.lede-v2-ride-icon{font-size:24px;line-height:1}
+.lede-v2-ride-num{font-family:'Lilita One',serif;font-weight:400;font-size:32px;color:#fff;letter-spacing:0.005em;line-height:1}
+
+@media (max-width:900px){
+  .lede-v2-grid{grid-template-columns:1fr}
+  .lede-v2{padding:20px 22px 24px}
+  .lede-v2-num{font-size:42px}
+}
+
 /* PHONE-FRAME SHOT LIST — Willa's-pattern swipeable carousel (REPLACES the old PhonePreview) */
 .psl-wrap{margin-bottom:22px;padding:20px 22px;background:linear-gradient(135deg,var(--butter-light) 0%,#FFF7C9 100%);border:1.5px solid var(--cobalt-light);border-radius:14px}
 .psl-header{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:18px;flex-wrap:wrap}
@@ -963,18 +1094,18 @@ const PILLAR_PIP = { "FUEL":"pip-fuel", "THE BOWL":"pip-bowl", "SOIL":"pip-soil"
 // ===== THE MONDAY MEMO — IG-Story-format strategic memo from The Strategist =====
 // Generated weekly. Tap-to-advance click-through. Replaces the V0.1 Welcome Popup.
 const MONDAY_MEMO = {
-  generatedAt: "MON MAY 20 · 6:14 AM ET",
-  weekRange: "May 18–24, 2026",
+  generatedAt: "MON MAY 25 · 6:14 AM ET ET",
+  weekRange: "May 25–31, 2026",
   signature: "— The Strategist",
   cards: [
-    { kind:"cover",   accent:"cobalt",      eyebrow:"// MON MAY 20 · 6:14 AM",  big:"this is your week.",                sub:"— the strategist" },
-    { kind:"read",    accent:"magenta",     eyebrow:"// the read",                big:"the protein wave just got loud.",   support:"magic spoon · costco.  purely elizabeth · target.  catalina · first national ad." },
-    { kind:"call",    accent:"butter",      eyebrow:"// the call",                big:"don't chase it.",                   support:"magic spoon owns the protein number. we own the seed." },
-    { kind:"move",    accent:"cobalt",      eyebrow:"// move 01 · monday 12pm",   big:"founder reel.",                     support:"\"the protein-granola lane just got crowded. we've been here since 2017.\"", meta:"FUEL · Original Clusterbucks · founder-emily · Corinne Bailey Rae" },
+    { kind:"cover",   accent:"cobalt",      eyebrow:"// MON MAY 25 · 6:14 AM ET",  big:"summer just opened.",               sub:"— the strategist" },
+    { kind:"read",    accent:"magenta",     eyebrow:"// the read",                big:"memorial day = the summer-snack starting gun.",   support:"cottage cheese bowls back. açaí bowls surging on pinterest. hot girl walks resumed. and the protein wave from two weeks ago is still compounding underneath." },
+    { kind:"call",    accent:"butter",      eyebrow:"// the call",                big:"open summer in lowercase.",         support:"memorial day reel today. lead with the açaí-bowl origin — we started where summer-bowl culture is now." },
+    { kind:"move",    accent:"cobalt",      eyebrow:"// move 01 · monday 12pm",   big:"founder reel.",                     support:"\"haven't we all had a life-changing açaí bowl? memorial day version. xx emily.\"", meta:"FUEL · Original Clusterbucks · founder-emily · Corinne Bailey Rae" },
     { kind:"move",    accent:"magenta",     eyebrow:"// move 02 · wednesday 6pm", big:"hot honey ride.",                   support:"snak club just put hot honey in salty snacks. clusterbucks lives there already.", meta:"FUEL · Hot Honey Clusterbucks · shelf-spotted · lo-fi indie" },
-    { kind:"move",    accent:"butter",      eyebrow:"// move 03 · friday 9am",    big:"name the farmer.",                  support:"luke + ali. a-frame farm. late mother's day pickup.", meta:"⚠ flag dual-edge — seven sundays sources the same farm.  lean on heritage depth + first-roc-buckwheat." },
+    { kind:"move",    accent:"butter",      eyebrow:"// move 03 · friday 9am",    big:"name the farmer.",                  support:"luke + ali. a-frame farm. buckwheat in late-spring bloom. soil-story reel.", meta:"⚠ flag dual-edge — seven sundays sources the same farm.  lean on heritage depth + first-roc-buckwheat." },
     { kind:"ledger",  accent:"cobalt-deep", eyebrow:"// leave the noise",         big:"killed + queued.",                  killed:"protein-number comparison brief.  magic spoon owns that lane.", queued:"ROC cert roadmap.  OUAF IPO ($724M) exit-math.  surface in the diagnostic with you." },
-    { kind:"close",   accent:"gradient",    eyebrow:"// week of " + "May 18–24, 2026",                                                                                          big:"ship it.",                          sub:"— the strategist" }
+    { kind:"close",   accent:"gradient",    eyebrow:"// week of " + "May 25–31, 2026",                                                                                          big:"ship it.",                          sub:"— the strategist" }
   ]
 };
 
@@ -986,12 +1117,12 @@ const WELCOME_HIGHLIGHTS = [
   { stat:"20M", label:"Kiss the Ground audience", detail:"The regen-ag consumer movement hit 20M followers; their farm map goes from 200 → 1,000 by year-end. Lil Bucks's Luke & Ali at A Frame Farm is the kind of story they're cataloguing right now.", src:"kisstheground.com", url:"https://kisstheground.com/kiss-the-ground-celebrates-earth-month-2026/" }
 ];
 
-const WELCOME_THESIS = "Two things hit the shelf this week: the protein-granola arms race got loud, and the hot-honey trend formally moved from condiment to snack. Lil Bucks is positioned for both — without bidding on protein numbers or chasing the meme. The whole-food source story is sharper than any 'made with real ingredients' claim, and Hot Honey Clusterbucks already lives where the trend is moving. The week's job: name the moment, ride it in lowercase, and let the soil story keep compounding underneath.";
+const WELCOME_THESIS = "Memorial Day weekend lights the summer-snack starting gun: cottage-cheese bowls, açaí bowls, hot-girl-walk fuel — all back in the feed. Meanwhile the protein-granola arms race the engine flagged two weeks ago (Purely Elizabeth at Target · Magic Spoon at Costco) is still compounding, and the hot-honey wave keeps spreading from condiment to snack. Lil Bucks is positioned for the season pivot — the seed-not-spec story sharpens against the protein chase, Hot Honey Clusterbucks lives where the trend is moving, and the soil-story window stayed open. The week's job: open summer in lowercase, ride hot honey + the cottage-cheese-bowl revival, and let the A-Frame Farm story compound underneath.";
 
 const WELCOME_MOVES = [
-  { verb:"Show the source.", why:"The week's lead Reel names Original Clusterbucks as the response to the protein-granola lane crowding. Founder-Emily, lowercase, signed Xx Emily." },
-  { verb:"Drop on hot honey.", why:"Hot Honey Clusterbucks is the perfect retort to Snak Club × Mike's Hot Honey. Snack format, fruit-seed crunch, real-food protein. The trend already lives on our shelf." },
-  { verb:"Name the farmers.", why:"Late Mother's Day pickup with a Luke & Ali post on A Frame Farm in bloom. Soil-as-source, founder-warm, signed Xx Emily. Compounds for Kiss the Ground discovery." }
+  { verb:"Open summer.", why:"Memorial Day Reel dropping the açaí-bowl origin frame — Original Clusterbucks back to the Sydney 2017 moment that started the brand. Lowercase, Xx Emily." },
+  { verb:"Ride hot honey.", why:"Snak Club × Mike's just put hot honey in salty snacks. Hot Honey Clusterbucks has been on shelf since 2024. Shelf-spotted Reel mid-week — we have been here." },
+  { verb:"Name the farmer.", why:"Late-spring Luke & Ali post on A-Frame Farm in bloom. Soil-as-source, founder-warm, signed Xx Emily. ⚠ frame on relationship depth — Seven Sundays sources the same farm." }
 ];
 
 // ===== TRENDS (Category + Policy) — 10 entries =====
@@ -1037,9 +1168,9 @@ const COMPETITORS = [
 ];
 
 const COMP_WEEKLY_POV = {
-  happened:"Purely Elizabeth claimed the protein-granola lane next door with a 10g whole-food protein launch at Target — the single biggest competitive move in Lil Bucks's adjacent set in 2026. Magic Spoon kept pushing protein numbers, Catalina rolled new indulgent flavors.",
-  coming:"PE's LA pop-up runs through May 16 + the trade press cycle compounds through end-of-month. The hot honey snack lane keeps expanding (Snak Club, Garrett) — the trend Lil Bucks already lives on.",
-  plays:"Three briefs anchor the week — a founder-Emily Reel naming the protein-from-the-seed difference, a shelf-spotted ride on Hot Honey Clusterbucks against the hot honey wave, and a Luke + Ali soil-story for late Mother's Day pickup. Total signal-driven briefs this week: 12."
+  happened:"Memorial Day weekend lit the summer-snack starting gun — cottage-cheese bowls are back trending, hot girl walks resumed, açaí bowl pins jumped on Pinterest. Meanwhile the protein-granola wave the engine flagged two weeks ago (Purely Elizabeth at Target · Magic Spoon at Costco) is still compounding through trade press.",
+  coming:"Summer-bowl format dominates June. Pinterest Predicts mid-year report drops mid-June — early signals: prebiotic everything, fiber-first breakfast, savory crunch. Hot honey lane keeps expanding (Snak Club rolled Snack Mix mid-May).",
+  plays:"Three briefs anchor the week — a founder-Emily Memorial Day Reel pulling on the Sydney 2017 açaí-bowl origin, a shelf-spotted Hot Honey Clusterbucks ride against the snack-hot-honey wave, and a Luke + Ali soil-story Reel for the late-spring buckwheat bloom. Total signal-driven briefs this week: 12."
 };
 
 // ===== AMBASSADORS — 7 entries =====
@@ -1064,9 +1195,9 @@ const TOP_PERFORMER_DNA = [
   { id:"meme-payload", name:"Meme Payload", desc:"Current TikTok meme format + Lil Bucks proof point. Biggest whitespace; aim for ≥1 per week." }
 ];
 
-// ===== BRIEFS — 12 entries for May 18–24, 2026 =====
+// ===== BRIEFS — 12 entries for May 25–31, 2026 =====
 const BRIEFS = [
-  { id:"MAY18-IG-R1", platform:"IG Reel", pillar:"FUEL", flavor:"Original", dna:"founder-emily", muse:"Patagonia + Once Upon a Farm", priority:"BIG SWING", timing:"Mon May 18 · 12pm",
+  { id:"MAY25-IG-R1", platform:"IG Reel", pillar:"FUEL", flavor:"Original", dna:"founder-emily", muse:"Patagonia + Once Upon a Farm", priority:"BIG SWING", timing:"Mon May 25 · 12pm",
     concept:"\"the protein-granola lane just got crowded. we've been here since 2017.\" — founder response to the PE launch",
     hooks:[
       {text:"the protein-granola lane just got crowded. we've been here.", recommended:true},
@@ -1086,7 +1217,7 @@ const BRIEFS = [
     benefitShorthand:"6g protein. 5g fiber. one ingredient. sprouted.",
     rideNow:true
   },
-  { id:"MAY18-TT-1", platform:"TikTok", pillar:"THE BOWL", flavor:"Hot Honey", dna:"shelf-spotted", muse:"Graza", priority:"BIG SWING", timing:"Tue May 19 · 9am",
+  { id:"MAY25-TT-1", platform:"TikTok", pillar:"THE BOWL", flavor:"Hot Honey", dna:"shelf-spotted", muse:"Graza", priority:"BIG SWING", timing:"Tue May 26 · 9am",
     concept:"\"the hot honey wave came for the snack aisle. ours was already on shelf.\" — riding Snak Club × Mike's Hot Honey",
     hooks:[
       {text:"the hot honey wave came for the shelf. ours was already there 🍯", recommended:true},
@@ -1106,7 +1237,7 @@ const BRIEFS = [
     benefitShorthand:"hot honey + sprouted fruit seed. 6g protein.",
     rideNow:true
   },
-  { id:"MAY18-IG-R2", platform:"IG Reel", pillar:"SOIL", flavor:"Original", dna:"soil-story", muse:"Kiss the Ground + Patagonia", priority:"BIG SWING", timing:"Wed May 20 · 12pm",
+  { id:"MAY25-IG-R2", platform:"IG Reel", pillar:"SOIL", flavor:"Original", dna:"soil-story", muse:"Kiss the Ground + Patagonia", priority:"BIG SWING", timing:"Wed May 27 · 12pm",
     concept:"\"your snack starts in their dirt. meet luke + ali.\" — late mother's day pickup × farmer-direct soil story",
     hooks:[
       {text:"this is luke + ali. they grow the seeds in your bowl.", recommended:true},
@@ -1126,7 +1257,7 @@ const BRIEFS = [
     benefitShorthand:"farmer-direct. regenerative. Soil Health Champ™.",
     rideNow:false
   },
-  { id:"MAY18-TT-2", platform:"TikTok", pillar:"FUEL", flavor:"Original", dna:"crunch-asmr", muse:"Olipop (soft)", priority:"HIGH", timing:"Thu May 21 · 10am",
+  { id:"MAY25-TT-2", platform:"TikTok", pillar:"FUEL", flavor:"Original", dna:"crunch-asmr", muse:"Olipop (soft)", priority:"HIGH", timing:"Thu May 28 · 10am",
     concept:"\"fibermaxxing? we have been.\" — riding the prebiotic-fiber wave with the underused 5g claim",
     hooks:[
       {text:"fibermaxxing? we have been.", recommended:true},
@@ -1145,7 +1276,7 @@ const BRIEFS = [
     benefitShorthand:"5g prebiotic fiber. one ingredient.",
     rideNow:true
   },
-  { id:"MAY18-IG-F1", platform:"IG Feed Carousel", pillar:"THE BOWL", flavor:"Hot Honey", dna:"bowl-build", muse:"Graza", priority:"HIGH", timing:"Tue May 19 · 12pm",
+  { id:"MAY25-IG-F1", platform:"IG Feed Carousel", pillar:"THE BOWL", flavor:"Hot Honey", dna:"bowl-build", muse:"Graza", priority:"HIGH", timing:"Tue May 26 · 12pm",
     concept:"\"the cottage cheese bowl trend missed the crunch. now it has one.\" — 6-slide recipe carousel",
     hooks:[
       {text:"the bowl trend missed the crunch. now it has one.", recommended:true},
@@ -1159,7 +1290,7 @@ const BRIEFS = [
     benefitShorthand:"hot honey crunch. 6g protein per topping serving.",
     rideNow:false
   },
-  { id:"MAY18-TT-3", platform:"TikTok", pillar:"CRUNCH BUNCH", flavor:"Multi", dna:"fact-flip", muse:"Omsom", priority:"HIGH", timing:"Wed May 20 · 9am",
+  { id:"MAY25-TT-3", platform:"TikTok", pillar:"CRUNCH BUNCH", flavor:"Multi", dna:"fact-flip", muse:"Omsom", priority:"HIGH", timing:"Wed May 27 · 9am",
     concept:"\"little birdie told me buckwheat isn't even a grain.\" — riding the Little Birdie meme with the not-a-grain reveal",
     hooks:[
       {text:"wait, IT'S A FRUIT SEED?", recommended:true},
@@ -1178,7 +1309,7 @@ const BRIEFS = [
     benefitShorthand:"fruit seed. not a grain. naturally gluten-free.",
     rideNow:true
   },
-  { id:"MAY18-IG-R3", platform:"IG Reel", pillar:"CRUNCH BUNCH", flavor:"Multi", dna:"founder-emily", muse:"Partake Foods", priority:"STANDARD", timing:"Thu May 21 · 12pm",
+  { id:"MAY25-IG-R3", platform:"IG Reel", pillar:"CRUNCH BUNCH", flavor:"Multi", dna:"founder-emily", muse:"Partake Foods", priority:"STANDARD", timing:"Thu May 28 · 12pm",
     concept:"\"may was supposed to be calmer. (it isn't.)\" — founder-honesty BTS on the logistics chaos of shipping a regen brand",
     hooks:[
       {text:"may was supposed to be calmer. it isn't.", recommended:true},
@@ -1197,7 +1328,7 @@ const BRIEFS = [
     benefitShorthand:"4-person team. real regen supply chain. ships every week.",
     rideNow:false
   },
-  { id:"MAY18-PIN-1", platform:"Pinterest", pillar:"THE BOWL", flavor:"Original", dna:"bowl-build", muse:"Fishwife", priority:"STANDARD", timing:"Fri May 22 · anytime",
+  { id:"MAY25-PIN-1", platform:"Pinterest", pillar:"THE BOWL", flavor:"Original", dna:"bowl-build", muse:"Fishwife", priority:"STANDARD", timing:"Fri May 29 · anytime",
     concept:"\"the açai bowl that started lil bucks (sydney, 2017).\" — origin-recipe pin, SEO-optimized",
     hooks:[
       {text:"the açai bowl that started lil bucks.", recommended:true},
@@ -1211,7 +1342,7 @@ const BRIEFS = [
     benefitShorthand:"the origin recipe. sprouted buckwheat as the topping.",
     rideNow:false
   },
-  { id:"MAY18-TT-4", platform:"TikTok", pillar:"FUEL", flavor:"Birthday Cake", dna:"meme-payload", muse:"Trader Joe's", priority:"STANDARD", timing:"Fri May 22 · 9am",
+  { id:"MAY25-TT-4", platform:"TikTok", pillar:"FUEL", flavor:"Birthday Cake", dna:"meme-payload", muse:"Trader Joe's", priority:"STANDARD", timing:"Fri May 29 · 9am",
     concept:"\"It's gonna be MAY 🎂\" — NSYNC meme + Birthday Cake Clusterbucks reveal",
     hooks:[
       {text:"It's gonna be MAY 🎂", recommended:true},
@@ -1230,7 +1361,7 @@ const BRIEFS = [
     benefitShorthand:"birthday cake clusterbucks. 6g protein. real ingredients.",
     rideNow:true
   },
-  { id:"MAY18-IG-F2", platform:"IG Feed Carousel", pillar:"CRUNCH BUNCH", flavor:"Multi", dna:"shelf-spotted", muse:"Once Upon a Farm", priority:"STANDARD", timing:"Sat May 23 · 11am",
+  { id:"MAY25-IG-F2", platform:"IG Feed Carousel", pillar:"CRUNCH BUNCH", flavor:"Multi", dna:"shelf-spotted", muse:"Once Upon a Farm", priority:"STANDARD", timing:"Sat May 30 · 11am",
     concept:"\"spotted at @wholefoods, @sprouts, @target. you tagged us this week — thank you 💛\"",
     hooks:[
       {text:"the crunch bunch is on the move.", recommended:true},
@@ -1244,7 +1375,7 @@ const BRIEFS = [
     benefitShorthand:"crunch bunch in the wild. nationwide retail.",
     rideNow:false
   },
-  { id:"MAY18-TT-5", platform:"TikTok", pillar:"THE BOWL", flavor:"Everything Bucks", dna:"bowl-build", muse:"Graza", priority:"STANDARD", timing:"Sun May 24 · 11am",
+  { id:"MAY25-TT-5", platform:"TikTok", pillar:"THE BOWL", flavor:"Everything Bucks", dna:"bowl-build", muse:"Graza", priority:"STANDARD", timing:"Sun May 31 · 11am",
     concept:"\"summer salads are so back. (the savory crunch reveal)\" — riding the Kosterina-style summer-salad lane",
     hooks:[
       {text:"summer salads are so back 🥬", recommended:true},
@@ -1263,7 +1394,7 @@ const BRIEFS = [
     benefitShorthand:"savory crunch. real sprouted buckwheat.",
     rideNow:false
   },
-  { id:"MAY18-IG-R4", platform:"IG Reel", pillar:"SOIL", flavor:"Original", dna:"soil-story", muse:"Patagonia", priority:"STANDARD", timing:"Sat May 23 · 12pm",
+  { id:"MAY25-IG-R4", platform:"IG Reel", pillar:"SOIL", flavor:"Original", dna:"soil-story", muse:"Patagonia", priority:"STANDARD", timing:"Sat May 30 · 12pm",
     concept:"\"before regen. after regen. happy little farms.\" — Bob Ross meme + A Frame Farm soil transformation",
     hooks:[
       {text:"before regen. after regen. happy little farms.", recommended:true},
@@ -1286,62 +1417,62 @@ const BRIEFS = [
 ];
 
 const CAPTION_VARIANTS = {
-  "MAY18-IG-R1": {
+  "MAY25-IG-R1": {
     direct:"every protein granola is suddenly talking about 'real food protein.' cool. we put ours IN a sprouted seed and called it day one — back in 2017.\n\n6g of plant protein. 5g of prebiotic fiber. one ingredient. organic. sprouted. no powders, no isolates, no protein-from-a-bag.\n\nthe original protein crunch was always here. you just didn't know to ask for it.\n\nXx Emily",
     warm:"the protein-granola lane just got crowded — and the funny part is we've been here since 2017. one ingredient. one seed. one crunch. that's it 💛",
     punchy:"we put the protein IN the seed."
   },
-  "MAY18-TT-1": {
+  "MAY25-TT-1": {
     direct:"the hot honey wave came for the snack aisle this week 🍯\n\nwe put hot honey on a sprouted buckwheat seed in a pouch back in 2024. respectfully — the trend caught up to the format.\n\n6g protein. 5g prebiotic fiber. zero seed oil. zero glaze.\n\nhot honey on cottage cheese hits different when the crunch is a fruit seed.",
     warm:"the hot honey wave came for the shelf. ours was already there 🍯 (a year ago. but who's counting.)",
     punchy:"hot honey met its match."
   },
-  "MAY18-IG-R2": {
+  "MAY25-IG-R2": {
     direct:"luke + ali at A Frame Farm in minnesota planted the seeds in your last bag of clusterbucks 🌾\n\nthey cover-crop. they low-till. they regenerate the soil between every harvest. that's why our Soil Health Champ™ badge isn't a sticker — it's a contract with their land.\n\nto the moms and grandmothers who taught us the dirt mattered first: happy late mother's day. you were way ahead of us.\n\nXx Emily",
     warm:"this is luke + ali. they regenerate the soil between every harvest. that's the difference between organic and Soil Health Champ™ 🌾",
     punchy:"your snack starts in their dirt."
   },
-  "MAY18-TT-2": {
+  "MAY25-TT-2": {
     direct:"TikTok found fiber 🥄\n\nthe gut bacteria are calling — they say thanks. 5g prebiotic fiber per serving. one ingredient. it's been on the back of every Original Clusterbucks pack since day one.\n\nfibermaxxing? we have been.",
     warm:"TikTok found fiber. we have had 5g of prebiotic fiber in a snack pouch since the beginning. the gut bacteria say thanks 💛",
     punchy:"we are the fibermaxxing."
   },
-  "MAY18-IG-F1": {
+  "MAY25-IG-F1": {
     direct:"the viral cottage cheese bowl trend (you know the one) gave us 38g of protein, a perfect macros lineup, and zero crunch. respectfully fixing that.\n\nhere's the build:\n— roasted sweet potato cubes (toss in olive oil + chili powder)\n— ground beef, taco-seasoned\n— a generous spoon of cottage cheese\n— half an avocado\n— a drizzle of hot honey\n— a generous shake of @lilbucksworld HOT HONEY clusterbucks\n— green onion if you're feeling pretty\n\nthe bowl trend missed the crunch. now it has one 🍯",
     warm:"the bowl trend missed the crunch. now it has one. recipe in the carousel ⬇️ 🍯",
     punchy:"viral bowl, lil bucks edition."
   },
-  "MAY18-TT-3": {
+  "MAY25-TT-3": {
     direct:"a little birdie told me the snack i eat by the spoonful is BOTANICALLY a fruit. specifically — it's a pseudocereal. closer to RHUBARB than wheat 🌸\n\nthe name has 'wheat' in it. the seed has zero wheat in it. naturally gluten-free since forever.\n\nrespectfully going to retire the word 'grain' from my pantry rn.",
     warm:"this man just told me my favorite crunch is botanically a fruit. specifically — it's related to RHUBARB. respectfully going to retire the word 'grain' from my pantry rn 🌸",
     punchy:"buckwheat is a fruit seed. pass it on."
   },
-  "MAY18-IG-R3": {
+  "MAY25-IG-R3": {
     direct:"may was supposed to be calmer.\n\nit isn't!!!!! every single Clusterbucks bag you see on shelf this week got there because a 4-person team chased trucks at 11pm on a tuesday, hand-stickered ~600 cases (RIP my fingerprints), and somehow still made it to the farmers market on saturday.\n\nsmall business is a comedy. small business with a REGEN AG SUPPLY CHAIN is a Greek tragedy with a happy ending 😅\n\nto the Crunch Bunch who keeps ordering: you're the reason the chaos is worth it.\n\nXx Emily",
     warm:"may was supposed to be calmer (it isn't). every Clusterbucks bag on shelf this week got there thanks to a 4-person team running on coffee + buckwheat 💛 Xx Emily",
     punchy:"4 people. a regen supply chain. somehow it ships."
   },
-  "MAY18-PIN-1": {
+  "MAY25-PIN-1": {
     direct:"sydney, 2017: a beachside café topped my açai bowl with sprouted buckwheat instead of granola. that bowl started Lil Bucks.\n\nhere's how to make it:\n— 2 packs frozen açai purée\n— 1 frozen banana\n— ½ cup frozen mixed berries\n— ¼ cup almond milk\n— blend thick\n— top: banana coins, strawberry, kiwi, coconut flakes, a generous scoop of Lil Bucks Cacao Crunchy Topper\n\nthe origin bowl. recreated.\n\n#acaibowl #buckwheat #breakfast #cleanrecipes #lilbucks",
     warm:"the bowl that started lil bucks (sydney, 2017). recipe ⬇️ 🥥",
     punchy:"the bowl that started everything."
   },
-  "MAY18-TT-4": {
+  "MAY25-TT-4": {
     direct:"justin timberlake has been telling us this for 25 years. we just listened.\n\nIt's gonna be MAY 🎂\n\nbirthday cake clusterbucks. 6g protein. real ingredients. last week of may approved.",
     warm:"the last week of may demands a cake clusterbuck 🎂 it's gonna be MAY (sorry justin)",
     punchy:"It's gonna be MAY 🎂"
   },
-  "MAY18-IG-F2": {
+  "MAY25-IG-F2": {
     direct:"the Crunch Bunch is on the move this week 💛\n\nyou tagged us at:\n📍 @wholefoods nationwide\n📍 @sprouts (target run + clusterbucks haul = correct order)\n📍 @target endcaps in cinnamon vanilla\n📍 a road-trip bag i was honored to be in (thank you @yourtagedhere)\n📍 a smoothie bowl that ate. literally.\n📍 a Crunch Bunch unbox we cried over\n\nthank you for taking us with you. xo",
     warm:"the crunch bunch is on the move. thank you for the tags this week 💛 (we see you. we screenshot every one.)",
     punchy:"spotted: every aisle."
   },
-  "MAY18-TT-5": {
+  "MAY25-TT-5": {
     direct:"summer salads are so back 🥬\n\nthe assignment:\n— spring salad mix\n— fresh strawberries\n— prosciutto\n— burrata\n— green onion\n— @kosterina olive oil + balsamic\n— a generous shake of @lilbucksworld EVERYTHING BUCKS seasoning\n\nfresh, crunchy, sweet, salty… you remember.",
     warm:"summer salads are so back 🥬 the savory crunch you forgot about. everything bucks seasoning, on everything.",
     punchy:"the salad needed a crunch. found one."
   },
-  "MAY18-IG-R4": {
+  "MAY25-IG-R4": {
     direct:"the photo on the left is what most commodity ag leaves behind 🪨\n\nthe right is luke + ali's farm five years into regenerative practices: cover-cropped between every harvest, low-till, the soil microbiome alive and getting healthier each season 🌾\n\nsame dirt. different relationship.\n\nwhen you eat a buckwheat seed grown this way, the soil it grew in is healthier than when the season started. that's all our Soil Health Champ™ badge means: the next harvest is better than the last.\n\n#regenerativeagriculture #soilhealth #fromthefarm",
     warm:"five years of regen ag, side-by-side. same dirt. different relationship 🌾",
     punchy:"before regen. after regen. happy little farms."
@@ -1350,7 +1481,7 @@ const CAPTION_VARIANTS = {
 
 // ===== FOOTAGE INSPO — per-brief source bank (Willa's pattern) =====
 const FOOTAGE_INSPO = {
-  "MAY18-IG-R1": {
+  "MAY25-IG-R1": {
     shoot: [
       "Emily at her kitchen counter, soft morning window light, Original Clusterbucks pouch + wooden bowl half-filled",
       "Cluster-by-cluster pour into wooden bowl, slow-mo at 240fps for the crunch shot",
@@ -1369,7 +1500,7 @@ const FOOTAGE_INSPO = {
       "A-Frame Farm 4K stock from the Luke + Ali shoot in 2024 — buckwheat in bloom"
     ]
   },
-  "MAY18-TT-1": {
+  "MAY25-TT-1": {
     shoot: [
       "Hot Honey Clusterbucks pouch + small bowl + drizzle of hot honey on top — vertical phone shot, kitchen counter",
       "Texture close-up: Clusterbucks on greek yogurt with hot honey ribbons, 9:16 macro shot"
@@ -1387,7 +1518,7 @@ const FOOTAGE_INSPO = {
       "Whole Foods superfood aisle B-roll — the savory-meets-hot-honey shelf-spotted angle"
     ]
   },
-  "MAY18-IG-R2": {
+  "MAY25-IG-R2": {
     shoot: [
       "Luke + Ali at A-Frame Farm — buckwheat field in bloom, soft golden-hour light",
       "Hand-held seed scoop from a sack — sound of seeds falling on wood",
@@ -1406,7 +1537,7 @@ const FOOTAGE_INSPO = {
       "ROC certification ceremony photos from Q4 2025 (if any)"
     ]
   },
-  "MAY18-IG-R4": {
+  "MAY25-IG-R4": {
     shoot: [
       "Side-by-side soil comparison photo: depleted ag soil left, healthy buckwheat-field soil right",
       "Luke + Ali in the field, holding a handful of seed and a handful of soil",
@@ -1429,7 +1560,7 @@ const FOOTAGE_INSPO = {
 
 // ===== AMPLIFY PLANS — per-brief paid media plan (Willa's pattern) =====
 const AMPLIFY_PLANS = {
-  "MAY18-IG-R1": {
+  "MAY25-IG-R1": {
     headline: "Founder-led Reel + protein-wave counter-position — ride the PE launch news cycle with source-story posture, not number-chase",
     totalBudget: 320,
     testWindow: "5 days (Tue May 26 → Sat May 30)",
@@ -1451,7 +1582,7 @@ const AMPLIFY_PLANS = {
       }
     ]
   },
-  "MAY18-TT-1": {
+  "MAY25-TT-1": {
     headline: "Hot Honey ride — Snak Club × Mike's just put hot honey in salty snacks. Lil Bucks shelf-spotted reel claims the existing crunchy lane.",
     totalBudget: 180,
     testWindow: "4 days (Wed May 27 → Sat May 30)",
@@ -1472,7 +1603,7 @@ const AMPLIFY_PLANS = {
       }
     ]
   },
-  "MAY18-IG-R2": {
+  "MAY25-IG-R2": {
     headline: "Soil-story Reel for late Mother's Day window + Kiss the Ground farm-map discovery loop",
     totalBudget: 220,
     testWindow: "5 days (Thu May 28 → Mon Jun 1)",
@@ -1496,18 +1627,18 @@ const AMPLIFY_PLANS = {
 };
 
 const BRIEF_LINKS = {
-  "MAY18-IG-R1":{trends:["T-1","T-8"],pulse:[],comps:["C-1","C-2"]},
-  "MAY18-TT-1":{trends:["T-5"],pulse:["CP-4"],comps:[]},
-  "MAY18-IG-R2":{trends:["T-4","T-7","T-9"],pulse:["CP-10"],comps:[]},
-  "MAY18-TT-2":{trends:["T-3"],pulse:["CP-6"],comps:[]},
-  "MAY18-IG-F1":{trends:["T-5"],pulse:["CP-4"],comps:[]},
-  "MAY18-TT-3":{trends:["T-8"],pulse:["CP-2","CP-7"],comps:[]},
-  "MAY18-IG-R3":{trends:[],pulse:[],comps:[]},
-  "MAY18-PIN-1":{trends:["T-10"],pulse:["CP-5"],comps:[]},
-  "MAY18-TT-4":{trends:[],pulse:["CP-1"],comps:[]},
-  "MAY18-IG-F2":{trends:[],pulse:[],comps:[]},
-  "MAY18-TT-5":{trends:["T-10"],pulse:[],comps:[]},
-  "MAY18-IG-R4":{trends:["T-4","T-7"],pulse:["CP-9","CP-10"],comps:[]}
+  "MAY25-IG-R1":{trends:["T-1","T-8"],pulse:[],comps:["C-1","C-2"]},
+  "MAY25-TT-1":{trends:["T-5"],pulse:["CP-4"],comps:[]},
+  "MAY25-IG-R2":{trends:["T-4","T-7","T-9"],pulse:["CP-10"],comps:[]},
+  "MAY25-TT-2":{trends:["T-3"],pulse:["CP-6"],comps:[]},
+  "MAY25-IG-F1":{trends:["T-5"],pulse:["CP-4"],comps:[]},
+  "MAY25-TT-3":{trends:["T-8"],pulse:["CP-2","CP-7"],comps:[]},
+  "MAY25-IG-R3":{trends:[],pulse:[],comps:[]},
+  "MAY25-PIN-1":{trends:["T-10"],pulse:["CP-5"],comps:[]},
+  "MAY25-TT-4":{trends:[],pulse:["CP-1"],comps:[]},
+  "MAY25-IG-F2":{trends:[],pulse:[],comps:[]},
+  "MAY25-TT-5":{trends:["T-10"],pulse:[],comps:[]},
+  "MAY25-IG-R4":{trends:["T-4","T-7"],pulse:["CP-9","CP-10"],comps:[]}
 };
 
 const TICKER = [
@@ -1520,9 +1651,9 @@ const TICKER = [
 ];
 
 const DECISIONS = [
-  { id:"D1", action:"PROMOTED · MAY18-IG-R1 to BIG SWING", reason:"Purely Elizabeth's May 12 protein launch is the dominant adjacent-set move — Lil Bucks's response brief earns top slot." },
-  { id:"D2", action:"PROMOTED · MAY18-TT-1 to BIG SWING", reason:"Snak Club × Mike's Hot Honey launched May 13 — Hot Honey Clusterbucks is the format the trend just validated." },
-  { id:"D3", action:"PROMOTED · MAY18-IG-R2 to BIG SWING", reason:"Late Mother's Day storytelling window stayed open + Kiss the Ground's farm-map expansion makes soil-story prime time." },
+  { id:"D1", action:"PROMOTED · MAY25-IG-R1 to BIG SWING", reason:"Purely Elizabeth's May 12 protein launch is the dominant adjacent-set move — Lil Bucks's response brief earns top slot." },
+  { id:"D2", action:"PROMOTED · Hot-Honey ride to BIG SWING", reason:"Snak Club × Mike's Hot Honey launched May 13 — Hot Honey Clusterbucks is the format the trend just validated." },
+  { id:"D3", action:"PROMOTED · Soil-story late-Mother's-Day pickup to BIG SWING", reason:"Late Mother's Day storytelling window stayed open + Kiss the Ground's farm-map expansion makes soil-story prime time." },
   { id:"D4", action:"KILLED · 'oatzempic counter' brief candidate", reason:"Wrong territory for Lil Bucks — diet-culture pushback is Willa's posture, not Lil Bucks's sun-bright lane. Doesn't pass the Resonance Test." },
   { id:"D5", action:"KILLED · 'Cannes Film Festival stitch' brief candidate", reason:"Tonal mismatch — Cannes is wine/luxury territory, not crunchy-breakfast. No Lil Bucks angle without forcing it." },
   { id:"D6", action:"QUEUED · ROC certification roadmap question", reason:"Surface in diagnostic with Emily. Strategic call: pursue ROC or own Soil Health Champ as differentiated alternative. +22% YoY signal makes this time-sensitive." },
@@ -1789,12 +1920,86 @@ function IntelligenceBrief({tab,setTab,openStudio}){
       <button className={"subtab"+(tab==='counter'?' active':'')} onClick={()=>setTab('counter')}>Counter-Strike<span className="subtab-count">⚡ {COUNTER_STRIKE_LOG.length}</span></button>
       <button className={"subtab"+(tab==='amb'?' active':'')} onClick={()=>setTab('amb')}>Brand Ambassadors<span className="subtab-count">{AMBASSADORS.length}</span></button>
     </div>
-    {tab==='pulse' && <PulseGrid openStudio={openStudio} />}
+    {tab==='pulse' && <><CultureMomentum /><PulseGrid openStudio={openStudio} /></>}
     {tab==='trends' && <TrendsGrid openStudio={openStudio} />}
     {tab==='comps' && <CompetitorsGrid openStudio={openStudio} />}
     {tab==='counter' && <CounterStrikeView openStudio={openStudio} />}
     {tab==='amb' && <AmbassadorsGrid />}
   </>);
+}
+
+// ===== CULTURE MOMENTUM — popping/cooling view at top of Cultural Pulse =====
+const CULTURE_MOMENTUM = {
+  asOf: "May 25–31, 2026",
+  popping: [
+    { signal:"Memorial Day weekend snacking",   momentum:"+++", since:"May 24",   canRide:"Sun-bright Reel today. Lead with Birthday Cake + Bucks 'n Honey share-pack frame." },
+    { signal:"Cottage cheese + protein bowl revival", momentum:"+++", since:"May 22",   canRide:"Hot Honey Clusterbucks IS the missing crunch. Bowl-build Reel ready to ship Wednesday." },
+    { signal:"Açaí bowl pin-search surge on Pinterest", momentum:"++", since:"May 20",   canRide:"Origin frame — we started in the exact bowl this trend is rebuilding. Founder-Emily Reel anchors here." },
+    { signal:"Hot honey snack expansion (Snak Club × Mike's)", momentum:"++", since:"May 13",   canRide:"Hot Honey Clusterbucks lives there since 2024. Shelf-spotted Reel mid-week — 'we have been here.'" },
+    { signal:"Buckwheat in late-spring bloom (pink flower aesthetic)", momentum:"++", since:"May 18",   canRide:"Pinterest pin from Luke + Ali's field. Soil-story Reel Friday." },
+    { signal:"'Hot girl walk → fiber girl' soft-twist pattern",   momentum:"+",  since:"April 13",  canRide:"Caption pattern Emily already runs. Pair with morning-ritual Reel — Original Crunchy Toppers on oatmeal." }
+  ],
+  cooling: [
+    { signal:"'Real food protein' as differentiator",  momentum:"-",  since:"May 12 PE launch", note:"Everyone says it now (PE, Magic Spoon, Catalina). Lead with source story not the phrase itself." },
+    { signal:"Mother's Day storytelling window",       momentum:"--", since:"May 11 MD",        note:"Window closed last week. Don't backdate. Move soil-story to summer-bloom framing instead." },
+    { signal:"Adaptogen-led wellness pitching",        momentum:"--", since:"2020 lesson",     note:"Permanent anti-pattern. Emily learned this — served 'the airline consumer and no one else.' Engine refuses." },
+    { signal:"'Highest protein' as standalone claim",  momentum:"---", since:"Jan 2026 MS launch", note:"Magic Spoon owns this lane permanently. Anti-pattern for Lil Bucks. Source story always." },
+    { signal:"Sunset-light wellness aesthetic",        momentum:"-",  since:"ongoing",          note:"Death of the voice. Daylight + kitchen-window + farm-field light only. Avoid the supplement-brand visual register." }
+  ]
+};
+
+function CultureMomentum(){
+  return (<div className="cm-wrap">
+    <div className="cm-header">
+      <div>
+        <div className="cm-eyebrow">// CULTURE MOMENTUM · WEEK OF {CULTURE_MOMENTUM.asOf}</div>
+        <h3 className="cm-title">What's popping. What's cooling.</h3>
+        <p className="cm-sub">The wave map — what to ride right now vs. what's past peak. Pulled from Reddit, Pinterest, TikTok aggregators, food press, and our anti-pattern memory.</p>
+      </div>
+    </div>
+    <div className="cm-grid">
+      <div className="cm-col cm-col-popping">
+        <div className="cm-col-head">
+          <span className="cm-col-icon">⬆</span>
+          <span className="cm-col-label">POPPING</span>
+          <span className="cm-col-meta">accelerating · ride now</span>
+        </div>
+        {CULTURE_MOMENTUM.popping.map((s,i)=>(
+          <div key={i} className="cm-item cm-item-pop">
+            <div className="cm-item-meta">
+              <span className={"cm-item-mom cm-mom-"+s.momentum.length+"-pop"}>{s.momentum}</span>
+              <span className="cm-item-since">since {s.since}</span>
+            </div>
+            <div className="cm-item-signal">{s.signal}</div>
+            <div className="cm-item-ride">
+              <span className="cm-item-ride-label">▸ how we ride</span>
+              <span className="cm-item-ride-text">{s.canRide}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="cm-col cm-col-cooling">
+        <div className="cm-col-head">
+          <span className="cm-col-icon">⬇</span>
+          <span className="cm-col-label">COOLING</span>
+          <span className="cm-col-meta">past peak · don't chase</span>
+        </div>
+        {CULTURE_MOMENTUM.cooling.map((s,i)=>(
+          <div key={i} className="cm-item cm-item-cool">
+            <div className="cm-item-meta">
+              <span className={"cm-item-mom cm-mom-"+s.momentum.length+"-cool"}>{s.momentum}</span>
+              <span className="cm-item-since">since {s.since}</span>
+            </div>
+            <div className="cm-item-signal">{s.signal}</div>
+            <div className="cm-item-note">
+              <span className="cm-item-note-label">✕ why we skip</span>
+              <span className="cm-item-note-text">{s.note}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>);
 }
 
 function PulseGrid({openStudio}){
@@ -1899,11 +2104,62 @@ function ContentBriefs({onOpen,openStudio}){
     const order = ["FUEL","THE BOWL","SOIL","CRUNCH BUNCH"];
     return order.map(p=>({pillar:p, briefs:BRIEFS.filter(b=>b.pillar===p)}));
   },[]);
+  const briefCounts = useMemo(() => {
+    const total = BRIEFS.length;
+    const bigSwings = BRIEFS.filter(b=>b.priority==="BIG SWING").length;
+    const igCount = BRIEFS.filter(b=>b.platform.includes("IG")).length;
+    const ttCount = BRIEFS.filter(b=>b.platform==="TikTok").length;
+    const pinCount = BRIEFS.filter(b=>b.platform==="Pinterest").length;
+    const otherCount = total - igCount - ttCount - pinCount;
+    const scriptedCount = BRIEFS.filter(b=>b.script).length;
+    const rideNowCount = BRIEFS.filter(b=>b.rideNow || b.priority==="BIG SWING").length;
+    return { total, bigSwings, igCount, ttCount, pinCount, otherCount, scriptedCount, rideNowCount };
+  }, []);
+
   return (<>
-    <div className="lede">
-      <div className="lede-col"><div className="lede-label">The week</div><div className="lede-text serif">{BRIEFS.length} briefs · {BRIEFS.filter(b=>b.priority==="BIG SWING").length} big swings · all 4 pillars hit · 7 hero formats covered</div></div>
-      <div className="lede-col"><div className="lede-label">The shape</div><div className="lede-text serif">{BRIEFS.filter(b=>b.platform.includes("IG")).length} IG · {BRIEFS.filter(b=>b.platform==="TikTok").length} TikTok · {BRIEFS.filter(b=>b.platform==="Pinterest").length} Pinterest · {BRIEFS.filter(b=>b.script).length} scripted video</div></div>
-      <div className="lede-col"><div className="lede-label">The ride-now beats</div><div className="lede-text serif">{BRIEFS.filter(b=>b.rideNow).length} briefs tagged ride-now — culturally decay-sensitive, ship before week's end.</div></div>
+    <div className="lede-v2">
+      <div className="lede-v2-eyebrow">✶ THIS WEEK · MAY 25–31 ✶</div>
+      <div className="lede-v2-grid">
+        <div className="lede-v2-stat lede-v2-stat-week">
+          <div className="lede-v2-num">{briefCounts.total}</div>
+          <div className="lede-v2-label">briefs shipping</div>
+          <div className="lede-v2-detail">
+            <span className="lede-v2-detail-strong">{briefCounts.bigSwings} big swing{briefCounts.bigSwings!==1?'s':''}</span>
+            <span className="lede-v2-detail-dot">·</span>
+            <span>all 4 pillars hit</span>
+            <span className="lede-v2-detail-dot">·</span>
+            <span>7 hero formats covered</span>
+          </div>
+        </div>
+
+        <div className="lede-v2-stat lede-v2-stat-shape">
+          <div className="lede-v2-mini-label">PLATFORM SHAPE</div>
+          <div className="lede-v2-bar">
+            {briefCounts.igCount > 0 && <div className="lede-v2-bar-seg lede-v2-bar-ig" style={{flex:briefCounts.igCount}} title={"IG · "+briefCounts.igCount}><span>{briefCounts.igCount} IG</span></div>}
+            {briefCounts.ttCount > 0 && <div className="lede-v2-bar-seg lede-v2-bar-tt" style={{flex:briefCounts.ttCount}} title={"TikTok · "+briefCounts.ttCount}><span>{briefCounts.ttCount} TT</span></div>}
+            {briefCounts.pinCount > 0 && <div className="lede-v2-bar-seg lede-v2-bar-pin" style={{flex:briefCounts.pinCount}} title={"Pinterest · "+briefCounts.pinCount}><span>{briefCounts.pinCount} PIN</span></div>}
+            {briefCounts.otherCount > 0 && <div className="lede-v2-bar-seg lede-v2-bar-other" style={{flex:briefCounts.otherCount}} title={"Other · "+briefCounts.otherCount}><span>{briefCounts.otherCount}</span></div>}
+          </div>
+          <div className="lede-v2-detail">
+            <span className="lede-v2-detail-strong">{briefCounts.scriptedCount} scripted video</span>
+            <span className="lede-v2-detail-dot">·</span>
+            <span>{briefCounts.total - briefCounts.scriptedCount} static / carousel</span>
+          </div>
+        </div>
+
+        <div className="lede-v2-stat lede-v2-stat-ride">
+          <div className="lede-v2-ride-pill">
+            <span className="lede-v2-ride-icon">⚡</span>
+            <span className="lede-v2-ride-num">{briefCounts.rideNowCount}</span>
+          </div>
+          <div className="lede-v2-label">ride-now beats</div>
+          <div className="lede-v2-detail">
+            <span>culturally decay-sensitive</span>
+            <span className="lede-v2-detail-dot">·</span>
+            <span className="lede-v2-detail-strong">ship before week's end</span>
+          </div>
+        </div>
+      </div>
     </div>
     {byPillar.map(g=>(<section key={g.pillar} className="pillar-section">
       <div className="pillar-header">
@@ -2167,21 +2423,21 @@ const COUNTER_STRIKE_LOG = [
     status: "shipped",
     summary: "PE just claimed the lane next door. Counter-position on source story (whole-seed protein) over spec story (protein number). Don't engage on number — they win that.",
     briefs: [
-      { id:"CS-A", platform:"IG Reel", pillar:"FUEL", flavor:"Original Clusterbucks", dna:"founder-emily", timing:"Mon May 18 · 12pm",
+      { id:"CS-A", platform:"IG Reel", pillar:"FUEL", flavor:"Original Clusterbucks", dna:"founder-emily", timing:"Mon May 25 · 12pm",
         hook:"they added protein. we added a soul.",
         concept:"founder-emily Reel naming the source-story difference without naming the competitor — Emily on counter, lowercase warmth, Xx Emily sign-off",
         visual:"kitchen light, soft morning. Emily mid-shot with Original Clusterbucks. wooden bowl half-filled. one eyebrow raise on the hook beat. lands on the pouch + the bowl.",
         audio:"Corinne Bailey Rae · 'Put Your Records On'",
         tonal:"NOT-A-GRAIN CONFIDENCE + FOUNDER-FROM-A-BOWL",
         whyCounter:"PE bid on the protein number. We bid on the seed. 'soul' = soil + founder + mission in one syllable." },
-      { id:"CS-B", platform:"TikTok", pillar:"FUEL", flavor:"Original Clusterbucks", dna:"shelf-spotted", timing:"Wed May 20 · 6pm",
+      { id:"CS-B", platform:"TikTok", pillar:"FUEL", flavor:"Original Clusterbucks", dna:"shelf-spotted", timing:"Wed May 27 · 6pm",
         hook:"the protein granola aisle just got crowded. ours has been here since 2017.",
         concept:"shelf-spotted reel — Lil Bucks pouch in cart at Whole Foods, with text overlay ticking off the differentiators",
         visual:"phone-shot in retail aisle. Lil Bucks Original pouch picked up. text overlays cycle: 'sprouted seed not powder' · '5g prebiotic fiber' · 'gluten-free + grain-free' · 'first ROC buckwheat'. pouch goes in cart. fin.",
         audio:"lo-fi indie · 'bummin out - choppy.wav' tier",
         tonal:"CRUNCH-AS-DELIGHT + SOIL-FIRST ACTIVISM",
         whyCounter:"Shelf-spotted format = silent comparison. The receipt is the pouch itself. No words needed about them." },
-      { id:"CS-C", platform:"IG Carousel", pillar:"SOIL", flavor:"Original Clusterbucks", dna:"fact-flip", timing:"Fri May 22 · 9am",
+      { id:"CS-C", platform:"IG Carousel", pillar:"SOIL", flavor:"Original Clusterbucks", dna:"fact-flip", timing:"Fri May 29 · 9am",
         hook:"protein from a powder vs. protein from a seed. one of these is a fruit.",
         concept:"fact-flip carousel — slide 1 the question, slides 2-5 the answer with photos of Luke + Ali's farm, slide 6 the pouch",
         visual:"slide 1: text-only on butter bg. slides 2-5: A-Frame Farm photography (buckwheat in bloom, Luke + Ali in field, sprouting jars, ROC cert). slide 6: pouch on kitchen counter.",
@@ -2570,7 +2826,7 @@ function ReceiptCard({receipt}){
 }
 
 const STUDIO_STARTERS = [
-  { label:"Riff this week's lead Reel", prompt:"Sharpen the hook on MAY18-IG-R1 — make it land harder against the Purely Elizabeth protein wave. Three alts." },
+  { label:"Riff this week's lead Reel", prompt:"Sharpen the hook on MAY25-IG-R1 — make it land harder against the Purely Elizabeth protein wave. Three alts." },
   { label:"Pressure-test a soil-story", prompt:"I want to do a Luke + Ali Frame Farm post late this week. Pressure-test it against the Seven Sundays dual-edge insight and tell me how to frame it so it only pumps Lil Bucks, not the category." },
   { label:"Misinformation rebuttal", prompt:"A creator with 800k followers just posted that buckwheat is wheat. What's our 2-hour response? Keep it in Emily's voice." },
   { label:"Brief a fact-flip", prompt:"Brief me a fact-flip Reel about buckwheat being a fruit seed, not a grain. Include hook, visual, audio, and which SKU leads." }
@@ -2851,6 +3107,148 @@ function StudioModal({onClose}){
   </div>);
 }
 
+// ===== ENGINE THINKING FLOW — interactive step-through showing how a signal becomes a brief =====
+const ENGINE_THINKING_STEPS = [
+  {
+    id: 1, agent: "Cultural Pulse Tracker", icon: "📡", title: "Signal detected",
+    what: "A new cultural moment hits the pipeline. Memorial Day-week cottage cheese bowl revival is trending on TikTok — 4 creators stitched the same format in 48 hours.",
+    filters: [
+      "Source mix: Pinterest trend rise + Reddit r/MealPrepSunday + 5 TikTok aggregator newsletters",
+      "Velocity score: 2.3/3 (high) · stitches doubled overnight",
+      "Tonal territory check: hits CRUNCH-AS-DELIGHT + BUILD-YOUR-OWN-BOWL"
+    ],
+    verdict: "INGESTED — written to signals table with tonal=0.78. Lane = CULTURAL. Status = fresh.",
+    next: "→ Crunch Engine + Shelf Watch get pinged"
+  },
+  {
+    id: 2, agent: "Crunch Engine", icon: "⚙️", title: "Product opportunity scored",
+    what: "Crunch Engine checks if this trend maps to a Lil Bucks product opportunity — and which SKU should lead.",
+    filters: [
+      "Topping use case? YES — Hot Honey Clusterbucks lives in this territory since 2024",
+      "Keyword match: 'cottage cheese bowl' (+1.8) · 'crunchy topper' (+1.6) · 'hot honey' (+1.6)",
+      "Anti-pattern check: not the protein-number lane — clean",
+      "Format-confusion preempt: must show IN USE on a bowl, never standalone bag-pour"
+    ],
+    verdict: "PRODUCT OPPORTUNITY FLAGGED — Hot Honey Clusterbucks as the topping. Format = shelf-spotted Reel.",
+    next: "→ Shelf Watch checks for competitive friction"
+  },
+  {
+    id: 3, agent: "Shelf Watch", icon: "🛒", title: "Competitive context check",
+    what: "Shelf Watch reads the competitive landscape before greenlighting brief synthesis.",
+    filters: [
+      "Magic Spoon launched a cottage-cheese-compatible product? NO",
+      "Purely Elizabeth claimed the hot-honey topping lane? NO",
+      "Seven Sundays (shares A-Frame Farm) launched a cottage-cheese ride? NO",
+      "Adjacency check: Snak Club × Mike's salty snacks May 13 — adjacent, not blocking"
+    ],
+    verdict: "CLEAR LANE — Lil Bucks can claim cottage-cheese-bowl + crunch-topping pairing without competitive friction.",
+    next: "→ Strategist begins synthesis"
+  },
+  {
+    id: 4, agent: "The Strategist", icon: "🧠", title: "Brief drafted",
+    what: "The Strategist pulls signal + competitive context + brand thesis + voice corpus into a brief draft.",
+    filters: [
+      "Pillar mapping: FUEL (Hot Honey × topping format)",
+      "DNA pattern: shelf-spotted (the proof is the product on the counter)",
+      "Music lane: lo-fi indie (TikTok) or Corinne Bailey Rae-tier soul (IG Reel)",
+      "Platform-modulated voice: TikTok = meme-fluent + text overlay; IG = lowercase warmth + 1-2 emoji",
+      "Timing: Wednesday 6pm — peak save-window for cottage-cheese-bowl content"
+    ],
+    verdict: "BRIEF DRAFTED: 'we've been here since 2024.' Shelf-spotted Reel · Hot Honey Clusterbucks · Wed 6pm · 22s.",
+    next: "→ Crunch Bunch Panel pre-tests against 4 personas"
+  },
+  {
+    id: 5, agent: "Crunch Bunch Panel", icon: "👥", title: "Synthetic audience pre-test",
+    what: "4 synthetic personas score the draft against their voice + buying patterns + objections.",
+    filters: [
+      "Sarah (oatmeal power-user) → 9/10 · 'finally a brand that gets the topping use case'",
+      "Marcus (format-confused buyer) → 8/10 · 'oh, it goes ON things — I get it now'",
+      "Priya (recipe explorer) → 8/10 · 'this is the trend, this is the timing'",
+      "Jamie (raw-vegan science nerd) → 7/10 · 'wish there was a sprouted-science callout'"
+    ],
+    verdict: "PANEL AVG 8.0/10 · strong consensus · low Jamie friction. Safe to ship.",
+    next: "→ Voice Compass final check"
+  },
+  {
+    id: 6, agent: "Voice Compass", icon: "🧭", title: "Brand fidelity scan",
+    what: "Final voice check before brief lands in the weekly playbook.",
+    filters: [
+      "Tonal territories: CRUNCH-AS-DELIGHT (8/10) · BUILD-YOUR-OWN-BOWL (7/10) · MORNING RITUAL (5/10)",
+      "Anti-patterns: zero triggered. No protein-lead. No supplement register. No competitor naming.",
+      "Platform fit: IG = good · TikTok = good · LinkedIn = wrong register (skip)",
+      "Suggested edit: pull 'real food' from caption, push the texture verb 'crunch'"
+    ],
+    verdict: "84/100 · APPROVED for the playbook. Optional edit logged for the Studio.",
+    next: "→ Emily reviews. Approves. Ships."
+  },
+  {
+    id: 7, agent: "The Loop", icon: "🔄", title: "Engine learns",
+    what: "Once posted, performance flows back into the engine's training. Next week the brief mix is sharper.",
+    filters: [
+      "Reach + engagement metrics → Receipts board",
+      "What hit / what missed → next week's keyword weighting auto-recalibrates",
+      "Persona scores correlated with actual performance → Crunch Bunch panel calibration",
+      "Emily's Friday voice-note CSV → Studio system prompt v3 updates"
+    ],
+    verdict: "BRIEF LOGGED. Engine is sharper next Monday morning. Loop closes.",
+    next: "← Back to Cultural Pulse Tracker, watching for the next signal"
+  }
+];
+
+function EngineThinkingFlow(){
+  const [step, setStep] = useState(0);
+  const total = ENGINE_THINKING_STEPS.length;
+  const cur = ENGINE_THINKING_STEPS[step];
+
+  return (<div className="howit-block etf-wrap">
+    <div className="etf-header">
+      <div className="howit-block-eyebrow">// HOW THE ENGINE THINKS</div>
+      <h3>Step through one signal becoming a brief.</h3>
+      <div className="howit-block-sub">Real flow from this week — cottage-cheese-bowl revival hits the pipeline Monday morning → engine drafts a ready-to-ship shelf-spotted Reel for Wednesday 6pm. Click through to watch each agent's filter + verdict.</div>
+    </div>
+
+    <div className="etf-stepper">
+      {ENGINE_THINKING_STEPS.map((s, i) => (
+        <button key={s.id} className={"etf-step-tab"+(step===i?" active":"")+(step>i?" done":"")} onClick={()=>setStep(i)}>
+          <span className="etf-step-num">0{s.id}</span>
+          <span className="etf-step-agent">{s.agent}</span>
+        </button>
+      ))}
+    </div>
+
+    <div className="etf-card">
+      <div className="etf-card-head">
+        <span className="etf-card-icon">{cur.icon}</span>
+        <div className="etf-card-id">
+          <div className="etf-card-agent">{cur.agent}</div>
+          <div className="etf-card-step-meta">STEP 0{cur.id} OF 0{total}</div>
+        </div>
+      </div>
+      <h4 className="etf-card-title">{cur.title}</h4>
+      <p className="etf-card-what">{cur.what}</p>
+      <div className="etf-card-filters">
+        <div className="etf-card-filters-label">▸ FILTERS + CHECKS</div>
+        <ul>
+          {cur.filters.map((f, i) => <li key={i}>· {f}</li>)}
+        </ul>
+      </div>
+      <div className="etf-card-verdict">
+        <div className="etf-card-verdict-label">✓ VERDICT</div>
+        <div className="etf-card-verdict-text">{cur.verdict}</div>
+      </div>
+      <div className="etf-card-next">{cur.next}</div>
+    </div>
+
+    <div className="etf-controls">
+      <button className="etf-btn" onClick={()=>setStep(s=>Math.max(0,s-1))} disabled={step===0}>← back</button>
+      <span className="etf-progress">{step+1} / {total}</span>
+      <button className="etf-btn etf-btn-primary" onClick={()=>setStep(s=>Math.min(total-1,s+1))} disabled={step===total-1}>
+        {step===total-1 ? "done ✓" : "next →"}
+      </button>
+    </div>
+  </div>);
+}
+
 function HowItWorksTab(){
   const [liveAgents, setLiveAgents] = useState(null);
   const [liveLoading, setLiveLoading] = useState(true);
@@ -2932,6 +3330,9 @@ function HowItWorksTab(){
         </div>
       )}
     </div>
+
+    {/* ENGINE THINKING — interactive step-through showing how agents trigger each other */}
+    <EngineThinkingFlow />
 
     {/* DECISIONS — the proof, visible */}
     <div className="howit-block">
@@ -3109,7 +3510,7 @@ function HowItWorksModal({onClose}){
         </div>
         <div className="how-section">
           <h3 className="serif">What's on this dashboard right now</h3>
-          <p>This is the V0.1 Impact Slice — one populated week (May 18–24, 2026) showing the Welcome Issue, Intelligence Brief (Cultural Pulse + Category + Competitor + Ambassadors), and Content Briefs. Studio + Weekly Playbook + Performance wire up at the start of OPERATE.</p>
+          <p>This is the V0.1 Impact Slice — one populated week (May 25–31, 2026) showing the Welcome Issue, Intelligence Brief (Cultural Pulse + Category + Competitor + Ambassadors), and Content Briefs. Studio + Weekly Playbook + Performance wire up at the start of OPERATE.</p>
         </div>
         <div className="how-section">
           <h3 className="serif" style={{display:'flex',alignItems:'center',gap:10}}>
