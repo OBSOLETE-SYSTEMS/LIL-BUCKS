@@ -197,9 +197,12 @@ a{color:inherit;text-decoration:none}
 .pillar-name{font-family:'Fraunces';font-weight:700;font-size:21px;letter-spacing:-0.015em}
 .pillar-meta{margin-left:auto;font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.1em;font-weight:600}
 
-.brief-card{background:var(--butter-light);border:1.5px solid var(--cobalt);border-radius:14px;padding:18px;cursor:pointer;transition:transform 0.12s,box-shadow 0.12s;position:relative;box-shadow:0 2px 0 var(--cobalt)}
-.brief-card:hover{box-shadow:0 4px 0 var(--cobalt),0 6px 18px rgba(26,58,110,0.1);transform:translateY(-1px)}
-.brief-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;align-items:center}
+.brief-card{background:var(--butter-light);border:1.5px solid var(--cobalt);border-left:5px solid var(--cobalt);border-radius:14px;padding:16px 18px;cursor:pointer;transition:transform 0.14s,box-shadow 0.14s;position:relative;box-shadow:0 2px 0 var(--cobalt),0 1px 3px rgba(26,58,110,0.06);display:flex;flex-direction:column;gap:0}
+.brief-card:hover{box-shadow:0 5px 0 var(--cobalt),0 10px 22px rgba(26,58,110,0.14);transform:translateY(-2px)}
+.brief-card-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.brief-card-glyph{font-size:22px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:11px;flex-shrink:0;line-height:1;border:1.5px solid currentColor;background-blend-mode:multiply}
+.brief-tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center;flex:1;min-width:0}
+.brief-dna-tag{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--cobalt-deep);font-weight:700;background:rgba(53,133,224,0.1);padding:3px 8px;border-radius:99px;border:1px solid rgba(53,133,224,0.22)}
 .brief-priority{font-size:10px;text-transform:uppercase;letter-spacing:0.12em;font-weight:800;padding:4px 10px;border-radius:99px}
 .priority-big{background:#FFE7AB;color:#8A5D0E}
 .priority-high{background:#FBDAD2;color:#A85F4F}
@@ -1347,6 +1350,11 @@ const PILLAR_COLOR = {
   "FUEL":"#F4B73E", "THE BOWL":"#7FA86F", "SOIL":"#9E652E", "CRUNCH BUNCH":"#E8907D"
 };
 const PILLAR_PIP = { "FUEL":"pip-fuel", "THE BOWL":"pip-bowl", "SOIL":"pip-soil", "CRUNCH BUNCH":"pip-crunch" };
+// DNA pattern → vibe glyph. Lives on every brief card so the format reads at a glance.
+const DNA_GLYPH = {
+  "bowl-build":"🥣", "founder-emily":"👋", "soil-story":"🌾", "crunch-asmr":"🔊",
+  "shelf-spotted":"🛒", "fact-flip":"💡", "meme-payload":"✨"
+};
 
 // ===== WELCOME HIGHLIGHTS — the magazine cover of the week =====
 // ===== THE MONDAY MEMO — IG-Story-format strategic memo from The Strategist =====
@@ -2715,14 +2723,18 @@ function ContentBriefs({onOpen,openStudio}){
       </div>
       <div className="grid grid-3">
         {g.briefs.sort((a,b)=>({BIG:0,HIGH:1,STANDARD:2}[a.priority.split(" ")[0]]||9)-({BIG:0,HIGH:1,STANDARD:2}[b.priority.split(" ")[0]]||9)).map(b=>(
-          <div key={b.id} className="brief-card" onClick={()=>onOpen(b)}>
-            <div className="brief-tags">
-              <span className={"brief-priority priority-"+(b.priority==="BIG SWING"?"big":b.priority==="HIGH"?"high":"standard")}>{b.priority}</span>
-              <span className="brief-platform">{b.platform}</span>
-              <span className="brief-flavor">{b.flavor}</span>
+          <div key={b.id} className="brief-card" onClick={()=>onOpen(b)} style={{borderLeftWidth:5,borderLeftColor:PILLAR_COLOR[b.pillar]}}>
+            <div className="brief-card-top">
+              <span className="brief-card-glyph" style={{background:PILLAR_COLOR[b.pillar]+"22",color:PILLAR_COLOR[b.pillar]}}>{DNA_GLYPH[b.dna]||"✦"}</span>
+              <div className="brief-tags">
+                <span className={"brief-priority priority-"+(b.priority==="BIG SWING"?"big":b.priority==="HIGH"?"high":"standard")}>{b.priority}</span>
+                <span className="brief-platform">{b.platform}</span>
+                <span className="brief-flavor">{b.flavor}</span>
+              </div>
             </div>
             <div className="brief-concept serif">{b.concept}</div>
             <div className="brief-bottom">
+              <span className="brief-dna-tag">{TOP_PERFORMER_DNA.find(d=>d.id===b.dna)?.name||b.dna}</span>
               <span className="brief-time">{b.timing}</span>
             </div>
           </div>
