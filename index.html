@@ -313,8 +313,18 @@ a{color:inherit;text-decoration:none}
 .cs-live-error{background:rgba(232,144,125,0.18);color:#9E3F31;padding:10px 14px;border-radius:8px;font-size:13px;margin-top:12px}
 .cs-live-result{margin-top:14px;padding-top:14px;border-top:1px dashed rgba(213,88,120,0.4)}
 
-.cs-log{display:flex;flex-direction:column;gap:18px}
-.cs-entry{background:var(--butter-light);border:1.5px solid var(--cobalt);border-radius:14px;padding:22px 24px;box-shadow:0 2px 0 var(--cobalt)}
+.cs-log{display:flex;flex-direction:column;gap:12px}
+.cs-entry{background:var(--butter-light);border:1.5px solid var(--cobalt);border-radius:14px;box-shadow:0 2px 0 var(--cobalt);overflow:hidden;transition:box-shadow 0.15s}
+.cs-entry[open]{box-shadow:0 4px 0 var(--cobalt),0 6px 18px rgba(26,58,110,0.12)}
+.cs-entry summary{list-style:none;cursor:pointer;padding:16px 22px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;outline:none}
+.cs-entry summary::-webkit-details-marker{display:none}
+.cs-entry summary:hover{background:rgba(53,133,224,0.04)}
+.cs-entry-chev{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--cobalt);font-weight:700;transition:transform 0.2s;display:inline-block;margin-left:8px}
+.cs-entry[open] .cs-entry-chev{transform:rotate(180deg)}
+.cs-entry-briefs-count{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--cobalt-deep);background:rgba(53,133,224,0.12);padding:4px 10px;border-radius:99px;font-weight:700;text-transform:uppercase;border:1px solid rgba(53,133,224,0.28)}
+.cs-entry-detail-compact{font-size:12.5px;line-height:1.45;color:var(--ink-soft);max-width:640px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.cs-entry-expanded{padding:0 22px 22px;border-top:1px solid var(--cobalt-light)}
+.cs-entry-expanded-source{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--cobalt);font-weight:600;letter-spacing:0.04em;padding-top:14px;margin-bottom:12px}
 .cs-entry-head{display:grid;grid-template-columns:1fr auto;gap:24px;padding-bottom:16px;margin-bottom:14px;border-bottom:1px solid var(--cobalt-light)}
 .cs-entry-trigger{min-width:0}
 .cs-entry-stamp{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--magenta-deep);font-weight:700;text-transform:uppercase;margin-bottom:6px}
@@ -3080,25 +3090,31 @@ function CounterStrikeView({openStudio}){
 
     <div className="cs-log">
       {COUNTER_STRIKE_LOG.map(entry => (
-        <div key={entry.id} className="cs-entry">
-          <div className="cs-entry-head">
+        <details key={entry.id} className="cs-entry">
+          <summary>
             <div className="cs-entry-trigger">
               <div className="cs-entry-stamp">⚡ TRIGGER · {entry.triggerAt}</div>
               <div className="cs-entry-comp">{entry.competitor}</div>
-              <div className="cs-entry-detail">{entry.trigger}</div>
-              <div className="cs-entry-source">source: {entry.triggerSource}</div>
+              <div className="cs-entry-detail-compact">{entry.trigger}</div>
             </div>
             <div className="cs-entry-meta">
               <div className="cs-entry-time">+{entry.responseMinutes} min</div>
               <div className="cs-entry-resp">response at {entry.respondedAt.slice(-8)}</div>
-              <div className={"cs-entry-status cs-status-"+entry.status}>{entry.status === "shipped" ? "✓ shipped" : "ready to ship"}</div>
+              <div style={{display:"flex",gap:6,alignItems:"center",marginTop:6}}>
+                <span className={"cs-entry-status cs-status-"+entry.status}>{entry.status === "shipped" ? "✓ shipped" : "ready to ship"}</span>
+                <span className="cs-entry-briefs-count">{entry.briefs.length} brief{entry.briefs.length!==1?'s':''}</span>
+                <span className="cs-entry-chev">▾</span>
+              </div>
+            </div>
+          </summary>
+          <div className="cs-entry-expanded">
+            <div className="cs-entry-expanded-source">source: {entry.triggerSource}</div>
+            <div className="cs-summary">{entry.summary}</div>
+            <div className="cs-briefs">
+              {entry.briefs.map(b => <CounterStrikeBrief key={b.id} brief={b} />)}
             </div>
           </div>
-          <div className="cs-summary">{entry.summary}</div>
-          <div className="cs-briefs">
-            {entry.briefs.map(b => <CounterStrikeBrief key={b.id} brief={b} />)}
-          </div>
-        </div>
+        </details>
       ))}
     </div>
   </div>);
