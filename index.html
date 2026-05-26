@@ -397,8 +397,11 @@ a{color:inherit;text-decoration:none}
 .mmm-section{margin-bottom:24px}
 .mmm-section:last-child{margin-bottom:0}
 .mmm-section-eye{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:var(--magenta-deep);font-weight:700;text-transform:uppercase;margin-bottom:9px}
-.mmm-read{font-family:'Fraunces';font-size:15px;line-height:1.55;color:var(--cobalt-deep);font-weight:500;letter-spacing:-0.005em}
-.mmm-pullquote{font-family:'Lilita One',serif;font-weight:400;font-size:22px;letter-spacing:0.005em;line-height:1.15;color:var(--cobalt-deep);margin-bottom:10px;padding:14px 16px;background:#fff;border-left:4px solid var(--magenta);border-radius:0 8px 8px 0}
+.mmm-read{font-family:'Fraunces';font-size:14.5px;line-height:1.55;color:var(--cobalt-deep);font-weight:500;letter-spacing:-0.005em}
+.mmm-pullquote{font-family:'Lilita One',serif;font-weight:400;font-size:22px;letter-spacing:0.005em;line-height:1.15;color:var(--cobalt-deep);margin-bottom:16px;padding:14px 16px;background:#fff;border-left:4px solid var(--magenta);border-radius:0 8px 8px 0}
+.mmm-read-block{margin-bottom:14px}
+.mmm-read-block:last-child{margin-bottom:0}
+.mmm-read-sub-eye{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.18em;color:var(--magenta-deep);font-weight:700;text-transform:uppercase;margin-bottom:5px;display:inline-block;padding-bottom:3px;border-bottom:1.5px solid var(--magenta)}
 .mmm-moves{display:flex;flex-direction:column;gap:10px}
 .mmm-move{background:#fff;border:1px solid var(--cobalt-light);border-radius:10px;padding:13px 15px;display:flex;gap:12px;align-items:flex-start}
 .mmm-move-num{font-family:'Lilita One',serif;font-weight:400;font-size:22px;line-height:1;color:var(--magenta);flex-shrink:0;width:28px;text-align:center}
@@ -1261,7 +1264,11 @@ const WELCOME_HIGHLIGHTS = [
   { stat:"May 23", label:"Buckwheat in late-spring bloom on regen-ag socials", detail:"A-Frame Farm + adjacent regen-ag accounts posting pink-flower buckwheat field footage as fields bloom. Visual is Pinterest-ready + soil-story timely. Late-Mother's-Day window closed but the bloom-aesthetic peaks this week.", src:"a-frame farms", url:"https://practicalfarmers.org/2025/01/finding-your-small-grain-market-through-relationship-building/" }
 ];
 
-const WELCOME_THESIS = "Memorial Day weekend lights the summer-snack starting gun: cottage-cheese bowls, açaí bowls, hot-girl-walk fuel — all back in the feed. Meanwhile the protein-granola arms race the engine flagged two weeks ago (Purely Elizabeth at Target · Magic Spoon at Costco) is still compounding, and the hot-honey wave keeps spreading from condiment to snack. Lil Bucks is positioned for the season pivot — the seed-not-spec story sharpens against the protein chase, Hot Honey Clusterbucks lives where the trend is moving, and the soil-story window stayed open. The week's job: open summer with the açaí-bowl origin, ride hot honey + the cottage-cheese-bowl revival, and let the A-Frame Farm story compound underneath.";
+const WELCOME_THESIS = {
+  happening: "Memorial Day weekend lights the summer-snack starting gun — cottage-cheese bowls, açaí bowls, and hot-girl-walk fuel are all back in the feed. Meanwhile the protein-granola arms race the engine flagged two weeks ago (Purely Elizabeth at Target · Magic Spoon at Costco) is still compounding, and the hot-honey wave keeps spreading from condiment to snack.",
+  edge: "Lil Bucks is positioned for the season pivot. The seed-not-spec story sharpens against the protein chase, Hot Honey Clusterbucks lives exactly where the trend is moving, and the soil-story window stayed open into the late-spring buckwheat bloom.",
+  job: "Open summer with the açaí-bowl origin, ride hot honey + the cottage-cheese-bowl revival, and let the A-Frame Farm story compound underneath."
+};
 
 const WELCOME_MOVES = [
   { verb:"Open summer.", why:"Memorial Day Reel dropping the açaí-bowl origin frame — Original Clusterbucks back to the Sydney 2017 moment that started the brand." },
@@ -1969,7 +1976,18 @@ function MondayMemoModal({onClose, onShipIt}){
         <div className="mmm-section">
           <div className="mmm-section-eye">// THE READ</div>
           <div className="mmm-pullquote">summer just opened. memorial day = the summer-snack starting gun.</div>
-          <p className="mmm-read">{WELCOME_THESIS}</p>
+          <div className="mmm-read-block">
+            <div className="mmm-read-sub-eye">What's happening</div>
+            <p className="mmm-read">{WELCOME_THESIS.happening}</p>
+          </div>
+          <div className="mmm-read-block">
+            <div className="mmm-read-sub-eye">Lil Bucks' edge</div>
+            <p className="mmm-read">{WELCOME_THESIS.edge}</p>
+          </div>
+          <div className="mmm-read-block">
+            <div className="mmm-read-sub-eye">This week's job</div>
+            <p className="mmm-read">{WELCOME_THESIS.job}</p>
+          </div>
         </div>
         <div className="mmm-section">
           <div className="mmm-section-eye">// 5 SIGNALS DRIVING THE WEEK</div>
@@ -2002,7 +2020,7 @@ function MondayMemoModal({onClose, onShipIt}){
         </div>
       </div>
       <div className="mmm-footer">
-        <button className="mmm-cta" onClick={onShipIt}>INTO THE INTEL →</button>
+        <button className="mmm-cta" onClick={onShipIt}>SEE THIS WEEK'S ENGINE →</button>
       </div>
     </div>
   </div>);
