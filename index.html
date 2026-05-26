@@ -57,8 +57,10 @@ a{color:inherit;text-decoration:none}
 .sb-item-icon{width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center}
 .sb-item-soon{font-size:9px;letter-spacing:0.08em;text-transform:uppercase;background:rgba(255,255,255,0.18);color:rgba(255,255,255,0.85);padding:2px 6px;border-radius:3px;margin-left:auto;font-weight:600}
 .sb-item.active .sb-item-soon{background:rgba(255,255,255,0.28);color:#fff}
-.sb-footer{padding:14px 10px 4px;border-top:1px solid rgba(255,255,255,0.18);font-size:11px;color:rgba(255,255,255,0.78);line-height:1.55}
+.sb-footer{padding:14px 10px 4px;border-top:1px solid rgba(255,255,255,0.18);font-size:10.5px;color:rgba(255,255,255,0.78);line-height:1.55}
 .sb-footer strong{color:#fff;font-weight:700;display:block;margin-bottom:2px}
+.sb-footer-live{display:flex;align-items:center;gap:6px;margin-top:8px;padding:5px 8px;background:rgba(122,176,93,0.16);border:1px solid rgba(122,176,93,0.35);border-radius:7px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;color:#C8E0B2;font-weight:600;text-transform:uppercase;cursor:help}
+.sb-footer-dot{width:6px;height:6px;border-radius:50%;background:#7AB05D;box-shadow:0 0 5px rgba(122,176,93,0.6);animation:pulse 2s ease-in-out infinite;flex-shrink:0}
 .sb-howit{margin-top:10px;width:100%;text-align:left;font-size:11.5px;color:#fff;background:rgba(255,255,255,0.14);padding:9px 12px;border-radius:8px;font-weight:500;letter-spacing:0.01em}
 .sb-howit:hover{background:rgba(255,255,255,0.22)}
 .sb-howit-link{margin-top:6px;background:transparent;border:0;padding:0;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;color:rgba(255,255,255,0.72);font-weight:600;text-transform:lowercase;cursor:pointer;transition:color 0.15s;text-align:left;display:block;width:100%}
@@ -74,7 +76,10 @@ a{color:inherit;text-decoration:none}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
 
 /* Main */
-.main{padding:24px 32px 70px;max-width:1380px}
+.main{padding:24px 32px 40px;max-width:1380px}
+.main-footer{margin-top:40px;padding:18px 0 6px;border-top:1px solid rgba(53,133,224,0.18);display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;color:var(--ink-soft);font-weight:600;text-transform:uppercase}
+.main-footer-brand strong{color:var(--cobalt-deep);font-weight:800}
+.main-footer-sep{color:rgba(53,133,224,0.35);font-weight:300}
 .page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding-bottom:12px;border-bottom:2px solid var(--cobalt);margin-bottom:20px}
 .page-head h1{font-family:'Lilita One',serif;font-weight:400;font-size:32px;letter-spacing:0.005em;line-height:1;color:var(--cobalt-deep)}
 .page-dek{font-family:'Fraunces';font-size:13.5px;line-height:1.4;color:var(--ink-soft);font-weight:500;font-style:italic;letter-spacing:-0.005em;margin-top:7px;max-width:540px}
@@ -317,7 +322,7 @@ a{color:inherit;text-decoration:none}
 .cs-header{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:flex-end;margin-bottom:22px;padding:24px 28px;background:linear-gradient(135deg,var(--cobalt-deep) 0%,var(--cobalt) 100%);color:#fff;border-radius:14px;position:relative;overflow:hidden}
 .cs-header::after{content:"⚡";position:absolute;top:18px;right:200px;font-size:42px;opacity:0.18}
 .cs-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.18em;font-weight:700;text-transform:uppercase;opacity:0.85;margin-bottom:8px}
-.cs-title{font-family:'Lilita One',serif;font-weight:400;font-size:30px;letter-spacing:0.005em;line-height:1.05;color:#fff;margin:0 0 10px;text-wrap:balance;max-width:680px}
+.cs-title{font-family:'Lilita One',serif;font-weight:400;font-size:22px;letter-spacing:0.005em;line-height:1.1;color:#fff;margin:0 0 8px;text-wrap:balance;max-width:680px}
 .cs-sub{font-family:'Fraunces';font-size:14.5px;line-height:1.5;font-weight:500;color:rgba(255,255,255,0.92);max-width:680px;letter-spacing:-0.005em;margin:0}
 .cs-live-btn{background:var(--magenta);color:#fff;border:0;padding:13px 22px;border-radius:99px;font-family:'Lilita One',serif;font-weight:400;font-size:15px;letter-spacing:0.01em;cursor:pointer;transition:background 0.15s,transform 0.1s;white-space:nowrap;box-shadow:0 4px 14px rgba(213,88,120,0.4);flex-shrink:0;align-self:center}
 .cs-live-btn:hover{background:var(--magenta-deep);transform:translateY(-1px)}
@@ -443,8 +448,9 @@ a{color:inherit;text-decoration:none}
 .mmm-card{position:relative;background:var(--butter-light);border:1.5px solid var(--cobalt);border-radius:18px;max-width:640px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,0.32)}
 .mmm-close{position:absolute;top:14px;right:14px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--cream);color:var(--cobalt-deep);font-size:22px;line-height:1;z-index:5;border:1px solid var(--cobalt-light)}
 .mmm-close:hover{background:var(--cobalt);color:#fff}
-.mmm-hero{background:linear-gradient(135deg,var(--cobalt-deep) 0%,#2C5599 100%);color:#fff;padding:24px 28px 22px;border-radius:18px 18px 0 0;position:relative;overflow:hidden}
-.mmm-hero::before{content:"";position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(234,126,154,0.32) 0%,transparent 70%);pointer-events:none}
+.mmm-hero{background:linear-gradient(135deg,var(--cobalt-deep) 0%,#2C5599 50%,var(--magenta-deep) 130%);color:#fff;padding:24px 28px 22px;border-radius:18px 18px 0 0;position:relative;overflow:hidden}
+.mmm-hero::before{content:"";position:absolute;top:-40px;right:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(244,183,62,0.18) 0%,transparent 65%);pointer-events:none}
+.mmm-hero::after{content:"";position:absolute;bottom:-50px;left:-20px;width:200px;height:200px;background:radial-gradient(circle,rgba(234,126,154,0.32) 0%,transparent 65%);pointer-events:none}
 .mmm-hero-date{display:inline-block;background:var(--magenta);color:#fff;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;padding:4px 11px;border-radius:99px;font-weight:700;text-transform:uppercase;margin-bottom:10px;position:relative;z-index:2}
 .mmm-hero-title{font-family:'Lilita One',serif;font-weight:400;font-size:30px;letter-spacing:0.005em;line-height:1.05;color:#fff;margin-bottom:6px;position:relative;z-index:2}
 .mmm-hero-sig{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:rgba(255,255,255,0.78);font-weight:600;text-transform:uppercase;position:relative;z-index:2}
@@ -841,8 +847,10 @@ a{color:inherit;text-decoration:none}
 
 /* PERFORMANCE PREVIEW (inactive) */
 .perf-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
-.perf-kpi{background:var(--butter-light);border:1px solid var(--cobalt-light);border-radius:12px;padding:16px 18px}
-.perf-kpi-num{font-family:'Lilita One',serif;font-weight:400;font-size:34px;letter-spacing:0.005em;line-height:1;color:var(--cobalt-deep);margin-bottom:6px}
+.perf-kpi{background:var(--butter-light);border:1.5px dashed var(--cobalt-light);border-radius:12px;padding:16px 18px;position:relative;overflow:hidden}
+.perf-kpi::after{content:"OPERATE";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-12deg);font-family:'Lilita One',serif;font-size:34px;letter-spacing:0.06em;color:rgba(53,133,224,0.06);font-weight:400;pointer-events:none;z-index:0;text-transform:uppercase}
+.perf-kpi>*{position:relative;z-index:1}
+.perf-kpi-num{font-family:'Lilita One',serif;font-weight:400;font-size:34px;letter-spacing:0.005em;line-height:1;color:var(--cobalt-light);margin-bottom:6px}
 .perf-kpi-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;color:var(--cobalt);font-weight:700;text-transform:uppercase;margin-bottom:4px}
 .perf-kpi-sub{font-family:'Fraunces';font-size:11.5px;line-height:1.4;color:var(--ink-soft);font-weight:500;letter-spacing:-0.005em}
 .perf-results{background:var(--butter-light);border:1px solid var(--cobalt-light);border-radius:12px;padding:18px 20px}
@@ -949,6 +957,18 @@ a{color:inherit;text-decoration:none}
 
 /* PAID MEDIA AMPLIFICATION — Willa's-pattern 3-tier card */
 .amp-block{padding:18px 20px;background:linear-gradient(135deg,rgba(53,133,224,0.04) 0%,rgba(234,126,154,0.04) 100%);border:1.5px solid var(--cobalt-light);border-radius:12px}
+/* Brief detail accordion — collapsible Production / Amplify sections */
+.modal-acc{background:var(--butter-light);border:1.5px solid var(--cobalt-light);border-radius:10px;margin-bottom:14px;overflow:hidden;transition:box-shadow 0.15s}
+.modal-acc[open]{box-shadow:0 4px 10px rgba(26,58,110,0.06)}
+.modal-acc summary{list-style:none;cursor:pointer;padding:11px 14px;display:flex;align-items:center;gap:12px;outline:none}
+.modal-acc summary::-webkit-details-marker{display:none}
+.modal-acc summary:hover{background:rgba(53,133,224,0.04)}
+.modal-acc-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--magenta-deep);font-weight:700;text-transform:uppercase;flex-shrink:0}
+.modal-acc-title{font-family:'Fraunces';font-size:13.5px;line-height:1.4;color:var(--cobalt-deep);font-weight:600;letter-spacing:-0.005em;flex:1;min-width:0}
+.modal-acc-chev{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--cobalt);font-weight:700;transition:transform 0.2s;flex-shrink:0}
+.modal-acc[open] .modal-acc-chev{transform:rotate(180deg)}
+.modal-acc-body{padding:0 14px 14px;border-top:1px solid var(--cobalt-light)}
+.modal-acc-body .amp-block,.modal-acc-body .modal-section{margin-top:14px;margin-bottom:0}
 .amp-block-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--cobalt-light)}
 .amp-block-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;color:var(--cobalt-deep);font-weight:800;text-transform:uppercase}
 .amp-agent-stamp{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.06em;color:var(--ink-soft);font-weight:600}
@@ -2083,8 +2103,11 @@ function App(){
         </button>
         <div className="sb-footer">
           <strong>Lil Bucks Engine</strong>
-          America's Buckwheat Brand™<br/>
-          Refreshed {BRAND.refreshed}
+          America's Buckwheat Brand™
+          <div className="sb-footer-live" title={"Engine refreshed " + BRAND.refreshed + ". Next auto-refresh: Sunday night."}>
+            <span className="sb-footer-dot"></span>
+            <span>Live · refreshed {BRAND.refreshed}</span>
+          </div>
         </div>
       </aside>
 
@@ -2120,6 +2143,14 @@ function App(){
         {section==='briefs' && <ContentBriefs onOpen={setBriefOpen} openStudio={()=>setStudioOpen(true)} />}
         {section==='calendar' && <CalendarPreview />}
         {section==='performance' && <PerformancePreview />}
+
+        <footer className="main-footer">
+          <span className="main-footer-brand"><strong>Lil Bucks Engine</strong> · OBSOLETE V0.1</span>
+          <span className="main-footer-sep">·</span>
+          <span>refreshed {BRAND.refreshed}</span>
+          <span className="main-footer-sep">·</span>
+          <span>powered by Claude · Sonnet 4.6</span>
+        </footer>
       </main>
     </div>
   </>);
@@ -2931,8 +2962,17 @@ function BriefDetailModal({brief,onClose,onDrop,onIntelNavigate}){
           </div>):null)}
         </div>
 
-        {/* PAID MEDIA AMPLIFICATION — Willa's pattern */}
-        {ampPlan && <AmplifyBlock plan={ampPlan} />}
+        {/* PAID MEDIA AMPLIFICATION — collapsed by default */}
+        {ampPlan && (
+          <details className="modal-acc">
+            <summary>
+              <span className="modal-acc-eyebrow">⚡ Amplify</span>
+              <span className="modal-acc-title">Paid media plan · ${(ampPlan.placements?.reduce?.((s,p)=>s+p.budget,0))||"--"} across {ampPlan.placements?.length||"--"} placements</span>
+              <span className="modal-acc-chev">▾</span>
+            </summary>
+            <div className="modal-acc-body"><AmplifyBlock plan={ampPlan} /></div>
+          </details>
+        )}
 
         {/* FOOTAGE INSPO — collapsible Willa's pattern */}
         {footage && (
@@ -2968,20 +3008,26 @@ function BriefDetailModal({brief,onClose,onDrop,onIntelNavigate}){
           </div>
         )}
 
-        {/* PRODUCTION NOTES — visual direction + end-card stinger */}
-        <div className="modal-section">
-          <div className="modal-section-label">Production notes</div>
-          <div className="prod-notes">
-            <div className="prod-note">
-              <div className="prod-note-label">Visual direction</div>
-              <div className="prod-note-text">{brief.visual}</div>
+        {/* PRODUCTION NOTES — collapsed by default */}
+        <details className="modal-acc">
+          <summary>
+            <span className="modal-acc-eyebrow">🎬 Production</span>
+            <span className="modal-acc-title">Visual direction + end-card stinger</span>
+            <span className="modal-acc-chev">▾</span>
+          </summary>
+          <div className="modal-acc-body">
+            <div className="prod-notes">
+              <div className="prod-note">
+                <div className="prod-note-label">Visual direction</div>
+                <div className="prod-note-text">{brief.visual}</div>
+              </div>
+              {brief.benefitShorthand && <div className="prod-note">
+                <div className="prod-note-label">End-card stinger</div>
+                <div className="prod-note-text" style={{fontStyle:"italic"}}>{brief.benefitShorthand}</div>
+              </div>}
             </div>
-            {brief.benefitShorthand && <div className="prod-note">
-              <div className="prod-note-label">End-card stinger</div>
-              <div className="prod-note-text" style={{fontStyle:"italic"}}>{brief.benefitShorthand}</div>
-            </div>}
           </div>
-        </div>
+        </details>
 
         <CrunchBunchPanel brief={brief} />
 
@@ -3392,17 +3438,10 @@ function ReceiptsView({openStudio}){
   }, []);
 
   return (<div className="rcpt-view">
-    <div className="rcpt-header">
-      <div>
-        <div className="rcpt-eyebrow">// ENGINE TRACK RECORD</div>
-        <h2 className="rcpt-title">Receipts.</h2>
-        <p className="rcpt-sub">What the engine recommended, what shipped, what hit, and what got killed (and why). Every call is logged, traceable, and feeds back into how the next week's brief mix is generated.</p>
-      </div>
-      <div className="rcpt-stats">
-        <div className="rcpt-stat"><div className="rcpt-stat-num">{stats.total}</div><div className="rcpt-stat-label">Briefs analyzed</div></div>
-        <div className="rcpt-stat"><div className="rcpt-stat-num">{stats.hitRate}%</div><div className="rcpt-stat-label">Hit rate</div></div>
-        <div className="rcpt-stat"><div className="rcpt-stat-num">{stats.avgLikes}</div><div className="rcpt-stat-label">Avg likes per shipped</div></div>
-      </div>
+    <div className="rcpt-stats" style={{marginBottom:14}}>
+      <div className="rcpt-stat"><div className="rcpt-stat-num">{stats.total}</div><div className="rcpt-stat-label">Briefs analyzed</div></div>
+      <div className="rcpt-stat"><div className="rcpt-stat-num">{stats.hitRate}%</div><div className="rcpt-stat-label">Hit rate</div></div>
+      <div className="rcpt-stat"><div className="rcpt-stat-num">{stats.avgLikes}</div><div className="rcpt-stat-label">Avg likes per posted</div></div>
     </div>
 
     <div className="rcpt-filters">
