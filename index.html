@@ -2727,7 +2727,7 @@ function ContentBriefs({onOpen,openStudio}){
         </div>
         <div className="ride-hero-body">
           <div className="ride-hero-label">RIDE-NOW BEATS THIS WEEK</div>
-          <div className="ride-hero-sub">culturally decay-sensitive · ship before the window closes</div>
+          <div className="ride-hero-sub">culturally decay-sensitive · produce + post before the window closes</div>
         </div>
       </div>
       <div className="ride-hero-right">
@@ -3081,7 +3081,7 @@ function CounterStrikeView({openStudio}){
     <div className="cs-header">
       <div>
         <div className="cs-eyebrow">// AUTOMATED COMPETITOR RESPONSE</div>
-        <h2 className="cs-title">90 minutes from press release → 3 briefs ready to ship.</h2>
+        <h2 className="cs-title">90 minutes from press release → 3 production-ready briefs.</h2>
         <p className="cs-sub">When a competitor moves, the engine drafts the counter-positioning in Emily's voice before her coffee's cold. Below: receipts from the last two big competitive moves the engine responded to.</p>
       </div>
       <button className="cs-live-btn" onClick={()=>setLiveOpen(v=>!v)}>
@@ -3126,7 +3126,7 @@ function CounterStrikeView({openStudio}){
               <div className="cs-entry-time">+{entry.responseMinutes} min</div>
               <div className="cs-entry-resp">response at {entry.respondedAt.slice(-8)}</div>
               <div style={{display:"flex",gap:6,alignItems:"center",marginTop:6}}>
-                <span className={"cs-entry-status cs-status-"+entry.status}>{entry.status === "shipped" ? "✓ shipped" : "ready to ship"}</span>
+                <span className={"cs-entry-status cs-status-"+entry.status}>{entry.status === "shipped" ? "✓ delivered" : "in draft"}</span>
                 <span className="cs-entry-briefs-count">{entry.briefs.length} brief{entry.briefs.length!==1?'s':''}</span>
                 <span className="cs-entry-chev">▾</span>
               </div>
@@ -3950,14 +3950,14 @@ const ENGINE_THINKING_STEPS = [
       "IG and TikTok both good · LinkedIn = wrong register",
       "Suggested edit: lean harder on 'crunch,' less on 'real food'"
     ],
-    verdict: "84/100. Approved. Optional edit logged for Studio.",
-    next: "→ Emily reviews. Approves. Ships."
+    verdict: "84/100. Cleared for production. Optional edit logged for Studio.",
+    next: "→ Brief lands in Emily's playbook. Her team produces + distributes."
   },
   {
     id: 7, agent: "The Loop", icon: "🔄", title: "Engine learns",
     focus: "Closes the loop · performance → next week's calibration",
     watches: ["Engagement metrics", "Emily's voice notes", "Receipts board", "Panel-vs-actual delta"],
-    what: "Once the post ships, performance flows back in. Next week is sharper.",
+    what: "Once Emily's team posts it, the performance flows back in. Next week is sharper.",
     filters: [
       "Reach + saves logged to the Receipts board",
       "Hits and misses recalibrate next week's keyword weights",
@@ -4095,7 +4095,7 @@ function HowItWorksTab(){
       <div className="howit-flow-step"><div className="howit-flow-num">01 · Listen</div><div className="howit-flow-name">5 agents, 100+ sources</div><div className="howit-flow-body">Daily ingest from culture, competitors, product, mission, brand voice.</div></div>
       <div className="howit-flow-step"><div className="howit-flow-num">02 · Calibrate</div><div className="howit-flow-name">Scored against Lil Bucks</div><div className="howit-flow-body">Every signal tested for tonal match. Off-brand filtered out.</div></div>
       <div className="howit-flow-step"><div className="howit-flow-num">03 · Brief</div><div className="howit-flow-name">Strategist synthesizes</div><div className="howit-flow-body">10–15 weekly briefs with hooks, scripts, audio, format match.</div></div>
-      <div className="howit-flow-step you"><div className="howit-flow-num">04 · Ship</div><div className="howit-flow-name">You approve.</div><div className="howit-flow-body">Review, edit, ship. Your feedback feeds back. Next week sharper.</div></div>
+      <div className="howit-flow-step you"><div className="howit-flow-num">04 · Produce</div><div className="howit-flow-name">Your team takes it from here.</div><div className="howit-flow-body">Brief in hand: shoot, edit, post. Performance flows back. Next week sharper.</div></div>
     </div>
 
     {/* THE AGENTS · HOW THEY THINK — consolidated section (static roster merged into the flow) */}
