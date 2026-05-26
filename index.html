@@ -192,12 +192,17 @@ a{color:inherit;text-decoration:none}
 .dir-flat{color:var(--ink-soft)}
 
 /* Ambassador */
-.amb-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;display:flex;gap:14px;align-items:center}
-.amb-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--yellow));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Fraunces';font-weight:800;font-size:16px;flex-shrink:0}
-.amb-handle{font-weight:700;font-size:14px}
-.amb-handle-sub{font-size:11.5px;color:var(--ink-soft);margin-top:1px}
-.amb-stats{font-size:11px;color:var(--ink-soft);margin-top:5px;display:flex;gap:9px}
-.amb-status{margin-left:auto;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;padding:3px 8px;border-radius:4px}
+.amb-card{background:#fff;border:1.5px solid var(--cobalt-light);border-left:5px solid var(--cobalt-light);border-radius:12px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start;transition:transform 0.15s,box-shadow 0.15s,border-color 0.15s;color:inherit;box-shadow:0 2px 0 var(--cobalt-light)}
+.amb-card:hover{transform:translateY(-2px);box-shadow:0 5px 0 var(--cobalt-light),0 6px 14px rgba(26,58,110,0.08);border-color:var(--cobalt)}
+.amb-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--yellow));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Lilita One',serif;font-weight:400;font-size:15px;flex-shrink:0;letter-spacing:0.01em;line-height:1;box-shadow:inset 0 -2px 0 rgba(0,0,0,0.06)}
+.amb-handle-row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:2px}
+.amb-handle{font-family:'Lilita One',serif;font-weight:400;font-size:16px;letter-spacing:0.005em;color:var(--cobalt-deep);line-height:1.05}
+.amb-handle-sub{font-size:11.5px;color:var(--ink-soft);margin-bottom:7px;line-height:1.35}
+.amb-reach-chip{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;font-weight:700;color:var(--cobalt-deep);background:rgba(53,133,224,0.08);border:1px solid rgba(53,133,224,0.22);padding:3px 9px;border-radius:99px;margin-bottom:8px;text-transform:uppercase}
+.amb-notes{font-family:'Inter',sans-serif;font-size:12px;line-height:1.45;color:var(--ink-soft);font-weight:500}
+.amb-status-pill{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;font-weight:700;padding:3px 8px;border-radius:99px;text-transform:uppercase;border:1.5px solid currentColor;flex-shrink:0;line-height:1.2}
+.amb-status-active{color:#3F6A33;background:rgba(122,176,93,0.14)}
+.amb-status-watch{color:#8A5A1F;background:rgba(244,183,62,0.16)}
 .status-active{background:#E0F0D0;color:#5D7E47}
 .status-watch{background:#F4ECD0;color:#8A752B}
 .status-cold{background:#F0E5DA;color:#8A6E4D}
@@ -2727,16 +2732,21 @@ function AmbassadorsGrid(){
       <span className="wip-banner-text">Ambassador discovery + outreach scaffolding lands fully in OPERATE. What's here = the seed list to validate with Emily on the diagnostic call.</span>
     </div>
     <div className="grid grid-2">
-    {AMBASSADORS.map(a=>(<div key={a.handle} className="amb-card">
-      <div className="amb-avatar">{a.name.split(" ").map(p=>p[0]).slice(0,2).join("")}</div>
-      <div style={{flex:1}}>
-        <div className="amb-handle">{a.handle}</div>
-        <div className="amb-handle-sub">{a.name} · {a.focus}</div>
-        <div className="amb-stats"><span>{a.reach}</span></div>
-        <div className="amb-stats" style={{color:"var(--ink)",marginTop:6,fontSize:12.5,lineHeight:1.45}}>{a.notes}</div>
-      </div>
-      <div className={"amb-status status-"+a.status}>{a.status}</div>
-    </div>))}
+    {AMBASSADORS.map(a=>{
+      const isActive = a.status === "active";
+      const railColor = isActive ? "#7AB05D" : "#F4B73E";
+      return (<a key={a.handle} href={a.url} target="_blank" rel="noreferrer" className="amb-card" style={{borderLeftWidth:5,borderLeftColor:railColor,textDecoration:"none"}}>
+        <div className="amb-avatar">{a.name.split(" ").map(p=>p[0]).slice(0,2).join("")}</div>
+        <div style={{flex:1,minWidth:0}}>
+          <div className="amb-handle-row">
+            <div className="amb-handle">{a.handle}</div>
+            <span className={"amb-status-pill amb-status-"+a.status}>{isActive ? "✓ active" : "👁 watching"}</span>
+          </div>
+          <div className="amb-handle-sub">{a.name} · {a.focus}</div>
+          <div className="amb-reach-chip">{a.reach}</div>
+          <div className="amb-notes">{a.notes}</div>
+        </div>
+      </a>);})}
     </div>
   </>);
 }
