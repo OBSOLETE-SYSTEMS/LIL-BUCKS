@@ -1324,7 +1324,7 @@ a{color:inherit;text-decoration:none}
 
 /* Ticker */
 .ticker{background:var(--cobalt-deep);color:#fff;padding:9px 0;font-size:12px;font-weight:500;overflow:hidden;position:relative;border-radius:99px;margin-bottom:24px}
-.ticker-track{display:flex;gap:46px;animation:scroll 24s linear infinite;white-space:nowrap}
+.ticker-track{display:flex;gap:46px;animation:scroll 19s linear infinite;white-space:nowrap}
 .ticker-item{display:inline-flex;align-items:center;gap:8px}
 .ticker-dot{width:6px;height:6px;border-radius:50%;background:var(--magenta);box-shadow:0 0 6px rgba(234,126,154,0.8)}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -4113,8 +4113,20 @@ function HowItWorksTab(){
       </div>
     </details>
 
-    {/* ANTI-PATTERN LIBRARY — the brand fence Emily can share with creators + agencies */}
-    <AntiPatternLibrary />
+    {/* ANTI-PATTERN LIBRARY — collapsed by default; same accordion treatment as Receipts + Calls */}
+    <details className="howit-acc">
+      <summary>
+        <span className="howit-acc-eyebrow">↓ The brand fence</span>
+        <div>
+          <div className="howit-acc-title">What the engine refuses to do</div>
+          <div className="howit-acc-tease">{ANTI_PATTERNS.length} patterns banned across VOICE · COMPETITIVE · FORMAT · AUDIO + VISUAL. The doc Emily can send to creators + agencies.</div>
+        </div>
+        <span className="howit-acc-chevron">▾</span>
+      </summary>
+      <div className="howit-acc-body">
+        <AntiPatternLibrary />
+      </div>
+    </details>
 
     {/* DEEPER LOOKS — expandable */}
     <details className="howit-acc">
