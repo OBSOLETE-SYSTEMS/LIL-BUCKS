@@ -79,9 +79,10 @@ a{color:inherit;text-decoration:none}
 .page-head h1{font-family:'Lilita One',serif;font-weight:400;font-size:32px;letter-spacing:0.005em;line-height:1;color:var(--cobalt-deep)}
 .page-head .eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:var(--cobalt);margin-bottom:6px;font-weight:700}
 .page-head .meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
-.date-pill{background:var(--magenta);color:#fff;font-weight:700;padding:6px 13px;border-radius:99px;font-size:11px;letter-spacing:0.06em;text-transform:uppercase}
-.refresh-pill{font-size:11px;color:var(--cobalt-deep);display:flex;align-items:center;gap:6px;font-weight:500}
-.refresh-dot{width:6px;height:6px;border-radius:50%;background:#7AB05D;box-shadow:0 0 4px rgba(122,176,93,0.5)}
+.refresh-pill{font-size:12px;color:var(--cobalt-deep);display:flex;align-items:center;gap:8px;font-weight:500;letter-spacing:0.005em}
+.refresh-pill strong{font-weight:700;color:var(--cobalt-deep)}
+.refresh-pill .week{font-family:'Lilita One',serif;font-weight:400;font-size:14px;letter-spacing:0.005em;color:var(--cobalt-deep)}
+.refresh-dot{width:8px;height:8px;border-radius:50%;background:#7AB05D;box-shadow:0 0 6px rgba(122,176,93,0.6);animation:pulse 2s ease-in-out infinite}
 
 /* Sub tabs */
 .subtabs{display:flex;gap:4px;margin:0 0 24px;border-bottom:1px solid var(--border);padding-bottom:0}
@@ -126,7 +127,9 @@ a{color:inherit;text-decoration:none}
 .card-actions{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:10px;border-top:1px solid rgba(53,133,224,0.18)}
 .drop-btn{background:var(--magenta);color:#fff;font-size:10.5px;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;padding:7px 13px;border-radius:99px;display:flex;align-items:center;gap:6px;transition:background 0.15s,transform 0.1s}
 .drop-btn:hover{background:var(--magenta-deep);transform:translateY(-1px)}
-.drove-chip{font-size:10.5px;color:var(--cobalt-deep);text-transform:uppercase;letter-spacing:0.1em;font-weight:600;display:flex;align-items:center;gap:5px}
+.drove-chip{font-size:10.5px;color:var(--cobalt-deep);text-transform:uppercase;letter-spacing:0.1em;font-weight:600;display:inline-flex;align-items:center;gap:5px;background:rgba(53,133,224,0.08);border:1px solid rgba(53,133,224,0.25);padding:5px 11px;border-radius:99px;cursor:pointer;transition:background 0.15s,border-color 0.15s,color 0.15s}
+.drove-chip:hover{background:var(--magenta);border-color:var(--magenta);color:#fff}
+.drove-chip:hover strong{color:#fff}
 .drove-chip strong{color:var(--magenta-deep);font-weight:800}
 
 /* Trend card extras */
@@ -1918,8 +1921,10 @@ function App(){
             <h1 className="serif">{section==='howitworks'?'How It Works':section==='intel'?'Intelligence Brief':section==='briefs'?'Content Briefs':''}</h1>
           </div>
           <div className="meta">
-            <div className="date-pill">{BRAND.weekRange}</div>
-            <div className="refresh-pill"><span className="refresh-dot"></span>Live · refreshed {BRAND.refreshed}</div>
+            <div className="refresh-pill">
+              <span className="refresh-dot"></span>
+              <span><strong>Live</strong> · <span className="week">{BRAND.weekRange}</span> · refreshed {BRAND.refreshed}</span>
+            </div>
           </div>
         </header>
 
@@ -1930,7 +1935,14 @@ function App(){
         </div>
 
         {section==='howitworks' && <HowItWorksTab />}
-        {section==='intel' && <IntelligenceBrief tab={intelTab} setTab={setIntelTab} openStudio={()=>setStudioOpen(true)} openMemo={()=>setMemoOpen(true)} />}
+        {section==='intel' && <IntelligenceBrief tab={intelTab} setTab={setIntelTab} openStudio={()=>setStudioOpen(true)} openMemo={()=>setMemoOpen(true)} openBriefForSignal={(signalId, signalType) => {
+          const linkKey = signalType === 'pulse' ? 'pulse' : signalType === 'trend' ? 'trends' : 'comps';
+          const briefId = Object.entries(BRIEF_LINKS).find(([_, l]) => l[linkKey].includes(signalId))?.[0];
+          if (briefId) {
+            const brief = BRIEFS.find(b => b.id === briefId);
+            if (brief) setBriefOpen(brief);
+          }
+        }} />}
         {section==='briefs' && <ContentBriefs onOpen={setBriefOpen} openStudio={()=>setStudioOpen(true)} />}
       </main>
     </div>
@@ -1975,7 +1987,7 @@ function MondayMemoModal({onClose, onShipIt}){
           </div>
         </div>
         <div className="mmm-section">
-          <div className="mmm-section-eye">// 3 MOVES WE'RE MAKING</div>
+          <div className="mmm-section-eye">// 3 RECOMMENDED MOVES</div>
           <div className="mmm-moves">
             {WELCOME_MOVES.map((m,i)=>(
               <div key={i} className="mmm-move">
@@ -2123,7 +2135,7 @@ function WelcomePopup({onClose,onCTA}){
   </div>);
 }
 
-function IntelligenceBrief({tab,setTab,openStudio,openMemo}){
+function IntelligenceBrief({tab,setTab,openStudio,openMemo,openBriefForSignal}){
   return (<>
     <button className="memo-trigger" onClick={openMemo}>
       <div className="memo-trigger-left">
@@ -2142,9 +2154,9 @@ function IntelligenceBrief({tab,setTab,openStudio,openMemo}){
       <button className={"subtab"+(tab==='counter'?' active':'')} onClick={()=>setTab('counter')}>Counter-Strike<span className="subtab-count">⚡ {COUNTER_STRIKE_LOG.length}</span></button>
       <button className={"subtab"+(tab==='amb'?' active':'')} onClick={()=>setTab('amb')}>Brand Ambassadors<span className="subtab-count">{AMBASSADORS.length}</span></button>
     </div>
-    {tab==='pulse' && <><CultureMomentum /><PulseGrid openStudio={openStudio} /></>}
-    {tab==='trends' && <TrendsGrid openStudio={openStudio} />}
-    {tab==='comps' && <CompetitorsGrid openStudio={openStudio} />}
+    {tab==='pulse' && <><CultureMomentum /><PulseGrid openStudio={openStudio} openBriefForSignal={openBriefForSignal} /></>}
+    {tab==='trends' && <TrendsGrid openStudio={openStudio} openBriefForSignal={openBriefForSignal} />}
+    {tab==='comps' && <CompetitorsGrid openStudio={openStudio} openBriefForSignal={openBriefForSignal} />}
     {tab==='counter' && <CounterStrikeView openStudio={openStudio} />}
     {tab==='amb' && <AmbassadorsGrid />}
   </>);
@@ -2340,7 +2352,7 @@ function CultureMomentum(){
   </div>);
 }
 
-function PulseGrid({openStudio}){
+function PulseGrid({openStudio,openBriefForSignal}){
   return (<div className="grid grid-2">
     {CULTURAL_PULSE.map(p=>(<div key={p.id} className="card">
       <div className="card-head">
@@ -2353,18 +2365,17 @@ function PulseGrid({openStudio}){
       <div className="card-meta-row">
         <span className="card-dna-chip">{TOP_PERFORMER_DNA.find(d=>d.id===p.dnaMatch)?.name||p.dnaMatch}</span>
         <span className="card-meta-chip">{p.platform}</span>
-        {drovenBy(p.id,"pulse")>0 && <span className="drove-chip">→ <strong>{drovenBy(p.id,"pulse")}</strong>&nbsp;briefs</span>}
+        {drovenBy(p.id,"pulse")>0 && <button className="drove-chip" onClick={()=>openBriefForSignal(p.id,'pulse')} title="Jump to the brief this signal drove">→ <strong>{drovenBy(p.id,"pulse")}</strong>&nbsp;{drovenBy(p.id,"pulse")===1?'brief':'briefs'}</button>}
       </div>
       <Sources list={p.sources}/>
-      <div className="card-actions">
-        <span className="card-meta-chip" style={{fontSize:10}}>{p.id}</span>
+      <div className="card-actions" style={{justifyContent:"flex-end"}}>
         <button className="drop-btn" onClick={openStudio}>↓ Send to Studio</button>
       </div>
     </div>))}
   </div>);
 }
 
-function TrendsGrid({openStudio}){
+function TrendsGrid({openStudio,openBriefForSignal}){
   return (<div className="grid grid-2">
     {TRENDS.map(t=>(<div key={t.id} className="card">
       <div className="card-head">
@@ -2377,18 +2388,17 @@ function TrendsGrid({openStudio}){
       <div className="card-meta-row">
         <span className="card-meta-chip">{t.platform}</span>
         <span className="card-meta-chip">{t.views}</span>
-        {drovenBy(t.id,"trend")>0 && <span className="drove-chip">→ <strong>{drovenBy(t.id,"trend")}</strong>&nbsp;briefs</span>}
+        {drovenBy(t.id,"trend")>0 && <button className="drove-chip" onClick={()=>openBriefForSignal(t.id,'trend')} title="Jump to the brief this trend drove">→ <strong>{drovenBy(t.id,"trend")}</strong>&nbsp;{drovenBy(t.id,"trend")===1?'brief':'briefs'}</button>}
       </div>
       <Sources list={t.sources}/>
-      <div className="card-actions">
-        <span className="card-meta-chip" style={{fontSize:10}}>{t.id}</span>
+      <div className="card-actions" style={{justifyContent:"flex-end"}}>
         <button className="drop-btn" onClick={openStudio}>↓ Send to Studio</button>
       </div>
     </div>))}
   </div>);
 }
 
-function CompetitorsGrid({openStudio}){
+function CompetitorsGrid({openStudio,openBriefForSignal}){
   return (<>
     <div className="lede">
       <div className="lede-col"><div className="lede-label">What happened</div><div className="lede-text serif">{COMP_WEEKLY_POV.happened}</div></div>
@@ -2405,10 +2415,9 @@ function CompetitorsGrid({openStudio}){
         </div>
         <div className="card-detail" style={{marginTop:6}}>{c.status}</div>
         <div className="card-play"><span className="card-play-label">Opportunity</span>{c.opportunity}</div>
-        {drovenBy(c.id,"comp")>0 && <div className="card-meta-row"><span className="drove-chip">→ <strong>{drovenBy(c.id,"comp")}</strong>&nbsp;briefs</span></div>}
+        {drovenBy(c.id,"comp")>0 && <div className="card-meta-row"><button className="drove-chip" onClick={()=>openBriefForSignal(c.id,'comp')} title="Jump to the brief this competitor move drove">→ <strong>{drovenBy(c.id,"comp")}</strong>&nbsp;{drovenBy(c.id,"comp")===1?'brief':'briefs'}</button></div>}
         <Sources list={c.sources}/>
-        <div className="card-actions">
-          <span className="card-meta-chip" style={{fontSize:10}}>{c.id}</span>
+        <div className="card-actions" style={{justifyContent:"flex-end"}}>
           <button className="drop-btn" onClick={openStudio}>↓ Send to Studio</button>
         </div>
       </div>))}
