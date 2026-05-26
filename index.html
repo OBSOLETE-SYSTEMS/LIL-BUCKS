@@ -1857,10 +1857,10 @@ function drovenBy(signalId, signalType){
 
 const ROOT = ReactDOM.createRoot(document.getElementById('root'));
 function App(){
-  const [section,setSection] = useState('howitworks');
+  const [section,setSection] = useState('intel');
   const [intelTab,setIntelTab] = useState('pulse');
   const [welcomeOpen,setWelcomeOpen] = useState(false);
-  const [memoOpen,setMemoOpen] = useState(false);
+  const [memoOpen,setMemoOpen] = useState(true);
   const [howOpen,setHowOpen] = useState(false);
   const [studioOpen,setStudioOpen] = useState(false);
   const [briefOpen,setBriefOpen] = useState(null);
@@ -1873,7 +1873,7 @@ function App(){
   ];
 
   return (<>
-    {memoOpen && <MondayMemoModal onClose={()=>setMemoOpen(false)} onShipIt={()=>{setMemoOpen(false);setSection('briefs');}} />}
+    {memoOpen && <MondayMemoModal onClose={()=>setMemoOpen(false)} onShipIt={()=>{setMemoOpen(false);setSection('intel');}} />}
     {welcomeOpen && <WelcomePopup onClose={()=>setWelcomeOpen(false)} onCTA={()=>{setWelcomeOpen(false);setSection('briefs');}} />}
     {howOpen && <HowItWorksModal onClose={()=>setHowOpen(false)} />}
     {studioOpen && <StudioModal onClose={()=>setStudioOpen(false)} />}
@@ -2002,7 +2002,7 @@ function MondayMemoModal({onClose, onShipIt}){
         </div>
       </div>
       <div className="mmm-footer">
-        <button className="mmm-cta" onClick={onShipIt}>OPEN THIS WEEK'S BRIEFS →</button>
+        <button className="mmm-cta" onClick={onShipIt}>INTO THE INTEL →</button>
       </div>
     </div>
   </div>);
