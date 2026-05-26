@@ -61,6 +61,8 @@ a{color:inherit;text-decoration:none}
 .sb-footer strong{color:#fff;font-weight:700;display:block;margin-bottom:2px}
 .sb-howit{margin-top:10px;width:100%;text-align:left;font-size:11.5px;color:#fff;background:rgba(255,255,255,0.14);padding:9px 12px;border-radius:8px;font-weight:500;letter-spacing:0.01em}
 .sb-howit:hover{background:rgba(255,255,255,0.22)}
+.sb-howit-link{margin-top:6px;background:transparent;border:0;padding:0;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;color:rgba(255,255,255,0.72);font-weight:600;text-transform:lowercase;cursor:pointer;transition:color 0.15s;text-align:left;display:block;width:100%}
+.sb-howit-link:hover{color:#fff}
 
 /* Main */
 .main{padding:34px 44px 80px;max-width:1400px}
@@ -199,9 +201,18 @@ a{color:inherit;text-decoration:none}
 .scene-num{font-family:'JetBrains Mono','Courier New',monospace;font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.06em}
 .scene-time{font-family:'JetBrains Mono','Courier New',monospace;font-size:11px;color:var(--brown);font-weight:600}
 
-.intel-row{display:flex;gap:14px;padding:10px 0;border-bottom:1px solid #F2EBD3;font-size:13px;align-items:flex-start}
+/* WIP banner — used on Ambassadors subtab */
+.wip-banner{display:flex;gap:14px;align-items:center;padding:13px 18px;margin-bottom:18px;background:linear-gradient(135deg,rgba(244,183,62,0.15) 0%,rgba(234,126,154,0.1) 100%);border:1.5px dashed rgba(244,183,62,0.5);border-radius:12px}
+.wip-banner-tag{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.18em;color:#8B6F1F;font-weight:800;text-transform:uppercase;padding:5px 11px;background:rgba(244,183,62,0.32);border-radius:99px;flex-shrink:0;white-space:nowrap}
+.wip-banner-text{font-size:13px;color:var(--cobalt-deep);line-height:1.45;font-weight:500}
+
+.intel-row{display:flex;gap:14px;padding:10px 12px;margin:0 -12px;border-bottom:1px solid rgba(53,133,224,0.18);font-size:13px;align-items:center;border-radius:8px;transition:background 0.12s}
 .intel-row:last-child{border-bottom:0}
-.intel-tag{font-size:10px;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;padding:3px 8px;border-radius:3px;flex-shrink:0;min-width:78px;text-align:center}
+.intel-row-clickable{cursor:pointer}
+.intel-row-clickable:hover{background:rgba(53,133,224,0.06)}
+.intel-row-arrow{margin-left:auto;color:var(--cobalt);font-size:14px;font-weight:700;opacity:0;transition:opacity 0.12s}
+.intel-row-clickable:hover .intel-row-arrow{opacity:1}
+.intel-tag{font-size:10px;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;padding:3px 8px;border-radius:99px;flex-shrink:0;min-width:78px;text-align:center}
 .tag-trend{background:#F4ECD0;color:#8A752B}
 .tag-pulse{background:#F4DAE2;color:#A85575}
 .tag-audience{background:#E0F0D0;color:#5D7E47}
@@ -480,6 +491,120 @@ a{color:inherit;text-decoration:none}
   .rcpt-header{grid-template-columns:1fr}
   .rcpt-list{grid-template-columns:1fr}
   .rcpt-metrics{grid-template-columns:repeat(3,1fr)}
+}
+
+/* PHONE-FRAME SHOT LIST — Willa's-pattern swipeable carousel (REPLACES the old PhonePreview) */
+.psl-wrap{margin-bottom:22px;padding:20px 22px;background:linear-gradient(135deg,var(--butter-light) 0%,#FFF7C9 100%);border:1.5px solid var(--cobalt-light);border-radius:14px}
+.psl-header{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:18px;flex-wrap:wrap}
+.psl-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:var(--cobalt);font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.psl-title{font-family:'Lilita One',serif;font-weight:400;font-size:22px;letter-spacing:0.005em;color:var(--cobalt-deep);line-height:1.1}
+.psl-audio{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid var(--cobalt-light);border-radius:10px;padding:10px 14px;max-width:380px;min-width:240px}
+.psl-audio-icon{font-size:18px;color:var(--magenta-deep);line-height:1.2}
+.psl-audio-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.14em;color:var(--ink-soft);font-weight:700;text-transform:uppercase;margin-bottom:3px}
+.psl-audio-text{font-size:12px;color:var(--cobalt-deep);line-height:1.4;font-weight:500}
+
+.psl-carousel{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;margin:0 -6px;padding-left:6px;padding-right:6px;scrollbar-width:thin;scrollbar-color:var(--cobalt-light) transparent}
+.psl-carousel::-webkit-scrollbar{height:8px}
+.psl-carousel::-webkit-scrollbar-thumb{background:var(--cobalt-light);border-radius:99px}
+
+.psl-phone{flex-shrink:0;width:180px;border-radius:24px;padding:8px 0;display:flex;flex-direction:column;cursor:pointer;border:0;background:#1a1a1a;transition:all 0.18s;aspect-ratio:9/16;position:relative;overflow:hidden}
+.psl-phone-dim{opacity:0.55}
+.psl-phone-dim:hover{opacity:0.85}
+.psl-phone-active{box-shadow:0 8px 24px rgba(15,23,42,0.18);border:3px solid var(--cobalt-deep);padding:5px 0}
+
+/* Pillar themes */
+.psl-theme-fuel.psl-phone-active{background:linear-gradient(160deg,#F4B73E 0%,#E89A2E 100%)}
+.psl-theme-bowl.psl-phone-active{background:linear-gradient(160deg,#7FA86F 0%,#5B8B47 100%)}
+.psl-theme-soil.psl-phone-active{background:linear-gradient(160deg,#9E652E 0%,#6F4720 100%)}
+.psl-theme-crunch.psl-phone-active{background:linear-gradient(160deg,var(--magenta) 0%,var(--coral) 100%)}
+.psl-phone-dim{background:#DCD6C8}
+
+.psl-phone-notch{align-self:center;width:42px;height:4px;background:#334155;border-radius:99px;margin-top:6px}
+.psl-phone-dim .psl-phone-notch{background:#B0AC9F}
+.psl-phone-scene{text-align:center;padding:6px 10px 0;font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:0.16em;font-weight:700;text-transform:uppercase;color:#FACC15}
+.psl-phone-dim .psl-phone-scene{color:#94928A}
+.psl-phone-active .psl-phone-scene{background:rgba(250,204,21,0.16);margin:6px 22px 0;padding:3px 10px;border-radius:99px;display:block}
+.psl-phone-body{flex:1;display:flex;align-items:center;justify-content:center;padding:8px 16px;text-align:center}
+.psl-phone-text{font-family:'Fraunces';font-size:13px;line-height:1.3;font-weight:500;letter-spacing:-0.005em;color:#F8FAFC;text-wrap:balance}
+.psl-phone-dim .psl-phone-text{color:#475569}
+.psl-phone-text-hook{font-family:'Lilita One',serif;font-size:15px;font-weight:400;letter-spacing:0.005em;line-height:1.15}
+.psl-phone-text-endcard{font-style:italic;font-size:12px}
+.psl-phone-bottom{display:flex;justify-content:space-between;align-items:center;padding:6px 14px 10px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.06em;font-weight:600}
+.psl-phone-time{color:#FACC15}
+.psl-phone-counter{color:rgba(248,250,252,0.65)}
+.psl-phone-dim .psl-phone-time{color:#94928A}
+.psl-phone-dim .psl-phone-counter{color:#94928A}
+
+/* PAID MEDIA AMPLIFICATION — Willa's-pattern 3-tier card */
+.amp-block{padding:18px 20px;background:linear-gradient(135deg,rgba(53,133,224,0.04) 0%,rgba(234,126,154,0.04) 100%);border:1.5px solid var(--cobalt-light);border-radius:12px}
+.amp-block-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--cobalt-light)}
+.amp-block-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;color:var(--cobalt-deep);font-weight:800;text-transform:uppercase}
+.amp-agent-stamp{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.06em;color:var(--ink-soft);font-weight:600}
+
+.amp-thesis{padding:0 0 14px 14px;border-left:3px solid var(--magenta);margin-bottom:16px}
+.amp-thesis-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:0.14em;background:var(--magenta);color:#fff;padding:4px 9px;border-radius:4px;margin-bottom:10px;font-weight:800;text-transform:uppercase}
+.amp-thesis-headline{font-family:'Fraunces';font-size:16px;line-height:1.4;color:var(--cobalt-deep);font-weight:500;margin-bottom:7px;letter-spacing:-0.005em}
+.amp-thesis-why{font-size:12.5px;line-height:1.55;color:var(--ink-soft)}
+
+.amp-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--cobalt-light);border:1px solid var(--cobalt-light);border-radius:10px;overflow:hidden;margin-bottom:18px}
+.amp-stat{background:#fff;padding:11px 14px}
+.amp-stat-label{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:0.14em;color:var(--ink-soft);font-weight:700;text-transform:uppercase;margin-bottom:5px}
+.amp-stat-num{font-family:'Lilita One',serif;font-weight:400;font-size:18px;color:var(--cobalt-deep);line-height:1.05;letter-spacing:0.005em}
+.amp-stat-text{font-family:'Fraunces';font-size:13px;line-height:1.3;font-weight:500;font-style:normal}
+.amp-stat-guard{background:#FEF2F2}
+.amp-stat-guard .amp-stat-label{color:#DC2626}
+.amp-stat-guard .amp-stat-num{color:#991B1B;font-size:12px;font-family:'Fraunces'}
+
+.amp-placements-head{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.12em;color:var(--ink-soft);font-weight:600;text-transform:uppercase;margin-bottom:10px}
+.amp-placements{display:flex;flex-direction:column;gap:9px}
+.amp-placement{padding:12px 14px;background:#fff;border:1px solid var(--cobalt-light);border-radius:10px}
+.amp-placement-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+.amp-placement-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.amp-placement-platform{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;font-weight:800}
+.amp-placement-format{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.06em;color:var(--ink-soft);font-weight:600}
+.amp-placement-budget{font-family:'Lilita One',serif;font-size:14px;color:var(--cobalt-deep);margin-left:auto;letter-spacing:0.005em}
+.amp-placement-reach{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--ink-soft);font-weight:600}
+.amp-placement-audience{font-size:11.5px;line-height:1.5;color:var(--cobalt-deep);margin-bottom:5px}
+.amp-placement-note{font-size:11px;line-height:1.5;color:var(--ink-soft);font-style:italic}
+
+/* FOOTAGE INSPO — Willa's collapsible dropdown */
+.footage-section{padding:0}
+.footage-toggle{width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:14px 16px;background:rgba(244,183,62,0.08);border:1.5px solid rgba(244,183,62,0.3);border-radius:10px;cursor:pointer;transition:background 0.15s}
+.footage-toggle:hover{background:rgba(244,183,62,0.14)}
+.footage-toggle-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;background:#FEF3C7;color:#92400E;padding:5px 10px;border-radius:5px;font-weight:800;border:1px solid #FDE68A}
+.footage-toggle-hint{font-size:13px;color:var(--cobalt-deep);text-align:left}
+.footage-toggle-chev{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);font-weight:700;letter-spacing:0.04em}
+
+.footage-grid{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.footage-cat{padding:13px 15px;background:#fff;border:1px solid var(--cobalt-light);border-radius:8px}
+.footage-cat-head{display:flex;gap:8px;align-items:center;margin-bottom:4px}
+.footage-cat-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.footage-cat-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;font-weight:800}
+.footage-cat-hint{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.04em;color:var(--ink-soft);margin-bottom:9px;line-height:1.4}
+.footage-cat-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+.footage-cat-list li{font-size:12.5px;line-height:1.45;color:var(--cobalt-deep)}
+
+/* BRIEF MODAL HEAD — streamlined */
+.brief-chip-row{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-bottom:10px}
+.brief-chip-row .brief-priority{font-size:9px;padding:4px 10px}
+.brief-chip-row .brief-platform{font-size:10px;color:var(--cobalt-deep);font-weight:700;letter-spacing:0.08em}
+.brief-chip-row .brief-flavor{font-size:10px;padding:3px 9px}
+.brief-chip-row .card-dna-chip{font-size:9.5px;padding:3px 9px}
+.brief-timing-chip{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.08em;color:var(--magenta-deep);background:rgba(234,126,154,0.14);padding:3px 9px;border-radius:99px;font-weight:700;text-transform:uppercase}
+
+/* PRODUCTION NOTES — streamlined visual + muse + timing strip */
+.prod-notes{display:flex;flex-direction:column;gap:11px}
+.prod-note{padding:10px 14px;background:rgba(53,133,224,0.04);border-radius:8px;border-left:2px solid var(--cobalt-light)}
+.prod-note-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.14em;color:var(--cobalt);font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.prod-note-text{font-size:13px;line-height:1.5;color:var(--cobalt-deep)}
+
+.modal-cta-row{margin-top:18px;padding-top:18px;border-top:1px solid var(--cobalt-light);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.modal-cta-text{font-size:11.5px;color:var(--ink-soft)}
+
+@media (max-width:760px){
+  .amp-stats{grid-template-columns:1fr 1fr}
+  .footage-grid{grid-template-columns:1fr}
+  .psl-phone{width:160px}
 }
 
 /* PHONE PREVIEW — phone-frame mockup at top of brief detail modal */
@@ -807,7 +932,7 @@ a{color:inherit;text-decoration:none}
 
 /* Ticker */
 .ticker{background:var(--cobalt-deep);color:#fff;padding:9px 0;font-size:12px;font-weight:500;overflow:hidden;position:relative;border-radius:99px;margin-bottom:24px}
-.ticker-track{display:flex;gap:46px;animation:scroll 60s linear infinite;white-space:nowrap}
+.ticker-track{display:flex;gap:46px;animation:scroll 24s linear infinite;white-space:nowrap}
 .ticker-item{display:inline-flex;align-items:center;gap:8px}
 .ticker-dot{width:6px;height:6px;border-radius:50%;background:var(--magenta);box-shadow:0 0 6px rgba(234,126,154,0.8)}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -825,9 +950,8 @@ const { useState, useEffect, useRef, useMemo } = React;
 const BRAND = {
   name: "Lil Bucks",
   tagline: "America's Buckwheat Brand™",
-  weekRange: "May 18–24, 2026",
-  refreshed: "May 20, 2026",
-  issue: "Vol. 01 · Issue 01"
+  weekRange: "May 25–31, 2026",
+  refreshed: "May 26, 2026"
 };
 
 const PILLAR_COLOR = {
@@ -1224,6 +1348,153 @@ const CAPTION_VARIANTS = {
   }
 };
 
+// ===== FOOTAGE INSPO — per-brief source bank (Willa's pattern) =====
+const FOOTAGE_INSPO = {
+  "MAY18-IG-R1": {
+    shoot: [
+      "Emily at her kitchen counter, soft morning window light, Original Clusterbucks pouch + wooden bowl half-filled",
+      "Cluster-by-cluster pour into wooden bowl, slow-mo at 240fps for the crunch shot",
+      "Hands-only sequence — pouch open, cluster scoop, sprinkle onto bowl"
+    ],
+    found: [
+      "Stitch/duet: any creator response to the Purely Elizabeth Target launch May 12 — let their footage be the 'context' frame, you respond in frame 2",
+      "Pull a 3-sec clip from Emily's existing Whole Foods Midwest sampling-tour archive (Feb 2024) as the 'we've been here' B-roll cutaway"
+    ],
+    memes: [
+      "Bravo/RHOSLC 'walked so X could run' meme format — works for the protein-wave-vs-source-story counter-position",
+      "Lo-fi 'one ingredient' text-overlay format trending on FoodTok (May 2026 week)"
+    ],
+    archive: [
+      "Lil Bucks's own factory-floor BTS footage (the cluster-drop-into-bin clip from March)",
+      "A-Frame Farm 4K stock from the Luke + Ali shoot in 2024 — buckwheat in bloom"
+    ]
+  },
+  "MAY18-TT-1": {
+    shoot: [
+      "Hot Honey Clusterbucks pouch + small bowl + drizzle of hot honey on top — vertical phone shot, kitchen counter",
+      "Texture close-up: Clusterbucks on greek yogurt with hot honey ribbons, 9:16 macro shot"
+    ],
+    found: [
+      "Snak Club × Mike's Hot Honey May 13 press shot — use as the 'context' frame the brief responds to",
+      "Pull TikTok 'cottage cheese bowl + hot honey' viral format — Lil Bucks slots in as the crunch"
+    ],
+    memes: [
+      "TikTok 'we have been here' format with the cluster-pour as the punchline",
+      "Lo-fi indie audio overlay — 'bummin out - choppy.wav' tier"
+    ],
+    archive: [
+      "Existing Hot Honey Clusterbucks product photography (Q1 2025 shoot)",
+      "Whole Foods superfood aisle B-roll — the savory-meets-hot-honey shelf-spotted angle"
+    ]
+  },
+  "MAY18-IG-R2": {
+    shoot: [
+      "Luke + Ali at A-Frame Farm — buckwheat field in bloom, soft golden-hour light",
+      "Hand-held seed scoop from a sack — sound of seeds falling on wood",
+      "Wide shot of the cover-crop rotation field for the climate-positive callout"
+    ],
+    found: [
+      "Civil Eats July 2025 buckwheat-as-climate-crop article — quote-pull as a text-overlay slide",
+      "Practical Farmers of Iowa A-Frame profile (Jan 2025) — license the b-roll for the founder-honest story arc"
+    ],
+    memes: [
+      "Bob Ross 'happy little accidents' before/after motivational format — soil before regen / soil after regen",
+      "Late Mother's Day storytelling format — 'the women who taught me the dirt mattered'"
+    ],
+    archive: [
+      "Lil Bucks's A-Frame visit footage from Aug 2025 — Luke + Ali tour clips",
+      "ROC certification ceremony photos from Q4 2025 (if any)"
+    ]
+  },
+  "MAY18-IG-R4": {
+    shoot: [
+      "Side-by-side soil comparison photo: depleted ag soil left, healthy buckwheat-field soil right",
+      "Luke + Ali in the field, holding a handful of seed and a handful of soil",
+      "Buckwheat-in-bloom hero shot for the end card"
+    ],
+    found: [
+      "Kiss the Ground farm-map content — they're scaling 200 → 1,000 farms, A-Frame is exactly the kind of story they catalog",
+      "Stitch potential: NRCS soil-health video clips from USDA YouTube (public domain)"
+    ],
+    memes: [
+      "Before/after split-screen format with Bob Ross audio — trending pattern in regen content May 2026",
+      "'POV: you're the soil after five years of regen' first-person earth-cam shot"
+    ],
+    archive: [
+      "A-Frame Farm aerial drone footage from 2025 harvest",
+      "ROC certification paperwork close-ups for the proof slide"
+    ]
+  }
+};
+
+// ===== AMPLIFY PLANS — per-brief paid media plan (Willa's pattern) =====
+const AMPLIFY_PLANS = {
+  "MAY18-IG-R1": {
+    headline: "Founder-led Reel + protein-wave counter-position — ride the PE launch news cycle with source-story posture, not number-chase",
+    totalBudget: 320,
+    testWindow: "5 days (Tue May 26 → Sat May 30)",
+    objective: "Saves + Profile Visits",
+    guardrail: "Auto-pause if CPM > $11 or sentiment drops below 0.85",
+    why: "Purely Elizabeth's protein launch is the dominant adjacent-set news cycle. Emily's 'we've been here since 2017' counter-position has high earned-pickup potential — paid amplification should target the audience already engaging with PE without naming them. Source-story messaging outperformed protein-spec messaging 2.3x in last quarter's tests.",
+    placements: [
+      { platform:"Meta", format:"IG Reels Ad + FB Reels", budget:200,
+        audience:"Interest: Purely Elizabeth, BFY granola, regen-ag, organic snacks · Age 28–48 · Whole Foods + Sprouts shopper behavior · Engaged with sprouted/clean-label content (30 days)",
+        lookalike:"Klaviyo Lil Bucks purchaser LAL + Once Upon a Farm engaged audience LAL",
+        expectedReach:"55K–95K video views",
+        note:"Optimize for Saves. The 'we've been here' founder-on-counter shot is the share engine — make sure the first 1.5s shows Emily's face + the pouch."
+      },
+      { platform:"TikTok", format:"Spark Ad (boost the organic post)", budget:120,
+        audience:"Interest: foodtok, FoodTok, regen-ag, BFY snacks · Age 24–44 · Engaged with cottage-cheese-bowl + sprouted-grain content",
+        lookalike:"TikTok pixel LAL from the website",
+        expectedReach:"30K–55K video views",
+        note:"Boost only if organic save-rate > 1.2% in first 18h. Auto-kill if comments skew negative (5+ critical comments in first 4h)."
+      }
+    ]
+  },
+  "MAY18-TT-1": {
+    headline: "Hot Honey ride — Snak Club × Mike's just put hot honey in salty snacks. Lil Bucks shelf-spotted reel claims the existing crunchy lane.",
+    totalBudget: 180,
+    testWindow: "4 days (Wed May 27 → Sat May 30)",
+    objective: "Saves + Click-through to Hot Honey PDP",
+    guardrail: "Auto-pause if CPM > $9 — hot honey audience CPMs have been compressing all spring",
+    why: "Hot honey is mid-wave on the snacking aisle. The Snak Club × Mike's news cycle is THIS WEEK — we already have the product on shelf. Speed-to-amplification matters more than budget here. Small spend, fast attribution.",
+    placements: [
+      { platform:"TikTok", format:"In-Feed Ad", budget:120,
+        audience:"Interest: hot honey, swicy, Mike's Hot Honey, BFY snacks, cottage cheese bowl · Age 22–42 · TikTok food creators engaged",
+        lookalike:"Hot Honey Clusterbucks PDP visitor LAL",
+        expectedReach:"35K–60K video views",
+        note:"Lean the algo with the texture-close-up + drizzle shot. Crunch-asmr is the share engine on hot honey content."
+      },
+      { platform:"Meta", format:"IG Reels Ad", budget:60,
+        audience:"Interest: hot honey, cottage cheese, snacking · Age 24–44",
+        expectedReach:"15K–28K video views",
+        note:"Cross-platform layer. Lower spend, higher CTR target."
+      }
+    ]
+  },
+  "MAY18-IG-R2": {
+    headline: "Soil-story Reel for late Mother's Day window + Kiss the Ground farm-map discovery loop",
+    totalBudget: 220,
+    testWindow: "5 days (Thu May 28 → Mon Jun 1)",
+    objective: "Profile Visits + Saves (long-tail discovery)",
+    guardrail: "Lower performance bar — soil-story content compounds 60–90 days out, not first-week",
+    why: "Mother's Day window stayed open through May 24 + Kiss the Ground's farm-map expansion makes this prime time. Soil-story Reels build long-tail brand depth, not immediate conversion. Frame paid amplification for ambient discovery, not direct response. Bonus: A-Frame Farm content also pumps Seven Sundays — guardrail framing is critical.",
+    placements: [
+      { platform:"Meta", format:"IG Reels Ad", budget:160,
+        audience:"Interest: regenerative agriculture, Kiss the Ground, Patagonia Provisions, organic farming, named-farmer brands · Age 30–55 · Educated-audience markers",
+        lookalike:"Civil Eats subscriber LAL + Once Upon a Farm engaged LAL",
+        expectedReach:"35K–70K video views",
+        note:"Lead the asset with Luke + Ali's faces + the buckwheat field, NOT the pouch. The relationship IS the moat."
+      },
+      { platform:"Pinterest", format:"Idea Pin promoted", budget:60,
+        audience:"Interest: regenerative ag, soil health, farm-to-table, Patagonia · Pinterest food + sustainability boards",
+        expectedReach:"20K–35K impressions",
+        note:"Pinterest is where soil-story content has the longest half-life. Set as 90-day campaign for ambient discovery."
+      }
+    ]
+  }
+};
+
 const BRIEF_LINKS = {
   "MAY18-IG-R1":{trends:["T-1","T-8"],pulse:[],comps:["C-1","C-2"]},
   "MAY18-TT-1":{trends:["T-5"],pulse:["CP-4"],comps:[]},
@@ -1306,7 +1577,7 @@ function drovenBy(signalId, signalType){
 
 const ROOT = ReactDOM.createRoot(document.getElementById('root'));
 function App(){
-  const [section,setSection] = useState('howitworks');
+  const [section,setSection] = useState('intel');
   const [intelTab,setIntelTab] = useState('pulse');
   const [welcomeOpen,setWelcomeOpen] = useState(false);
   const [memoOpen,setMemoOpen] = useState(true);
@@ -1315,10 +1586,8 @@ function App(){
   const [briefOpen,setBriefOpen] = useState(null);
 
   const navItems = [
-    {id:'howitworks',label:'How It Works',icon:'◉',active:true},
-    {id:'intel',label:'Intelligence Brief',icon:'◆',active:true},
-    {id:'briefs',label:'Content Briefs',icon:'■',active:true},
-    {id:'receipts',label:'Receipts',icon:'⚡',active:true},
+    {id:'intel',label:'Intelligence Brief',icon:'🔭',active:true},
+    {id:'briefs',label:'Content Briefs',icon:'📝',active:true},
     {id:'studio',label:'Studio',icon:'✷',active:true,onClick:()=>setStudioOpen(true)}
   ];
 
@@ -1327,15 +1596,18 @@ function App(){
     {welcomeOpen && <WelcomePopup onClose={()=>setWelcomeOpen(false)} onCTA={()=>{setWelcomeOpen(false);setSection('briefs');}} />}
     {howOpen && <HowItWorksModal onClose={()=>setHowOpen(false)} />}
     {studioOpen && <StudioModal onClose={()=>setStudioOpen(false)} />}
-    {briefOpen && <BriefDetailModal brief={briefOpen} onClose={()=>setBriefOpen(null)} onDrop={()=>setStudioOpen(true)} />}
+    {briefOpen && <BriefDetailModal brief={briefOpen} onClose={()=>setBriefOpen(null)} onDrop={()=>setStudioOpen(true)} onIntelNavigate={(tab)=>{setBriefOpen(null);setSection('intel');setIntelTab(tab);}} />}
 
     <div className="app">
       <aside className="sb">
         <div className="sb-brand">
           <div className="sb-logo">LIL<br/>BUCKS</div>
-          <div>
+          <div style={{flex:1,minWidth:0}}>
             <div className="sb-brand-name">Lil Bucks</div>
             <div className="sb-brand-sub">Engine · v0.1</div>
+            <button className="sb-howit-link" onClick={()=>setSection('howitworks')}>
+              {section==='howitworks' ? '◉' : '◌'} how it works
+            </button>
           </div>
         </div>
         <div className="sb-section-label">This Week</div>
@@ -1357,8 +1629,8 @@ function App(){
       <main className="main">
         <header className="page-head">
           <div>
-            <div className="eyebrow">{BRAND.issue} · {BRAND.weekRange}</div>
-            <h1 className="serif">{section==='howitworks'?'How It Works':section==='intel'?'Intelligence Brief':section==='briefs'?'Content Briefs':section==='receipts'?'Receipts':''}</h1>
+            <div className="eyebrow">{BRAND.weekRange}</div>
+            <h1 className="serif">{section==='howitworks'?'How It Works':section==='intel'?'Intelligence Brief':section==='briefs'?'Content Briefs':''}</h1>
           </div>
           <div className="meta">
             <div className="date-pill">{BRAND.weekRange}</div>
@@ -1375,7 +1647,6 @@ function App(){
         {section==='howitworks' && <HowItWorksTab />}
         {section==='intel' && <IntelligenceBrief tab={intelTab} setTab={setIntelTab} openStudio={()=>setStudioOpen(true)} />}
         {section==='briefs' && <ContentBriefs onOpen={setBriefOpen} openStudio={()=>setStudioOpen(true)} />}
-        {section==='receipts' && <ReceiptsView openStudio={()=>setStudioOpen(true)} />}
       </main>
     </div>
   </>);
@@ -1482,7 +1753,7 @@ function WelcomePopup({onClose,onCTA}){
     <div className="welcome" onClick={e=>e.stopPropagation()}>
       <div className="welcome-left">
         <button className="welcome-close" onClick={onClose}>×</button>
-        <div className="welcome-issue">{BRAND.issue}</div>
+        <div className="welcome-issue">{BRAND.weekRange}</div>
         <div className="welcome-date serif">{BRAND.weekRange}</div>
         <div className="welcome-thesis">{WELCOME_THESIS}</div>
         <div className="welcome-emily">Built for Emily.<br/>The engine ran over the weekend so your Monday starts with the playbook, not the research.</div>
@@ -1603,7 +1874,12 @@ function CompetitorsGrid({openStudio}){
 }
 
 function AmbassadorsGrid(){
-  return (<div className="grid grid-2">
+  return (<>
+    <div className="wip-banner">
+      <span className="wip-banner-tag">WORK IN PROGRESS</span>
+      <span className="wip-banner-text">Ambassador discovery + outreach scaffolding lands fully in OPERATE. What's here = the seed list to validate with Emily on the diagnostic call.</span>
+    </div>
+    <div className="grid grid-2">
     {AMBASSADORS.map(a=>(<div key={a.handle} className="amb-card">
       <div className="amb-avatar">{a.name.split(" ").map(p=>p[0]).slice(0,2).join("")}</div>
       <div style={{flex:1}}>
@@ -1614,7 +1890,8 @@ function AmbassadorsGrid(){
       </div>
       <div className={"amb-status status-"+a.status}>{a.status}</div>
     </div>))}
-  </div>);
+    </div>
+  </>);
 }
 
 function ContentBriefs({onOpen,openStudio}){
@@ -1645,7 +1922,6 @@ function ContentBriefs({onOpen,openStudio}){
             <div className="brief-concept serif">{b.concept}</div>
             <div className="brief-bottom">
               <span className="brief-time">{b.timing}</span>
-              <span className="brief-id">{b.id}</span>
             </div>
           </div>
         ))}
@@ -1654,77 +1930,80 @@ function ContentBriefs({onOpen,openStudio}){
   </>);
 }
 
-function PhonePreview({brief}){
-  const [frame, setFrame] = useState(0);
+// PhoneShotList — Willa's-pattern swipeable phone-frame shot list (replaces the old PhonePreview)
+function PhoneShotList({brief}){
+  const [activeFrame, setActiveFrame] = useState(0);
   const recommendedHook = brief.hooks?.find(h => h.recommended)?.text || brief.hooks?.[0]?.text || brief.concept;
-  const endcard = brief.benefitShorthand || "Xx Emily";
+  const endcard = brief.benefitShorthand;
 
-  // Build 3 keyframes from the script if available, else fall back to hook + visual + endcard
-  const keyframes = brief.script && brief.script.length >= 2 ? [
-    { tag: brief.script[0].time, text: brief.script[0].action.split(/[\.!?]/)[0] },
-    { tag: brief.script[Math.min(1, brief.script.length-1)].time, text: recommendedHook, isHook: true },
-    { tag: brief.script[brief.script.length-1].time, text: endcard, isEndcard: true }
-  ] : [
-    { tag: "0:00", text: brief.visual?.split(/[\.!?]/)[0] || brief.concept },
-    { tag: "0:08", text: recommendedHook, isHook: true },
-    { tag: "0:22", text: endcard, isEndcard: true }
+  // Build full scene list. If brief has a script, use that. Otherwise synthesize 3 frames.
+  const scenes = brief.script && brief.script.length > 0 ? brief.script.map((s, i) => ({
+    scene: s.scene ? `Scene ${s.scene}` : `Frame ${i+1}`,
+    time: s.time || `0:0${i*4}`,
+    action: s.action || brief.concept,
+    isHook: i === 1,
+    isEndcard: i === brief.script.length - 1
+  })) : [
+    { scene: "Frame 1", time: "0:00–0:04", action: brief.visual?.split(/[\.!?]/)[0]?.trim() || brief.concept, isHook: false },
+    { scene: "Frame 2", time: "0:04–0:12", action: recommendedHook, isHook: true },
+    { scene: "Frame 3", time: "0:12–0:22", action: endcard || `${brief.flavor} — Xx Emily`, isEndcard: true }
   ];
 
   const pillarTheme = brief.pillar === "FUEL" ? "fuel" : brief.pillar === "THE BOWL" ? "bowl" : brief.pillar === "SOIL" ? "soil" : "crunch";
 
-  return (<div className="phone-preview-wrap">
-    <div className="phone-preview-meta">
-      <div className="phone-preview-eyebrow">// PHONE PREVIEW</div>
-      <div className="phone-preview-title">how this looks on {brief.platform.toLowerCase().includes("tiktok") ? "TikTok" : brief.platform.toLowerCase().includes("carousel") ? "IG" : "IG Reel"}</div>
-      <div className="phone-preview-sub">3 keyframes pulled from the brief · tap dots to advance · {brief.duration || "~22s"}</div>
-      <div className="phone-preview-audio">
-        <span className="phone-audio-icon">♪</span>
-        <span className="phone-audio-text">{brief.audio || "static format · no audio"}</span>
+  return (<div className="psl-wrap">
+    <div className="psl-header">
+      <div>
+        <div className="psl-eyebrow">// SHOT LIST · {brief.duration || "video"}</div>
+        <div className="psl-title">{scenes.length} {scenes.length === 1 ? 'frame' : 'frames'} · {brief.platform.toLowerCase().includes("tiktok") ? "TikTok" : brief.platform.toLowerCase().includes("carousel") ? "IG Carousel" : "IG Reel"}</div>
       </div>
-    </div>
-    <div className={"phone-frame phone-theme-"+pillarTheme}>
-      <div className="phone-notch"></div>
-      <div className="phone-screen">
-        <div className="phone-status">
-          <span>9:41</span>
-          <span className="phone-status-right">📶 100%</span>
-        </div>
-        <div className="phone-keyframe">
-          <div className="phone-keyframe-tag">{keyframes[frame].tag}</div>
-          <div className={"phone-keyframe-text" + (keyframes[frame].isHook ? " phone-keyframe-hook" : "") + (keyframes[frame].isEndcard ? " phone-keyframe-endcard" : "")}>
-            {keyframes[frame].text}
+      {brief.audio && (
+        <div className="psl-audio">
+          <span className="psl-audio-icon">♪</span>
+          <div>
+            <div className="psl-audio-label">audio reference</div>
+            <div className="psl-audio-text">{brief.audio}</div>
           </div>
-          {keyframes[frame].isEndcard && (
-            <div className="phone-keyframe-stinger">{brief.flavor} · {brief.pillar}</div>
-          )}
         </div>
-        <div className="phone-overlay-bottom">
-          <div className="phone-handle">@lilbucksworld</div>
-          <div className="phone-caption-preview">{brief.concept}</div>
-        </div>
-        <div className="phone-dots">
-          {keyframes.map((_, i) => (
-            <button key={i} className={"phone-dot"+(i===frame?" active":"")} onClick={()=>setFrame(i)} aria-label={"frame "+(i+1)}></button>
-          ))}
-        </div>
-      </div>
+      )}
+    </div>
+
+    <div className="psl-carousel">
+      {scenes.map((s, k) => {
+        const active = activeFrame === k;
+        return (<button key={k} className={"psl-phone"+(active?" psl-phone-active":" psl-phone-dim")+" psl-theme-"+pillarTheme} onClick={()=>setActiveFrame(k)}>
+          <div className="psl-phone-notch"></div>
+          <div className="psl-phone-scene">{s.scene}</div>
+          <div className="psl-phone-body">
+            <div className={"psl-phone-text"+(s.isHook?" psl-phone-text-hook":"")+(s.isEndcard?" psl-phone-text-endcard":"")}>{s.action}</div>
+          </div>
+          <div className="psl-phone-bottom">
+            <span className="psl-phone-time">{s.time}</span>
+            <span className="psl-phone-counter">{k+1}/{scenes.length}</span>
+          </div>
+        </button>);
+      })}
     </div>
   </div>);
 }
 
-function BriefDetailModal({brief,onClose,onDrop}){
+function BriefDetailModal({brief,onClose,onDrop,onIntelNavigate}){
   const variants = CAPTION_VARIANTS[brief.id]||{};
   const links = BRIEF_LINKS[brief.id]||{trends:[],pulse:[],comps:[]};
+  const footage = FOOTAGE_INSPO[brief.id];
+  const ampPlan = AMPLIFY_PLANS[brief.id];
+  const [showFootage, setShowFootage] = useState(false);
+
   return (<div className="modal-bg" onClick={onClose}>
     <div className="modal" onClick={e=>e.stopPropagation()}>
       <div className="modal-head">
         <div>
-          <div style={{display:"flex",gap:8,alignItems:"center",marginBottom:8}}>
+          <div className="brief-chip-row">
             <span className={"brief-priority priority-"+(brief.priority==="BIG SWING"?"big":brief.priority==="HIGH"?"high":"standard")}>{brief.priority}</span>
-            <span className="brief-platform" style={{fontSize:11}}>{brief.platform}</span>
+            <span className="brief-platform">{brief.platform}</span>
             <span className="brief-flavor">{brief.flavor}</span>
-            <span className="card-dna-chip" style={{fontSize:10}}>{TOP_PERFORMER_DNA.find(d=>d.id===brief.dna)?.name||brief.dna}</span>
-            <span className="brief-id">{brief.id}</span>
+            <span className="card-dna-chip">{TOP_PERFORMER_DNA.find(d=>d.id===brief.dna)?.name||brief.dna}</span>
+            {brief.timing && <span className="brief-timing-chip">{brief.timing}</span>}
           </div>
           <h2 className="serif">{brief.concept}</h2>
         </div>
@@ -1732,16 +2011,19 @@ function BriefDetailModal({brief,onClose,onDrop}){
       </div>
       <div className="modal-body">
 
-        <PhonePreview brief={brief} />
+        {/* PHONE-FRAME SHOT LIST — Willa's pattern. Replaces text bullets + sits ABOVE captions per Alex's note. */}
+        <PhoneShotList brief={brief} />
 
+        {/* INTEL — compact + clickable back to the source card */}
         <div className="modal-section">
           <div className="modal-section-label">Intel that drove this</div>
-          {links.trends.map(id=>{const t=TRENDS.find(x=>x.id===id); if(!t) return null; return <div key={id} className="intel-row"><span className="intel-tag tag-trend">Trend</span><span><strong>{t.trend}</strong> <span style={{color:"var(--ink-soft)"}}>({id})</span></span></div>;})}
-          {links.pulse.map(id=>{const t=CULTURAL_PULSE.find(x=>x.id===id); if(!t) return null; return <div key={id} className="intel-row"><span className="intel-tag tag-pulse">Pulse</span><span><strong>{t.hook}</strong> <span style={{color:"var(--ink-soft)"}}>({id})</span></span></div>;})}
-          {links.comps.map(id=>{const t=COMPETITORS.find(x=>x.id===id); if(!t) return null; return <div key={id} className="intel-row"><span className="intel-tag tag-competitor">Comp</span><span><strong>{t.name}</strong> · {t.status.slice(0,90)}…</span></div>;})}
+          {links.trends.map(id=>{const t=TRENDS.find(x=>x.id===id); if(!t) return null; return <div key={id} className="intel-row intel-row-clickable" onClick={()=>onIntelNavigate&&onIntelNavigate('trends')}><span className="intel-tag tag-trend">Trend</span><span><strong>{t.trend}</strong></span><span className="intel-row-arrow">↗</span></div>;})}
+          {links.pulse.map(id=>{const t=CULTURAL_PULSE.find(x=>x.id===id); if(!t) return null; return <div key={id} className="intel-row intel-row-clickable" onClick={()=>onIntelNavigate&&onIntelNavigate('pulse')}><span className="intel-tag tag-pulse">Pulse</span><span><strong>{t.hook}</strong></span><span className="intel-row-arrow">↗</span></div>;})}
+          {links.comps.map(id=>{const t=COMPETITORS.find(x=>x.id===id); if(!t) return null; return <div key={id} className="intel-row intel-row-clickable" onClick={()=>onIntelNavigate&&onIntelNavigate('comps')}><span className="intel-tag tag-competitor">Comp</span><span><strong>{t.name}</strong> · {t.status.slice(0,90)}…</span><span className="intel-row-arrow">↗</span></div>;})}
           {(!links.trends.length && !links.pulse.length && !links.comps.length) && <div className="intel-row"><span className="intel-tag tag-audience">Internal</span><span>Founder-led brief — no external trigger required.</span></div>}
         </div>
 
+        {/* ALT HOOKS — compact */}
         <div className="modal-section">
           <div className="modal-section-label">Alt hooks (3 options)</div>
           {brief.hooks.map((h,i)=>(<div key={i} className={"hook-row"+(h.recommended?" hook-rec":"")}>
@@ -1750,6 +2032,7 @@ function BriefDetailModal({brief,onClose,onDrop}){
           </div>))}
         </div>
 
+        {/* CAPTIONS · 3 variants */}
         <div className="modal-section">
           <div className="modal-section-label">Captions · 3 variants</div>
           {["direct","warm","punchy"].map(k=>variants[k]?(<div key={k}>
@@ -1761,32 +2044,112 @@ function BriefDetailModal({brief,onClose,onDrop}){
           </div>):null)}
         </div>
 
-        {brief.script && <div className="modal-section">
-          <div className="modal-section-label">Shot list · {brief.duration}</div>
-          {brief.script.map((s,i)=>(<div key={i} className="scene-row"><span className="scene-num">Scene {s.scene}</span><span className="scene-time">{s.time}</span><span>{s.action}</span></div>))}
-        </div>}
+        {/* PAID MEDIA AMPLIFICATION — Willa's pattern */}
+        {ampPlan && <AmplifyBlock plan={ampPlan} />}
 
-        <div className="modal-grid-2">
-          <div className="modal-section">
-            <div className="modal-section-label">Visual direction</div>
-            <div style={{fontSize:13.5,lineHeight:1.6}}>{brief.visual}</div>
+        {/* FOOTAGE INSPO — collapsible Willa's pattern */}
+        {footage && (
+          <div className="modal-section footage-section">
+            <button className="footage-toggle" onClick={()=>setShowFootage(s=>!s)}>
+              <span className="footage-toggle-tag">FOOTAGE INSPO</span>
+              <span className="footage-toggle-hint">Where to source every shot — original, found, meme, archive</span>
+              <span className="footage-toggle-chev">{showFootage ? "▲ HIDE" : "▼ SHOW"}</span>
+            </button>
+            {showFootage && (
+              <div className="footage-grid">
+                {[
+                  {key:"shoot",   label:"SHOOT THIS",            hint:"Original footage to capture",                color:"#7AB05D"},
+                  {key:"found",   label:"FOUND / STITCH",        hint:"Existing content to pull from",              color:"#3585E0"},
+                  {key:"memes",   label:"GIF / MEME REFS",       hint:"Reaction shots + viral formats",             color:"#EA7E9A"},
+                  {key:"archive", label:"ARCHIVE / NOSTALGIC",   hint:"Vintage / b-roll for texture",               color:"#9E652E"}
+                ].map(cat => {
+                  const items = footage[cat.key];
+                  if (!items || items.length === 0) return null;
+                  return (<div key={cat.key} className="footage-cat">
+                    <div className="footage-cat-head">
+                      <span className="footage-cat-dot" style={{background:cat.color}}></span>
+                      <span className="footage-cat-label" style={{color:cat.color}}>{cat.label}</span>
+                    </div>
+                    <div className="footage-cat-hint">{cat.hint}</div>
+                    <ul className="footage-cat-list">
+                      {items.map((it,i) => <li key={i}>· {it}</li>)}
+                    </ul>
+                  </div>);
+                })}
+              </div>
+            )}
           </div>
-          <div className="modal-section">
-            <div className="modal-section-label">Audio + music</div>
-            <div style={{fontSize:13.5,lineHeight:1.6}}>{brief.audio||<span style={{color:"var(--ink-soft)"}}>Static format — no audio</span>}</div>
-            {brief.benefitShorthand && <div style={{marginTop:14}}><div className="modal-row-label">End-card stinger</div><div style={{fontSize:13.5,fontStyle:"italic",color:"var(--ink)"}}>{brief.benefitShorthand}</div></div>}
-            {brief.muse && <div style={{marginTop:14}}><div className="modal-row-label">Muse posture (backend)</div><div style={{fontSize:13.5}}>{brief.muse}</div></div>}
-            {brief.timing && <div style={{marginTop:14}}><div className="modal-row-label">Posting window</div><div style={{fontSize:13.5,fontWeight:600}}>{brief.timing}</div></div>}
+        )}
+
+        {/* VISUAL + MUSE + TIMING — compact strip (less dense than the old grid) */}
+        <div className="modal-section">
+          <div className="modal-section-label">Production notes</div>
+          <div className="prod-notes">
+            <div className="prod-note">
+              <div className="prod-note-label">Visual direction</div>
+              <div className="prod-note-text">{brief.visual}</div>
+            </div>
+            {brief.benefitShorthand && <div className="prod-note">
+              <div className="prod-note-label">End-card stinger</div>
+              <div className="prod-note-text" style={{fontStyle:"italic"}}>{brief.benefitShorthand}</div>
+            </div>}
+            {brief.muse && <div className="prod-note">
+              <div className="prod-note-label">Muse posture (backend)</div>
+              <div className="prod-note-text">{brief.muse}</div>
+            </div>}
           </div>
         </div>
 
         <CrunchBunchPanel brief={brief} />
 
-        <div style={{marginTop:18,paddingTop:18,borderTop:"1px solid var(--cobalt-light)",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-          <span style={{fontSize:11.5,color:"var(--ink-soft)"}}>Want to riff this brief? Send it to the Studio.</span>
+        <div className="modal-cta-row">
+          <span className="modal-cta-text">Want to riff this brief? Send it to the Studio.</span>
           <button className="drop-btn" onClick={onDrop}>↓ Send to Studio</button>
         </div>
       </div>
+    </div>
+  </div>);
+}
+
+// AmplifyBlock — Willa's-pattern paid media amplification card
+function AmplifyBlock({plan}){
+  const platformColors = {Meta:"#3585E0", TikTok:"#1A3A6E", Pinterest:"#DC2626"};
+  const totalPlacement = plan.placements.reduce((s,p)=>s+p.budget,0);
+
+  return (<div className="modal-section amp-block">
+    <div className="amp-block-head">
+      <span className="amp-block-eyebrow">⚡ AMPLIFY</span>
+      <span className="amp-agent-stamp">Paid Media Planner · auto-generated</span>
+    </div>
+    <div className="amp-thesis">
+      <span className="amp-thesis-tag">◆ PAID MEDIA PLANNER</span>
+      <div className="amp-thesis-headline">{plan.headline}</div>
+      <div className="amp-thesis-why">{plan.why}</div>
+    </div>
+    <div className="amp-stats">
+      <div className="amp-stat"><div className="amp-stat-label">BUDGET</div><div className="amp-stat-num">${plan.totalBudget}</div></div>
+      <div className="amp-stat"><div className="amp-stat-label">TEST WINDOW</div><div className="amp-stat-num amp-stat-text">{plan.testWindow}</div></div>
+      <div className="amp-stat"><div className="amp-stat-label">OBJECTIVE</div><div className="amp-stat-num amp-stat-text">{plan.objective}</div></div>
+      <div className="amp-stat amp-stat-guard"><div className="amp-stat-label">⚠ GUARDRAIL</div><div className="amp-stat-num amp-stat-text">{plan.guardrail}</div></div>
+    </div>
+    <div className="amp-placements-head">
+      <span>PLACEMENTS · {plan.placements.length}</span>
+      <span>Allocated: ${totalPlacement} / ${plan.totalBudget}</span>
+    </div>
+    <div className="amp-placements">
+      {plan.placements.map((p,i)=>(
+        <div key={i} className="amp-placement">
+          <div className="amp-placement-head">
+            <span className="amp-placement-dot" style={{background:platformColors[p.platform]||"#3585E0"}}></span>
+            <span className="amp-placement-platform" style={{color:platformColors[p.platform]||"#3585E0"}}>{p.platform.toUpperCase()}</span>
+            <span className="amp-placement-format">· {p.format}</span>
+            <span className="amp-placement-budget">${p.budget}</span>
+            <span className="amp-placement-reach">{p.expectedReach}</span>
+          </div>
+          <div className="amp-placement-audience">{p.audience}{p.lookalike ? ` · ${p.lookalike}` : ""}</div>
+          {p.note && <div className="amp-placement-note">{p.note}</div>}
+        </div>
+      ))}
     </div>
   </div>);
 }
@@ -1972,8 +2335,7 @@ const CRUNCH_BUNCH_PERSONAS = [
   { id:"Sarah",  emoji:"🧘", name:"Sarah",  age:"34", role:"oatmeal power-user · boulder" },
   { id:"Marcus", emoji:"🤔", name:"Marcus", age:"38", role:"format-confused first-timer · denver" },
   { id:"Priya",  emoji:"🎨", name:"Priya",  age:"28", role:"recipe explorer · brooklyn" },
-  { id:"Jamie",  emoji:"🔬", name:"Jamie",  age:"36", role:"raw-vegan science nerd · portland" },
-  { id:"Riley",  emoji:"💪", name:"Riley",  age:"24", role:"gen-z low-carb optimizer · LA" }
+  { id:"Jamie",  emoji:"🔬", name:"Jamie",  age:"36", role:"raw-vegan science nerd · portland" }
 ];
 
 function CrunchBunchPanel({brief}){
@@ -2012,9 +2374,6 @@ function CrunchBunchPanel({brief}){
       {avg != null && <div className={"panel-avg panel-avg-"+scoreColor(avg)}><span>{avg}</span><span>/10 avg</span></div>}
     </div>
 
-    {data?.headline_insight && (
-      <div className="panel-headline">{data.headline_insight}</div>
-    )}
 
     {error && <div className="panel-error">⚠ {error}</div>}
 
@@ -2593,6 +2952,9 @@ function HowItWorksTab(){
         })}
       </div>
     </div>
+
+    {/* RECEIPTS — engine track record, now embedded in How It Works */}
+    <ReceiptsView />
 
     {/* DEEPER LOOKS — expandable */}
     <details className="howit-acc">

@@ -26,9 +26,6 @@ Pinterest-saver, follows Cherry Bombe + Snaxshot + Bon Appétit, Erewhon weekend
 **4. Jamie · 36 · freelance writer · Portland** — *the raw-vegan science nerd*
 Strengthened from real-Amazon vocab. Maps to reviewer "Ed K" who wrote "they do dehydrate and under 115 degree so i under stand that will not destroy enzymes" and "jsf" who said "It's not cooked in oil and it's sprouted to release the nutrients and reduce anti nutrients found in many grains and legumes." Knows: dehydration temps, anti-nutrients, glycemic load, sprouting biology. Reads Heated by Bittman, drinks Olipop, post-GLP-1 culture-skeptical. Voice: slightly cynical about marketing, warms up when a brand has receipts (cites actual numbers, names farmers, mentions enzymes/anti-nutrients). Off-brand for her: vague "wellness" language, "supports overall ___" claims, anything that overpromises without science backup.
 
-**5. Riley · 24 · recent grad · fitness + low-carb optimizer · LA** — *the gen-Z health-frame buyer*
-Gen-Z fluent, Gymshark-meets-clean-girl, follows fibermaxxing creators. Maps to Amazon reviewer Julie Sisko: "Loved the taste and light crunch! And lower carb and healthy!" Cares about: protein numbers (yes still — she'll mentally note them even if the brand doesn't lead), texture, vibes, post-workout snack-stack, low-carb framing. Voice: energetic, terminally-online, says "ate" and "she ate the confidence" and "no thoughts head empty" unironically. Off-brand for her: anything that takes itself too seriously, slow-burn editorial moments.
-
 ## Your task
 Read the brief. For each persona, return:
 - **score**: 1–10 (how likely they save / share / try the product based on this content)
@@ -36,9 +33,9 @@ Read the brief. For each persona, return:
 - **suggested_edit**: optional. One line. What would push the score up for this persona specifically. Skip if score ≥9.
 
 ## Critical rules
-- Stay in voice. Sarah talks differently from Riley. Riley talks differently from Marcus. Be specific.
+- Stay in voice. Sarah talks differently from Jamie. Jamie talks differently from Marcus. Be specific.
 - Score honestly — don't be flattering. If something's off for that persona, score it 3 or 4 with a real reason.
-- A brief can score 9 with Riley and 4 with Sarah. That's the point — the engine surfaces who lands and who doesn't.
+- A brief can score 9 with Priya and 4 with Sarah. That's the point — the engine surfaces who lands and who doesn't.
 - Output JSON only. No prose intro, no commentary. Just the JSON.
 
 ## Output format (strict)
@@ -48,8 +45,7 @@ Read the brief. For each persona, return:
     {"persona": "Sarah", "score": 8, "reaction": "...", "suggested_edit": "..."},
     {"persona": "Marcus", "score": 6, "reaction": "...", "suggested_edit": "..."},
     {"persona": "Priya", "score": 9, "reaction": "...", "suggested_edit": null},
-    {"persona": "Jamie", "score": 7, "reaction": "...", "suggested_edit": "..."},
-    {"persona": "Riley", "score": 8, "reaction": "...", "suggested_edit": "..."}
+    {"persona": "Jamie", "score": 7, "reaction": "...", "suggested_edit": "..."}
   ],
   "headline_insight": "one-line synthesis of what this brief lands and what it misses"
 }
