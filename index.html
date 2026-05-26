@@ -93,11 +93,31 @@ a{color:inherit;text-decoration:none}
 .subtab.active .subtab-count{background:var(--magenta);color:#fff}
 
 /* Editorial lede */
-.lede{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;background:var(--butter-light);border:1px solid var(--cobalt-light);border-radius:14px;padding:0;margin-bottom:24px;overflow:hidden}
-.lede-col{padding:18px 22px;border-right:1px solid var(--cobalt-light)}
-.lede-col:last-child{border-right:0}
-.lede-label{font-size:10px;text-transform:uppercase;letter-spacing:0.16em;color:var(--cobalt);margin-bottom:6px;font-weight:700}
-.lede-text{font-family:'Fraunces';font-size:15.5px;line-height:1.4;font-weight:500;color:var(--cobalt-deep);letter-spacing:-0.005em}
+/* COMPETITOR WATCH lede — editorial spread, 3 columns w/ distinct personality */
+.comp-pov{background:var(--butter-light);border:1.5px solid var(--cobalt);border-radius:16px;margin-bottom:24px;overflow:hidden;box-shadow:0 4px 14px rgba(26,58,110,0.08)}
+.comp-pov-head{padding:16px 24px 14px;border-bottom:1.5px solid var(--cobalt-light);background:linear-gradient(180deg,#FFFDF5 0%,var(--butter-light) 100%);position:relative}
+.comp-pov-head::after{content:"";position:absolute;left:24px;right:24px;bottom:-1.5px;height:3px;background:linear-gradient(90deg,var(--cobalt) 0%,#F4B73E 50%,var(--magenta) 100%);border-radius:99px}
+.comp-pov-eye{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:var(--cobalt);font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.comp-pov-title{font-family:'Lilita One',serif;font-weight:400;font-size:22px;letter-spacing:0.005em;line-height:1.1;color:var(--cobalt-deep)}
+.comp-pov-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
+.comp-pov-col{padding:18px 22px 20px;border-right:1px solid var(--cobalt-light);display:flex;flex-direction:column;gap:10px;position:relative}
+.comp-pov-col:last-child{border-right:0}
+.comp-pov-col-head{display:flex;align-items:center;gap:8px}
+.comp-pov-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;line-height:1;flex-shrink:0}
+.comp-pov-icon-past{background:rgba(53,133,224,0.16);color:var(--cobalt);border:1.5px solid rgba(53,133,224,0.4)}
+.comp-pov-icon-future{background:rgba(244,183,62,0.22);color:#8A5A1F;border:1.5px solid rgba(244,183,62,0.55)}
+.comp-pov-icon-plays{background:var(--magenta);color:#fff;border:1.5px solid var(--magenta-deep);box-shadow:0 2px 8px rgba(234,126,154,0.4)}
+.comp-pov-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;font-weight:700;text-transform:uppercase}
+.comp-pov-label-past{color:var(--cobalt)}
+.comp-pov-label-future{color:#8A5A1F}
+.comp-pov-label-plays{color:var(--magenta-deep)}
+.comp-pov-text{font-family:'Fraunces';font-size:14.5px;line-height:1.5;font-weight:500;color:var(--cobalt-deep);letter-spacing:-0.005em}
+.comp-pov-col-plays{background:linear-gradient(180deg,#FFFDF5 0%,rgba(234,126,154,0.06) 100%)}
+@media(max-width:900px){
+  .comp-pov-grid{grid-template-columns:1fr}
+  .comp-pov-col{border-right:0;border-bottom:1px solid var(--cobalt-light)}
+  .comp-pov-col:last-child{border-bottom:0}
+}
 
 /* Cards grid */
 .grid{display:grid;gap:18px}
@@ -2575,10 +2595,34 @@ function TrendsGrid({openStudio,openBriefForSignal}){
 
 function CompetitorsGrid({openStudio,openBriefForSignal}){
   return (<>
-    <div className="lede">
-      <div className="lede-col"><div className="lede-label">What happened</div><div className="lede-text serif">{COMP_WEEKLY_POV.happened}</div></div>
-      <div className="lede-col"><div className="lede-label">What's coming</div><div className="lede-text serif">{COMP_WEEKLY_POV.coming}</div></div>
-      <div className="lede-col"><div className="lede-label">The plays this week</div><div className="lede-text serif">{COMP_WEEKLY_POV.plays}</div></div>
+    <div className="comp-pov">
+      <div className="comp-pov-head">
+        <div className="comp-pov-eye">// THE STRATEGIST'S READ · COMPETITIVE LANDSCAPE</div>
+        <div className="comp-pov-title">This week on the shelf.</div>
+      </div>
+      <div className="comp-pov-grid">
+        <div className="comp-pov-col">
+          <div className="comp-pov-col-head">
+            <span className="comp-pov-icon comp-pov-icon-past">↩</span>
+            <span className="comp-pov-label comp-pov-label-past">What happened</span>
+          </div>
+          <div className="comp-pov-text">{COMP_WEEKLY_POV.happened}</div>
+        </div>
+        <div className="comp-pov-col">
+          <div className="comp-pov-col-head">
+            <span className="comp-pov-icon comp-pov-icon-future">→</span>
+            <span className="comp-pov-label comp-pov-label-future">What's coming</span>
+          </div>
+          <div className="comp-pov-text">{COMP_WEEKLY_POV.coming}</div>
+        </div>
+        <div className="comp-pov-col comp-pov-col-plays">
+          <div className="comp-pov-col-head">
+            <span className="comp-pov-icon comp-pov-icon-plays">⚡</span>
+            <span className="comp-pov-label comp-pov-label-plays">The plays this week</span>
+          </div>
+          <div className="comp-pov-text">{COMP_WEEKLY_POV.plays}</div>
+        </div>
+      </div>
     </div>
     <div className="grid grid-2">
       {COMPETITORS.map(c=>(<div key={c.id} className="card">
