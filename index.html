@@ -1979,9 +1979,9 @@ function App(){
   const navItems = [
     {id:'intel',label:'Intelligence Brief',icon:'🔭',active:true},
     {id:'briefs',label:'Content Briefs',icon:'📝',active:true},
+    {id:'studio',label:'Studio',icon:'✷',active:true,onClick:()=>setStudioOpen(true)},
     {id:'calendar',label:'Content Calendar',icon:'📅',active:true,soon:true},
-    {id:'performance',label:'Performance',icon:'📈',active:true,soon:true},
-    {id:'studio',label:'Studio',icon:'✷',active:true,onClick:()=>setStudioOpen(true)}
+    {id:'performance',label:'Performance',icon:'📈',active:true,soon:true}
   ];
 
   return (<>
@@ -2712,7 +2712,6 @@ function ContentBriefs({onOpen,openStudio}){
       <div className="pillar-header">
         <span className="pillar-swatch" style={{background:PILLAR_COLOR[g.pillar]}}></span>
         <span className="pillar-name serif">{g.pillar}</span>
-        <span className="pillar-meta">{g.briefs.length} brief{g.briefs.length!==1?"s":""} · {g.briefs.filter(b=>b.priority==="BIG SWING").length} big swing{g.briefs.filter(b=>b.priority==="BIG SWING").length!==1?"s":""}</span>
       </div>
       <div className="grid grid-3">
         {g.briefs.sort((a,b)=>({BIG:0,HIGH:1,STANDARD:2}[a.priority.split(" ")[0]]||9)-({BIG:0,HIGH:1,STANDARD:2}[b.priority.split(" ")[0]]||9)).map(b=>(
@@ -3669,8 +3668,6 @@ function StudioModal({onClose}){
           {messages.length === 0 && (
             <div className="studio-welcome">
               <div className="studio-welcome-eyebrow">// ASK ME ANYTHING ABOUT LIL BUCKS</div>
-              <div className="studio-welcome-h2">Hey Emily. What are we working on?</div>
-              <div className="studio-welcome-body">I've read every signal the engine pulled this week, the 8 tonal territories, your music lane, the Emily Rule, the SKU mapping, the Seven Sundays dual-edge, and the voice corpus (2 podcasts, IG, TikTok, LinkedIn, Amazon reviews). I'll match your voice and pressure-test against the operating model.</div>
               <div className="studio-starters">
                 {STUDIO_STARTERS.map((s, i) => (
                   <button key={i} className="studio-starter" onClick={() => send(s.prompt)}>
