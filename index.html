@@ -3932,28 +3932,48 @@ function HowItWorksTab(){
     {/* ENGINE THINKING — interactive step-through showing how agents trigger each other */}
     <EngineThinkingFlow />
 
-    {/* DECISIONS — the proof, visible */}
-    <div className="howit-block">
-      <div className="howit-block-eyebrow">// CALLS THE ENGINE MADE THIS WEEK</div>
-      <h3>A strategic operator. Not a feed.</h3>
-      <div className="howit-decisions">
-        {DECISIONS.map(d => {
-          const parts = d.action.split(' · ');
-          const verb = parts[0];
-          const rest = parts.slice(1).join(' · ');
-          return (<div key={d.id} className="howit-decision">
-            <span className={"howit-decision-verb "+verb.toLowerCase()}>{verb}</span>
-            <div>
-              <div className="howit-decision-name">{rest}</div>
-              <div className="howit-decision-reason">{d.reason}</div>
-            </div>
-          </div>);
-        })}
+    {/* DECISIONS — collapsed by default per Alex's request */}
+    <details className="howit-acc">
+      <summary>
+        <span className="howit-acc-eyebrow">↓ Calls the engine made this week</span>
+        <div>
+          <div className="howit-acc-title">A strategic operator. Not a feed.</div>
+          <div className="howit-acc-tease">{DECISIONS.length} calls the engine made on its own this week — promoted · killed · queued · escalated. Every one reversible.</div>
+        </div>
+        <span className="howit-acc-chevron">▾</span>
+      </summary>
+      <div className="howit-acc-body">
+        <div className="howit-decisions">
+          {DECISIONS.map(d => {
+            const parts = d.action.split(' · ');
+            const verb = parts[0];
+            const rest = parts.slice(1).join(' · ');
+            return (<div key={d.id} className="howit-decision">
+              <span className={"howit-decision-verb "+verb.toLowerCase()}>{verb}</span>
+              <div>
+                <div className="howit-decision-name">{rest}</div>
+                <div className="howit-decision-reason">{d.reason}</div>
+              </div>
+            </div>);
+          })}
+        </div>
       </div>
-    </div>
+    </details>
 
-    {/* RECEIPTS — engine track record, now embedded in How It Works */}
-    <ReceiptsView />
+    {/* RECEIPTS — collapsed by default per Alex's request */}
+    <details className="howit-acc">
+      <summary>
+        <span className="howit-acc-eyebrow">↓ Receipts</span>
+        <div>
+          <div className="howit-acc-title">Engine track record (mock historical)</div>
+          <div className="howit-acc-tease">{RECEIPTS.length} past briefs — hits, big swings, killed plays. Every result tied back to the signal that drove it.</div>
+        </div>
+        <span className="howit-acc-chevron">▾</span>
+      </summary>
+      <div className="howit-acc-body">
+        <ReceiptsView />
+      </div>
+    </details>
 
     {/* ANTI-PATTERN LIBRARY — the brand fence Emily can share with creators + agencies */}
     <AntiPatternLibrary />
