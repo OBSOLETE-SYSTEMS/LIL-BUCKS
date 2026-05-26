@@ -1367,6 +1367,11 @@ a{color:inherit;text-decoration:none}
 .ticker-track{display:flex;gap:46px;animation:scroll 19s linear infinite;white-space:nowrap}
 .ticker-item{display:inline-flex;align-items:center;gap:8px}
 .ticker-dot{width:6px;height:6px;border-radius:50%;background:var(--magenta);box-shadow:0 0 6px rgba(234,126,154,0.8)}
+.ticker-dot-signal{background:#5BA0F0;box-shadow:0 0 6px rgba(91,160,240,0.85)}
+.ticker-dot-pulse{background:var(--magenta);box-shadow:0 0 6px rgba(234,126,154,0.85)}
+.ticker-dot-decision{background:#F4B73E;box-shadow:0 0 6px rgba(244,183,62,0.85)}
+.ticker-dot-win{background:#7AB05D;box-shadow:0 0 7px rgba(122,176,93,0.9)}
+.ticker-dot-warning{background:#E0A53C;box-shadow:0 0 6px rgba(224,165,60,0.85)}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 </style>
 </head>
@@ -1954,14 +1959,14 @@ const BRIEF_LINKS = {
 };
 
 const TICKER = [
-  "Memorial Day weekend opens summer-snack season · MDW snacking +18% YoY (Circana)",
-  "Cottage cheese + hot honey bowl viral 2nd wave May 22 · saves +3.4× vs prior week",
-  "Hot Honey Clusterbucks lives in the hot-honey snack wave — on shelf since 2024",
-  "Açaí bowl pin-searches +47% MoM into MDW · Original Crunchy Toppers ready",
-  "Fibermaxxing still compounding · prebiotic-fiber claims +126% YoY (CNBC + Innova)",
-  "ROC certification +22% YoY buyers — fastest-growing food label (3× USDA Organic)",
-  "Engine queued 12 briefs · 3 BIG SWINGs anchored on Memorial Day open + hot honey ride + Luke & Ali in bloom",
-  "Buckwheat-in-bloom aesthetic peaks May 23-31 · Pinterest 'farm aesthetic' boards spiking"
+  { type:"pulse",    text:"Memorial Day weekend opens summer-snack season · MDW snacking +18% YoY (Circana)" },
+  { type:"pulse",    text:"Cottage cheese + hot honey bowl viral 2nd wave May 22 · saves +3.4× vs prior week" },
+  { type:"win",      text:"Hot Honey Clusterbucks lives in the hot-honey snack wave — on shelf since 2024" },
+  { type:"signal",   text:"Açaí bowl pin-searches +47% MoM into MDW · Original Crunchy Toppers ready" },
+  { type:"signal",   text:"Fibermaxxing still compounding · prebiotic-fiber claims +126% YoY (CNBC + Innova)" },
+  { type:"signal",   text:"ROC certification +22% YoY buyers — fastest-growing food label (3× USDA Organic)" },
+  { type:"decision", text:"Engine queued 12 briefs · 3 BIG SWINGs anchored on Memorial Day open + hot honey ride + Luke & Ali in bloom" },
+  { type:"pulse",    text:"Buckwheat-in-bloom aesthetic peaks May 23-31 · Pinterest 'farm aesthetic' boards spiking" }
 ];
 
 const DECISIONS = [
@@ -2099,7 +2104,7 @@ function App(){
 
         <div className="ticker">
           <div className="ticker-track">
-            {[...TICKER,...TICKER].map((t,i)=>(<div key={i} className="ticker-item"><span className="ticker-dot"></span>{t}</div>))}
+            {[...TICKER,...TICKER].map((t,i)=>(<div key={i} className="ticker-item"><span className={"ticker-dot ticker-dot-"+(t.type||'signal')}></span>{t.text||t}</div>))}
           </div>
         </div>
 
