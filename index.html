@@ -3709,87 +3709,87 @@ function AntiPatternLibrary(){
 const ENGINE_THINKING_STEPS = [
   {
     id: 1, agent: "Cultural Pulse Tracker", icon: "📡", title: "Signal detected",
-    what: "A new cultural moment hits the pipeline. Memorial Day-week cottage cheese bowl revival is trending on TikTok — 4 creators stitched the same format in 48 hours.",
+    what: "The Pulse Tracker spots the cottage-cheese bowl revival on TikTok — 4 creators stitched the same format in 48 hours leading into Memorial Day.",
     filters: [
-      "Source mix: Pinterest trend rise + Reddit r/MealPrepSunday + 5 TikTok aggregator newsletters",
-      "Velocity score: 2.3/3 (high) · stitches doubled overnight",
-      "Tonal territory check: hits CRUNCH-AS-DELIGHT + BUILD-YOUR-OWN-BOWL"
+      "Sources: Pinterest, Reddit, 5 TikTok aggregators all pointing to the same trend",
+      "Velocity: stitches doubled overnight — high",
+      "Brand-fit check: hits CRUNCH-AS-DELIGHT and BUILD-YOUR-OWN-BOWL"
     ],
-    verdict: "INGESTED — written to signals table with tonal=0.78. Lane = CULTURAL. Status = fresh.",
-    next: "→ Crunch Engine + Shelf Watch get pinged"
+    verdict: "Logged as a fresh cultural signal.",
+    next: "→ Sends to Crunch Engine and Shelf Watch."
   },
   {
     id: 2, agent: "Crunch Engine", icon: "⚙️", title: "Product opportunity scored",
-    what: "Crunch Engine checks if this trend maps to a Lil Bucks product opportunity — and which SKU should lead.",
+    what: "Does this map to a real Lil Bucks use case? Which SKU should lead?",
     filters: [
-      "Topping use case? YES — Hot Honey Clusterbucks lives in this territory since 2024",
-      "Keyword match: 'cottage cheese bowl' (+1.8) · 'crunchy topper' (+1.6) · 'hot honey' (+1.6)",
-      "Anti-pattern check: not the protein-number lane — clean",
-      "Format-confusion preempt: must show IN USE on a bowl, never standalone bag-pour"
+      "Hot Honey Clusterbucks has lived in this lane since 2024",
+      "Top keyword matches: cottage cheese bowl · crunchy topper · hot honey",
+      "Avoids the protein-number lane (Magic Spoon owns that)",
+      "Must show IN USE on a bowl — never a standalone bag-pour"
     ],
-    verdict: "PRODUCT OPPORTUNITY FLAGGED — Hot Honey Clusterbucks as the topping. Format = shelf-spotted Reel.",
-    next: "→ Shelf Watch checks for competitive friction"
+    verdict: "Hot Honey Clusterbucks leads. Format = shelf-spotted Reel.",
+    next: "→ Shelf Watch reads the competition."
   },
   {
     id: 3, agent: "Shelf Watch", icon: "🛒", title: "Competitive context check",
-    what: "Shelf Watch reads the competitive landscape before greenlighting brief synthesis.",
+    what: "Is anyone else already claiming this moment?",
     filters: [
-      "Magic Spoon launched a cottage-cheese-compatible product? NO",
-      "Purely Elizabeth claimed the hot-honey topping lane? NO",
-      "Seven Sundays (shares A-Frame Farm) launched a cottage-cheese ride? NO",
-      "Adjacency check: Snak Club × Mike's salty snacks May 13 — adjacent, not blocking"
+      "Magic Spoon — not in cottage-cheese pairing",
+      "Purely Elizabeth — hasn't claimed hot-honey toppings",
+      "Seven Sundays (shares our farmer) — not riding this trend",
+      "Snak Club × Mike's launch is adjacent, not blocking"
     ],
-    verdict: "CLEAR LANE — Lil Bucks can claim cottage-cheese-bowl + crunch-topping pairing without competitive friction.",
-    next: "→ Strategist begins synthesis"
+    verdict: "Clear lane. No competitive friction.",
+    next: "→ The Strategist drafts the brief."
   },
   {
     id: 4, agent: "The Strategist", icon: "🧠", title: "Brief drafted",
-    what: "The Strategist pulls signal + competitive context + brand thesis + voice corpus into a brief draft.",
+    what: "The Strategist pulls the signal, the competitive read, and Emily's voice into a brief.",
     filters: [
-      "Pillar mapping: FUEL (Hot Honey × topping format)",
-      "DNA pattern: shelf-spotted (the proof is the product on the counter)",
-      "Music lane: lo-fi indie (TikTok) or Corinne Bailey Rae-tier soul (IG Reel)",
-      "Platform-modulated voice: TikTok = meme-fluent + text overlay; IG = lowercase warmth + 1-2 emoji",
-      "Timing: Wednesday 6pm — peak save-window for cottage-cheese-bowl content"
+      "Pillar: FUEL · Hot Honey as the topping",
+      "Format: shelf-spotted (the proof is the product on the counter)",
+      "Music: lo-fi indie or Corinne Bailey Rae warmth",
+      "Voice: warm on IG, meme-fluent on TikTok",
+      "Timing: Wednesday 6pm — peak save-window for bowl content"
     ],
-    verdict: "BRIEF DRAFTED: 'we've been here since 2024.' Shelf-spotted Reel · Hot Honey Clusterbucks · Wed 6pm · 22s.",
-    next: "→ Crunch Bunch Panel pre-tests against 4 personas"
+    verdict: "Brief written: 'we've been here since 2024.' Shelf-spotted Reel · Wed 6pm · 22s.",
+    next: "→ Crunch Bunch Panel pressure-tests it."
   },
   {
     id: 5, agent: "Crunch Bunch Panel", icon: "👥", title: "Synthetic audience pre-test",
-    what: "4 synthetic personas score the draft against their voice + buying patterns + objections.",
+    what: "Four simulated personas — modeled on real Lil Bucks customers — read the draft and score it.",
     filters: [
-      "Sarah (oatmeal power-user) → 9/10 · 'finally a brand that gets the topping use case'",
-      "Marcus (format-confused buyer) → 8/10 · 'oh, it goes ON things — I get it now'",
-      "Priya (recipe explorer) → 8/10 · 'this is the trend, this is the timing'",
-      "Jamie (raw-vegan science nerd) → 7/10 · 'wish there was a sprouted-science callout'"
+      "Sarah (oatmeal power-user) — 9/10 · 'finally gets the topping use case'",
+      "Marcus (format-confused buyer) — 8/10 · 'oh, it goes ON things'",
+      "Priya (recipe explorer) — 8/10 · 'this is the timing'",
+      "Jamie (science nerd) — 7/10 · wants a sprouted-science callout"
     ],
-    verdict: "PANEL AVG 8.0/10 · strong consensus · low Jamie friction. Safe to ship.",
-    next: "→ Voice Compass final check"
+    verdict: "Average 8.0/10. Clear to ship.",
+    next: "→ Voice Compass runs the final check."
   },
   {
     id: 6, agent: "Voice Compass", icon: "🧭", title: "Brand fidelity scan",
-    what: "Final voice check before brief lands in the weekly playbook.",
+    what: "The Voice Compass scores the draft against Lil Bucks's voice fingerprint.",
     filters: [
-      "Tonal territories: CRUNCH-AS-DELIGHT (8/10) · BUILD-YOUR-OWN-BOWL (7/10) · MORNING RITUAL (5/10)",
-      "Anti-patterns: zero triggered. No protein-lead. No supplement register. No competitor naming.",
-      "Platform fit: IG = good · TikTok = good · LinkedIn = wrong register (skip)",
-      "Suggested edit: pull 'real food' from caption, push the texture verb 'crunch'"
+      "Hits CRUNCH-AS-DELIGHT, BUILD-YOUR-OWN-BOWL, MORNING RITUAL",
+      "Zero anti-patterns triggered",
+      "IG and TikTok both good · LinkedIn = wrong register",
+      "Suggested edit: lean harder on 'crunch,' less on 'real food'"
     ],
-    verdict: "84/100 · APPROVED for the playbook. Optional edit logged for the Studio.",
+    verdict: "84/100. Approved. Optional edit logged for Studio.",
     next: "→ Emily reviews. Approves. Ships."
   },
   {
     id: 7, agent: "The Loop", icon: "🔄", title: "Engine learns",
-    what: "Once posted, performance flows back into the engine's training. Next week the brief mix is sharper.",
+    what: "Once the post ships, performance flows back in. Next week is sharper.",
     filters: [
-      "Reach + engagement metrics → Receipts board",
-      "What hit / what missed → next week's keyword weighting auto-recalibrates",
-      "Persona scores correlated with actual performance → Crunch Bunch panel calibration",
-      "Emily's Friday voice-note CSV → Studio system prompt v3 updates"
+      "Reach + saves logged to the Receipts board",
+      "Hits and misses recalibrate next week's keyword weights",
+      "Panel scores compared to real performance — personas get tuned",
+      "Emily's Friday voice notes refine the Studio prompts"
     ],
-    verdict: "BRIEF LOGGED. Engine is sharper next Monday morning. Loop closes.",
-    next: "← Back to Cultural Pulse Tracker, watching for the next signal"
+    verdict: "Logged. Engine sharper next Monday.",
+    next: "← Back to Step 1 — Pulse Tracker watches for the next signal."
   }
 ];
 
@@ -3866,12 +3866,6 @@ function HowItWorksTab(){
     <div className="howit-hero">
       <div className="howit-hero-eyebrow">// THE ENGINE UNDERNEATH</div>
       <h2>Your monday opens with the brief, not the research.</h2>
-      <div className="howit-stats">
-        <div className="howit-stat"><div className="howit-stat-num">100+</div><div className="howit-stat-label">Active sources</div></div>
-        <div className="howit-stat"><div className="howit-stat-num">12</div><div className="howit-stat-label">Platforms</div></div>
-        <div className="howit-stat"><div className="howit-stat-num">5</div><div className="howit-stat-label">Specialist agents</div></div>
-        <div className="howit-stat"><div className="howit-stat-num">1</div><div className="howit-stat-label">Strategist on top</div></div>
-      </div>
     </div>
 
     {/* FLOW — 4 steps, scan-readable */}
