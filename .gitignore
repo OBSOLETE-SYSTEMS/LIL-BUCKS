@@ -8,6 +8,9 @@ SETUP_NOTES.md
 # Pipeline migrations — contain brand watchlists + competitive intel + keyword vocab
 migrations/
 
+# Voice corpus + research artifacts — strategic intel, never commit
+research/
+
 # Local pipeline scratch / seed files
 api/lib/seed*.js
 api/lib/seed*.ts

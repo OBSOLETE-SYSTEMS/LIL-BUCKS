@@ -421,6 +421,92 @@ a{color:inherit;text-decoration:none}
   .memo-card{padding:46px 26px 28px}
 }
 
+/* VOICE COMPASS — live brand-fidelity scorer (lives inside Studio modal as a mode) */
+.studio-mode-toggle{display:flex;gap:4px;background:rgba(255,255,255,0.14);padding:4px;border-radius:99px;margin-left:auto;margin-right:14px}
+.studio-mode{background:transparent;color:rgba(255,255,255,0.78);border:0;padding:7px 14px;border-radius:99px;font-size:12px;font-weight:600;letter-spacing:0.02em;cursor:pointer;transition:all 0.15s;white-space:nowrap}
+.studio-mode:hover{color:#fff}
+.studio-mode.active{background:#fff;color:var(--cobalt-deep)}
+
+.vc-view{padding:6px 4px 24px;display:flex;flex-direction:column;gap:18px}
+
+.vc-input-wrap{display:flex;flex-direction:column;gap:12px}
+.vc-input{font-family:'Inter',sans-serif;font-size:14.5px;line-height:1.55;padding:14px 16px;border:1.5px solid var(--cobalt-light);border-radius:12px;background:var(--butter-light);color:var(--cobalt-deep);resize:vertical;min-height:96px;outline:none;transition:border-color 0.15s}
+.vc-input:focus{border-color:var(--cobalt);box-shadow:0 0 0 3px rgba(53,133,224,0.15)}
+.vc-input::placeholder{color:#8A99B5}
+.vc-input-actions{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.vc-examples{display:flex;flex-wrap:wrap;gap:6px}
+.vc-example{background:rgba(53,133,224,0.1);color:var(--cobalt-deep);border:1px solid rgba(53,133,224,0.25);padding:6px 12px;border-radius:99px;font-size:11.5px;font-weight:600;letter-spacing:0.01em;cursor:pointer;transition:all 0.15s}
+.vc-example:hover:not(:disabled){background:var(--cobalt);color:#fff;border-color:var(--cobalt)}
+.vc-example:disabled{opacity:0.5;cursor:not-allowed}
+.vc-score-btn{background:var(--magenta);color:#fff;border:0;padding:12px 22px;border-radius:99px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;transition:all 0.15s;white-space:nowrap}
+.vc-score-btn:hover:not(:disabled){background:var(--magenta-deep);transform:translateY(-1px)}
+.vc-score-btn:disabled{opacity:0.45;cursor:not-allowed}
+
+.vc-error{background:rgba(232,144,125,0.18);color:#9E3F31;padding:10px 14px;border-radius:8px;font-size:13px}
+
+.vc-loading{display:flex;align-items:center;gap:14px;padding:20px 22px;background:var(--butter-light);border:1px dashed var(--cobalt-light);border-radius:12px}
+.vc-loading-pulse{width:24px;height:24px;border:3px solid var(--cobalt-light);border-top-color:var(--cobalt);border-radius:50%;animation:vc-spin 1s linear infinite;flex-shrink:0}
+@keyframes vc-spin{to{transform:rotate(360deg)}}
+.vc-loading-text{font-size:13px;color:var(--ink-soft);line-height:1.5}
+
+.vc-results{display:flex;flex-direction:column;gap:14px}
+
+.vc-score-banner{padding:22px 26px;border-radius:14px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
+.vc-band-high{background:linear-gradient(135deg,#E7F0DD 0%,#C8E0B2 100%);color:#2D5421}
+.vc-band-mid{background:linear-gradient(135deg,#FAEED1 0%,#F4D88F 100%);color:#704F0A}
+.vc-band-low{background:linear-gradient(135deg,#F8DCD7 0%,#EA9F95 100%);color:#7A2A1F}
+.vc-score-big{font-family:'Lilita One',serif;font-weight:400;font-size:64px;letter-spacing:0.005em;line-height:1;display:flex;align-items:baseline;gap:4px}
+.vc-score-big span{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:600;opacity:0.7;letter-spacing:0.02em}
+.vc-verdict{font-family:'Fraunces';font-size:16px;line-height:1.4;font-weight:500;letter-spacing:-0.005em;font-style:italic}
+
+.vc-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:14px}
+.vc-card{background:#fff;border:1.5px solid var(--cobalt-light);border-radius:12px;padding:18px 20px}
+.vc-card-anti{border-color:rgba(213,88,120,0.5);background:linear-gradient(135deg,#fff 0%,rgba(234,126,154,0.04) 100%)}
+.vc-card-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:var(--cobalt);font-weight:700;text-transform:uppercase;margin-bottom:14px}
+
+.vc-territories{display:flex;flex-direction:column;gap:8px}
+.vc-terr-row{display:grid;grid-template-columns:165px 1fr 28px;gap:10px;align-items:center}
+.vc-terr-name{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;color:var(--cobalt-deep);letter-spacing:0.02em}
+.vc-terr-bar{background:rgba(53,133,224,0.1);height:8px;border-radius:99px;overflow:hidden;position:relative}
+.vc-terr-fill{background:linear-gradient(90deg,var(--cobalt) 0%,var(--magenta) 100%);height:100%;border-radius:99px;transition:width 0.4s ease-out;min-width:2px}
+.vc-terr-num{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--cobalt-deep);text-align:right}
+
+.vc-platforms{display:flex;flex-direction:column;gap:8px}
+.vc-platform{display:grid;grid-template-columns:90px 1fr;gap:12px;align-items:center;padding:8px 12px;border-radius:8px;border:1px solid var(--cobalt-light)}
+.vc-platform-name{font-family:'Lilita One',serif;font-size:14px;letter-spacing:0.005em;color:var(--cobalt-deep)}
+.vc-platform-fit{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 9px;border-radius:99px;text-align:center}
+.vc-fit-good{color:#3B6B2D;background:#E7F0DD}
+.vc-fit-good .vc-platform-fit,.vc-platform.vc-fit-good .vc-platform-fit{background:#E7F0DD;color:#3B6B2D}
+.vc-fit-needs-adjust .vc-platform-fit{background:#FAEED1;color:#8B6F1F}
+.vc-fit-wrong-register .vc-platform-fit{background:#F8DCD7;color:#9E3F31}
+
+.vc-positives{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+.vc-positives li{font-size:12.5px;color:var(--cobalt-deep);line-height:1.45;padding-left:0;font-weight:500}
+
+.vc-flags{display:flex;flex-direction:column;gap:10px}
+.vc-flag{padding:11px 14px;border-radius:8px;background:#fff;border-left:3px solid var(--magenta-deep)}
+.vc-flag-high{border-left-color:#9E3F31;background:rgba(232,144,125,0.08)}
+.vc-flag-medium{border-left-color:#D55878;background:rgba(234,126,154,0.06)}
+.vc-flag-low{border-left-color:#F4B73E;background:rgba(244,183,62,0.06)}
+.vc-flag-head{display:flex;gap:10px;align-items:center;margin-bottom:6px}
+.vc-flag-sev{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.14em;font-weight:800;padding:3px 9px;border-radius:99px;background:rgba(213,88,120,0.18);color:#9E3F31}
+.vc-flag-high .vc-flag-sev{background:#9E3F31;color:#fff}
+.vc-flag-name{font-family:'Lilita One',serif;font-size:14px;color:var(--cobalt-deep)}
+.vc-flag-evidence{font-family:'Fraunces';font-size:12.5px;font-style:italic;color:var(--ink-soft);line-height:1.45}
+
+.vc-rewrites{display:flex;flex-direction:column;gap:12px}
+.vc-rewrite{background:var(--butter-light);border:1px solid var(--cobalt-light);border-radius:10px;padding:14px 16px}
+.vc-rewrite-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--cobalt);font-weight:700;text-transform:uppercase;margin-bottom:6px}
+.vc-rewrite-text{font-family:'Fraunces';font-size:14.5px;line-height:1.5;color:var(--cobalt-deep);margin-bottom:8px;font-weight:500;letter-spacing:-0.005em}
+.vc-rewrite-use{background:transparent;color:var(--magenta-deep);border:1px solid var(--magenta);padding:5px 12px;border-radius:99px;font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;transition:all 0.15s}
+.vc-rewrite-use:hover{background:var(--magenta);color:#fff}
+
+@media (max-width:780px){
+  .vc-grid{grid-template-columns:1fr}
+  .vc-terr-row{grid-template-columns:130px 1fr 26px}
+  .studio-mode-toggle{order:3;margin:0;width:100%}
+}
+
 /* STUDIO — The Strategist chat UI */
 .studio-modal{max-width:920px;width:100%;max-height:88vh;display:flex;flex-direction:column;background:var(--butter);border-radius:16px;overflow:hidden}
 .studio-head{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;padding:18px 24px;background:var(--cobalt);color:#fff;border-bottom:2px solid var(--cobalt-deep);flex-shrink:0}
@@ -1716,11 +1802,11 @@ function CounterStrikeBrief({brief}){
 
 // ===== Crunch Bunch — 5 synthetic personas the panel runs against =====
 const CRUNCH_BUNCH_PERSONAS = [
-  { id:"Sarah",  emoji:"🧘", name:"Sarah",  age:"34", role:"yoga + mom of 2 · boulder, CO" },
-  { id:"Marcus", emoji:"🧔", name:"Marcus", age:"41", role:"dad of 3 · suburban atlanta" },
-  { id:"Priya",  emoji:"🎨", name:"Priya",  age:"28", role:"creator · brooklyn" },
-  { id:"Jamie",  emoji:"📚", name:"Jamie",  age:"36", role:"writer · portland" },
-  { id:"Riley",  emoji:"💪", name:"Riley",  age:"24", role:"gen-z fitness · LA" }
+  { id:"Sarah",  emoji:"🧘", name:"Sarah",  age:"34", role:"oatmeal power-user · boulder" },
+  { id:"Marcus", emoji:"🤔", name:"Marcus", age:"38", role:"format-confused first-timer · denver" },
+  { id:"Priya",  emoji:"🎨", name:"Priya",  age:"28", role:"recipe explorer · brooklyn" },
+  { id:"Jamie",  emoji:"🔬", name:"Jamie",  age:"36", role:"raw-vegan science nerd · portland" },
+  { id:"Riley",  emoji:"💪", name:"Riley",  age:"24", role:"gen-z low-carb optimizer · LA" }
 ];
 
 function CrunchBunchPanel({brief}){
@@ -1810,7 +1896,156 @@ const STUDIO_STARTERS = [
   { label:"Brief a fact-flip", prompt:"Brief me a fact-flip Reel about buckwheat being a fruit seed, not a grain. Include hook, visual, audio, and which SKU leads." }
 ];
 
+const TONAL_TERRITORIES = [
+  "CRUNCH-AS-DELIGHT","SUNBEAM ENERGY","BUCK-WILD HUMOR","SOIL-FIRST ACTIVISM",
+  "FOUNDER-FROM-A-BOWL","NOT-A-GRAIN CONFIDENCE","BUILD-YOUR-OWN-BOWL","MORNING RITUAL"
+];
+
+const COMPASS_EXAMPLES = [
+  { label:"Your last IG post", text:"summer salads are so back 🥬 the savory crunch you forgot about. everything bucks seasoning, on everything." },
+  { label:"Magic Spoon style", text:"NEW! 13g protein. 0g sugar. Marshmallow Protein Cereal — the protein cereal that tastes like dessert. Available now at Costco." },
+  { label:"Off-brand wellness", text:"Sprouted buckwheat seeds support overall wellness through their unique nutrient profile and clean-label commitment. Try our adaptogenic blend today." }
+];
+
+function VoiceCompassView(){
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+
+  async function score(textOverride) {
+    const caption = (textOverride ?? input).trim();
+    if (!caption || loading) return;
+    setError(null); setData(null); setLoading(true);
+    if (textOverride) setInput(textOverride);
+    try {
+      const res = await fetch("/api/voice-compass", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ caption })
+      });
+      const d = await res.json();
+      if (!res.ok) setError(d.detail || d.error || `error ${res.status}`);
+      else setData(d);
+    } catch (err) { setError(String(err.message || err)); }
+    setLoading(false);
+  }
+
+  const scoreBand = (s) => s >= 80 ? "high" : s >= 50 ? "mid" : "low";
+
+  return (<div className="vc-view">
+    <div className="vc-input-wrap">
+      <textarea
+        className="vc-input"
+        placeholder="paste any caption, draft, competitor post, or creator mention. the engine scores it against the lil bucks voice fingerprint…"
+        value={input}
+        onChange={e=>setInput(e.target.value)}
+        rows={4}
+        disabled={loading}
+      />
+      <div className="vc-input-actions">
+        <div className="vc-examples">
+          {COMPASS_EXAMPLES.map((ex,i) => (
+            <button key={i} className="vc-example" onClick={()=>score(ex.text)} disabled={loading}>
+              try: {ex.label}
+            </button>
+          ))}
+        </div>
+        <button className="vc-score-btn" onClick={()=>score()} disabled={loading || !input.trim()}>
+          {loading ? "scoring..." : "score it →"}
+        </button>
+      </div>
+    </div>
+
+    {error && <div className="vc-error">⚠ {error}</div>}
+
+    {loading && (
+      <div className="vc-loading">
+        <div className="vc-loading-pulse"></div>
+        <div className="vc-loading-text">The Voice Compass is reading against the 8 tonal territories + anti-patterns + customer-validated language…</div>
+      </div>
+    )}
+
+    {data && (
+      <div className="vc-results">
+        <div className={"vc-score-banner vc-band-"+scoreBand(data.voice_score)}>
+          <div className="vc-score-big">{data.voice_score}<span>/100</span></div>
+          <div className="vc-verdict">{data.verdict}</div>
+        </div>
+
+        <div className="vc-grid">
+          <div className="vc-card">
+            <div className="vc-card-eyebrow">// TONAL TERRITORIES</div>
+            <div className="vc-territories">
+              {TONAL_TERRITORIES.map(t => {
+                const score = data.tonal_territories?.[t] ?? 0;
+                return (<div key={t} className="vc-terr-row">
+                  <div className="vc-terr-name">{t}</div>
+                  <div className="vc-terr-bar"><div className="vc-terr-fill" style={{width:(score*10)+'%'}}></div></div>
+                  <div className="vc-terr-num">{score}</div>
+                </div>);
+              })}
+            </div>
+          </div>
+
+          <div className="vc-card">
+            <div className="vc-card-eyebrow">// PLATFORM FIT</div>
+            <div className="vc-platforms">
+              {Object.entries(data.platform_fit || {}).map(([platform, fit]) => (
+                <div key={platform} className={"vc-platform vc-fit-"+(fit||"").replace(/_/g,"-")}>
+                  <div className="vc-platform-name">{platform}</div>
+                  <div className="vc-platform-fit">{(fit||"").replace(/_/g," ")}</div>
+                </div>
+              ))}
+            </div>
+
+            {data.positive_signals?.length > 0 && (<>
+              <div className="vc-card-eyebrow" style={{marginTop:18}}>// POSITIVE SIGNALS</div>
+              <ul className="vc-positives">
+                {data.positive_signals.map((p,i) => <li key={i}>✓ {p}</li>)}
+              </ul>
+            </>)}
+          </div>
+        </div>
+
+        {data.anti_pattern_flags?.length > 0 && (
+          <div className="vc-card vc-card-anti">
+            <div className="vc-card-eyebrow">// ANTI-PATTERN FLAGS</div>
+            <div className="vc-flags">
+              {data.anti_pattern_flags.map((f,i) => (
+                <div key={i} className={"vc-flag vc-flag-"+(f.severity||"medium")}>
+                  <div className="vc-flag-head">
+                    <span className="vc-flag-sev">{(f.severity||"medium").toUpperCase()}</span>
+                    <span className="vc-flag-name">{f.pattern}</span>
+                  </div>
+                  <div className="vc-flag-evidence">evidence: "{f.evidence}"</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {data.suggested_rewrites?.length > 0 && (
+          <div className="vc-card">
+            <div className="vc-card-eyebrow">// SUGGESTED REWRITES</div>
+            <div className="vc-rewrites">
+              {data.suggested_rewrites.map((rw,i) => (
+                <div key={i} className="vc-rewrite">
+                  <div className="vc-rewrite-label">{rw.label}</div>
+                  <div className="vc-rewrite-text">{rw.text}</div>
+                  <button className="vc-rewrite-use" onClick={()=>{setInput(rw.text);setData(null);}}>↑ load into input</button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    )}
+  </div>);
+}
+
 function StudioModal({onClose}){
+  const [mode, setMode] = useState("chat"); // 'chat' | 'compass'
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -1863,58 +2098,75 @@ function StudioModal({onClose}){
         <div className="studio-head-left">
           <div className="studio-head-icon">✷</div>
           <div>
-            <div className="studio-head-title">The Strategist</div>
-            <div className="studio-head-sub">Live · Claude Sonnet 4.6 · full Lil Bucks engine context loaded</div>
+            <div className="studio-head-title">{mode === "chat" ? "The Strategist" : "Voice Compass"}</div>
+            <div className="studio-head-sub">
+              {mode === "chat"
+                ? "Live · Claude Sonnet 4.6 · full Lil Bucks engine context loaded"
+                : "Live · scores any caption against the brand voice fingerprint"}
+            </div>
           </div>
+        </div>
+        <div className="studio-mode-toggle">
+          <button className={"studio-mode" + (mode==="chat"?" active":"")} onClick={()=>setMode("chat")}>💬 Chat</button>
+          <button className={"studio-mode" + (mode==="compass"?" active":"")} onClick={()=>setMode("compass")}>🧭 Voice Compass</button>
         </div>
         <button className="modal-close" onClick={onClose}>×</button>
       </div>
-      <div className="studio-body" ref={scrollRef}>
-        {messages.length === 0 && (
-          <div className="studio-welcome">
-            <div className="studio-welcome-eyebrow">// ASK ME ANYTHING ABOUT LIL BUCKS</div>
-            <div className="studio-welcome-h2">Hey Emily. What are we working on?</div>
-            <div className="studio-welcome-body">I've read every signal the engine pulled this week, the 8 tonal territories, your music lane, the Emily Rule, the SKU mapping, and the Seven Sundays dual-edge. I'll match your voice and pressure-test against the operating model.</div>
-            <div className="studio-starters">
-              {STUDIO_STARTERS.map((s, i) => (
-                <button key={i} className="studio-starter" onClick={() => send(s.prompt)}>
-                  <span className="studio-starter-label">{s.label}</span>
-                  <span className="studio-starter-prompt">{s.prompt}</span>
-                </button>
-              ))}
+
+      {mode === "chat" && (<>
+        <div className="studio-body" ref={scrollRef}>
+          {messages.length === 0 && (
+            <div className="studio-welcome">
+              <div className="studio-welcome-eyebrow">// ASK ME ANYTHING ABOUT LIL BUCKS</div>
+              <div className="studio-welcome-h2">Hey Emily. What are we working on?</div>
+              <div className="studio-welcome-body">I've read every signal the engine pulled this week, the 8 tonal territories, your music lane, the Emily Rule, the SKU mapping, the Seven Sundays dual-edge, and the voice corpus (2 podcasts, IG, TikTok, LinkedIn, Amazon reviews). I'll match your voice and pressure-test against the operating model.</div>
+              <div className="studio-starters">
+                {STUDIO_STARTERS.map((s, i) => (
+                  <button key={i} className="studio-starter" onClick={() => send(s.prompt)}>
+                    <span className="studio-starter-label">{s.label}</span>
+                    <span className="studio-starter-prompt">{s.prompt}</span>
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
-        {messages.map((m, i) => (
-          <div key={i} className={"studio-msg studio-msg-"+m.role}>
-            <div className="studio-msg-tag">{m.role === "user" ? "Emily" : "The Strategist"}</div>
-            <div className="studio-msg-body">{m.content}</div>
-          </div>
-        ))}
-        {loading && (
-          <div className="studio-msg studio-msg-assistant">
-            <div className="studio-msg-tag">The Strategist</div>
-            <div className="studio-msg-body studio-thinking"><span></span><span></span><span></span></div>
-          </div>
-        )}
-        {error && (
-          <div className="studio-error">⚠ {error}</div>
-        )}
-      </div>
-      <div className="studio-input-row">
-        <textarea
-          className="studio-input"
-          placeholder="ask the strategist anything — a brief to sharpen, a counter-move to plan, a hook to riff…"
-          value={input}
-          onChange={e=>setInput(e.target.value)}
-          onKeyDown={onKey}
-          disabled={loading}
-          rows={1}
-        />
-        <button className="studio-send" onClick={()=>send()} disabled={loading || !input.trim()}>
-          {loading ? "..." : "Send →"}
-        </button>
-      </div>
+          )}
+          {messages.map((m, i) => (
+            <div key={i} className={"studio-msg studio-msg-"+m.role}>
+              <div className="studio-msg-tag">{m.role === "user" ? "Emily" : "The Strategist"}</div>
+              <div className="studio-msg-body">{m.content}</div>
+            </div>
+          ))}
+          {loading && (
+            <div className="studio-msg studio-msg-assistant">
+              <div className="studio-msg-tag">The Strategist</div>
+              <div className="studio-msg-body studio-thinking"><span></span><span></span><span></span></div>
+            </div>
+          )}
+          {error && (
+            <div className="studio-error">⚠ {error}</div>
+          )}
+        </div>
+        <div className="studio-input-row">
+          <textarea
+            className="studio-input"
+            placeholder="ask the strategist anything — a brief to sharpen, a counter-move to plan, a hook to riff…"
+            value={input}
+            onChange={e=>setInput(e.target.value)}
+            onKeyDown={onKey}
+            disabled={loading}
+            rows={1}
+          />
+          <button className="studio-send" onClick={()=>send()} disabled={loading || !input.trim()}>
+            {loading ? "..." : "Send →"}
+          </button>
+        </div>
+      </>)}
+
+      {mode === "compass" && (
+        <div className="studio-body">
+          <VoiceCompassView />
+        </div>
+      )}
     </div>
   </div>);
 }
