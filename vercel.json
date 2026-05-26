@@ -13,6 +13,6 @@
     { "path": "/api/cron?worker=pinterest&source=cron",       "schedule": "0 21 * * *" }
   ],
   "functions": {
-    "api/cron.js": { "maxDuration": 60 }
+    "api/cron.js": { "maxDuration": 300 }
   }
 }
