@@ -421,6 +421,111 @@ a{color:inherit;text-decoration:none}
   .memo-card{padding:46px 26px 28px}
 }
 
+/* RECEIPTS BOARD — engine track record */
+.rcpt-view{padding:0 0 24px}
+.rcpt-header{background:linear-gradient(135deg,var(--cobalt-deep) 0%,var(--cobalt) 100%);color:#fff;border-radius:14px;padding:28px 32px;margin-bottom:22px;display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center;position:relative;overflow:hidden}
+.rcpt-header::after{content:"⚡";position:absolute;top:18px;right:160px;font-size:48px;opacity:0.18}
+.rcpt-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.18em;font-weight:700;text-transform:uppercase;opacity:0.85;margin-bottom:8px}
+.rcpt-title{font-family:'Lilita One',serif;font-weight:400;font-size:42px;letter-spacing:0.005em;line-height:1;color:#fff;margin:0 0 12px}
+.rcpt-sub{font-family:'Fraunces';font-size:15px;line-height:1.5;font-weight:500;color:rgba(255,255,255,0.92);letter-spacing:-0.005em;margin:0;max-width:680px}
+.rcpt-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.22);border-radius:12px;overflow:hidden}
+.rcpt-stat{background:rgba(255,255,255,0.1);padding:14px 16px;text-align:center;backdrop-filter:blur(6px)}
+.rcpt-stat-num{font-family:'Lilita One',serif;font-weight:400;font-size:30px;letter-spacing:0.005em;line-height:1;color:#fff}
+.rcpt-stat-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.12em;color:rgba(255,255,255,0.85);font-weight:600;margin-top:6px;text-transform:uppercase}
+
+.rcpt-filters{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.rcpt-filter{background:var(--butter-light);color:var(--cobalt-deep);border:1.5px solid var(--cobalt-light);padding:8px 16px;border-radius:99px;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:0.02em;cursor:pointer;transition:all 0.15s}
+.rcpt-filter:hover{background:#fff;border-color:var(--cobalt)}
+.rcpt-filter.active{background:var(--cobalt);color:#fff;border-color:var(--cobalt)}
+
+.rcpt-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.rcpt-card{background:var(--butter-light);border:1.5px solid var(--cobalt-light);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:11px;box-shadow:0 2px 0 var(--cobalt-light)}
+.rcpt-band-big_swing{border-color:var(--magenta);box-shadow:0 2px 0 var(--magenta)}
+.rcpt-band-hit{border-color:#7AB05D;box-shadow:0 2px 0 #7AB05D}
+.rcpt-band-killed{border-color:#C95C46;box-shadow:0 2px 0 #C95C46;background:linear-gradient(135deg,var(--butter-light) 0%,rgba(232,144,125,0.06) 100%)}
+
+.rcpt-card-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.rcpt-band-tag{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.16em;font-weight:800;padding:4px 11px;border-radius:99px}
+.rcpt-tag-big_swing{background:var(--magenta);color:#fff}
+.rcpt-tag-hit{background:#E7F0DD;color:#3B6B2D}
+.rcpt-tag-killed{background:#F8DCD7;color:#9E3F31}
+.rcpt-meta{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-soft);letter-spacing:0.04em}
+
+.rcpt-concept{font-family:'Lilita One',serif;font-weight:400;font-size:17px;letter-spacing:0.005em;line-height:1.15;color:var(--cobalt-deep);margin-top:2px}
+
+.rcpt-card-grid{display:flex;flex-wrap:wrap;gap:5px}
+.rcpt-chip{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;background:rgba(53,133,224,0.1);color:var(--cobalt-deep);padding:3px 9px;border-radius:99px;font-weight:600;text-transform:uppercase}
+.rcpt-chip-pillar{background:rgba(234,126,154,0.12);color:var(--magenta-deep)}
+.rcpt-chip-dna{background:rgba(244,183,62,0.18);color:#8B6F1F}
+
+.rcpt-hook{font-family:'Fraunces';font-size:14.5px;line-height:1.35;color:var(--cobalt-deep);font-weight:500;font-style:italic;letter-spacing:-0.005em;padding:10px 14px;background:#fff;border-left:3px solid var(--cobalt);border-radius:0 6px 6px 0}
+
+.rcpt-metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--cobalt-light);border:1px solid var(--cobalt-light);border-radius:8px;overflow:hidden}
+.rcpt-metric{background:#fff;padding:8px 6px;text-align:center}
+.rcpt-metric-num{font-family:'Lilita One',serif;font-weight:400;font-size:17px;color:var(--cobalt-deep);line-height:1;letter-spacing:0.005em}
+.rcpt-metric-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;color:var(--ink-soft);font-weight:600;text-transform:uppercase;margin-top:3px}
+.rcpt-metric-reach{background:rgba(53,133,224,0.06)}
+
+.rcpt-why{padding:11px 14px;background:#fff;border-radius:8px;border:1px solid var(--cobalt-light)}
+.rcpt-why-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.14em;color:var(--cobalt);font-weight:700;text-transform:uppercase;margin-bottom:5px}
+.rcpt-band-killed .rcpt-why-label{color:#9E3F31}
+.rcpt-why-text{font-size:12.5px;line-height:1.5;color:var(--cobalt-deep)}
+
+.rcpt-learned{display:grid;grid-template-columns:auto 1fr;gap:11px;padding:12px 14px;background:linear-gradient(135deg,rgba(244,183,62,0.12) 0%,rgba(234,126,154,0.08) 100%);border-radius:8px;border:1px solid rgba(244,183,62,0.3)}
+.rcpt-learned-icon{font-size:18px;line-height:1.3}
+.rcpt-learned-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.14em;color:#8B6F1F;font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.rcpt-learned-text{font-family:'Fraunces';font-size:13px;line-height:1.45;color:var(--cobalt-deep);font-weight:500;font-style:italic;letter-spacing:-0.005em}
+
+@media (max-width:980px){
+  .rcpt-header{grid-template-columns:1fr}
+  .rcpt-list{grid-template-columns:1fr}
+  .rcpt-metrics{grid-template-columns:repeat(3,1fr)}
+}
+
+/* PHONE PREVIEW — phone-frame mockup at top of brief detail modal */
+.phone-preview-wrap{display:grid;grid-template-columns:1fr auto;gap:28px;padding:20px 24px;margin-bottom:20px;background:linear-gradient(135deg,var(--butter-light) 0%,#FFF7C9 100%);border:1.5px solid var(--cobalt-light);border-radius:14px;align-items:center}
+.phone-preview-meta{display:flex;flex-direction:column;gap:6px;min-width:0}
+.phone-preview-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:var(--cobalt);font-weight:700;text-transform:uppercase}
+.phone-preview-title{font-family:'Lilita One',serif;font-weight:400;font-size:24px;letter-spacing:0.005em;color:var(--cobalt-deep);line-height:1.1;margin-bottom:2px}
+.phone-preview-sub{font-size:12px;color:var(--ink-soft);line-height:1.5}
+.phone-preview-audio{display:flex;gap:8px;align-items:center;background:#fff;border:1px solid var(--cobalt-light);border-radius:8px;padding:8px 12px;margin-top:12px;font-size:12px;line-height:1.4;color:var(--cobalt-deep)}
+.phone-audio-icon{font-size:14px;color:var(--magenta-deep)}
+.phone-audio-text{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.04em}
+
+.phone-frame{width:240px;height:480px;background:#1a1a1a;border-radius:36px;padding:8px;position:relative;flex-shrink:0;box-shadow:0 12px 36px rgba(26,58,110,0.25),inset 0 0 0 2px #333}
+.phone-notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:80px;height:18px;background:#1a1a1a;border-radius:0 0 14px 14px;z-index:3}
+.phone-screen{width:100%;height:100%;border-radius:30px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+
+/* Pillar themes for the phone screen background */
+.phone-theme-fuel .phone-screen{background:linear-gradient(165deg,#F4B73E 0%,#E89A2E 100%)}
+.phone-theme-bowl .phone-screen{background:linear-gradient(165deg,#7FA86F 0%,#5B8B47 100%)}
+.phone-theme-soil .phone-screen{background:linear-gradient(165deg,#9E652E 0%,#6F4720 100%)}
+.phone-theme-crunch .phone-screen{background:linear-gradient(165deg,var(--magenta) 0%,var(--coral) 100%)}
+
+.phone-status{display:flex;justify-content:space-between;padding:30px 18px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.9);font-weight:600}
+.phone-status-right{display:flex;gap:4px;align-items:center;font-size:9px}
+
+.phone-keyframe{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 22px;position:relative}
+.phone-keyframe-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;color:rgba(255,255,255,0.78);font-weight:700;text-transform:uppercase;position:absolute;top:8px;left:22px}
+.phone-keyframe-text{font-family:'Lilita One',serif;font-weight:400;font-size:24px;line-height:1.1;letter-spacing:0.005em;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,0.4);text-wrap:balance}
+.phone-keyframe-hook{font-size:26px}
+.phone-keyframe-endcard{font-family:'Fraunces';font-style:italic;font-size:20px;font-weight:600;letter-spacing:-0.01em}
+.phone-keyframe-stinger{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.16em;color:rgba(255,255,255,0.85);font-weight:700;margin-top:14px;text-transform:uppercase}
+
+.phone-overlay-bottom{padding:8px 18px 16px;background:linear-gradient(to top,rgba(0,0,0,0.6),transparent);position:relative;z-index:2}
+.phone-handle{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;color:#fff;margin-bottom:3px}
+.phone-caption-preview{font-family:'Inter',sans-serif;font-size:10.5px;color:rgba(255,255,255,0.92);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+.phone-dots{position:absolute;top:54px;left:0;right:0;display:flex;justify-content:center;gap:5px;padding:0 18px}
+.phone-dot{width:100%;max-width:60px;height:3px;background:rgba(255,255,255,0.35);border-radius:99px;cursor:pointer;border:0;padding:0;transition:background 0.2s}
+.phone-dot:hover{background:rgba(255,255,255,0.6)}
+.phone-dot.active{background:#fff}
+
+@media (max-width:680px){
+  .phone-preview-wrap{grid-template-columns:1fr;justify-items:center}
+  .phone-preview-meta{order:2;width:100%}
+}
+
 /* VOICE COMPASS — live brand-fidelity scorer (lives inside Studio modal as a mode) */
 .studio-mode-toggle{display:flex;gap:4px;background:rgba(255,255,255,0.14);padding:4px;border-radius:99px;margin-left:auto;margin-right:14px}
 .studio-mode{background:transparent;color:rgba(255,255,255,0.78);border:0;padding:7px 14px;border-radius:99px;font-size:12px;font-weight:600;letter-spacing:0.02em;cursor:pointer;transition:all 0.15s;white-space:nowrap}
@@ -1213,6 +1318,7 @@ function App(){
     {id:'howitworks',label:'How It Works',icon:'◉',active:true},
     {id:'intel',label:'Intelligence Brief',icon:'◆',active:true},
     {id:'briefs',label:'Content Briefs',icon:'■',active:true},
+    {id:'receipts',label:'Receipts',icon:'⚡',active:true},
     {id:'studio',label:'Studio',icon:'✷',active:true,onClick:()=>setStudioOpen(true)}
   ];
 
@@ -1252,7 +1358,7 @@ function App(){
         <header className="page-head">
           <div>
             <div className="eyebrow">{BRAND.issue} · {BRAND.weekRange}</div>
-            <h1 className="serif">{section==='howitworks'?'How It Works':section==='intel'?'Intelligence Brief':section==='briefs'?'Content Briefs':section==='playbook'?'Weekly Playbook':section==='performance'?'Performance':''}</h1>
+            <h1 className="serif">{section==='howitworks'?'How It Works':section==='intel'?'Intelligence Brief':section==='briefs'?'Content Briefs':section==='receipts'?'Receipts':''}</h1>
           </div>
           <div className="meta">
             <div className="date-pill">{BRAND.weekRange}</div>
@@ -1269,6 +1375,7 @@ function App(){
         {section==='howitworks' && <HowItWorksTab />}
         {section==='intel' && <IntelligenceBrief tab={intelTab} setTab={setIntelTab} openStudio={()=>setStudioOpen(true)} />}
         {section==='briefs' && <ContentBriefs onOpen={setBriefOpen} openStudio={()=>setStudioOpen(true)} />}
+        {section==='receipts' && <ReceiptsView openStudio={()=>setStudioOpen(true)} />}
       </main>
     </div>
   </>);
@@ -1547,6 +1654,64 @@ function ContentBriefs({onOpen,openStudio}){
   </>);
 }
 
+function PhonePreview({brief}){
+  const [frame, setFrame] = useState(0);
+  const recommendedHook = brief.hooks?.find(h => h.recommended)?.text || brief.hooks?.[0]?.text || brief.concept;
+  const endcard = brief.benefitShorthand || "Xx Emily";
+
+  // Build 3 keyframes from the script if available, else fall back to hook + visual + endcard
+  const keyframes = brief.script && brief.script.length >= 2 ? [
+    { tag: brief.script[0].time, text: brief.script[0].action.split(/[\.!?]/)[0] },
+    { tag: brief.script[Math.min(1, brief.script.length-1)].time, text: recommendedHook, isHook: true },
+    { tag: brief.script[brief.script.length-1].time, text: endcard, isEndcard: true }
+  ] : [
+    { tag: "0:00", text: brief.visual?.split(/[\.!?]/)[0] || brief.concept },
+    { tag: "0:08", text: recommendedHook, isHook: true },
+    { tag: "0:22", text: endcard, isEndcard: true }
+  ];
+
+  const pillarTheme = brief.pillar === "FUEL" ? "fuel" : brief.pillar === "THE BOWL" ? "bowl" : brief.pillar === "SOIL" ? "soil" : "crunch";
+
+  return (<div className="phone-preview-wrap">
+    <div className="phone-preview-meta">
+      <div className="phone-preview-eyebrow">// PHONE PREVIEW</div>
+      <div className="phone-preview-title">how this looks on {brief.platform.toLowerCase().includes("tiktok") ? "TikTok" : brief.platform.toLowerCase().includes("carousel") ? "IG" : "IG Reel"}</div>
+      <div className="phone-preview-sub">3 keyframes pulled from the brief · tap dots to advance · {brief.duration || "~22s"}</div>
+      <div className="phone-preview-audio">
+        <span className="phone-audio-icon">♪</span>
+        <span className="phone-audio-text">{brief.audio || "static format · no audio"}</span>
+      </div>
+    </div>
+    <div className={"phone-frame phone-theme-"+pillarTheme}>
+      <div className="phone-notch"></div>
+      <div className="phone-screen">
+        <div className="phone-status">
+          <span>9:41</span>
+          <span className="phone-status-right">📶 100%</span>
+        </div>
+        <div className="phone-keyframe">
+          <div className="phone-keyframe-tag">{keyframes[frame].tag}</div>
+          <div className={"phone-keyframe-text" + (keyframes[frame].isHook ? " phone-keyframe-hook" : "") + (keyframes[frame].isEndcard ? " phone-keyframe-endcard" : "")}>
+            {keyframes[frame].text}
+          </div>
+          {keyframes[frame].isEndcard && (
+            <div className="phone-keyframe-stinger">{brief.flavor} · {brief.pillar}</div>
+          )}
+        </div>
+        <div className="phone-overlay-bottom">
+          <div className="phone-handle">@lilbucksworld</div>
+          <div className="phone-caption-preview">{brief.concept}</div>
+        </div>
+        <div className="phone-dots">
+          {keyframes.map((_, i) => (
+            <button key={i} className={"phone-dot"+(i===frame?" active":"")} onClick={()=>setFrame(i)} aria-label={"frame "+(i+1)}></button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>);
+}
+
 function BriefDetailModal({brief,onClose,onDrop}){
   const variants = CAPTION_VARIANTS[brief.id]||{};
   const links = BRIEF_LINKS[brief.id]||{trends:[],pulse:[],comps:[]};
@@ -1566,6 +1731,8 @@ function BriefDetailModal({brief,onClose,onDrop}){
         <button className="modal-close" onClick={onClose}>×</button>
       </div>
       <div className="modal-body">
+
+        <PhonePreview brief={brief} />
 
         <div className="modal-section">
           <div className="modal-section-label">Intel that drove this</div>
@@ -1885,6 +2052,160 @@ function CrunchBunchPanel({brief}){
           ) : null}
         </div>);
       })}
+    </div>
+  </div>);
+}
+
+// ===== RECEIPTS — engine track record of past briefs (mock historical performance) =====
+const RECEIPTS = [
+  { id:"OCT15-IG-FE", week:"Oct 13–19, 2025", posted_at:"Oct 15, 2025",
+    platform:"IG Reel", pillar:"CRUNCH BUNCH", dna:"founder-emily", flavor:"Original Clusterbucks",
+    concept:"Pope-hat seed rebrand reveal — the lil buckwheat seed retires",
+    hook:"BEHOLD THE NEW LIL BUCKS BRAND HITTING SHELVES NATIONWIDE",
+    metrics:{ likes:540, comments:112, saves:184, shares:96, reach:9300 },
+    band:"big_swing",
+    why_hit:"Founder-honest milestone moment. ALL CAPS appropriate for arrival. Personalized the logo as 'she' retiring. Community-acknowledgment in caption named 12+ collaborators.",
+    learned:"Milestone-reveal posts with personalized brand-mark storytelling consistently 4–6x baseline engagement. Reserve milestone-reveal format for 1 brief per quarter — diminishing returns if overused." },
+
+  { id:"FEB06-IG-FE", week:"Feb 3–9, 2026", posted_at:"Feb 6, 2026",
+    platform:"IG Reel", pillar:"CRUNCH BUNCH", dna:"founder-emily", flavor:"Cluster Bucks",
+    concept:"Unhinged things I did to scale my startup — the salmon-residue dehydrator story",
+    hook:"unhinged things I did to scale my startup 😌👍",
+    metrics:{ likes:351, comments:94, saves:108, shares:71, reach:7100 },
+    band:"big_swing",
+    why_hit:"Founder-honesty long-form story (salmon-residue dehydrator anecdote). Self-deprecating tone landed across all 5 Crunch Bunch personas — particularly Jamie (writer/cynical) who values brand transparency.",
+    learned:"Self-deprecating founder-honesty consistently outperforms recipe content. The 'unhinged' framing template works once per quarter — wears thin if repeated monthly." },
+
+  { id:"NOV12-IG-MS", week:"Nov 10–16, 2025", posted_at:"Nov 12, 2025",
+    platform:"IG Reel", pillar:"CRUNCH BUNCH", dna:"shelf-spotted", flavor:"Hot Honey + Everything Bucks",
+    concept:"PINCH US — Whole Foods nationwide savory launch celebration",
+    hook:"PINCH US!! OUR SAVORY FLAVORS ARE NOW AVAILABLE AT @wholefoods NATIONWIDE!",
+    metrics:{ likes:319, comments:103, saves:67, shares:84, reach:6800 },
+    band:"big_swing",
+    why_hit:"Retail-milestone celebration with arms-raised founder visual. ALL CAPS appropriate for the moment. 20%-discount tag-incentive drove comment volume.",
+    learned:"Retail-milestone formats need a tag-incentive to push comment volume — share rate alone is lower for celebration posts than for educational ones. Always pair milestones with a tag-to-win mechanic." },
+
+  { id:"MAR31-IG-BTS", week:"Mar 30 – Apr 5, 2026", posted_at:"Mar 31, 2026",
+    platform:"IG Reel", pillar:"CRUNCH BUNCH", dna:"founder-emily", flavor:"Clusterbucks line",
+    concept:"What in the clusterbuck — we survived March Madness on the factory floor",
+    hook:"what in the clusterbuck — WE SURVIVED MARCH MADNESS!!",
+    metrics:{ likes:202, comments:48, saves:39, shares:31, reach:4500 },
+    band:"hit",
+    why_hit:"Factory-floor BTS with hairnet visual = founder-honesty + production-scale story. New brand-coined phrase 'what in the clusterbuck' validated in comments (12+ uses, 4 unique creators).",
+    learned:"Brand-coined phrases (what in the clusterbuck, buck-wild) drive 2–3x more save-for-later than generic positive-affect captions. Coin one new phrase per quarter." },
+
+  { id:"AUG07-IG-RT", week:"Aug 4–10, 2025", posted_at:"Aug 7, 2025",
+    platform:"IG Carousel", pillar:"SOIL", dna:"shelf-spotted", flavor:"Bucks 'n Honey Clusterbucks",
+    concept:"#thesummeriturnedbuckwild — Whole Foods 2 for $10 sale ride on the Prime show",
+    hook:"GET IN BELLY WE'RE GOIN TO WHOLE FOODS (to hit that clusterbucks 2 for $10 sale)",
+    metrics:{ likes:60, comments:14, saves:18, shares:9, reach:2200 },
+    band:"hit",
+    why_hit:"Brand-coined hashtag #thesummeriturnedbuckwild riding pop-culture Prime show. Editorial poster aesthetic broke the recipe pattern. Lower absolute engagement but high cultural-relevance signal in comments.",
+    learned:"Cultural-ride posts have lower absolute engagement than founder posts but generate cross-creator pickup. Use 1× per quarter when a culturally-massive moment hits." },
+
+  { id:"FEB13-IG-EBA", week:"Feb 10–16, 2026", posted_at:"Feb 13, 2026",
+    platform:"IG Carousel", pillar:"THE BOWL", dna:"bowl-build", flavor:"Crunchy Toppers Original",
+    concept:"5 Balanced Breakfasts — annotated meal compositions with cottage cheese + lil bucks",
+    hook:"which one are you picking? 🔍🫐🍎😏 let us know in the comments and 2 of you will win some crunchy Lil Bucks toppers",
+    metrics:{ likes:67, comments:42, saves:51, shares:18, reach:3100 },
+    band:"hit",
+    why_hit:"Educational-with-giveaway format drove comment volume. Annotated visual + giveaway hook = high comment-to-like ratio (62% vs 25% baseline). Save rate exceeded all recipe content for the quarter.",
+    learned:"Giveaway-hook recipe posts have 2x save rate of pure recipe posts. The annotation visual style is winning — incorporate into ≥1 brief per week." },
+
+  { id:"JAN12-KILL", week:"Jan 6–12, 2026", posted_at:"KILLED before posting",
+    platform:"(not posted)", pillar:"FUEL", dna:"fact-flip", flavor:"Original Clusterbucks",
+    concept:"6g protein. 5g fiber. 25% magnesium. Did you know? — straight-spec product brief",
+    hook:"6g of plant protein. 5g of prebiotic fiber. 25% of your daily magnesium.",
+    metrics: null,
+    band:"killed",
+    why_killed:"Voice Compass flagged: protein-first lead violates anti-pattern (Magic Spoon owns 'highest protein'). Spec-stack reads like supplement-brand register. Format-confused buyer wouldn't know what to DO with it.",
+    learned:"Spec-stack hooks consistently score <40 on Voice Compass. Lead with the source story, not the numbers. Numbers go in caption, not in the hook." },
+
+  { id:"DEC09-KILL", week:"Dec 8–14, 2025", posted_at:"KILLED before posting",
+    platform:"(not posted)", pillar:"FUEL", dna:"fact-flip", flavor:"Cluster Bucks",
+    concept:"Adaptogenic Clusterbucks: meet our mushroom-blend nutrition stack",
+    hook:"Introducing adaptogenic clusterbucks — the wellness moment for your morning",
+    metrics: null,
+    band:"killed",
+    why_killed:"Engine pulled from the 2020 lesson: 'adaptogenic' front-and-center served 'the airline consumer and no one else.' Anti-pattern. Adaptogens stay IN the formulation, not in positioning.",
+    learned:"Adaptogen-led positioning is permanently anti-pattern for Lil Bucks. Voice Compass will flag any draft using adaptogenic as the front-and-center claim." }
+];
+
+function ReceiptsView({openStudio}){
+  const [filter, setFilter] = useState('all');
+  const filtered = filter === 'all' ? RECEIPTS : RECEIPTS.filter(r => r.band === filter);
+  const stats = useMemo(() => {
+    const total = RECEIPTS.length;
+    const hits = RECEIPTS.filter(r => r.band === 'hit' || r.band === 'big_swing').length;
+    const totalLikes = RECEIPTS.reduce((s, r) => s + (r.metrics?.likes || 0), 0);
+    const postsWithMetrics = RECEIPTS.filter(r => r.metrics).length;
+    const avgLikes = postsWithMetrics ? Math.round(totalLikes / postsWithMetrics) : 0;
+    return { total, hits, hitRate: Math.round((hits/total)*100), avgLikes };
+  }, []);
+
+  return (<div className="rcpt-view">
+    <div className="rcpt-header">
+      <div>
+        <div className="rcpt-eyebrow">// ENGINE TRACK RECORD</div>
+        <h2 className="rcpt-title">Receipts.</h2>
+        <p className="rcpt-sub">What the engine recommended, what shipped, what hit, and what got killed (and why). Every call is logged, traceable, and feeds back into how the next week's brief mix is generated.</p>
+      </div>
+      <div className="rcpt-stats">
+        <div className="rcpt-stat"><div className="rcpt-stat-num">{stats.total}</div><div className="rcpt-stat-label">Briefs analyzed</div></div>
+        <div className="rcpt-stat"><div className="rcpt-stat-num">{stats.hitRate}%</div><div className="rcpt-stat-label">Hit rate</div></div>
+        <div className="rcpt-stat"><div className="rcpt-stat-num">{stats.avgLikes}</div><div className="rcpt-stat-label">Avg likes per shipped</div></div>
+      </div>
+    </div>
+
+    <div className="rcpt-filters">
+      <button className={"rcpt-filter"+(filter==='all'?' active':'')} onClick={()=>setFilter('all')}>All · {RECEIPTS.length}</button>
+      <button className={"rcpt-filter"+(filter==='big_swing'?' active':'')} onClick={()=>setFilter('big_swing')}>⚡ Big Swings · {RECEIPTS.filter(r=>r.band==='big_swing').length}</button>
+      <button className={"rcpt-filter"+(filter==='hit'?' active':'')} onClick={()=>setFilter('hit')}>✓ Hits · {RECEIPTS.filter(r=>r.band==='hit').length}</button>
+      <button className={"rcpt-filter"+(filter==='killed'?' active':'')} onClick={()=>setFilter('killed')}>✕ Killed · {RECEIPTS.filter(r=>r.band==='killed').length}</button>
+    </div>
+
+    <div className="rcpt-list">
+      {filtered.map(r => <ReceiptCard key={r.id} receipt={r} />)}
+    </div>
+  </div>);
+}
+
+function ReceiptCard({receipt}){
+  const r = receipt;
+  return (<div className={"rcpt-card rcpt-band-"+r.band}>
+    <div className="rcpt-card-head">
+      <span className={"rcpt-band-tag rcpt-tag-"+r.band}>
+        {r.band === 'big_swing' ? '⚡ BIG SWING' : r.band === 'hit' ? '✓ HIT' : '✕ KILLED'}
+      </span>
+      <span className="rcpt-meta">{r.week} · {r.posted_at}</span>
+    </div>
+    <div className="rcpt-concept">{r.concept}</div>
+    <div className="rcpt-card-grid">
+      <span className="rcpt-chip rcpt-chip-platform">{r.platform}</span>
+      <span className="rcpt-chip rcpt-chip-pillar">{r.pillar}</span>
+      <span className="rcpt-chip rcpt-chip-dna">{r.dna}</span>
+      <span className="rcpt-chip">{r.flavor}</span>
+    </div>
+    <div className="rcpt-hook">"{r.hook}"</div>
+    {r.metrics && (
+      <div className="rcpt-metrics">
+        <div className="rcpt-metric"><div className="rcpt-metric-num">{r.metrics.likes}</div><div className="rcpt-metric-label">likes</div></div>
+        <div className="rcpt-metric"><div className="rcpt-metric-num">{r.metrics.comments}</div><div className="rcpt-metric-label">comments</div></div>
+        <div className="rcpt-metric"><div className="rcpt-metric-num">{r.metrics.saves}</div><div className="rcpt-metric-label">saves</div></div>
+        <div className="rcpt-metric"><div className="rcpt-metric-num">{r.metrics.shares}</div><div className="rcpt-metric-label">shares</div></div>
+        <div className="rcpt-metric rcpt-metric-reach"><div className="rcpt-metric-num">{r.metrics.reach.toLocaleString()}</div><div className="rcpt-metric-label">reach</div></div>
+      </div>
+    )}
+    <div className="rcpt-why">
+      <div className="rcpt-why-label">{r.band === 'killed' ? '🔻 WHY KILLED' : '🟢 WHY IT HIT'}</div>
+      <div className="rcpt-why-text">{r.why_hit || r.why_killed}</div>
+    </div>
+    <div className="rcpt-learned">
+      <span className="rcpt-learned-icon">🧠</span>
+      <div>
+        <div className="rcpt-learned-label">ENGINE LEARNED</div>
+        <div className="rcpt-learned-text">{r.learned}</div>
+      </div>
     </div>
   </div>);
 }
