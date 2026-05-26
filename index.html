@@ -1258,10 +1258,10 @@ const WELCOME_HIGHLIGHTS = [
   { stat:"May 23", label:"Buckwheat in late-spring bloom on regen-ag socials", detail:"A-Frame Farm + adjacent regen-ag accounts posting pink-flower buckwheat field footage as fields bloom. Visual is Pinterest-ready + soil-story timely. Late-Mother's-Day window closed but the bloom-aesthetic peaks this week.", src:"a-frame farms", url:"https://practicalfarmers.org/2025/01/finding-your-small-grain-market-through-relationship-building/" }
 ];
 
-const WELCOME_THESIS = "Memorial Day weekend lights the summer-snack starting gun: cottage-cheese bowls, açaí bowls, hot-girl-walk fuel — all back in the feed. Meanwhile the protein-granola arms race the engine flagged two weeks ago (Purely Elizabeth at Target · Magic Spoon at Costco) is still compounding, and the hot-honey wave keeps spreading from condiment to snack. Lil Bucks is positioned for the season pivot — the seed-not-spec story sharpens against the protein chase, Hot Honey Clusterbucks lives where the trend is moving, and the soil-story window stayed open. The week's job: open summer in lowercase, ride hot honey + the cottage-cheese-bowl revival, and let the A-Frame Farm story compound underneath.";
+const WELCOME_THESIS = "Memorial Day weekend lights the summer-snack starting gun: cottage-cheese bowls, açaí bowls, hot-girl-walk fuel — all back in the feed. Meanwhile the protein-granola arms race the engine flagged two weeks ago (Purely Elizabeth at Target · Magic Spoon at Costco) is still compounding, and the hot-honey wave keeps spreading from condiment to snack. Lil Bucks is positioned for the season pivot — the seed-not-spec story sharpens against the protein chase, Hot Honey Clusterbucks lives where the trend is moving, and the soil-story window stayed open. The week's job: open summer with the açaí-bowl origin, ride hot honey + the cottage-cheese-bowl revival, and let the A-Frame Farm story compound underneath.";
 
 const WELCOME_MOVES = [
-  { verb:"Open summer.", why:"Memorial Day Reel dropping the açaí-bowl origin frame — Original Clusterbucks back to the Sydney 2017 moment that started the brand. Lowercase, Xx Emily." },
+  { verb:"Open summer.", why:"Memorial Day Reel dropping the açaí-bowl origin frame — Original Clusterbucks back to the Sydney 2017 moment that started the brand." },
   { verb:"Ride hot honey.", why:"Snak Club × Mike's just put hot honey in salty snacks. Hot Honey Clusterbucks has been on shelf since 2024. Shelf-spotted Reel mid-week — we have been here." },
   { verb:"Name the farmer.", why:"Late-spring Luke & Ali post on A-Frame Farm in bloom. Soil-as-source, founder-warm, signed Xx Emily. ⚠ frame on relationship depth — Seven Sundays sources the same farm." }
 ];
@@ -1960,21 +1960,7 @@ function MondayMemoModal({onClose, onShipIt}){
           <p className="mmm-read">{WELCOME_THESIS}</p>
         </div>
         <div className="mmm-section">
-          <div className="mmm-section-eye">// 3 MOVES THIS WEEK</div>
-          <div className="mmm-moves">
-            {WELCOME_MOVES.map((m,i)=>(
-              <div key={i} className="mmm-move">
-                <div className="mmm-move-num">{String(i+1).padStart(2,"0")}</div>
-                <div className="mmm-move-body">
-                  <div className="mmm-move-verb">{m.verb}</div>
-                  <div className="mmm-move-why">{m.why}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="mmm-section">
-          <div className="mmm-section-eye">// 5 SIGNALS WORTH RIDING</div>
+          <div className="mmm-section-eye">// 5 SIGNALS DRIVING THE WEEK</div>
           <div className="mmm-signals">
             {WELCOME_HIGHLIGHTS.map((h,i)=>(
               <div key={i} className="mmm-signal">
@@ -1983,6 +1969,20 @@ function MondayMemoModal({onClose, onShipIt}){
                   <div className="mmm-signal-label">{h.label}</div>
                   <div className="mmm-signal-detail">{h.detail}</div>
                   {h.url && <a className="mmm-signal-src" href={h.url} target="_blank" rel="noreferrer">{h.src}</a>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mmm-section">
+          <div className="mmm-section-eye">// 3 MOVES WE'RE MAKING</div>
+          <div className="mmm-moves">
+            {WELCOME_MOVES.map((m,i)=>(
+              <div key={i} className="mmm-move">
+                <div className="mmm-move-num">{String(i+1).padStart(2,"0")}</div>
+                <div className="mmm-move-body">
+                  <div className="mmm-move-verb">{m.verb}</div>
+                  <div className="mmm-move-why">{m.why}</div>
                 </div>
               </div>
             ))}
