@@ -213,9 +213,10 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "method_not_allowed", expected: "POST" });
   }
 
-  const apiKey = process.env.GEMINI_API_KEY;
+  // Tolerate either casing — Alex's Vercel var is 'GEMINI_API_Key', not 'GEMINI_API_KEY'
+  const apiKey = process.env.GEMINI_API_KEY || process.env.GEMINI_API_Key || process.env.GEMINI_KEY || process.env.GOOGLE_API_KEY;
   if (!apiKey) {
-    return res.status(500).json({ error: "missing_env_var", detail: "GEMINI_API_KEY not set in Vercel project env vars" });
+    return res.status(500).json({ error: "missing_env_var", detail: "GEMINI_API_Key not set in Vercel project env vars" });
   }
 
   // Basic origin guard — Lil Bucks dashboard only.
