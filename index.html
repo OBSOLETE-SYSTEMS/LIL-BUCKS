@@ -921,7 +921,7 @@ a{color:inherit;text-decoration:none}
 /* PERFORMANCE PREVIEW (inactive) */
 .perf-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
 .perf-kpi{background:var(--butter-light);border:1.5px dashed var(--cobalt-light);border-radius:12px;padding:16px 18px;position:relative;overflow:hidden}
-.perf-kpi::after{content:"OPERATE";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-12deg);font-family:'Lilita One',serif;font-size:34px;letter-spacing:0.06em;color:rgba(53,133,224,0.06);font-weight:400;pointer-events:none;z-index:0;text-transform:uppercase}
+.perf-kpi::after{content:"SOON";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-12deg);font-family:'Lilita One',serif;font-size:42px;letter-spacing:0.06em;color:rgba(53,133,224,0.08);font-weight:400;pointer-events:none;z-index:0;text-transform:uppercase}
 .perf-kpi>*{position:relative;z-index:1}
 .perf-kpi-num{font-family:'Lilita One',serif;font-weight:400;font-size:34px;letter-spacing:0.005em;line-height:1;color:var(--cobalt-light);margin-bottom:6px}
 .perf-kpi-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;color:var(--cobalt);font-weight:700;text-transform:uppercase;margin-bottom:4px}
@@ -2193,7 +2193,7 @@ function App(){
         <header className="page-head">
           <div>
             <h1 className="serif">{section==='howitworks'?'How It Works':section==='intel'?'Intelligence Brief':section==='briefs'?'Content Briefs':section==='calendar'?'Content Calendar':section==='performance'?'Performance':''}</h1>
-            <div className="page-dek">{section==='howitworks'?'The engine, in motion.':section==='intel'?"What's moving in culture this week — and how Lil Bucks rides it.":section==='briefs'?'Production-ready briefs across the 4 pillars. Hand them to the team. Ship the week.':section==='calendar'?'Your weekly calendar, auto-built from the brief mix. Lives in OPERATE.':section==='performance'?'What hit, what missed, and what the engine learned. Lives in OPERATE.':''}</div>
+            <div className="page-dek">{section==='howitworks'?'The engine, in motion.':section==='intel'?"What's moving in culture this week — and how Lil Bucks rides it.":section==='briefs'?'Production-ready briefs across the 4 pillars. Hand them to the team. Ship the week.':section==='calendar'?'Your weekly calendar, auto-built from the brief mix. 🚧 Under construction.':section==='performance'?'What hit, what missed, and what the engine learned. 🚧 Under construction.':''}</div>
           </div>
           <div className="meta">
             <div className="refresh-pill">
@@ -2452,7 +2452,7 @@ function CalendarPreview(){
     "Sun May 31":[{time:"10am",platform:"IG",pillar:"FUEL",label:"Sunday meme-payload · 'no, you don't get to ask questions'",priority:"standard"}]
   };
   return (<>
-    <InactiveBanner label="LIVE IN OPERATE" body="Inactive preview · turns on with the OPERATE engagement after the 30-day Quest. This is the auto-built calendar from every week's brief mix, drag-drop reschedule, paid-amp markers." />
+    <InactiveBanner label="🚧 UNDER CONSTRUCTION" body="A preview of what's coming · auto-built calendar from each week's brief mix · drag-drop reschedule · paid-amp markers. Below is FPO content so you can see the shape." />
     <div className="cal-grid">
       {days.map(d=>(<div key={d} className="cal-col">
         <div className="cal-col-head">{d}</div>
@@ -2485,7 +2485,7 @@ function PerformancePreview(){
     { id:"PE-3", brief:"Luke + Ali · A-Frame Farm bloom", reach:"—", saves:"—", driveby:"Late-spring soil window" }
   ];
   return (<>
-    <InactiveBanner label="LIVE IN OPERATE" body="Inactive preview · turns on once Week-1 ships and feedback flows back. Every brief gets reach + saves + engagement against the cultural signal that drove it — engine learns which signals → which DNA → which audience." />
+    <InactiveBanner label="🚧 UNDER CONSTRUCTION" body="A preview of what's coming · every brief tied back to the signal that drove it · reach + saves + engagement scored · engine learns which signals → which DNA → which audience. Below is FPO content so you can see the shape." />
     <div className="perf-kpis">
       {kpis.map(k=>(<div key={k.label} className="perf-kpi">
         <div className="perf-kpi-num">{k.value}</div>
