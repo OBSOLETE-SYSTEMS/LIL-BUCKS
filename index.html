@@ -458,6 +458,14 @@ a{color:inherit;text-decoration:none}
 
 .panel-error{background:rgba(232,144,125,0.18);color:#9E3F31;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:12px}
 
+.panel-run-btn{background:var(--magenta);color:#fff;border:0;padding:9px 18px;border-radius:99px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.14em;font-weight:800;text-transform:uppercase;cursor:pointer;transition:background 0.15s,transform 0.1s,box-shadow 0.15s;box-shadow:0 3px 0 var(--magenta-deep)}
+.panel-run-btn:hover:not(:disabled){background:var(--magenta-deep);transform:translateY(-1px);box-shadow:0 4px 0 var(--magenta-deep)}
+.panel-run-btn:disabled{opacity:0.45;cursor:not-allowed}
+.panel-running-tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--magenta);font-weight:700;text-transform:uppercase;animation:panel-pulse-loading 1.4s ease-in-out infinite}
+.panel-prerun{display:flex;align-items:flex-start;gap:14px;padding:12px 16px;background:var(--butter-light);border:1.5px dashed var(--cobalt-light);border-radius:10px;margin-top:6px}
+.panel-prerun-icon{font-size:24px;line-height:1;flex-shrink:0}
+.panel-prerun-title{font-family:'Fraunces';font-size:13.5px;line-height:1.4;color:var(--cobalt-deep);font-weight:600;letter-spacing:-0.005em;margin-bottom:4px}
+.panel-prerun-sub{font-family:'Inter',sans-serif;font-size:11.5px;line-height:1.5;color:var(--ink-soft);font-weight:500}
 .panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .panel-card{background:#fff;border:1.5px solid var(--cobalt-light);border-radius:10px;padding:13px 15px;display:flex;flex-direction:column;gap:8px}
 .panel-card-head{display:grid;grid-template-columns:auto 1fr auto;gap:11px;align-items:center}
@@ -2321,7 +2329,7 @@ function App(){
           <span className="main-footer-sep">·</span>
           <span>refreshed {BRAND.refreshed}</span>
           <span className="main-footer-sep">·</span>
-          <span>powered by Claude · Sonnet 4.6</span>
+          <span>powered by Gemini 2.5 Flash + Claude Sonnet 4.6</span>
         </footer>
       </main>
     </div>
@@ -3563,9 +3571,13 @@ function CrunchBunchPanel({brief}){
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const [requested, setRequested] = useState(false);
 
-  useEffect(() => {
-    let cancelled = false;
+  // Reset when brief changes (don't auto-fire — wait for user to click 'Run pre-test')
+  useEffect(() => { setData(null); setError(null); setRequested(false); }, [brief.id]);
+
+  function runPanel() {
+    setRequested(true);
     setLoading(true); setData(null); setError(null);
     fetch('/api/panel', {
       method: 'POST',
@@ -3574,14 +3586,12 @@ function CrunchBunchPanel({brief}){
     })
       .then(r => r.json())
       .then(d => {
-        if (cancelled) return;
         if (d.reactions) setData(d);
         else setError(d.detail || d.error || 'panel failed');
         setLoading(false);
       })
-      .catch(e => { if (!cancelled) { setError(String(e)); setLoading(false); } });
-    return () => { cancelled = true; };
-  }, [brief.id]);
+      .catch(e => { setError(String(e)); setLoading(false); });
+  }
 
   const scoreColor = (s) => s >= 8 ? 'high' : s >= 5 ? 'mid' : 'low';
   const avg = data ? Math.round((data.reactions.reduce((a,r)=>a+r.score,0) / data.reactions.length) * 10) / 10 : null;
@@ -3590,15 +3600,32 @@ function CrunchBunchPanel({brief}){
     <div className="panel-head">
       <div>
         <div className="panel-eyebrow">// THE CRUNCH BUNCH READS THIS</div>
-        <div className="panel-title">5 synthetic customers · panel pre-test</div>
+        <div className="panel-title">4 synthetic customers · panel pre-test</div>
       </div>
-      {avg != null && <div className={"panel-avg panel-avg-"+scoreColor(avg)}><span>{avg}</span><span>/10 avg</span></div>}
+      {avg != null ? (
+        <div className={"panel-avg panel-avg-"+scoreColor(avg)}><span>{avg}</span><span>/10 avg</span></div>
+      ) : !requested ? (
+        <button className="panel-run-btn" onClick={runPanel} disabled={loading}>
+          {loading ? "Running…" : "▷ Run pre-test"}
+        </button>
+      ) : loading ? (
+        <span className="panel-running-tag">running…</span>
+      ) : null}
     </div>
 
+    {!requested && !error && (
+      <div className="panel-prerun">
+        <span className="panel-prerun-icon">👥</span>
+        <div>
+          <div className="panel-prerun-title">Pressure-test this brief against 4 simulated Lil Bucks customers</div>
+          <div className="panel-prerun-sub">Sarah (oatmeal power-user) · Marcus (format-confused buyer) · Priya (recipe explorer) · Jamie (science nerd). Each scores it 1-10 with a reaction and an edit suggestion. ~3-5 seconds.</div>
+        </div>
+      </div>
+    )}
 
     {error && <div className="panel-error">⚠ {error}</div>}
 
-    <div className="panel-grid">
+    {(requested || data) && <div className="panel-grid">
       {CRUNCH_BUNCH_PERSONAS.map(p => {
         const reaction = data?.reactions?.find(r => r.persona === p.id);
         return (<div key={p.id} className="panel-card">
@@ -3632,7 +3659,7 @@ function CrunchBunchPanel({brief}){
           ) : null}
         </div>);
       })}
-    </div>
+    </div>}
   </div>);
 }
 
