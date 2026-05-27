@@ -1,18 +1,20 @@
 // Crunch Bunch Panel — synthetic-audience pre-test for any brief
 //
 // Takes a brief (concept, hook, visual, audio, pillar, flavor) and runs it
-// through 5 simulated Lil Bucks customer personas via Claude. Returns
-// score + reaction + suggested edit per persona.
+// through 4 simulated Lil Bucks customer personas via Gemini 2.5 Flash.
+// Returns score + reaction + suggested edit per persona.
 //
-// Env: ANTHROPIC_API_KEY
-// Model: claude-sonnet-4-6 (one batched call with JSON output mode — cheap + fast)
+// Switched 2026-05-27 from Anthropic → Gemini. thinkingBudget:0 + JSON mode.
+//
+// Env: GEMINI_API_KEY (case-tolerant fallback chain matches studio.js)
+// Model: gemini-2.5-flash
 
-const ANTHROPIC_API = "https://api.anthropic.com/v1/messages";
-const MODEL = "claude-sonnet-4-6";
+const GEMINI_MODEL = "gemini-2.5-flash";
+const GEMINI_API = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
 
-const PANEL_SYSTEM = `You are the **Crunch Bunch** — five synthetic personas calibrated against Lil Bucks's actual Amazon review base (2026-05-26). You will be shown a content brief (an Instagram Reel / TikTok / IG carousel concept Lil Bucks is considering). Score it from each persona's POV.
+const PANEL_SYSTEM = `You are the **Crunch Bunch** — four synthetic personas calibrated against Lil Bucks's actual Amazon review base (2026-05-26). You will be shown a content brief (an Instagram Reel / TikTok / IG carousel concept Lil Bucks is considering). Score it from each persona's POV.
 
-## The five personas
+## The four personas
 
 **1. Sarah · 34 · yoga instructor + mom of 2 · Boulder, CO** — *the oatmeal power-user*
 Regen-curious, Whole Foods + Sprouts shopper, reads Garbage Day + Anne Helen Petersen on Sunday, listens to NPR Music. Maps to the real-Amazon reviewer who writes "I use the Original every morning in my oatmeal along with sunflower and pumpkin seeds... it has become a staple in my cupboard and I never want to run out." Cares about: soil story, named farmers, allergen-friendly for the kids, daily-ritual use cases. Voice: warm, thoughtful, doesn't mince words. Off-brand for her: hype-EDM audios, supplement-brand register, anything aggressive.
@@ -69,20 +71,20 @@ function buildUserMessage(brief) {
   return lines.join("\n");
 }
 
-async function callAnthropic(brief, apiKey) {
+async function callGemini(brief, apiKey) {
   const userMessage = buildUserMessage(brief);
-  const res = await fetch(ANTHROPIC_API, {
+  const res = await fetch(`${GEMINI_API}?key=${apiKey}`, {
     method: "POST",
-    headers: {
-      "x-api-key": apiKey,
-      "anthropic-version": "2023-06-01",
-      "content-type": "application/json"
-    },
+    headers: { "content-type": "application/json" },
     body: JSON.stringify({
-      model: MODEL,
-      max_tokens: 1200,
-      system: PANEL_SYSTEM,
-      messages: [{ role: "user", content: userMessage }]
+      systemInstruction: { parts: [{ text: PANEL_SYSTEM }] },
+      contents: [{ role: "user", parts: [{ text: userMessage }] }],
+      generationConfig: {
+        maxOutputTokens: 4096,           // ≥4096 critical for JSON mode (truncation guard)
+        temperature: 0.7,
+        responseMimeType: "application/json",
+        thinkingConfig: { thinkingBudget: 0 }  // speed unlock
+      }
     })
   });
   const text = await res.text();
@@ -113,9 +115,10 @@ export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "method_not_allowed" });
   }
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  // Case-tolerant env-var chain (Alex's Vercel var is 'GEMINI_API_Key' with lowercase 'ey')
+  const apiKey = process.env.GEMINI_API_KEY || process.env.GEMINI_API_Key || process.env.GEMINI_KEY || process.env.GOOGLE_API_KEY;
   if (!apiKey) {
-    return res.status(500).json({ error: "missing_env_var", detail: "ANTHROPIC_API_KEY not set" });
+    return res.status(500).json({ error: "missing_env_var", detail: "GEMINI_API_Key not set in Vercel env" });
   }
 
   // Same origin guard as /api/studio
@@ -137,21 +140,24 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "missing_brief", expected: "{ brief: {...} }" });
   }
 
-  const result = await callAnthropic(brief, apiKey);
+  const result = await callGemini(brief, apiKey);
   if (!result.ok) {
-    return res.status(result.status || 500).json({ error: "anthropic_call_failed", detail: result.error });
+    return res.status(result.status || 500).json({ error: "gemini_call_failed", detail: result.error });
   }
 
-  const content = result.data?.content || [];
-  const text = content.filter(c => c.type === "text").map(c => c.text).join("\n");
+  // Gemini in JSON mode returns the parts[0].text already as a clean JSON string
+  const candidate = result.data?.candidates?.[0];
+  const parts = candidate?.content?.parts || [];
+  const text = parts.map(p => p.text || "").join("");
   const parsed = extractJson(text);
   if (!parsed || !Array.isArray(parsed.reactions)) {
-    return res.status(500).json({ error: "json_parse_failed", raw_excerpt: text.slice(0, 400) });
+    return res.status(500).json({ error: "json_parse_failed", finishReason: candidate?.finishReason, raw_excerpt: text.slice(0, 400) });
   }
 
   return res.status(200).json({
     reactions: parsed.reactions,
     headline_insight: parsed.headline_insight || null,
-    usage: result.data?.usage
+    model: GEMINI_MODEL,
+    usage: result.data?.usageMetadata
   });
 }
