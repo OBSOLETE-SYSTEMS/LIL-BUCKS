@@ -2193,7 +2193,7 @@ function App(){
         <header className="page-head">
           <div>
             <h1 className="serif">{section==='howitworks'?'How It Works':section==='intel'?'Intelligence Brief':section==='briefs'?'Content Briefs':section==='calendar'?'Content Calendar':section==='performance'?'Performance':''}</h1>
-            <div className="page-dek">{section==='howitworks'?'The engine, in motion.':section==='intel'?"What's moving in culture this week — and how Lil Bucks rides it.":section==='briefs'?'Production-ready briefs across the 4 pillars. Hand them to the team. Ship the week.':section==='calendar'?'Your weekly calendar, auto-built from the brief mix. 🚧 Under construction.':section==='performance'?'What hit, what missed, and what the engine learned. 🚧 Under construction.':''}</div>
+            <div className="page-dek">{section==='howitworks'?'The engine, in motion.':section==='intel'?"What's moving in culture this week — and how Lil Bucks rides it.":section==='briefs'?'Production-ready briefs across the 4 pillars. Hand them to the team. Power the week.':section==='calendar'?'Your weekly calendar, auto-built from the brief mix. 🚧 Under construction.':section==='performance'?'What hit, what missed, and what the engine learned. 🚧 Under construction.':''}</div>
           </div>
           <div className="meta">
             <div className="refresh-pill">
@@ -2474,7 +2474,7 @@ function CalendarPreview(){
 // ===== PERFORMANCE PREVIEW — FPO mock with KPI tiles + a results-grid placeholder =====
 function PerformancePreview(){
   const kpis = [
-    { label:"Briefs shipped", value:"—", sub:"first cycle lands week of OPERATE-1" },
+    { label:"Briefs shipped", value:"—", sub:"populates once Week 1 ships + feedback flows back" },
     { label:"Aggregate reach", value:"—", sub:"IG + TikTok + Pinterest combined" },
     { label:"Saves vs prior week", value:"—", sub:"weighted by pillar coverage" },
     { label:"Voice fidelity avg", value:"—", sub:"Voice Compass score across week" }
@@ -2954,7 +2954,7 @@ function AmbassadorsGrid(){
   return (<>
     <div className="wip-banner">
       <span className="wip-banner-tag">WORK IN PROGRESS</span>
-      <span className="wip-banner-text">Ambassador discovery + outreach scaffolding lands fully in OPERATE. What's here = the seed list to validate with Emily on the diagnostic call.</span>
+      <span className="wip-banner-text">🚧 Ambassador discovery + outreach is still being built — what's here is a seed list of creators, peer brands, and partners we've identified for Lil Bucks. Real-time creator scoring + outreach automation comes next.</span>
     </div>
     <div className="grid grid-2">
     {AMBASSADORS.map(a=>{
