@@ -968,16 +968,19 @@ a{color:inherit;text-decoration:none}
 /* PAID MEDIA AMPLIFICATION — Willa's-pattern 3-tier card */
 .amp-block{padding:14px 16px;background:linear-gradient(135deg,rgba(53,133,224,0.04) 0%,rgba(234,126,154,0.04) 100%);border:1.5px solid var(--cobalt-light);border-radius:12px}
 /* Brief detail accordion — collapsible Production / Amplify sections */
-.modal-acc{background:var(--butter-light);border:1.5px solid var(--cobalt-light);border-radius:10px;margin-bottom:14px;overflow:hidden;transition:box-shadow 0.15s}
-.modal-acc[open]{box-shadow:0 4px 10px rgba(26,58,110,0.06)}
+/* Modal accordions — cobalt-tinted to read as interactive expanders (distinct from cream caption cards) */
+.modal-acc{background:linear-gradient(135deg,rgba(53,133,224,0.06) 0%,rgba(53,133,224,0.02) 100%);border:1.5px solid rgba(53,133,224,0.32);border-left:4px solid var(--magenta);border-radius:10px;margin-bottom:14px;overflow:hidden;transition:all 0.18s}
+.modal-acc:hover{border-color:var(--cobalt);background:linear-gradient(135deg,rgba(53,133,224,0.1) 0%,rgba(53,133,224,0.04) 100%)}
+.modal-acc[open]{box-shadow:0 4px 10px rgba(26,58,110,0.08);background:linear-gradient(135deg,rgba(53,133,224,0.08) 0%,rgba(234,126,154,0.04) 100%)}
 .modal-acc summary{list-style:none;cursor:pointer;padding:11px 14px;display:flex;align-items:center;gap:12px;outline:none}
 .modal-acc summary::-webkit-details-marker{display:none}
-.modal-acc summary:hover{background:rgba(53,133,224,0.04)}
 .modal-acc-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--magenta-deep);font-weight:700;text-transform:uppercase;flex-shrink:0}
 .modal-acc-title{font-family:'Fraunces';font-size:13.5px;line-height:1.4;color:var(--cobalt-deep);font-weight:600;letter-spacing:-0.005em;flex:1;min-width:0}
-.modal-acc-chev{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--cobalt);font-weight:700;transition:transform 0.2s;flex-shrink:0}
+.modal-acc-chev{width:26px;height:26px;display:flex;align-items:center;justify-content:center;background:var(--magenta);color:#fff;border-radius:50%;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:800;transition:transform 0.22s,background 0.18s;flex-shrink:0;box-shadow:0 2px 6px rgba(213,88,120,0.32)}
+.modal-acc:hover .modal-acc-chev{background:var(--magenta-deep);transform:scale(1.05)}
 .modal-acc[open] .modal-acc-chev{transform:rotate(180deg)}
-.modal-acc-body{padding:0 14px 14px;border-top:1px solid var(--cobalt-light)}
+.modal-acc[open]:hover .modal-acc-chev{transform:rotate(180deg) scale(1.05)}
+.modal-acc-body{padding:0 14px 14px;border-top:1px dashed rgba(53,133,224,0.28);background:rgba(255,255,255,0.45)}
 .modal-acc-body .amp-block,.modal-acc-body .modal-section{margin-top:14px;margin-bottom:0}
 .amp-block-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--cobalt-light)}
 .amp-block-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;color:var(--cobalt-deep);font-weight:800;text-transform:uppercase}
@@ -1007,13 +1010,16 @@ a{color:inherit;text-decoration:none}
 .amp-placement-audience{font-size:11px;line-height:1.45;color:var(--cobalt-deep);margin-bottom:4px}
 .amp-placement-note{font-size:10.5px;line-height:1.45;color:var(--ink-soft);font-style:italic;padding-top:5px;border-top:1px dashed var(--cobalt-light);margin-top:2px}
 
-/* FOOTAGE INSPO — Willa's collapsible dropdown */
-.footage-section{padding:0}
-.footage-toggle{width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:14px 16px;background:rgba(244,183,62,0.08);border:1.5px solid rgba(244,183,62,0.3);border-radius:10px;cursor:pointer;transition:background 0.15s}
-.footage-toggle:hover{background:rgba(244,183,62,0.14)}
-.footage-toggle-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;background:#FEF3C7;color:#92400E;padding:5px 10px;border-radius:5px;font-weight:800;border:1px solid #FDE68A}
-.footage-toggle-hint{font-size:13px;color:var(--cobalt-deep);text-align:left}
-.footage-toggle-chev{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);font-weight:700;letter-spacing:0.04em}
+/* FOOTAGE INSPO — matches modal-acc expander treatment but butter-tinted (different family) */
+.footage-section{padding:0;margin-bottom:14px}
+.footage-toggle{width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:11px 14px;background:linear-gradient(135deg,rgba(244,183,62,0.1) 0%,rgba(244,183,62,0.03) 100%);border:1.5px solid rgba(244,183,62,0.45);border-left:4px solid #F4B73E;border-radius:10px;cursor:pointer;transition:all 0.18s}
+.footage-toggle:hover{background:linear-gradient(135deg,rgba(244,183,62,0.18) 0%,rgba(244,183,62,0.06) 100%);border-color:#E89A2E}
+.footage-toggle-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#8A5A1F;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;flex-shrink:0}
+.footage-toggle-hint{font-family:'Fraunces';font-size:13.5px;line-height:1.4;color:var(--cobalt-deep);text-align:left;font-weight:600;letter-spacing:-0.005em}
+.footage-toggle-chev{width:26px;height:26px;display:flex;align-items:center;justify-content:center;background:#F4B73E;color:#fff;border-radius:50%;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:800;transition:transform 0.22s,background 0.18s;flex-shrink:0;box-shadow:0 2px 6px rgba(244,183,62,0.4)}
+.footage-toggle:hover .footage-toggle-chev{background:#E89A2E;transform:scale(1.05)}
+.footage-toggle-chev.open{transform:rotate(180deg)}
+.footage-toggle:hover .footage-toggle-chev.open{transform:rotate(180deg) scale(1.05)}
 
 .footage-grid{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:11px}
 .footage-cat{padding:13px 15px;background:#fff;border:1px solid var(--cobalt-light);border-radius:8px}
@@ -3013,13 +3019,13 @@ function BriefDetailModal({brief,onClose,onDrop,onIntelNavigate}){
           </details>
         )}
 
-        {/* FOOTAGE INSPO — collapsible Willa's pattern */}
+        {/* FOOTAGE INSPO — collapsible · matches modal-acc expander pattern */}
         {footage && (
           <div className="modal-section footage-section">
             <button className="footage-toggle" onClick={()=>setShowFootage(s=>!s)}>
-              <span className="footage-toggle-tag">FOOTAGE INSPO</span>
+              <span className="footage-toggle-tag">🎬 FOOTAGE INSPO</span>
               <span className="footage-toggle-hint">Where to source every shot — original, found, meme, archive</span>
-              <span className="footage-toggle-chev">{showFootage ? "▲ HIDE" : "▼ SHOW"}</span>
+              <span className={"footage-toggle-chev"+(showFootage?" open":"")}>▾</span>
             </button>
             {showFootage && (
               <div className="footage-grid">
