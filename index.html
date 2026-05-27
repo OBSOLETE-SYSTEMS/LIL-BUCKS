@@ -250,6 +250,35 @@ a{color:inherit;text-decoration:none}
 .brief-tags{display:flex;flex-wrap:wrap;gap:5px;align-items:center;flex:1;min-width:0}
 .brief-dna-tag{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--cobalt-deep);font-weight:700;background:rgba(53,133,224,0.1);padding:3px 8px;border-radius:99px;border:1px solid rgba(53,133,224,0.22)}
 .brief-priority{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;font-weight:800;padding:3px 9px;border-radius:99px}
+
+/* CONVICTION CHIP — engine's grade per brief · hover for breakdown */
+.brief-conviction{display:inline-flex;align-items:center;gap:5px;padding:3px 9px 3px 7px;border-radius:99px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;font-weight:800;text-transform:uppercase;cursor:help;position:relative;border:1.5px solid currentColor}
+.conv-band-high{color:#3F6A33;background:rgba(122,176,93,0.18)}
+.conv-band-medium{color:#8A5A1F;background:rgba(244,183,62,0.18)}
+.conv-band-watch{color:#7C7C7C;background:rgba(124,124,124,0.1)}
+.brief-conviction-label{letter-spacing:0.12em}
+.brief-conviction-num{font-family:'Lilita One',serif;font-weight:400;font-size:13px;line-height:1;letter-spacing:0;padding:1px 5px 0px;background:currentColor;color:#fff !important;border-radius:99px;min-width:22px;text-align:center}
+.conv-band-high .brief-conviction-num{color:#fff !important;background:#5D8054}
+.conv-band-medium .brief-conviction-num{color:#fff !important;background:#C28628}
+.conv-band-watch .brief-conviction-num{color:#fff !important;background:#7C7C7C}
+
+/* TOOLTIP — appears on hover */
+.brief-conviction-tt{position:absolute;top:calc(100% + 8px);left:0;z-index:60;width:300px;background:#fff;border:1.5px solid var(--cobalt);border-radius:10px;padding:13px 14px;box-shadow:0 8px 24px rgba(26,58,110,0.18);opacity:0;transform:translateY(-4px);transition:opacity 0.15s,transform 0.15s;pointer-events:none;text-transform:none;letter-spacing:0;font-weight:normal;font-family:'Inter',sans-serif}
+.brief-conviction:hover .brief-conviction-tt{opacity:1;transform:translateY(0);pointer-events:auto}
+.brief-conviction-tt::before{content:"";position:absolute;top:-7px;left:18px;width:12px;height:12px;background:#fff;border-left:1.5px solid var(--cobalt);border-top:1.5px solid var(--cobalt);transform:rotate(45deg)}
+.bct-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:9px;border-bottom:1px dashed var(--cobalt-light);margin-bottom:9px}
+.bct-head-band{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.14em;font-weight:800;color:var(--cobalt-deep);text-transform:uppercase}
+.bct-head-num{font-family:'Lilita One',serif;font-weight:400;font-size:20px;letter-spacing:0.005em;color:var(--cobalt-deep);line-height:1}
+.bct-rows{display:flex;flex-direction:column;gap:6px;margin-bottom:9px}
+.bct-row{display:flex;align-items:center;gap:7px;font-size:11px}
+.bct-row-label{flex:0 0 110px;font-family:'Inter',sans-serif;color:var(--ink-soft);font-weight:600;font-size:10.5px}
+.bct-row-bar{flex:1;height:5px;background:rgba(53,133,224,0.12);border-radius:99px;overflow:hidden}
+.bct-row-fill{height:100%;background:linear-gradient(90deg,var(--cobalt) 0%,var(--magenta) 100%);border-radius:99px}
+.bct-row-num{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:800;color:var(--cobalt-deep);min-width:24px;text-align:right}
+.bct-math{display:flex;flex-direction:column;gap:3px;padding:8px 10px;background:var(--butter-light);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cobalt-deep);margin-bottom:8px}
+.bct-math strong{color:var(--magenta-deep);font-weight:800}
+.bct-math-total{padding-top:3px;border-top:1px dashed rgba(53,133,224,0.32);margin-top:2px}
+.bct-foot{font-family:'Fraunces';font-size:11.5px;line-height:1.45;color:var(--cobalt-deep);font-style:italic;font-weight:500}
 .priority-big{background:#FFE7AB;color:#8A5D0E}
 .priority-high{background:#FBDAD2;color:#A85F4F}
 .priority-standard{background:#F2EBD3;color:var(--ink-soft)}
@@ -1301,7 +1330,16 @@ a{color:inherit;text-decoration:none}
 
 .studio-error{background:rgba(232,144,125,0.18);color:#9E3F31;padding:10px 14px;border-radius:8px;font-size:13px;border:1px solid rgba(232,144,125,0.4)}
 
-.studio-input-row{display:flex;gap:10px;padding:16px 24px;background:var(--butter-deep);border-top:1.5px solid var(--cobalt-light);align-items:flex-end;flex-shrink:0}
+.studio-input-meta{padding:8px 24px 0;background:var(--butter-deep);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.04em;color:var(--ink-soft);font-weight:500}
+.studio-input-meta strong{color:var(--cobalt-deep);font-weight:700}
+.studio-input-hint{display:inline-flex;align-items:center;gap:4px}
+.studio-mic{background:#fff;color:var(--cobalt-deep);border:1.5px solid var(--cobalt-light);border-radius:99px;padding:0 16px;font-size:18px;font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:0.04em;cursor:pointer;transition:all 0.15s;height:46px;display:inline-flex;align-items:center;justify-content:center;gap:5px;min-width:54px;white-space:nowrap;flex-shrink:0}
+.studio-mic:hover:not(:disabled){border-color:var(--cobalt);transform:translateY(-1px);box-shadow:0 3px 8px rgba(26,58,110,0.12)}
+.studio-mic:disabled{opacity:0.45;cursor:not-allowed}
+.studio-mic-on{background:linear-gradient(135deg,#E04A4A 0%,#D55878 100%);color:#fff;border-color:#C24A4A;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;animation:micPulse 1.4s ease-in-out infinite}
+@keyframes micPulse{0%,100%{box-shadow:0 0 0 0 rgba(213,88,120,0.5)}50%{box-shadow:0 0 0 7px rgba(213,88,120,0)}}
+.studio-input-listening{border-color:#D55878 !important;box-shadow:0 0 0 3px rgba(213,88,120,0.18) !important;background:#fff}
+.studio-input-row{display:flex;gap:10px;padding:14px 24px 16px;background:var(--butter-deep);border-top:1.5px solid var(--cobalt-light);align-items:flex-end;flex-shrink:0}
 .studio-input{flex:1;font-family:'Inter',sans-serif;font-size:14px;padding:12px 16px;border:1.5px solid var(--cobalt-light);border-radius:12px;background:var(--butter-light);color:var(--cobalt-deep);resize:none;min-height:46px;max-height:140px;line-height:1.5;outline:none;transition:border-color 0.15s}
 .studio-input:focus{border-color:var(--cobalt);box-shadow:0 0 0 3px rgba(53,133,224,0.15)}
 .studio-input::placeholder{color:#8A99B5}
@@ -1494,6 +1532,61 @@ const DNA_GLYPH = {
   "bowl-build":"🥣", "founder-emily":"👋", "soil-story":"🌾", "crunch-asmr":"🔊",
   "shelf-spotted":"🛒", "fact-flip":"💡", "meme-payload":"✨"
 };
+
+// CONVICTION — engine's own grading of each brief. 4 components feed one score:
+//   voice    = Voice Compass score (brand voice fidelity 0-100)
+//   panel    = Crunch Bunch Panel avg (synthetic audience score 0-100)
+//   pulse    = Pulse-fit (how well brief rides the driving signal 0-100)
+//   recency  = Fresh-signal bonus (0-15)
+// Score = round((voice + panel + pulse) / 3) + recency
+// Band:  HIGH 85+ · MEDIUM 70-84 · WATCH <70
+const CONVICTION_INPUTS = {
+  "MAY25-IG-R1":  { voice:92, panel:84, pulse:91, recency:13 },  // Memorial Day açaí origin BIG SWING
+  "MAY25-TT-1":   { voice:87, panel:86, pulse:93, recency:13 },  // Hot Honey shelf-spotted BIG SWING
+  "MAY25-IG-R2":  { voice:88, panel:82, pulse:84, recency:11 },  // Luke + Ali soil-story BIG SWING
+  "MAY25-IG-F1":  { voice:84, panel:82, pulse:87, recency:10 },  // Cottage cheese × hot honey carousel
+  "MAY25-TT-2":   { voice:80, panel:75, pulse:78, recency:8 },   // Crunch-ASMR Original
+  "MAY25-TT-3":   { voice:86, panel:78, pulse:76, recency:7 },   // Fact-flip buckwheat-fruit-seed
+  "MAY25-IG-R3":  { voice:84, panel:76, pulse:65, recency:5 },   // Founder-emily heritage
+  "MAY25-PIN-1":  { voice:82, panel:72, pulse:79, recency:8 },   // Pinterest açaí origin pin
+  "MAY25-TT-4":   { voice:79, panel:73, pulse:70, recency:6 },   // NSYNC May meme Birthday Cake
+  "MAY25-IG-F2":  { voice:73, panel:69, pulse:52, recency:4 },   // Shelf-spotted Multi (no anchor)
+  "MAY25-TT-5":   { voice:78, panel:75, pulse:81, recency:9 },   // Everything Bucks summer bowl
+  "MAY25-IG-R4":  { voice:80, panel:72, pulse:70, recency:6 }    // Patagonia-muse soil-story
+};
+function getConviction(briefId){
+  const c = CONVICTION_INPUTS[briefId];
+  if(!c) return null;
+  const base = Math.round((c.voice + c.panel + c.pulse) / 3);
+  const score = base + c.recency;
+  const band = score >= 85 ? "HIGH" : score >= 70 ? "MEDIUM" : "WATCH";
+  return { ...c, base, score, band };
+}
+
+function ConvictionChip({conv}){
+  const bandClass = "conv-band-"+conv.band.toLowerCase();
+  return (<span className={"brief-conviction "+bandClass}>
+    <span className="brief-conviction-label">{conv.band}</span>
+    <span className="brief-conviction-num">{conv.score}</span>
+    <div className="brief-conviction-tt">
+      <div className="bct-head">
+        <span className="bct-head-band">{conv.band} CONVICTION</span>
+        <span className="bct-head-num">{conv.score}</span>
+      </div>
+      <div className="bct-rows">
+        <div className="bct-row"><span className="bct-row-label">Voice Compass</span><div className="bct-row-bar"><div className="bct-row-fill" style={{width:conv.voice+"%"}}></div></div><span className="bct-row-num">{conv.voice}</span></div>
+        <div className="bct-row"><span className="bct-row-label">Crunch Bunch Panel</span><div className="bct-row-bar"><div className="bct-row-fill" style={{width:conv.panel+"%"}}></div></div><span className="bct-row-num">{conv.panel}</span></div>
+        <div className="bct-row"><span className="bct-row-label">Pulse fit</span><div className="bct-row-bar"><div className="bct-row-fill" style={{width:conv.pulse+"%"}}></div></div><span className="bct-row-num">{conv.pulse}</span></div>
+      </div>
+      <div className="bct-math">
+        <span>({conv.voice} + {conv.panel} + {conv.pulse}) ÷ 3 = <strong>{conv.base}</strong></span>
+        <span>+ Recency bonus: <strong>+{conv.recency}</strong></span>
+        <span className="bct-math-total">= <strong>{conv.score}</strong></span>
+      </div>
+      <div className="bct-foot">{conv.band==="HIGH"?"Ship this first.":conv.band==="MEDIUM"?"Solid — slot in normally.":"Watch — needs sharpening or skip."}</div>
+    </div>
+  </span>);
+}
 // Pulse type → glyph + accent color for the card's left rail
 const PULSE_TYPE_GLYPH = {
   "MEME TEMPLATE":"🎭", "VIRAL RECIPE":"🍳", "MISINFORMATION REBUTTAL":"🛡️",
@@ -3015,12 +3108,13 @@ function ContentBriefs({onOpen,openStudio}){
         <span className="pillar-name serif">{g.pillar}</span>
       </div>
       <div className="grid grid-3">
-        {g.briefs.sort((a,b)=>({BIG:0,HIGH:1,STANDARD:2}[a.priority.split(" ")[0]]||9)-({BIG:0,HIGH:1,STANDARD:2}[b.priority.split(" ")[0]]||9)).map(b=>(
-          <div key={b.id} className="brief-card" onClick={()=>onOpen(b)} style={{borderLeftWidth:5,borderLeftColor:PILLAR_COLOR[b.pillar]}}>
+        {g.briefs.sort((a,b)=>(getConviction(b.id)?.score||0)-(getConviction(a.id)?.score||0)).map(b=>{
+          const conv = getConviction(b.id);
+          return (<div key={b.id} className="brief-card" onClick={()=>onOpen(b)} style={{borderLeftWidth:5,borderLeftColor:PILLAR_COLOR[b.pillar]}}>
             <div className="brief-card-top">
               <span className="brief-card-glyph" style={{background:PILLAR_COLOR[b.pillar]+"22",color:PILLAR_COLOR[b.pillar]}}>{DNA_GLYPH[b.dna]||"✦"}</span>
               <div className="brief-tags">
-                <span className={"brief-priority priority-"+(b.priority==="BIG SWING"?"big":b.priority==="HIGH"?"high":"standard")}>{b.priority}</span>
+                {conv && <ConvictionChip conv={conv} />}
                 <span className="brief-platform">{b.platform}</span>
                 <span className="brief-flavor">{b.flavor}</span>
               </div>
@@ -3030,8 +3124,8 @@ function ContentBriefs({onOpen,openStudio}){
               <span className="brief-dna-tag">{TOP_PERFORMER_DNA.find(d=>d.id===b.dna)?.name||b.dna}</span>
               <span className="brief-time">{b.timing}</span>
             </div>
-          </div>
-        ))}
+          </div>);
+        })}
       </div>
     </section>))}
   </>);
@@ -3106,7 +3200,7 @@ function BriefDetailModal({brief,onClose,onDrop,onIntelNavigate}){
       <div className="modal-head">
         <div>
           <div className="brief-chip-row">
-            <span className={"brief-priority priority-"+(brief.priority==="BIG SWING"?"big":brief.priority==="HIGH"?"high":"standard")}>{brief.priority}</span>
+            {getConviction(brief.id) && <ConvictionChip conv={getConviction(brief.id)} />}
             <span className="brief-platform">{brief.platform}</span>
             <span className="brief-flavor">{brief.flavor}</span>
             <span className="card-dna-chip">{TOP_PERFORMER_DNA.find(d=>d.id===brief.dna)?.name||brief.dna}</span>
@@ -3909,8 +4003,53 @@ function StudioModal({onClose, initialSeed}){
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [listening, setListening] = useState(false);
+  const [voiceSupported, setVoiceSupported] = useState(true);
   const scrollRef = useRef(null);
   const seedFiredRef = useRef(false);
+  const recognitionRef = useRef(null);
+  const inputBeforeVoiceRef = useRef("");
+
+  // Initialize SpeechRecognition once · degrades gracefully on unsupported browsers
+  useEffect(() => {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) { setVoiceSupported(false); return; }
+    const r = new SR();
+    r.continuous = true;
+    r.interimResults = true;
+    r.lang = "en-US";
+    r.onresult = (event) => {
+      let interim = "";
+      let finalText = "";
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) finalText += transcript;
+        else interim += transcript;
+      }
+      const combined = (inputBeforeVoiceRef.current ? inputBeforeVoiceRef.current + " " : "") + (finalText || interim);
+      setInput(combined.trim());
+    };
+    r.onerror = (e) => { console.error("Speech recognition error:", e.error); setListening(false); };
+    r.onend = () => setListening(false);
+    recognitionRef.current = r;
+    return () => { try { r.stop(); } catch(e){} };
+  }, []);
+
+  function toggleVoice() {
+    if (!recognitionRef.current) return;
+    if (listening) {
+      try { recognitionRef.current.stop(); } catch(e){}
+      setListening(false);
+    } else {
+      inputBeforeVoiceRef.current = input.trim();
+      try {
+        recognitionRef.current.start();
+        setListening(true);
+      } catch(e) {
+        console.error("Could not start speech recognition:", e);
+      }
+    }
+  }
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -4037,16 +4176,34 @@ function StudioModal({onClose, initialSeed}){
             <div className="studio-error">⚠ {error}</div>
           )}
         </div>
+        <div className="studio-input-meta">
+          {voiceSupported ? (
+            <span className="studio-input-hint">🎙️ <strong>Voice in</strong> — tap the mic to dictate · transcribes into the box, you review, then send</span>
+          ) : (
+            <span className="studio-input-hint">🎙️ Voice in not supported on this browser — try Chrome or Edge for mic input</span>
+          )}
+        </div>
         <div className="studio-input-row">
           <textarea
-            className="studio-input"
-            placeholder="ask the strategist anything — a brief to sharpen, a counter-move to plan, a hook to riff…"
+            className={"studio-input"+(listening?" studio-input-listening":"")}
+            placeholder={listening ? "🎙️ listening… speak your prompt" : "ask the strategist anything — a brief to sharpen, a counter-move to plan, a hook to riff…"}
             value={input}
             onChange={e=>setInput(e.target.value)}
             onKeyDown={onKey}
             disabled={loading}
             rows={1}
           />
+          {voiceSupported && (
+            <button
+              className={"studio-mic"+(listening?" studio-mic-on":"")}
+              onClick={toggleVoice}
+              disabled={loading}
+              title={listening ? "Stop recording" : "Tap to dictate your prompt"}
+              aria-label={listening ? "Stop recording" : "Start voice dictation"}
+            >
+              {listening ? "● rec" : "🎙️"}
+            </button>
+          )}
           <button className="studio-send" onClick={()=>send()} disabled={loading || !input.trim()}>
             {loading ? "..." : "Send →"}
           </button>
