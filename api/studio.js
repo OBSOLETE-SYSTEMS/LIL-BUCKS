@@ -1,14 +1,19 @@
 // Studio — The Strategist chat endpoint
 //
-// Proxies to Anthropic Messages API. System-prompted with the v2 Lil Bucks
-// operating model — folds in the voice corpus from 7 surfaces (2 podcasts,
-// website, IG, TikTok, LinkedIn, Amazon customer voice) calibrated 2026-05-26.
+// Switched 2026-05-26 from Claude Sonnet 4.6 → Gemini 2.5 Flash for speed.
+// thinkingConfig.thinkingBudget:0 is critical — disables extended thinking so
+// responses stream back in 2-5s instead of 15-30s. Quality is still strong for
+// strategist chat (hooks, riffs, counter-plays).
 //
-// Env: ANTHROPIC_API_KEY (Vercel env var, scope Production + Preview + Development)
-// Model: claude-sonnet-4-6 (current Sonnet — best balance of quality + speed)
+// System-prompted with the v2 Lil Bucks operating model — folds in the voice
+// corpus from 7 surfaces (2 podcasts, website, IG, TikTok, LinkedIn, Amazon
+// customer voice) calibrated 2026-05-26.
+//
+// Env: GEMINI_API_KEY (Vercel env var, scope Production + Preview + Development)
+// Model: gemini-2.5-flash
 
-const ANTHROPIC_API = "https://api.anthropic.com/v1/messages";
-const MODEL = "claude-sonnet-4-6";
+const GEMINI_MODEL = "gemini-2.5-flash";
+const GEMINI_API = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
 const MAX_TOKENS = 1000;
 
 const LIL_BUCKS_SYSTEM = `You are **The Strategist** — the synthesis layer of the Lil Bucks engine. You sit above five ingestion agents that scan 100+ sources daily. You read what they surface and decide what Lil Bucks should do.
@@ -168,19 +173,28 @@ Seven Sundays sources from the SAME A-Frame Farm (Luke + Ali Peterson, MN) as Li
 - Don't moralize, don't hedge, don't say "I'd recommend considering" — say "do this, because, and here's the move"
 - Don't be a researcher voice — be the operator's strategic partner. Always include a clear next action.`;
 
-async function callAnthropic(messages, apiKey) {
-  const res = await fetch(ANTHROPIC_API, {
+// Convert Anthropic-style messages → Gemini contents format
+function toGeminiContents(messages) {
+  return messages.map(m => ({
+    role: m.role === "assistant" ? "model" : "user",
+    parts: [{ text: m.content }]
+  }));
+}
+
+async function callGemini(messages, apiKey) {
+  const res = await fetch(`${GEMINI_API}?key=${apiKey}`, {
     method: "POST",
-    headers: {
-      "x-api-key": apiKey,
-      "anthropic-version": "2023-06-01",
-      "content-type": "application/json"
-    },
+    headers: { "content-type": "application/json" },
     body: JSON.stringify({
-      model: MODEL,
-      max_tokens: MAX_TOKENS,
-      system: LIL_BUCKS_SYSTEM,
-      messages
+      systemInstruction: { parts: [{ text: LIL_BUCKS_SYSTEM }] },
+      contents: toGeminiContents(messages),
+      generationConfig: {
+        maxOutputTokens: MAX_TOKENS,
+        temperature: 0.7,
+        // thinkingBudget:0 is the speed unlock. Without it, Gemini 2.5 Flash
+        // burns 10-20s on internal extended thinking before producing a token.
+        thinkingConfig: { thinkingBudget: 0 }
+      }
     })
   });
 
@@ -199,9 +213,9 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "method_not_allowed", expected: "POST" });
   }
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    return res.status(500).json({ error: "missing_env_var", detail: "ANTHROPIC_API_KEY not set in Vercel project env vars" });
+    return res.status(500).json({ error: "missing_env_var", detail: "GEMINI_API_KEY not set in Vercel project env vars" });
   }
 
   // Basic origin guard — Lil Bucks dashboard only.
@@ -225,8 +239,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "missing_messages", expected: "{ messages: [{role,content}] }" });
   }
 
-  // Validate message shape — Anthropic requires alternating user/assistant turns,
-  // first message must be 'user'.
+  // Validate message shape — first message must be 'user'.
   const cleaned = messages
     .filter(m => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string" && m.content.trim().length > 0)
     .map(m => ({ role: m.role, content: m.content.trim() }));
@@ -235,22 +248,24 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "first_message_must_be_user" });
   }
 
-  const result = await callAnthropic(cleaned, apiKey);
+  const result = await callGemini(cleaned, apiKey);
   if (!result.ok) {
-    return res.status(result.status || 500).json({ error: "anthropic_call_failed", detail: result.error });
+    return res.status(result.status || 500).json({ error: "gemini_call_failed", detail: result.error });
   }
 
-  // Extract the assistant's text content from Anthropic's response format.
-  const content = result.data?.content || [];
-  const text = content
-    .filter(c => c.type === "text")
-    .map(c => c.text)
-    .join("\n");
+  // Extract assistant text from Gemini's response format.
+  const candidate = result.data?.candidates?.[0];
+  const parts = candidate?.content?.parts || [];
+  const text = parts.map(p => p.text || "").join("").trim();
+
+  if (!text) {
+    return res.status(500).json({ error: "empty_response", detail: "Gemini returned no text content.", finishReason: candidate?.finishReason });
+  }
 
   return res.status(200).json({
     message: { role: "assistant", content: text },
-    model: result.data?.model,
-    usage: result.data?.usage,
-    stop_reason: result.data?.stop_reason
+    model: GEMINI_MODEL,
+    usage: result.data?.usageMetadata,
+    finish_reason: candidate?.finishReason
   });
 }
