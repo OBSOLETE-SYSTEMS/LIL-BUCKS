@@ -19,6 +19,7 @@ import spotify         from "../lib/workers/spotify.js";
 import reddit          from "../lib/workers/reddit.js";
 import meta_ad_library from "../lib/workers/meta_ad_library.js";
 import google_trends   from "../lib/workers/google_trends.js";
+import google_trends_iot from "../lib/workers/google_trends_iot.js";
 import tiktok_cc       from "../lib/workers/tiktok_cc.js";
 import pinterest       from "../lib/workers/pinterest.js";
 
@@ -31,6 +32,7 @@ const WORKERS = {
   reddit,
   meta_ad_library,
   google_trends,
+  google_trends_iot,
   tiktok_cc,
   pinterest
 };
