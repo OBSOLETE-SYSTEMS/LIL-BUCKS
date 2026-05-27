@@ -704,6 +704,35 @@ a{color:inherit;text-decoration:none}
 .di-option-selected{background:var(--magenta);color:#fff;border-color:var(--magenta-deep);font-weight:700;box-shadow:0 2px 0 var(--magenta-deep)}
 .di-item-confirmed{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#3F6A33;font-weight:700;padding:7px 11px;background:rgba(122,176,93,0.16);border:1px solid rgba(122,176,93,0.4);border-radius:6px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
 
+/* Detail textarea block — appears after an option is selected (if needsDetail) */
+.di-detail-block{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.di-detail-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;color:var(--ink-soft);font-weight:700;text-transform:uppercase}
+.di-detail-input{width:100%;background:#fff;border:1.5px solid var(--cobalt-light);border-radius:8px;padding:10px 13px;font-family:'Fraunces',Georgia,serif;font-size:13px;line-height:1.45;color:var(--cobalt-deep);font-weight:500;letter-spacing:-0.005em;resize:vertical;min-height:48px;transition:border-color 0.15s,box-shadow 0.15s;box-sizing:border-box}
+.di-detail-input:focus{outline:none;border-color:var(--magenta);box-shadow:0 0 0 3px rgba(234,126,154,0.18)}
+.di-detail-input::placeholder{color:var(--ink-soft);opacity:0.7;font-style:italic}
+.di-detail-actions{display:flex;gap:8px;align-items:center}
+.di-detail-submit{background:var(--magenta);color:#fff;border:0;padding:9px 18px;border-radius:99px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.12em;font-weight:800;text-transform:uppercase;cursor:pointer;transition:background 0.15s,transform 0.1s,box-shadow 0.15s;box-shadow:0 2px 0 var(--magenta-deep)}
+.di-detail-submit:hover:not(:disabled){background:var(--magenta-deep);transform:translateY(-1px);box-shadow:0 3px 0 var(--magenta-deep)}
+.di-detail-submit:disabled{opacity:0.45;cursor:not-allowed}
+.di-detail-skip{background:transparent;color:var(--ink-soft);border:0;padding:8px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;font-weight:600;text-transform:lowercase;cursor:pointer;transition:color 0.15s}
+.di-detail-skip:hover{color:var(--cobalt-deep)}
+
+/* Locked block — shows after submit, with the note preserved */
+.di-item-locked-block{display:flex;flex-direction:column;gap:8px}
+.di-item-locked-note{padding:9px 13px;background:#fff;border:1px solid var(--cobalt-light);border-radius:8px;display:flex;flex-direction:column;gap:4px}
+.di-item-locked-note-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.16em;color:var(--ink-soft);font-weight:700;text-transform:uppercase}
+.di-item-locked-note-text{font-family:'Fraunces',Georgia,serif;font-size:13px;line-height:1.4;color:var(--cobalt-deep);font-weight:500;font-style:italic;letter-spacing:-0.005em}
+.di-item-reopen{align-self:flex-start;background:transparent;color:var(--cobalt);border:1px solid var(--cobalt-light);padding:5px 11px;border-radius:99px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.1em;font-weight:700;text-transform:lowercase;cursor:pointer;transition:all 0.15s}
+.di-item-reopen:hover{background:var(--cobalt);color:#fff;border-color:var(--cobalt)}
+
+/* Free-form catch-all card */
+.di-item-freeform{border-left:5px solid var(--cobalt) !important;background:var(--butter-light);margin-top:2px}
+.di-item-freeform.di-item-answered{background:#E7F0DD;border-left-color:#7AB05D !important}
+.di-item-freeform .di-item-glyph{background:rgba(53,133,224,0.14);color:var(--cobalt)}
+.di-item-freeform.di-item-answered .di-item-glyph{background:rgba(122,176,93,0.18);color:#3F6A33}
+.di-item-head-static{cursor:default;padding:13px 16px}
+.di-item-body-freeform{padding:6px 16px 16px;display:flex;flex-direction:column;gap:10px;border-top:1px dashed var(--cobalt-light)}
+
 @media (max-width:780px){
   .di-header{grid-template-columns:1fr}
   .di-progress{align-items:flex-start}
@@ -2518,9 +2547,9 @@ const DIAGNOSTIC_INBOX = [
     why: "Stuff the engine can't scrape from public signals — your calendar's the only source. When you tell us what's on the ground, we pre-build a shelf-spotted or founder-on-the-floor brief around it instead of guessing.",
     impact: "If yes, engine slots a shelf-spotted Reel or founder-led IRL post for the same day · cross-tagged with the venue",
     options: [
-      { label: "Yes — I'll share", value: "yes" },
+      { label: "Yes — I'll share", value: "yes", needsDetail: true, placeholder: "Where + when? e.g. Whole Foods Lincoln Park · Thu May 28 · 4-7pm sampling table" },
       { label: "Nothing this week", value: "no" },
-      { label: "Maybe — TBD", value: "maybe" }
+      { label: "Maybe — TBD", value: "maybe", needsDetail: true, placeholder: "What's pending? e.g. waiting on Erewhon demo confirm for Fri" }
     ]
   },
   {
@@ -2530,9 +2559,9 @@ const DIAGNOSTIC_INBOX = [
     why: "Press appearances create a 24–72 hour halo. The engine pre-stitches the cultural moment around it — Studio chat ready for talking-point riffs, briefs ready to ride the spike. Without your heads-up, we miss the window.",
     impact: "If yes, engine pre-loads talking-point alts in Studio + queues a 'post-press' Reel for the next 48 hours",
     options: [
-      { label: "Yes — sharing now", value: "yes" },
+      { label: "Yes — sharing now", value: "yes", needsDetail: true, placeholder: "What + when? e.g. How I Built This taping Wed · airs June 3 · talking about Sydney origin + Series A" },
       { label: "Nothing this week", value: "no" },
-      { label: "Will confirm", value: "maybe" }
+      { label: "Will confirm", value: "maybe", needsDetail: true, placeholder: "What's pending? e.g. waiting on Snaxshot writer for Thu Q+A" }
     ]
   },
   {
@@ -2551,16 +2580,44 @@ const DIAGNOSTIC_INBOX = [
 
 // Glyph + short label per question slot — color-coded by question type
 const DI_GLYPHS = ["📍", "🎙️", "🎚️"];
-const DI_SHORT_LABELS = ["IRL", "PRESS", "MOOD"];
 
 function DiagnosticInbox(){
+  // answers[qid] shape: { value, note, locked }
   const [answers, setAnswers] = useState({});
+  // pendingDraft[qid] holds the textarea content before lock-in
+  const [pendingDraft, setPendingDraft] = useState({});
   const [openItem, setOpenItem] = useState(null);
-  const answeredCount = Object.keys(answers).length;
-  const total = DIAGNOSTIC_INBOX.length;
+  // Free-form catch-all
+  const [freeFormDraft, setFreeFormDraft] = useState("");
+  const [freeFormLocked, setFreeFormLocked] = useState(null);
 
-  function answer(qid, value) {
-    setAnswers(prev => ({ ...prev, [qid]: value }));
+  const total = DIAGNOSTIC_INBOX.length;
+  const answeredCount = Object.values(answers).filter(a => a?.locked).length;
+
+  function pickOption(qid, opt) {
+    const needsDetail = !!opt.needsDetail;
+    setAnswers(prev => ({
+      ...prev,
+      [qid]: { value: opt.value, label: opt.label, note: prev[qid]?.note || "", locked: !needsDetail }
+    }));
+  }
+  function updateDraft(qid, note) {
+    setPendingDraft(prev => ({ ...prev, [qid]: note }));
+  }
+  function lockIn(qid) {
+    const note = pendingDraft[qid] || "";
+    setAnswers(prev => ({ ...prev, [qid]: { ...prev[qid], note, locked: true } }));
+  }
+  function reopen(qid) {
+    setAnswers(prev => ({ ...prev, [qid]: { ...prev[qid], locked: false } }));
+    setPendingDraft(prev => ({ ...prev, [qid]: answers[qid]?.note || "" }));
+    setOpenItem(qid);
+  }
+  function submitFreeForm() {
+    const text = freeFormDraft.trim();
+    if (!text) return;
+    setFreeFormLocked(text);
+    setFreeFormDraft("");
   }
 
   return (<div className="di-wrap">
@@ -2579,8 +2636,12 @@ function DiagnosticInbox(){
     <div className="di-grid">
       {DIAGNOSTIC_INBOX.map((q, idx) => {
         const ans = answers[q.id];
+        const selectedOpt = ans ? q.options.find(o => o.value === ans.value) : null;
         const isOpen = openItem === q.id;
-        return (<div key={q.id} className={"di-item di-item-"+(idx+1)+(ans?" di-item-answered":"")+(isOpen?" di-item-open":"")}>
+        const hasSelection = !!ans;
+        const isLocked = !!ans?.locked;
+        const needsDetail = selectedOpt?.needsDetail;
+        return (<div key={q.id} className={"di-item di-item-"+(idx+1)+(isLocked?" di-item-answered":"")+(isOpen?" di-item-open":"")}>
           <button className="di-item-head" onClick={()=>setOpenItem(isOpen ? null : q.id)}>
             <span className="di-item-glyph">{DI_GLYPHS[idx]}</span>
             <div className="di-item-head-body">
@@ -2588,8 +2649,10 @@ function DiagnosticInbox(){
               <div className="di-item-question">{q.question}</div>
             </div>
             <div className="di-item-toggle">
-              {ans ? (
-                <span className="di-item-status di-item-status-answered">✓ {q.options.find(o=>o.value===ans)?.label || 'answered'}</span>
+              {isLocked ? (
+                <span className="di-item-status di-item-status-answered">✓ {ans.label}</span>
+              ) : hasSelection ? (
+                <span className="di-item-status di-item-status-pending">in progress</span>
               ) : (
                 <span className="di-item-status di-item-status-pending">awaiting</span>
               )}
@@ -2606,21 +2669,83 @@ function DiagnosticInbox(){
                 <span className="di-item-impact-arrow">↳</span>
                 <span className="di-item-impact-text"><strong>What changes when you answer:</strong> {q.impact}</span>
               </div>
-              <div>
+              {/* OPTIONS */}
+              {!isLocked && (<div>
                 <div className="di-item-options-label">Your answer</div>
                 <div className="di-item-options">
                   {q.options.map(o => (
-                    <button key={o.value} className={"di-option"+(ans===o.value?" di-option-selected":"")} onClick={()=>answer(q.id, o.value)}>
-                      {ans===o.value && "✓ "}{o.label}
+                    <button key={o.value} className={"di-option"+(ans?.value===o.value?" di-option-selected":"")} onClick={()=>pickOption(q.id, o)}>
+                      {ans?.value===o.value && "✓ "}{o.label}
                     </button>
                   ))}
                 </div>
-              </div>
-              {ans && <div className="di-item-confirmed">✓ LOCKED IN — engine reflects this in next Monday's mix</div>}
+              </div>)}
+              {/* DETAIL TEXTAREA — only when selected option needs detail and not yet locked */}
+              {!isLocked && hasSelection && needsDetail && (<div className="di-detail-block">
+                <label className="di-detail-label">Quick detail · so the engine knows what to build</label>
+                <textarea
+                  className="di-detail-input"
+                  placeholder={selectedOpt.placeholder || "Add context — the engine uses this verbatim"}
+                  value={pendingDraft[q.id] !== undefined ? pendingDraft[q.id] : (ans?.note || "")}
+                  onChange={e => updateDraft(q.id, e.target.value)}
+                  rows={2}
+                />
+                <div className="di-detail-actions">
+                  <button className="di-detail-submit" onClick={()=>lockIn(q.id)}>Lock it in →</button>
+                  <button className="di-detail-skip" onClick={()=>lockIn(q.id)} title="Skip the note, just confirm the option">Skip note</button>
+                </div>
+              </div>)}
+              {/* LOCKED STATE */}
+              {isLocked && (<div className="di-item-locked-block">
+                <div className="di-item-confirmed">✓ LOCKED IN — engine reflects this in next Monday's mix</div>
+                {ans.note && (<div className="di-item-locked-note">
+                  <span className="di-item-locked-note-label">your note</span>
+                  <span className="di-item-locked-note-text">"{ans.note}"</span>
+                </div>)}
+                <button className="di-item-reopen" onClick={()=>reopen(q.id)}>↺ change my answer</button>
+              </div>)}
             </div>
           )}
         </div>);
       })}
+
+      {/* FREE-FORM CATCH-ALL — anything that doesn't fit the 3 questions */}
+      <div className={"di-item di-item-freeform"+(freeFormLocked?" di-item-answered":"")}>
+        <div className="di-item-head di-item-head-static">
+          <span className="di-item-glyph">💭</span>
+          <div className="di-item-head-body">
+            <div className="di-item-eyebrow">ANYTHING ELSE</div>
+            <div className="di-item-question">{freeFormLocked ? "Got it — engine has your note." : "On your mind but not in the 3 above?"}</div>
+          </div>
+          {freeFormLocked && <span className="di-item-status di-item-status-answered">✓ noted</span>}
+        </div>
+        <div className="di-item-body di-item-body-freeform">
+          {!freeFormLocked && (<>
+            <div className="di-item-why">
+              <div className="di-item-why-label">Catch-all</div>
+              <div className="di-item-why-text">Inventory shifts, brand decisions you're weighing, creative pivots, retailer convos, things you saw this week — anything you'd want a strategist to factor into next week's mix.</div>
+            </div>
+            <textarea
+              className="di-detail-input"
+              placeholder="e.g. 'Hot Honey low at WF West region all week — back in stock May 31' · or 'just heard Once Upon a Farm is launching a buckwheat SKU — confirmed via X'"
+              value={freeFormDraft}
+              onChange={e => setFreeFormDraft(e.target.value)}
+              rows={3}
+            />
+            <div className="di-detail-actions">
+              <button className="di-detail-submit" onClick={submitFreeForm} disabled={!freeFormDraft.trim()}>Send to engine →</button>
+            </div>
+          </>)}
+          {freeFormLocked && (<div className="di-item-locked-block">
+            <div className="di-item-confirmed">✓ NOTED — added to next Monday's context</div>
+            <div className="di-item-locked-note">
+              <span className="di-item-locked-note-label">your note</span>
+              <span className="di-item-locked-note-text">"{freeFormLocked}"</span>
+            </div>
+            <button className="di-item-reopen" onClick={()=>{setFreeFormLocked(null); setFreeFormDraft(freeFormLocked);}}>↺ edit</button>
+          </div>)}
+        </div>
+      </div>
     </div>
   </div>);
 }
