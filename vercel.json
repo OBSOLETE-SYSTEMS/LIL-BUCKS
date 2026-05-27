@@ -9,6 +9,7 @@
     { "path": "/api/cron?worker=reddit&source=cron",          "schedule": "0 17 * * *" },
     { "path": "/api/cron?worker=meta_ad_library&source=cron", "schedule": "0 18 * * *" },
     { "path": "/api/cron?worker=google_trends&source=cron",   "schedule": "0 19 * * *" },
+    { "path": "/api/cron?worker=google_trends_iot&source=cron","schedule": "0 11 * * *" },
     { "path": "/api/cron?worker=tiktok_cc&source=cron",       "schedule": "0 20 * * *" },
     { "path": "/api/cron?worker=pinterest&source=cron",       "schedule": "0 21 * * *" }
   ],
