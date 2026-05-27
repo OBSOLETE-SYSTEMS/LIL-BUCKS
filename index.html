@@ -643,46 +643,66 @@ a{color:inherit;text-decoration:none}
 .diag-modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.2);color:#fff;font-size:22px;line-height:1;z-index:5;backdrop-filter:blur(8px)}
 .diag-modal-close:hover{background:rgba(255,255,255,0.32)}
 .diag-modal .di-wrap{margin-bottom:0;border-radius:16px}
-.di-wrap{margin-bottom:18px;background:linear-gradient(135deg,var(--cobalt-deep) 0%,#2C5599 100%);color:#fff;border-radius:14px;padding:16px 20px 18px;position:relative;overflow:hidden;box-shadow:0 6px 18px rgba(26,58,110,0.18)}
-.di-wrap::before{content:"";position:absolute;top:-30px;right:-30px;width:150px;height:150px;background:radial-gradient(circle,rgba(234,126,154,0.28) 0%,transparent 70%);pointer-events:none}
-.di-header{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;margin-bottom:12px;position:relative;z-index:2}
-.di-eyebrow{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.18em;color:rgba(255,255,255,0.85);font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.di-wrap{margin-bottom:18px;background:linear-gradient(135deg,var(--cobalt-deep) 0%,#2C5599 100%);color:#fff;border-radius:14px;padding:18px 20px 20px;position:relative;overflow:hidden;box-shadow:0 6px 18px rgba(26,58,110,0.18)}
+.di-wrap::before{content:"";position:absolute;top:-30px;right:-30px;width:160px;height:160px;background:radial-gradient(circle,rgba(234,126,154,0.28) 0%,transparent 70%);pointer-events:none}
+
+/* HERO inside modal */
+.di-header{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;margin-bottom:16px;position:relative;z-index:2}
+.di-eyebrow{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.18em;color:rgba(255,255,255,0.78);font-weight:700;text-transform:uppercase;margin-bottom:5px}
 .di-title{font-family:'Lilita One',serif;font-weight:400;font-size:22px;letter-spacing:0.005em;line-height:1.05;color:#fff;margin:0 0 4px}
-.di-sub{font-family:'Fraunces';font-size:12.5px;line-height:1.45;color:rgba(255,255,255,0.88);font-weight:500;letter-spacing:-0.005em;max-width:560px;margin:0}
-.di-progress{display:flex;flex-direction:column;align-items:flex-end;gap:4px;min-width:100px}
-.di-progress-num{font-family:'Lilita One',serif;font-weight:400;font-size:24px;letter-spacing:0.005em;line-height:1;color:#fff}
+.di-sub{font-family:'Fraunces';font-size:12.5px;line-height:1.45;color:rgba(255,255,255,0.85);font-weight:500;letter-spacing:-0.005em;max-width:560px;margin:0;font-style:italic}
+.di-progress{display:flex;flex-direction:column;align-items:flex-end;gap:5px;min-width:110px}
+.di-progress-num{font-family:'Lilita One',serif;font-weight:400;font-size:26px;letter-spacing:0.005em;line-height:1;color:#fff}
 .di-progress-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.16em;color:rgba(255,255,255,0.78);font-weight:700;text-transform:uppercase}
-.di-progress-bar{width:100%;height:3px;background:rgba(255,255,255,0.22);border-radius:99px;overflow:hidden}
-.di-progress-fill{height:100%;background:linear-gradient(90deg,var(--magenta) 0%,#F4B73E 100%);border-radius:99px;transition:width 0.5s ease-out}
+.di-progress-bar{width:100%;height:3px;background:rgba(255,255,255,0.18);border-radius:99px;overflow:hidden}
+.di-progress-fill{height:100%;background:linear-gradient(90deg,#F4B73E 0%,var(--magenta) 100%);border-radius:99px;transition:width 0.5s ease-out}
 
-.di-grid{display:flex;flex-direction:column;gap:7px;position:relative;z-index:2}
-.di-item{background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.18);border-radius:12px;overflow:hidden;transition:background 0.18s}
-.di-item:hover{background:rgba(255,255,255,0.14)}
-.di-item-answered{border-color:rgba(122,176,93,0.6);background:rgba(122,176,93,0.12)}
-.di-item-answered:hover{background:rgba(122,176,93,0.16)}
-.di-item-open{background:rgba(255,255,255,0.16)}
+/* Question card grid */
+.di-grid{display:flex;flex-direction:column;gap:9px;position:relative;z-index:2}
 
-.di-item-head{width:100%;background:transparent;border:0;color:#fff;padding:10px 14px 11px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:4px}
-.di-item-eyebrow{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;color:rgba(255,255,255,0.78);font-weight:700;text-transform:uppercase}
-.di-item-question{font-family:'Fraunces';font-size:13.5px;line-height:1.4;color:#fff;font-weight:500;letter-spacing:-0.005em}
-.di-item-toggle-row{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
-.di-item-status{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.06em;font-weight:700;padding:3px 9px;border-radius:99px}
-.di-item-status-pending{color:rgba(255,255,255,0.78);background:rgba(255,255,255,0.12);border:1px dashed rgba(255,255,255,0.3)}
-.di-item-status-answered{color:#fff;background:rgba(122,176,93,0.4);border:1px solid rgba(122,176,93,0.6)}
-.di-item-chev{font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(255,255,255,0.78);font-weight:700}
+/* Each question = a cream/butter card, color-coded by type */
+.di-item{background:var(--butter-light);border:1.5px solid transparent;border-radius:12px;overflow:hidden;transition:all 0.2s;color:var(--cobalt-deep);box-shadow:0 3px 0 rgba(0,0,0,0.12)}
+.di-item:hover{transform:translateY(-1px);box-shadow:0 5px 0 rgba(0,0,0,0.12)}
+.di-item-open{box-shadow:0 5px 0 rgba(0,0,0,0.16),0 8px 22px rgba(0,0,0,0.15)}
+.di-item-answered{background:#E7F0DD;border-color:#7AB05D}
+.di-item-1{border-left:5px solid #7AB05D}    /* ON-THE-GROUND · green */
+.di-item-2{border-left:5px solid #F4B73E}    /* ORBIT THE MOMENT · butter */
+.di-item-3{border-left:5px solid var(--magenta)}    /* MOOD DIAL · magenta */
 
-.di-item-body{padding:0 18px 16px;display:flex;flex-direction:column;gap:14px}
-.di-item-why{padding:11px 14px;background:rgba(255,255,255,0.1);border-radius:8px;border-left:2px solid rgba(255,255,255,0.4)}
-.di-item-why-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.16em;color:rgba(255,255,255,0.78);font-weight:700;text-transform:uppercase;margin-bottom:5px}
-.di-item-why-text{font-family:'Fraunces';font-size:13px;line-height:1.5;color:rgba(255,255,255,0.94);font-weight:500;letter-spacing:-0.005em}
-.di-item-impact{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.78);display:flex;gap:6px;align-items:baseline}
-.di-item-impact-label{color:var(--magenta);font-weight:700;letter-spacing:0.06em}
-.di-item-impact-text{font-family:'Inter',sans-serif;font-size:12px;line-height:1.45;color:rgba(255,255,255,0.88);font-weight:500}
+/* COLLAPSED header */
+.di-item-head{width:100%;background:transparent;border:0;color:var(--cobalt-deep);padding:13px 16px;text-align:left;cursor:pointer;display:flex;align-items:center;gap:12px;font:inherit}
+.di-item-glyph{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;line-height:1;flex-shrink:0}
+.di-item-1 .di-item-glyph{background:rgba(122,176,93,0.18);color:#3F6A33}
+.di-item-2 .di-item-glyph{background:rgba(244,183,62,0.22);color:#8A5A1F}
+.di-item-3 .di-item-glyph{background:rgba(234,126,154,0.18);color:var(--magenta-deep)}
+.di-item-head-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.di-item-eyebrow{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;color:var(--ink-soft);font-weight:700;text-transform:uppercase}
+.di-item-1 .di-item-eyebrow{color:#3F6A33}
+.di-item-2 .di-item-eyebrow{color:#8A5A1F}
+.di-item-3 .di-item-eyebrow{color:var(--magenta-deep)}
+.di-item-question{font-family:'Fraunces';font-size:14px;line-height:1.35;color:var(--cobalt-deep);font-weight:600;letter-spacing:-0.005em}
+.di-item-toggle{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+.di-item-status{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.1em;font-weight:700;padding:3px 8px;border-radius:99px;text-transform:uppercase;white-space:nowrap}
+.di-item-status-pending{color:var(--cobalt);background:rgba(53,133,224,0.1);border:1px dashed rgba(53,133,224,0.45)}
+.di-item-status-answered{color:#fff;background:#5D8054;border:1px solid #3F6A33}
+.di-item-chev{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--cobalt);font-weight:700;transition:transform 0.2s}
+.di-item-open .di-item-chev{transform:rotate(180deg)}
+
+/* EXPANDED body */
+.di-item-body{padding:6px 16px 16px;display:flex;flex-direction:column;gap:12px;border-top:1px dashed var(--cobalt-light);margin-top:0}
+.di-item-why{padding:10px 13px;background:#FFFDF5;border-radius:8px;border:1px solid var(--cobalt-light)}
+.di-item-why-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.16em;color:var(--cobalt);font-weight:700;text-transform:uppercase;margin-bottom:5px}
+.di-item-why-text{font-family:'Fraunces';font-size:12.5px;line-height:1.5;color:var(--cobalt-deep);font-weight:500;letter-spacing:-0.005em;font-style:italic}
+.di-item-impact{display:flex;gap:8px;align-items:flex-start;padding:9px 13px;background:rgba(234,126,154,0.08);border:1px solid rgba(234,126,154,0.32);border-radius:8px}
+.di-item-impact-arrow{font-family:'Lilita One',serif;font-size:14px;color:var(--magenta-deep);line-height:1.3;flex-shrink:0}
+.di-item-impact-text{font-family:'Fraunces';font-size:12.5px;line-height:1.5;color:var(--cobalt-deep);font-weight:500;letter-spacing:-0.005em}
+.di-item-impact-text strong{color:var(--magenta-deep);font-weight:700}
+.di-item-options-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;color:var(--ink-soft);font-weight:700;text-transform:uppercase;margin-top:2px}
 .di-item-options{display:flex;flex-wrap:wrap;gap:8px}
-.di-option{background:rgba(255,255,255,0.14);color:#fff;border:1px solid rgba(255,255,255,0.3);padding:9px 16px;border-radius:99px;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:0.02em;cursor:pointer;transition:all 0.15s}
-.di-option:hover{background:rgba(255,255,255,0.24);border-color:rgba(255,255,255,0.5)}
-.di-option-selected{background:#fff;color:var(--cobalt-deep);border-color:#fff;font-weight:700}
-.di-item-confirmed{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#C8E0B2;font-weight:600;padding:6px 10px;background:rgba(122,176,93,0.18);border-radius:6px;text-transform:lowercase}
+.di-option{background:#fff;color:var(--cobalt-deep);border:1.5px solid var(--cobalt-light);padding:9px 16px;border-radius:99px;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:0.005em;cursor:pointer;transition:all 0.15s;box-shadow:0 2px 0 var(--cobalt-light)}
+.di-option:hover{background:#FFFDF5;border-color:var(--cobalt);transform:translateY(-1px);box-shadow:0 3px 0 var(--cobalt)}
+.di-option-selected{background:var(--magenta);color:#fff;border-color:var(--magenta-deep);font-weight:700;box-shadow:0 2px 0 var(--magenta-deep)}
+.di-item-confirmed{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#3F6A33;font-weight:700;padding:7px 11px;background:rgba(122,176,93,0.16);border:1px solid rgba(122,176,93,0.4);border-radius:6px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
 
 @media (max-width:780px){
   .di-header{grid-template-columns:1fr}
@@ -2529,6 +2549,10 @@ const DIAGNOSTIC_INBOX = [
   }
 ];
 
+// Glyph + short label per question slot — color-coded by question type
+const DI_GLYPHS = ["📍", "🎙️", "🎚️"];
+const DI_SHORT_LABELS = ["IRL", "PRESS", "MOOD"];
+
 function DiagnosticInbox(){
   const [answers, setAnswers] = useState({});
   const [openItem, setOpenItem] = useState(null);
@@ -2542,9 +2566,9 @@ function DiagnosticInbox(){
   return (<div className="di-wrap">
     <div className="di-header">
       <div>
-        <div className="di-eyebrow">// FROM THE ENGINE · 3 QUESTIONS FOR YOU</div>
+        <div className="di-eyebrow">// FROM THE ENGINE · 3 QUESTIONS ONLY YOU CAN ANSWER</div>
         <h3 className="di-title">Your input shapes the next mix.</h3>
-        <p className="di-sub">Each answer changes downstream briefs. 30 seconds per question — engine sharpens overnight.</p>
+        <p className="di-sub">The engine sees culture · you see your calendar. Three taps tell us what we can't scrape.</p>
       </div>
       <div className="di-progress">
         <div className="di-progress-num">{answeredCount}/{total}</div>
@@ -2553,40 +2577,46 @@ function DiagnosticInbox(){
       </div>
     </div>
     <div className="di-grid">
-      {DIAGNOSTIC_INBOX.map(q => {
+      {DIAGNOSTIC_INBOX.map((q, idx) => {
         const ans = answers[q.id];
         const isOpen = openItem === q.id;
-        return (<div key={q.id} className={"di-item"+(ans?" di-item-answered":"")+(isOpen?" di-item-open":"")}>
+        return (<div key={q.id} className={"di-item di-item-"+(idx+1)+(ans?" di-item-answered":"")+(isOpen?" di-item-open":"")}>
           <button className="di-item-head" onClick={()=>setOpenItem(isOpen ? null : q.id)}>
-            <div className="di-item-eyebrow">{q.eyebrow}</div>
-            <div className="di-item-question">{q.question}</div>
-            <div className="di-item-toggle-row">
+            <span className="di-item-glyph">{DI_GLYPHS[idx]}</span>
+            <div className="di-item-head-body">
+              <div className="di-item-eyebrow">{q.eyebrow.replace("// THIS WEEK · ", "")}</div>
+              <div className="di-item-question">{q.question}</div>
+            </div>
+            <div className="di-item-toggle">
               {ans ? (
                 <span className="di-item-status di-item-status-answered">✓ {q.options.find(o=>o.value===ans)?.label || 'answered'}</span>
               ) : (
-                <span className="di-item-status di-item-status-pending">awaiting input</span>
+                <span className="di-item-status di-item-status-pending">awaiting</span>
               )}
-              <span className="di-item-chev">{isOpen ? "▴" : "▾"}</span>
+              <span className="di-item-chev">▾</span>
             </div>
           </button>
           {isOpen && (
             <div className="di-item-body">
               <div className="di-item-why">
-                <div className="di-item-why-label">WHY THIS MATTERS</div>
+                <div className="di-item-why-label">Why this matters</div>
                 <div className="di-item-why-text">{q.why}</div>
               </div>
               <div className="di-item-impact">
-                <span className="di-item-impact-label">↳ IF ANSWERED</span>
-                <span className="di-item-impact-text">{q.impact}</span>
+                <span className="di-item-impact-arrow">↳</span>
+                <span className="di-item-impact-text"><strong>What changes when you answer:</strong> {q.impact}</span>
               </div>
-              <div className="di-item-options">
-                {q.options.map(o => (
-                  <button key={o.value} className={"di-option"+(ans===o.value?" di-option-selected":"")} onClick={()=>answer(q.id, o.value)}>
-                    {ans===o.value && "✓ "}{o.label}
-                  </button>
-                ))}
+              <div>
+                <div className="di-item-options-label">Your answer</div>
+                <div className="di-item-options">
+                  {q.options.map(o => (
+                    <button key={o.value} className={"di-option"+(ans===o.value?" di-option-selected":"")} onClick={()=>answer(q.id, o.value)}>
+                      {ans===o.value && "✓ "}{o.label}
+                    </button>
+                  ))}
+                </div>
               </div>
-              {ans && <div className="di-item-confirmed">your call locked in. engine will reflect this in next monday's mix.</div>}
+              {ans && <div className="di-item-confirmed">✓ LOCKED IN — engine reflects this in next Monday's mix</div>}
             </div>
           )}
         </div>);
