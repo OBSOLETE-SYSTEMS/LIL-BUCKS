@@ -38,7 +38,7 @@
 }
 .chunky{font-family:'Lilita One',Georgia,serif;letter-spacing:0.01em;font-weight:400}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--cream);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased}
+html,body{background:var(--cream);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .serif{font-family:'Fraunces',Georgia,serif;letter-spacing:-0.01em}
 button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit}
 a{color:inherit;text-decoration:none}
@@ -76,11 +76,11 @@ a{color:inherit;text-decoration:none}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
 
 /* Main */
-.main{padding:24px 32px 40px;max-width:1380px}
+.main{padding:24px 32px 40px;max-width:100%;min-width:0;overflow-x:hidden}
 .main-footer{margin-top:40px;padding:18px 0 6px;border-top:1px solid rgba(53,133,224,0.18);display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;color:var(--ink-soft);font-weight:600;text-transform:uppercase}
 .main-footer-brand strong{color:var(--cobalt-deep);font-weight:800}
 .main-footer-sep{color:rgba(53,133,224,0.35);font-weight:300}
-.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding-bottom:12px;border-bottom:2px solid var(--cobalt);margin-bottom:20px}
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding-bottom:12px;border-bottom:2px solid var(--cobalt);margin-bottom:20px;flex-wrap:wrap}
 .page-head h1{font-family:'Lilita One',serif;font-weight:400;font-size:26px;letter-spacing:0.005em;line-height:1;color:var(--cobalt-deep)}
 .page-dek{font-family:'Fraunces';font-size:12.5px;line-height:1.4;color:var(--ink-soft);font-weight:500;font-style:italic;letter-spacing:-0.005em;margin-top:6px;max-width:540px}
 .page-head .eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:var(--cobalt);margin-bottom:6px;font-weight:700}
@@ -2079,6 +2079,9 @@ function App(){
   const [memoOpen,setMemoOpen] = useState(true);
   const [howOpen,setHowOpen] = useState(false);
   const [studioOpen,setStudioOpen] = useState(false);
+  const [studioSeed,setStudioSeed] = useState(null);
+  // Helper: open Studio with a smart seed prompt built from the clicked card's data
+  function openStudioWith(seed){ setStudioSeed(seed); setStudioOpen(true); }
   const [briefOpen,setBriefOpen] = useState(null);
   const [diagOpen,setDiagOpen] = useState(false);
 
@@ -2094,8 +2097,13 @@ function App(){
     {memoOpen && <MondayMemoModal onClose={()=>setMemoOpen(false)} onShipIt={()=>{setMemoOpen(false);setSection('intel');}} />}
     {welcomeOpen && <WelcomePopup onClose={()=>setWelcomeOpen(false)} onCTA={()=>{setWelcomeOpen(false);setSection('briefs');}} />}
     {howOpen && <HowItWorksModal onClose={()=>setHowOpen(false)} />}
-    {studioOpen && <StudioModal onClose={()=>setStudioOpen(false)} />}
-    {briefOpen && <BriefDetailModal brief={briefOpen} onClose={()=>setBriefOpen(null)} onDrop={()=>setStudioOpen(true)} onIntelNavigate={(tab)=>{setBriefOpen(null);setSection('intel');setIntelTab(tab);}} />}
+    {studioOpen && <StudioModal onClose={()=>{setStudioOpen(false);setStudioSeed(null);}} initialSeed={studioSeed} />}
+    {briefOpen && <BriefDetailModal brief={briefOpen} onClose={()=>setBriefOpen(null)} onDrop={()=>{
+      const b = briefOpen;
+      const hook = b.hooks?.find(h=>h.recommended)?.text || b.hooks?.[0]?.text || b.concept;
+      openStudioWith(`I want to sharpen brief ${b.id}: "${b.concept}".\n\nRecommended hook: "${hook}"\nPlatform: ${b.platform} · Pillar: ${b.pillar} · Flavor: ${b.flavor}\n\nWhere can this land harder?`);
+      setBriefOpen(null);
+    }} onIntelNavigate={(tab)=>{setBriefOpen(null);setSection('intel');setIntelTab(tab);}} />}
     {diagOpen && <DiagnosticInboxModal onClose={()=>setDiagOpen(false)} />}
 
     <div className="app">
@@ -2153,7 +2161,7 @@ function App(){
         </div>
 
         {section==='howitworks' && <HowItWorksTab />}
-        {section==='intel' && <IntelligenceBrief tab={intelTab} setTab={setIntelTab} openStudio={()=>setStudioOpen(true)} openMemo={()=>setMemoOpen(true)} openBriefForSignal={(signalId, signalType) => {
+        {section==='intel' && <IntelligenceBrief tab={intelTab} setTab={setIntelTab} openStudio={()=>setStudioOpen(true)} openStudioWith={openStudioWith} openMemo={()=>setMemoOpen(true)} openBriefForSignal={(signalId, signalType) => {
           const linkKey = signalType === 'pulse' ? 'pulse' : signalType === 'trend' ? 'trends' : 'comps';
           const briefId = Object.entries(BRIEF_LINKS).find(([_, l]) => l[linkKey].includes(signalId))?.[0];
           if (briefId) {
@@ -2161,7 +2169,7 @@ function App(){
             if (brief) setBriefOpen(brief);
           }
         }} />}
-        {section==='briefs' && <ContentBriefs onOpen={setBriefOpen} openStudio={()=>setStudioOpen(true)} />}
+        {section==='briefs' && <ContentBriefs onOpen={setBriefOpen} openStudio={()=>setStudioOpen(true)} openStudioWith={openStudioWith} />}
         {section==='calendar' && <CalendarPreview />}
         {section==='performance' && <PerformancePreview />}
 
@@ -2453,7 +2461,7 @@ function PerformancePreview(){
   </>);
 }
 
-function IntelligenceBrief({tab,setTab,openStudio,openMemo,openBriefForSignal}){
+function IntelligenceBrief({tab,setTab,openStudio,openStudioWith,openMemo,openBriefForSignal}){
   return (<>
     <button className="memo-trigger" onClick={openMemo}>
       <div className="memo-trigger-left">
@@ -2472,9 +2480,9 @@ function IntelligenceBrief({tab,setTab,openStudio,openMemo,openBriefForSignal}){
       <button className={"subtab"+(tab==='counter'?' active':'')} onClick={()=>setTab('counter')}>Counter-Strike<span className="subtab-count">⚡ {COUNTER_STRIKE_LOG.length}</span></button>
       <button className={"subtab"+(tab==='amb'?' active':'')} onClick={()=>setTab('amb')}>Brand Ambassadors<span className="subtab-count">{AMBASSADORS.length}</span></button>
     </div>
-    {tab==='pulse' && <><CultureMomentum /><PulseGrid openStudio={openStudio} openBriefForSignal={openBriefForSignal} /></>}
-    {tab==='trends' && <TrendsGrid openStudio={openStudio} openBriefForSignal={openBriefForSignal} />}
-    {tab==='comps' && <CompetitorsGrid openStudio={openStudio} openBriefForSignal={openBriefForSignal} />}
+    {tab==='pulse' && <><CultureMomentum /><PulseGrid openStudioWith={openStudioWith} openBriefForSignal={openBriefForSignal} /></>}
+    {tab==='trends' && <TrendsGrid openStudioWith={openStudioWith} openBriefForSignal={openBriefForSignal} />}
+    {tab==='comps' && <CompetitorsGrid openStudioWith={openStudioWith} openBriefForSignal={openBriefForSignal} />}
     {tab==='counter' && <CounterStrikeView openStudio={openStudio} />}
     {tab==='amb' && <AmbassadorsGrid />}
   </>);
@@ -2670,9 +2678,11 @@ function CultureMomentum(){
   </div>);
 }
 
-function PulseGrid({openStudio,openBriefForSignal}){
+function PulseGrid({openStudioWith,openBriefForSignal}){
   return (<div className="grid grid-2">
-    {CULTURAL_PULSE.map(p=>(<div key={p.id} className="card intel-card" style={{borderLeftWidth:5,borderLeftColor:VELOCITY_RAIL[p.velocity]||"#E5DDC8"}}>
+    {CULTURAL_PULSE.map(p=>{
+      const seed = `I'm looking at this Cultural Pulse signal: "${p.hook}"\n\n${p.detail}\n\nThe play the engine drafted: ${p.willasPlay}\n\nGive me a sharper version of the play + 3 alt hook options I could shoot this week.`;
+      return (<div key={p.id} className="card intel-card" style={{borderLeftWidth:5,borderLeftColor:VELOCITY_RAIL[p.velocity]||"#E5DDC8"}}>
       <div className="card-head">
         <div style={{display:"flex",alignItems:"center",gap:10,flex:1,minWidth:0}}>
           <span className="intel-glyph" style={{background:(VELOCITY_RAIL[p.velocity]||"#3585E0")+"1f",color:VELOCITY_RAIL[p.velocity]||"#3585E0"}}>{PULSE_TYPE_GLYPH[p.type]||"✦"}</span>
@@ -2690,17 +2700,18 @@ function PulseGrid({openStudio,openBriefForSignal}){
       </div>
       <Sources list={p.sources}/>
       <div className="card-actions" style={{justifyContent:"flex-end"}}>
-        <button className="drop-btn" onClick={openStudio}>↓ Send to Studio</button>
+        <button className="drop-btn" onClick={()=>openStudioWith(seed)}>↓ Send to Studio</button>
       </div>
-    </div>))}
+    </div>);})}
   </div>);
 }
 
-function TrendsGrid({openStudio,openBriefForSignal}){
+function TrendsGrid({openStudioWith,openBriefForSignal}){
   return (<div className="grid grid-2">
     {TRENDS.map(t=>{
       const firstPillar = t.pillars[0];
       const railColor = PILLAR_COLOR[firstPillar]||"#3585E0";
+      const seed = `I'm looking at this Category + Policy trend: "${t.trend}"\n\n${t.detail}\n\nEngine angle: ${t.angle}\n\nWhat's the specific brief we should build to ride this, and which SKU should lead?`;
       return (<div key={t.id} className="card intel-card" style={{borderLeftWidth:5,borderLeftColor:railColor}}>
       <div className="card-head">
         <div style={{display:"flex",alignItems:"center",gap:10,flex:1,minWidth:0}}>
@@ -2720,13 +2731,13 @@ function TrendsGrid({openStudio,openBriefForSignal}){
       </div>
       <Sources list={t.sources}/>
       <div className="card-actions" style={{justifyContent:"flex-end"}}>
-        <button className="drop-btn" onClick={openStudio}>↓ Send to Studio</button>
+        <button className="drop-btn" onClick={()=>openStudioWith(seed)}>↓ Send to Studio</button>
       </div>
     </div>);})}
   </div>);
 }
 
-function CompetitorsGrid({openStudio,openBriefForSignal}){
+function CompetitorsGrid({openStudioWith,openBriefForSignal}){
   return (<>
     <div className="comp-pov">
       <div className="comp-pov-head">
@@ -2760,6 +2771,8 @@ function CompetitorsGrid({openStudio,openBriefForSignal}){
     <div className="grid grid-2">
       {COMPETITORS.map(c=>{
         const dirColor = c.direction==="up"?"#C24A4A":c.direction==="down"?"#5D8054":"#9A9A9A";
+        const dirLabel = c.direction==="up"?"heating up":c.direction==="down"?"cooling":"flat";
+        const seed = `Competitor watch: ${c.name} is ${dirLabel}.\n\n${c.status}\n\nEngine opportunity: ${c.opportunity}\n\nWhat's our specific counter-play this week — and which brief should carry it?`;
         return (<div key={c.id} className="card intel-card" style={{borderLeftWidth:5,borderLeftColor:dirColor}}>
         <div className="card-head">
           <div style={{display:"flex",alignItems:"center",gap:10,flex:1,minWidth:0}}>
@@ -2775,7 +2788,7 @@ function CompetitorsGrid({openStudio,openBriefForSignal}){
         {drovenBy(c.id,"comp")>0 && <div className="card-meta-row"><button className="drove-chip" onClick={()=>openBriefForSignal(c.id,'comp')} title="Jump to the brief this competitor move drove">→ <strong>{drovenBy(c.id,"comp")}</strong>&nbsp;{drovenBy(c.id,"comp")===1?'brief':'briefs'}</button></div>}
         <Sources list={c.sources}/>
         <div className="card-actions" style={{justifyContent:"flex-end"}}>
-          <button className="drop-btn" onClick={openStudio}>↓ Send to Studio</button>
+          <button className="drop-btn" onClick={()=>openStudioWith(seed)}>↓ Send to Studio</button>
         </div>
       </div>);})}
     </div>
@@ -3735,19 +3748,28 @@ function renderStudioMarkdown(text){
   return blocks;
 }
 
-function StudioModal({onClose}){
+function StudioModal({onClose, initialSeed}){
   const [mode, setMode] = useState("chat"); // 'chat' | 'compass'
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const scrollRef = useRef(null);
+  const seedFiredRef = useRef(false);
 
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, loading]);
+
+  // Auto-fire the seed prompt once when Studio opens from a card click
+  useEffect(() => {
+    if (initialSeed && !seedFiredRef.current && messages.length === 0 && !loading) {
+      seedFiredRef.current = true;
+      send(initialSeed);
+    }
+  }, [initialSeed]);
 
   async function send(promptOverride) {
     const userText = (promptOverride ?? input).trim();
