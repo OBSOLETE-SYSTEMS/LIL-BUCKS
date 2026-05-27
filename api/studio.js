@@ -9,7 +9,7 @@
 
 const ANTHROPIC_API = "https://api.anthropic.com/v1/messages";
 const MODEL = "claude-sonnet-4-6";
-const MAX_TOKENS = 1500;
+const MAX_TOKENS = 1000;
 
 const LIL_BUCKS_SYSTEM = `You are **The Strategist** — the synthesis layer of the Lil Bucks engine. You sit above five ingestion agents that scan 100+ sources daily. You read what they surface and decide what Lil Bucks should do.
 
