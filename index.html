@@ -38,7 +38,73 @@
 }
 .chunky{font-family:'Lilita One',Georgia,serif;letter-spacing:0.01em;font-weight:400}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--cream);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html,body{background:var(--cream);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background-color 0.2s,color 0.2s}
+body.font-small{font-size:12.5px}
+body.font-large{font-size:15.5px}
+
+/* ===== DARK THEME — flips main reading surfaces · sidebar stays cobalt ===== */
+body.theme-dark{
+  --cream:#161E33;
+  --butter:#1E2741;
+  --butter-light:#1E2741;
+  --butter-deep:#172037;
+  --ink:#E8E6F0;
+  --ink-soft:#9CA4BD;
+  --border:#2F3D5E;
+  --cobalt-light:#2D4067;
+}
+body.theme-dark .card,body.theme-dark .brief-card,body.theme-dark .amb-card,body.theme-dark .di-item,body.theme-dark .pulse-card,body.theme-dark .perf-kpi,body.theme-dark .cal-col,body.theme-dark .modal,body.theme-dark .mmm-card,body.theme-dark .di-item-locked-note,body.theme-dark .panel-card,body.theme-dark .amp-placement,body.theme-dark .settings-card{background:#202B49;color:#E8E6F0}
+body.theme-dark .modal-head,body.theme-dark .mmm-body{background:#1E2741;color:#E8E6F0}
+body.theme-dark .modal-head h2,body.theme-dark .brief-concept,body.theme-dark .card-hook,body.theme-dark .cm-title,body.theme-dark .page-head h1,body.theme-dark .ride-hero-num,body.theme-dark .pillar-name,body.theme-dark .perf-kpi-num,body.theme-dark .settings-title,body.theme-dark .auth-title{color:#F2EBC0}
+body.theme-dark .page-dek,body.theme-dark .card-detail,body.theme-dark .cm-sub,body.theme-dark .brief-detail{color:#B5B9CC}
+body.theme-dark .ticker{background:#0F1530}
+body.theme-dark .ticker-item{color:#E8E6F0}
+body.theme-dark .modal-bg{background:rgba(0,0,0,0.6)}
+
+/* ===== AUTH GATE ===== */
+.auth-bg{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--cobalt-deep) 0%,var(--cobalt) 50%,var(--magenta-deep) 130%);padding:24px;z-index:9999;overflow:auto}
+.auth-bg::before{content:"";position:absolute;top:-100px;right:-100px;width:380px;height:380px;background:radial-gradient(circle,rgba(244,183,62,0.22) 0%,transparent 65%);pointer-events:none}
+.auth-bg::after{content:"";position:absolute;bottom:-100px;left:-80px;width:340px;height:340px;background:radial-gradient(circle,rgba(234,126,154,0.32) 0%,transparent 65%);pointer-events:none}
+.auth-card{position:relative;background:var(--cream);border-radius:18px;padding:32px 32px 24px;max-width:380px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,0.32);text-align:center;z-index:2}
+.auth-logo{width:64px;height:64px;border-radius:50%;background:var(--magenta);color:#fff;font-family:'Lilita One',serif;font-size:11px;display:flex;align-items:center;justify-content:center;letter-spacing:0.04em;line-height:1;margin:0 auto 18px;font-weight:400;text-align:center;box-shadow:0 4px 12px rgba(213,88,120,0.4)}
+.auth-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--magenta-deep);font-weight:700;text-transform:uppercase;margin-bottom:6px}
+.auth-title{font-family:'Lilita One',serif;font-weight:400;font-size:26px;letter-spacing:0.005em;line-height:1.1;color:var(--cobalt-deep);margin-bottom:6px}
+.auth-sub{font-family:'Fraunces';font-size:13px;line-height:1.5;color:var(--ink-soft);font-weight:500;font-style:italic;margin-bottom:18px;letter-spacing:-0.005em}
+.auth-input{width:100%;background:#fff;border:1.5px solid var(--cobalt-light);border-radius:10px;padding:12px 16px;font-family:'Inter',sans-serif;font-size:14px;color:var(--cobalt-deep);text-align:center;letter-spacing:0.02em;margin-bottom:10px;outline:none;transition:border-color 0.15s,box-shadow 0.15s;box-sizing:border-box}
+.auth-input:focus{border-color:var(--magenta);box-shadow:0 0 0 3px rgba(234,126,154,0.18)}
+.auth-err{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#C24A4A;font-weight:700;margin-bottom:10px;padding:6px 10px;background:rgba(194,74,74,0.08);border-radius:6px;border:1px solid rgba(194,74,74,0.3)}
+.auth-btn{background:var(--magenta);color:#fff;border:0;padding:12px 22px;border-radius:99px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;font-weight:800;text-transform:uppercase;cursor:pointer;width:100%;transition:background 0.15s,transform 0.1s;box-shadow:0 3px 0 var(--magenta-deep);margin-top:4px}
+.auth-btn:hover{background:var(--magenta-deep);transform:translateY(-1px)}
+.auth-foot{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.14em;color:var(--ink-soft);font-weight:600;text-transform:uppercase;margin-top:22px;padding-top:16px;border-top:1px solid var(--border)}
+
+/* ===== SIDEBAR — resize handle + bottom row + settings button ===== */
+.sb{position:relative}
+.sb-resize-handle{position:absolute;top:0;right:-2px;bottom:0;width:5px;cursor:col-resize;z-index:20;background:transparent;transition:background 0.15s}
+.sb-resize-handle:hover{background:rgba(234,126,154,0.45)}
+.sb-resize-handle:active{background:var(--magenta)}
+.sb-bottom-row{display:flex;align-items:center;gap:6px;padding:0 4px}
+.sb-bottom-row .sb-howit-link{flex:1;margin:0;padding:0 4px}
+.sb-settings-btn{background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.85);border:0;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;font-size:14px;cursor:pointer;transition:background 0.15s,color 0.15s;flex-shrink:0;line-height:1}
+.sb-settings-btn:hover{background:rgba(255,255,255,0.22);color:#fff}
+
+/* ===== SETTINGS MODAL ===== */
+.settings-card{background:var(--cream);border-radius:14px;max-width:480px;width:100%;border:1.5px solid var(--cobalt);box-shadow:0 24px 60px rgba(0,0,0,0.28);overflow:hidden}
+.settings-head{display:flex;justify-content:space-between;align-items:flex-start;padding:18px 22px;background:linear-gradient(135deg,var(--cobalt-deep) 0%,#2C5599 100%);color:#fff}
+.settings-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:rgba(255,255,255,0.78);font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.settings-title{font-family:'Lilita One',serif;font-weight:400;font-size:20px;letter-spacing:0.005em;line-height:1.1;color:#fff}
+.settings-head .modal-close{color:#fff;background:rgba(255,255,255,0.16)}
+.settings-head .modal-close:hover{background:rgba(255,255,255,0.28)}
+.settings-body{padding:18px 22px 20px;display:flex;flex-direction:column;gap:14px}
+.settings-row{display:flex;flex-direction:column;gap:6px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.settings-row:last-child{border-bottom:0;padding-bottom:0}
+.settings-row-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--ink-soft);font-weight:700;text-transform:uppercase}
+.settings-row-options{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.settings-opt{background:#fff;color:var(--cobalt-deep);border:1.5px solid var(--cobalt-light);padding:7px 14px;border-radius:99px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.06em;font-weight:700;cursor:pointer;transition:all 0.15s}
+.settings-opt:hover{border-color:var(--cobalt);background:var(--butter-light)}
+.settings-opt.active{background:var(--magenta);color:#fff;border-color:var(--magenta-deep);box-shadow:0 2px 0 var(--magenta-deep)}
+.settings-opt-danger{color:#C24A4A;border-color:rgba(194,74,74,0.4)}
+.settings-opt-danger:hover{background:rgba(194,74,74,0.08);border-color:#C24A4A}
+.settings-current{font-family:'Fraunces';font-size:12px;color:var(--ink-soft);font-style:italic;margin-right:auto;letter-spacing:-0.005em}
 .serif{font-family:'Fraunces',Georgia,serif;letter-spacing:-0.01em}
 button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit}
 a{color:inherit;text-decoration:none}
@@ -1412,7 +1478,8 @@ a{color:inherit;text-decoration:none}
 
 /* Ticker */
 .ticker{background:var(--cobalt-deep);color:#fff;padding:7px 0;font-size:11px;font-weight:500;overflow:hidden;position:relative;border-radius:99px;margin-bottom:18px}
-.ticker-track{display:flex;gap:46px;animation:scroll 19s linear infinite;white-space:nowrap}
+.ticker-track{display:flex;gap:46px;animation:scroll 32s linear infinite;white-space:nowrap}
+.ticker:hover .ticker-track{animation-play-state:paused}
 .ticker-item{display:inline-flex;align-items:center;gap:8px}
 .ticker-dot{width:6px;height:6px;border-radius:50%;background:var(--magenta);box-shadow:0 0 6px rgba(234,126,154,0.8)}
 .ticker-dot-signal{background:#5BA0F0;box-shadow:0 0 6px rgba(91,160,240,0.85)}
@@ -2276,12 +2343,54 @@ function App(){
   const [diagOpen,setDiagOpen] = useState(false);
 
   const navItems = [
-    {id:'intel',label:'Intelligence Brief',icon:'🔭',active:true},
-    {id:'briefs',label:'Content Briefs',icon:'📝',active:true},
-    {id:'studio',label:'Studio',icon:'✷',active:true,onClick:()=>setStudioOpen(true)},
-    {id:'calendar',label:'Content Calendar',icon:'📅',active:true,soon:true},
-    {id:'performance',label:'Performance',icon:'📈',active:true,soon:true}
+    {id:'intel',       label:'Intelligence Brief', icon:'🔭', active:true, desc:'Live signals the engine surfaced this week — Cultural Pulse, Category + Policy, Competitor Watch, Counter-Strike, Brand Ambassadors.'},
+    {id:'briefs',      label:'Content Briefs',     icon:'📝', active:true, desc:'12 production-ready briefs for the week, sorted by Conviction Score. Click any card to see hooks, scripts, captions, footage inspo.'},
+    {id:'studio',      label:'Studio',             icon:'✷', active:true, onClick:()=>setStudioOpen(true), desc:'Talk to the Strategist (Gemini-powered). Riff hooks, pressure-test against the Crunch Bunch, or score a caption against the brand voice.'},
+    {id:'calendar',    label:'Content Calendar',   icon:'📅', active:true, soon:true, desc:'Your week, auto-built from the brief mix — drag-drop reschedule, paid-amp markers. Under construction.'},
+    {id:'performance', label:'Performance',        icon:'📈', active:true, soon:true, desc:'What hit, what missed, what the engine learned — tied back to the signal that drove each post. Under construction.'}
   ];
+
+  // SIDEBAR RESIZE — drag-handle on right edge · persisted to localStorage
+  const [sidebarWidth, setSidebarWidth] = useState(() => {
+    try { const v = parseInt(localStorage.getItem("lilbucks-sb-width")||"200"); return isNaN(v)?200:v; } catch { return 200; }
+  });
+  const draggingRef = useRef(false);
+  function startSbDrag(e){
+    draggingRef.current = true;
+    document.body.style.cursor = "col-resize";
+    document.body.style.userSelect = "none";
+    e.preventDefault();
+  }
+  useEffect(() => {
+    function onMove(e){
+      if (!draggingRef.current) return;
+      const w = Math.min(360, Math.max(160, e.clientX));
+      setSidebarWidth(w);
+    }
+    function onUp(){
+      if (!draggingRef.current) return;
+      draggingRef.current = false;
+      document.body.style.cursor = "";
+      document.body.style.userSelect = "";
+      try { localStorage.setItem("lilbucks-sb-width", String(sidebarWidth)); } catch {}
+    }
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+    return () => { window.removeEventListener("mousemove", onMove); window.removeEventListener("mouseup", onUp); };
+  }, [sidebarWidth]);
+
+  // SETTINGS — theme + font size · persisted to localStorage
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [theme, setThemeState] = useState(() => { try { return localStorage.getItem("lilbucks-theme")||"light"; } catch { return "light"; } });
+  const [fontSize, setFontSizeState] = useState(() => { try { return localStorage.getItem("lilbucks-font")||"default"; } catch { return "default"; } });
+  function setTheme(t){ setThemeState(t); try { localStorage.setItem("lilbucks-theme", t); } catch {} }
+  function setFontSize(f){ setFontSizeState(f); try { localStorage.setItem("lilbucks-font", f); } catch {} }
+  useEffect(() => {
+    document.body.classList.toggle("theme-dark", theme === "dark");
+    document.body.classList.remove("font-small","font-large");
+    if (fontSize === "small") document.body.classList.add("font-small");
+    if (fontSize === "large") document.body.classList.add("font-large");
+  }, [theme, fontSize]);
 
   return (<>
     {memoOpen && <MondayMemoModal onClose={()=>setMemoOpen(false)} onShipIt={()=>{setMemoOpen(false);setSection('intel');}} />}
@@ -2293,8 +2402,9 @@ function App(){
       setBriefOpen(null);
     }} onIntelNavigate={(tab)=>{setBriefOpen(null);setSection('intel');setIntelTab(tab);}} />}
     {diagOpen && <DiagnosticInboxModal onClose={()=>setDiagOpen(false)} />}
+    {settingsOpen && <SettingsModal onClose={()=>setSettingsOpen(false)} theme={theme} setTheme={setTheme} fontSize={fontSize} setFontSize={setFontSize} sidebarWidth={sidebarWidth} setSidebarWidth={setSidebarWidth} />}
 
-    <div className="app">
+    <div className="app" style={{gridTemplateColumns:`${sidebarWidth}px 1fr`}}>
       <aside className="sb">
         <div className="sb-brand">
           <div className="sb-logo">LIL<br/>BUCKS</div>
@@ -2306,6 +2416,7 @@ function App(){
         <div className="sb-section-label">This Week</div>
         {navItems.map(it=>(
           <button key={it.id} className={"sb-item"+(section===it.id?" active":"")}
+            title={it.desc||""}
             onClick={()=>{if(it.onClick){it.onClick();return;} if(it.active) setSection(it.id);}}>
             <span className="sb-item-icon">{it.icon}</span>{it.label}
             {it.soon && <span className="sb-item-soon">WIP</span>}
@@ -2319,9 +2430,15 @@ function App(){
           </span>
           <span className="sb-diag-pip">●</span>
         </button>
-        <button className="sb-howit-link sb-howit-below-diag" onClick={()=>setSection('howitworks')}>
-          {section==='howitworks' ? '◉' : '◌'} how it works
-        </button>
+        <div className="sb-bottom-row">
+          <button className="sb-howit-link sb-howit-below-diag" onClick={()=>setSection('howitworks')} title="The engine architecture — agents, sources, decisions, anti-patterns">
+            {section==='howitworks' ? '◉' : '◌'} how it works
+          </button>
+          <button className="sb-settings-btn" onClick={()=>setSettingsOpen(true)} title="Settings — theme, font size, sidebar width, sign out">
+            ⚙
+          </button>
+        </div>
+        <div className="sb-resize-handle" onMouseDown={startSbDrag} title="Drag to resize sidebar"></div>
       </aside>
 
       <main className="main">
@@ -4666,7 +4783,102 @@ class ErrorBoundary extends React.Component {
     return this.props.children;
   }
 }
-ROOT.render(<ErrorBoundary><App/></ErrorBoundary>);
+// ===== AUTH GATE — password screen before the engine loads =====
+function AuthGate({children}){
+  const [authed, setAuthed] = useState(() => {
+    try { return localStorage.getItem("lilbucks-auth-ok") === "1"; } catch { return false; }
+  });
+  const [pw, setPw] = useState("");
+  const [err, setErr] = useState(false);
+  function tryLogin(){
+    if (pw.trim().toLowerCase() === "buckwild") {
+      try { localStorage.setItem("lilbucks-auth-ok", "1"); } catch {}
+      setAuthed(true);
+    } else { setErr(true); }
+  }
+  // Re-read on hash change (so logout via settings can refresh state)
+  useEffect(() => {
+    function onStorage(){ try { setAuthed(localStorage.getItem("lilbucks-auth-ok") === "1"); } catch {} }
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, []);
+  if (authed) return children;
+  return (<div className="auth-bg">
+    <div className="auth-card">
+      <div className="auth-logo">LIL<br/>BUCKS</div>
+      <div className="auth-eyebrow">// engine access</div>
+      <h2 className="auth-title">Enter the engine.</h2>
+      <p className="auth-sub">Pre-shared password required. Talk to Alex if you need it.</p>
+      <input
+        className="auth-input"
+        type="password"
+        placeholder="password"
+        value={pw}
+        onChange={e=>{setPw(e.target.value); setErr(false);}}
+        onKeyDown={e=>{ if(e.key==="Enter") tryLogin(); }}
+        autoFocus
+      />
+      {err && <div className="auth-err">⚠ that's not it. try again.</div>}
+      <button className="auth-btn" onClick={tryLogin}>Open Engine →</button>
+      <div className="auth-foot">Lil Bucks · OBSOLETE V0.1</div>
+    </div>
+  </div>);
+}
+
+// ===== SETTINGS MODAL — theme + font + sidebar reset + sign out =====
+function SettingsModal({onClose, theme, setTheme, fontSize, setFontSize, sidebarWidth, setSidebarWidth}){
+  function signOut(){
+    try { localStorage.removeItem("lilbucks-auth-ok"); } catch {}
+    window.location.reload();
+  }
+  function resetSidebar(){
+    setSidebarWidth(200);
+    try { localStorage.setItem("lilbucks-sb-width","200"); } catch {}
+  }
+  return (<div className="modal-bg" onClick={onClose}>
+    <div className="settings-card" onClick={e=>e.stopPropagation()}>
+      <div className="settings-head">
+        <div>
+          <div className="settings-eyebrow">// SETTINGS</div>
+          <div className="settings-title">Engine preferences</div>
+        </div>
+        <button className="modal-close" onClick={onClose} aria-label="close">×</button>
+      </div>
+      <div className="settings-body">
+        <div className="settings-row">
+          <div className="settings-row-label">Theme</div>
+          <div className="settings-row-options">
+            <button className={"settings-opt"+(theme==='light'?' active':'')} onClick={()=>setTheme('light')}>☀ Light</button>
+            <button className={"settings-opt"+(theme==='dark'?' active':'')} onClick={()=>setTheme('dark')}>☾ Dark</button>
+          </div>
+        </div>
+        <div className="settings-row">
+          <div className="settings-row-label">Font size</div>
+          <div className="settings-row-options">
+            <button className={"settings-opt"+(fontSize==='small'?' active':'')} onClick={()=>setFontSize('small')}>Small</button>
+            <button className={"settings-opt"+(fontSize==='default'?' active':'')} onClick={()=>setFontSize('default')}>Default</button>
+            <button className={"settings-opt"+(fontSize==='large'?' active':'')} onClick={()=>setFontSize('large')}>Large</button>
+          </div>
+        </div>
+        <div className="settings-row">
+          <div className="settings-row-label">Sidebar width</div>
+          <div className="settings-row-options">
+            <span className="settings-current">{sidebarWidth}px · drag the right edge of the sidebar to resize</span>
+            <button className="settings-opt" onClick={resetSidebar}>Reset to 200px</button>
+          </div>
+        </div>
+        <div className="settings-row">
+          <div className="settings-row-label">Access</div>
+          <div className="settings-row-options">
+            <button className="settings-opt settings-opt-danger" onClick={signOut}>Sign out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>);
+}
+
+ROOT.render(<AuthGate><ErrorBoundary><App/></ErrorBoundary></AuthGate>);
 </script>
 </body>
 </html>
