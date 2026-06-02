@@ -1692,11 +1692,11 @@ const WELCOME_MOVES = [
   { verb:"Plant the fiber flag.", why:"Tuesday fact-flip — “5g prebiotic fiber, from the seed, not a powder.” Ride the gut-health moment without the gram-count meme." },
   { verb:"Pack the fest bag.", why:"Governors Ball is in NYC this weekend (Jun 5–7) — a fun 'what's in my fest bag' Reel with pocket-size Chocolate Sea Salt Clusterbucks, right in the brand's indie-music lane." }
 ];
-// Soft brand-palette tints so each Monday-Memo move card reads as its own card.
+// Distinct brand-palette colors so each Monday-Memo move card reads clearly apart.
 const MMM_MOVE_TINTS = [
-  { background:"rgba(244,183,62,0.14)", borderColor:"rgba(244,183,62,0.5)" },
-  { background:"rgba(127,168,111,0.14)", borderColor:"rgba(127,168,111,0.5)" },
-  { background:"rgba(234,126,154,0.14)", borderColor:"rgba(234,126,154,0.5)" }
+  { bg:"rgba(53,133,224,0.13)",  accent:"#3585E0" },  // cobalt
+  { bg:"rgba(244,183,62,0.20)",  accent:"#E08A1E" },  // sunbeam
+  { bg:"rgba(234,126,154,0.17)", accent:"#D55878" }   // magenta
 ];
 
 // ===== TRENDS (Category + Policy) — 6 entries, every one fresh-sourced for the week of Jun 1 =====
@@ -1918,7 +1918,7 @@ const BRIEFS = [
     rideNow:false
   },
   { id:"JUN1-IG-R5", platform:"IG Reel", pillar:"FUEL", flavor:"Original", dna:"founder-emily", muse:"Partake Foods", priority:"STANDARD", timing:"Sat Jun 6 · 11am",
-    concept:"\"a complete protein. from a seed. no powder in sight.\" — Emily's calm counter to the protein arms race",
+    concept:"\"a complete protein, from a seed — nothing added.\" — Emily's calm, food-first take while everyone's adding protein powder",
     hooks:[
       {text:"everyone's racing to add protein powder. buckwheat just… has all nine amino acids.", recommended:true},
       {text:"the quiet flex: a complete plant protein that grew in a field.", },
@@ -2006,7 +2006,7 @@ const CAPTION_VARIANTS = {
     punchy:"the bowl was missing one thing. found it."
   },
   "JUN1-IG-R2": {
-    direct:"fiber is having its big protein moment, and honestly? welcome.\n\nhere's the part that makes us laugh a little: half the aisle is now adding fiber powders to catch up. ours isn't added. buckwheat is a fruit seed — closer to rhubarb than wheat — and the 5g of prebiotic fiber is just… in there. plus a complete plant protein, because the seed came with that too.\n\nwe didn't maxx it. the seed did 🌱\n\nwhole-food fiber. nothing added.",
+    direct:"fiber is having its big protein moment, and honestly? we're here for it 🌱\n\nthe fun part: a lot of foods are adding fiber powders now. ours isn't added — buckwheat is a fruit seed (closer to rhubarb than wheat), and the 5g of prebiotic fiber is just… in there. plus a complete plant protein, because the seed came with that too.\n\nwe didn't maxx it — the seed did.\n\nwhole-food fiber. nothing added.",
     warm:"everyone's discovering fiber. ours isn't a powder we added — it's a fruit seed that grew with 5g of prebiotic fiber already in it 🌱 the gut bacteria say hi.",
     punchy:"fiber is the new protein. ours came in the seed."
   },
@@ -2036,8 +2036,8 @@ const CAPTION_VARIANTS = {
     punchy:"save this for every hot morning in june."
   },
   "JUN1-IG-R5": {
-    direct:"the thing nobody tells you about buckwheat:\n\nthe whole snack aisle is in a protein-powder arms race right now. meanwhile buckwheat is quietly one of the only plant foods with all nine essential amino acids — a complete protein. we didn't add it. the seed grew in with it.\n\nno isolate, no powder, no lab. just a sprouted seed from a real farm.\n\nfood first. always has been.\n\nXx Emily",
-    warm:"everyone's racing to add protein powder. buckwheat just… shows up with all nine essential amino acids already. a complete protein, grown not added 🌱 xx emily",
+    direct:"a quiet thing about buckwheat:\n\nthese days it feels like everything's adding protein powder. buckwheat is quietly one of the only plant foods with all nine essential amino acids — a complete protein. we didn't add it; the seed grew in with it.\n\nno isolate, no powder, no lab. just a sprouted seed from a real farm.\n\nfood first. always has been.\n\nXx Emily",
+    warm:"lots of snacks are adding protein powder these days. buckwheat just… shows up with all nine essential amino acids already — a complete protein, grown not added 🌱 xx emily",
     punchy:"we never added the protein. the seed had it."
   },
   "JUN1-TT-4": {
@@ -2722,15 +2722,16 @@ function MondayMemoModal({onClose, onShipIt}){
         <div className="mmm-section">
           <div className="mmm-section-eye">// 3 RECOMMENDED MOVES</div>
           <div className="mmm-moves">
-            {WELCOME_MOVES.map((m,i)=>(
-              <div key={i} className="mmm-move" style={MMM_MOVE_TINTS[i%MMM_MOVE_TINTS.length]}>
-                <div className="mmm-move-num">{String(i+1).padStart(2,"0")}</div>
+            {WELCOME_MOVES.map((m,i)=>{
+              const t = MMM_MOVE_TINTS[i%MMM_MOVE_TINTS.length];
+              return (<div key={i} className="mmm-move" style={{background:t.bg, borderLeft:`5px solid ${t.accent}`}}>
+                <div className="mmm-move-num" style={{color:t.accent}}>{String(i+1).padStart(2,"0")}</div>
                 <div className="mmm-move-body">
                   <div className="mmm-move-verb">{m.verb}</div>
                   <div className="mmm-move-why">{m.why}</div>
                 </div>
-              </div>
-            ))}
+              </div>);
+            })}
           </div>
         </div>
       </div>
