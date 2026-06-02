@@ -241,7 +241,8 @@ a{color:inherit;text-decoration:none}
 .source-chip{font-family:'JetBrains Mono','Courier New',monospace;font-size:10.5px;background:rgba(53,133,224,0.1);color:var(--cobalt-deep);padding:3px 8px;border-radius:99px;letter-spacing:0;font-weight:600;border:1px solid rgba(53,133,224,0.25)}
 .source-chip:hover{background:var(--cobalt);color:#fff;border-color:var(--cobalt)}
 .card-actions{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:10px;border-top:1px solid rgba(53,133,224,0.18)}
-.drop-btn{background:var(--magenta);color:#fff;font-size:10.5px;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;padding:7px 13px;border-radius:99px;display:flex;align-items:center;gap:6px;transition:background 0.15s,transform 0.1s}
+.drop-btn{background:#22B14C;color:#fff;font-size:10.5px;text-transform:uppercase;letter-spacing:0.12em;font-weight:800;padding:7px 13px;border-radius:99px;display:flex;align-items:center;gap:6px;transition:background 0.15s,transform 0.1s;box-shadow:0 2px 0 #1A8F3C}
+.drop-btn:hover{background:#1FA146;transform:translateY(-1px)}
 .drop-btn:hover{background:var(--magenta-deep);transform:translateY(-1px)}
 .drove-chip{font-size:10.5px;color:var(--cobalt-deep);text-transform:uppercase;letter-spacing:0.1em;font-weight:600;display:inline-flex;align-items:center;gap:5px;background:rgba(53,133,224,0.08);border:1px solid rgba(53,133,224,0.25);padding:5px 11px;border-radius:99px;cursor:pointer;transition:background 0.15s,border-color 0.15s,color 0.15s}
 .drove-chip:hover{background:var(--magenta);border-color:var(--magenta);color:#fff}
@@ -1705,8 +1706,8 @@ const WELCOME_HIGHLIGHTS = [
 ];
 
 const WELCOME_MOVES = [
-  { verb:"Ride the cluster moment.", why:"Monday bowl-build Reel — Cacao Crunchy Toppers as the crunch the viral frozen-yogurt-cluster trend tends to miss. A natural fit, since Clusterbucks are clusters." },
-  { verb:"Plant the fiber flag.", why:"Tuesday fact-flip — “5g prebiotic fiber, from the seed, not a powder.” Ride the gut-health moment without the gram-count meme." },
+  { verb:"Ride the cluster moment.", why:"Bowl-build Reel — Cacao Crunchy Toppers as the crunch the viral frozen-yogurt-cluster trend tends to miss. A natural fit, since Clusterbucks are clusters." },
+  { verb:"Plant the fiber flag.", why:"Fact-flip — “5g prebiotic fiber, from the seed, not a powder.” Ride the gut-health moment without the gram-count meme." },
   { verb:"Pack the fest bag.", why:"Governors Ball is in NYC this weekend (Jun 5–7) — a fun 'what's in my fest bag' Reel with pocket-size Chocolate Sea Salt Clusterbucks, right in the brand's indie-music lane." }
 ];
 // Distinct brand-palette colors so each Monday-Memo move card reads clearly apart.
@@ -1731,10 +1732,10 @@ const TRENDS = [
 // Note: TikTok tag + Reddit thread pages can't be machine-scraped for live counts —
 // any number is attributed to the dated secondary source, never asserted raw.
 const CULTURAL_PULSE = [
-  { id:"CP-1", type:"VIRAL RECIPE", typeClass:"type-recipe", hook:"Frozen-yogurt CLUSTERS are back as a top 2026 summer format — a natural fit for a brand built on clusters", detail:"Yogurt + fruit + chocolate, dolloped, frozen and dipped — Canadian Grocer's late-May 2026 viral-food roundup names it a current top format. Honest read: the format is re-surging for summer (some origin videos date to 2024), not a brand-new spike. It's a comfortable fit, though — the format is called clusters, and Clusterbucks are clusters.", velocity:"high", platform:"TikTok", willasPlay:"Monday bowl-build Reel: Cacao Crunchy Toppers in frozen-yogurt clusters — the crunch the format tends to miss. Lean into the fit; ride the summer re-surge.", dnaMatch:"bowl-build", sources:[{label:"TikTok · viral frozen yogurt clusters", url:"https://www.tiktok.com/discover/viral-frozen-yogurt-clusters", domain:"tiktok.com"},{label:"Canadian Grocer · most viral 2026 TikTok food (May 28)", url:"https://canadiangrocer.com/most-viral-tiktok-food-trends-2026-so-far", domain:"canadiangrocer.com"}] },
-  { id:"CP-2", type:"CULTURAL CONVERSATION", typeClass:"type-cultural", hook:"The yogurt-bowl 'crunch gap' — people are actively hunting a non-granola crunch", detail:"Recurring, current Reddit threads ask the exact question we answer: r/foodhacks 'what can I add to my yogurt bowl for crunch?' and r/Volumeeating 'crunchy low-cal yogurt bowl toppings?' — and they specifically want something lighter/lower-sugar than granola. This is demand-side proof for Crunchy Toppers, not a styling trend.", velocity:"high", platform:"Reddit + TikTok", willasPlay:"Tuesday bowl-build: Cinnamon Crunchy Toppers as the finishing crunch on a summer smoothie bowl — the lighter-than-granola answer people keep asking for.", dnaMatch:"bowl-build", sources:[{label:"r/foodhacks · crunch for a yogurt bowl", url:"https://www.reddit.com/r/foodhacks/comments/1r6ihlb/what_can_i_do_to_add_crunch_to_my_yogurt_bowl/", domain:"reddit.com"},{label:"r/Volumeeating · crunchy yogurt-bowl toppings", url:"https://www.reddit.com/r/Volumeeating/comments/1oc3oow/crunchy_lowcal_yogurt_bowl_toppings/", domain:"reddit.com"}] },
-  { id:"CP-3", type:"VIRAL RECIPE", typeClass:"type-recipe", hook:"'Savoury-maxxing' / the savory snack plate — girl-dinner's 2026 anti-sweet turn", detail:"The genuinely spiking food format right now: briny, salty, stack-and-eat savory plates. Canadian Grocer (May 28) cites creators @simplystephjaye and @savourygirl driving it, and there's a live #savorysnackplate tag. The core mechanic is a crunch layer — exactly Everything Bucks + savory Crunchy Toppers.", velocity:"high", platform:"TikTok", willasPlay:"Wednesday crunch-ASMR: Everything Bucks over avocado toast + a soft egg, mic-forward. The savory crunch on the savoury-maxx plate.", dnaMatch:"crunch-asmr", sources:[{label:"TikTok · #savorysnackplate", url:"https://www.tiktok.com/tag/savorysnackplate", domain:"tiktok.com"},{label:"Canadian Grocer · savoury-maxxing (May 28)", url:"https://canadiangrocer.com/most-viral-tiktok-food-trends-2026-so-far", domain:"canadiangrocer.com"}] },
-  { id:"CP-4", type:"CULTURAL CONVERSATION", typeClass:"type-cultural", hook:"Fibermaxxing crossed into default behavior — and the 'expensive bloating' backlash just opened the lane for us", detail:"On Reddit it's no longer 'should I?' — r/nutrition 'how can I fiber-max my meals?' and r/FiberHomies are people shopping for fiber FORMATS. Meanwhile r/GutHealth's 'genuinely useful or just expensive bloating?' backlash (and NPR, May 18) warns against megadose powders. The opening: gentle, whole-food fiber you eat — not fiber you choke down.", velocity:"high", platform:"Reddit + TikTok", willasPlay:"Tuesday fact-flip: '5g prebiotic fiber, from the seed — not a powder.' Position as the gentle whole-food fibermaxx, riding the backlash without the gram-count stunt.", dnaMatch:"fact-flip", sources:[{label:"r/nutrition · how can I fiber-max my meals", url:"https://www.reddit.com/r/nutrition/comments/1qooj73/how_can_i_fibermax_my_meals/", domain:"reddit.com"},{label:"NPR · the fibermaxxing trend (May 18, 2026)", url:"https://www.npr.org/2026/05/18/nx-s1-5821598/fibermaxxing-healthy-fiber-foods-diet-benefits", domain:"npr.org"}] },
+  { id:"CP-1", type:"VIRAL RECIPE", typeClass:"type-recipe", hook:"Frozen-yogurt CLUSTERS are back as a top 2026 summer format — a natural fit for a brand built on clusters", detail:"Yogurt + fruit + chocolate, dolloped, frozen and dipped — Canadian Grocer's late-May 2026 viral-food roundup names it a current top format. Honest read: the format is re-surging for summer (some origin videos date to 2024), not a brand-new spike. It's a comfortable fit, though — the format is called clusters, and Clusterbucks are clusters.", velocity:"high", platform:"TikTok", willasPlay:"Bowl-build Reel: Cacao Crunchy Toppers in frozen-yogurt clusters — the crunch the format tends to miss. Lean into the fit; ride the summer re-surge.", dnaMatch:"bowl-build", sources:[{label:"TikTok · viral frozen yogurt clusters", url:"https://www.tiktok.com/discover/viral-frozen-yogurt-clusters", domain:"tiktok.com"},{label:"Canadian Grocer · most viral 2026 TikTok food (May 28)", url:"https://canadiangrocer.com/most-viral-tiktok-food-trends-2026-so-far", domain:"canadiangrocer.com"}] },
+  { id:"CP-2", type:"CULTURAL CONVERSATION", typeClass:"type-cultural", hook:"The yogurt-bowl 'crunch gap' — people are actively hunting a non-granola crunch", detail:"Recurring, current Reddit threads ask the exact question we answer: r/foodhacks 'what can I add to my yogurt bowl for crunch?' and r/Volumeeating 'crunchy low-cal yogurt bowl toppings?' — and they specifically want something lighter/lower-sugar than granola. This is demand-side proof for Crunchy Toppers, not a styling trend.", velocity:"high", platform:"Reddit + TikTok", willasPlay:"bowl-build: Cinnamon Crunchy Toppers as the finishing crunch on a summer smoothie bowl — the lighter-than-granola answer people keep asking for.", dnaMatch:"bowl-build", sources:[{label:"r/foodhacks · crunch for a yogurt bowl", url:"https://www.reddit.com/r/foodhacks/comments/1r6ihlb/what_can_i_do_to_add_crunch_to_my_yogurt_bowl/", domain:"reddit.com"},{label:"r/Volumeeating · crunchy yogurt-bowl toppings", url:"https://www.reddit.com/r/Volumeeating/comments/1oc3oow/crunchy_lowcal_yogurt_bowl_toppings/", domain:"reddit.com"}] },
+  { id:"CP-3", type:"VIRAL RECIPE", typeClass:"type-recipe", hook:"'Savoury-maxxing' / the savory snack plate — girl-dinner's 2026 anti-sweet turn", detail:"The genuinely spiking food format right now: briny, salty, stack-and-eat savory plates. Canadian Grocer (May 28) cites creators @simplystephjaye and @savourygirl driving it, and there's a live #savorysnackplate tag. The core mechanic is a crunch layer — exactly Everything Bucks + savory Crunchy Toppers.", velocity:"high", platform:"TikTok", willasPlay:"Crunch-ASMR: Everything Bucks over avocado toast + a soft egg, mic-forward. The savory crunch on the savoury-maxx plate.", dnaMatch:"crunch-asmr", sources:[{label:"TikTok · #savorysnackplate", url:"https://www.tiktok.com/tag/savorysnackplate", domain:"tiktok.com"},{label:"Canadian Grocer · savoury-maxxing (May 28)", url:"https://canadiangrocer.com/most-viral-tiktok-food-trends-2026-so-far", domain:"canadiangrocer.com"}] },
+  { id:"CP-4", type:"CULTURAL CONVERSATION", typeClass:"type-cultural", hook:"Fibermaxxing crossed into default behavior — and the 'expensive bloating' backlash just opened the lane for us", detail:"On Reddit it's no longer 'should I?' — r/nutrition 'how can I fiber-max my meals?' and r/FiberHomies are people shopping for fiber FORMATS. Meanwhile r/GutHealth's 'genuinely useful or just expensive bloating?' backlash (and NPR, May 18) warns against megadose powders. The opening: gentle, whole-food fiber you eat — not fiber you choke down.", velocity:"high", platform:"Reddit + TikTok", willasPlay:"Fact-flip: '5g prebiotic fiber, from the seed — not a powder.' Position as the gentle whole-food fibermaxx, riding the backlash without the gram-count stunt.", dnaMatch:"fact-flip", sources:[{label:"r/nutrition · how can I fiber-max my meals", url:"https://www.reddit.com/r/nutrition/comments/1qooj73/how_can_i_fibermax_my_meals/", domain:"reddit.com"},{label:"NPR · the fibermaxxing trend (May 18, 2026)", url:"https://www.npr.org/2026/05/18/nx-s1-5821598/fibermaxxing-healthy-fiber-foods-diet-benefits", domain:"npr.org"}] },
   { id:"CP-5", type:"MEME TEMPLATE", typeClass:"type-meme", hook:"'Rich in Life' / #richinlife — warm, unpolished 'rich because…' montages", detail:"A rising June 2026 format (per TikTok-trend curators): a montage of ordinary good moments over 'rich in life because…' Pinterest Predicts 2026 backs the macro mood — comfort and presence over status. It's the wholesome, lowercase register a woman-owned, regeneratively-grown brand lives in.", velocity:"medium", platform:"TikTok + Pinterest", willasPlay:"Soft tone cue for the founder-honesty post: 'rich in life because the snack drawer's full + the soil's getting better.' Comfort-coded, never optimized.", dnaMatch:"founder-emily", sources:[{label:"TikTok · #richinlife", url:"https://www.tiktok.com/tag/richinlife", domain:"tiktok.com"},{label:"RAMD.AM · TikTok trends June 2026", url:"https://www.ramd.am/blog/trends-tiktok", domain:"ramd.am"}] },
   { id:"CP-6", type:"ENTERTAINMENT MOMENT", typeClass:"type-entertainment", hook:"Governors Ball — NYC, June 5–7, dead-center in the window", detail:"Gov Ball runs Fri–Sun this week at Flushing Meadows (Lorde, Stray Kids, A$AP Rocky up top; Wet Leg, Japanese Breakfast, Geese on the indie undercard). Reddit is already in outfit/logistics mode (r/governorsball). NYC + indie-coded = exactly Lil Bucks' audience; 'what's in my fest bag' lands this weekend.", velocity:"high", platform:"TikTok + Reddit", willasPlay:"Friday meme-payload: 'what's in my Gov Ball bag' — pocketable Chocolate Sea Salt Clusterbucks. Audio from a Gov Ball indie act (Wet Leg / Japanese Breakfast).", dnaMatch:"meme-payload", sources:[{label:"r/governorsball · what are we wearing to 2026 govball", url:"https://www.reddit.com/r/governorsball/comments/1spb1rz/what_are_we_wearing_to_2026_govball/", domain:"reddit.com"},{label:"Rolling Stone · Gov Ball 2026 lineup", url:"https://www.rollingstone.com/music/music-news/governors-ball-2026-lineup-1235494536/", domain:"rollingstone.com"}] },
   { id:"CP-7", type:"ENTERTAINMENT MOMENT", typeClass:"type-entertainment", hook:"'The Bear' final season — teaser dropped, fandom in pre-premiere mode (premieres June 25)", detail:"FX/Hulu set the fifth and final season for June 25 and the first teaser is live — r/TheBear and r/television are active now. The most food-coded show on TV is ending: kitchen + small-business + family energy that maps onto the founder-from-a-bowl tone. Plant the seed this week; the payoff is late June.", velocity:"medium", platform:"Reddit + TikTok", willasPlay:"Build kitchen-energy founder content through June — Emily's morning bowl, small-team warmth. Tease now, don't promise a same-week payoff.", dnaMatch:"founder-emily", sources:[{label:"r/TheBear · S5 first teaser trailer (FX)", url:"https://www.reddit.com/r/TheBear/comments/1tnxetc/the_bear_season_5_first_teaser_trailer_fx/", domain:"reddit.com"},{label:"Variety · The Bear ending with S5 (June 25)", url:"https://variety.com/2026/tv/news/the-bear-ending-season-5-release-date-1236407378/", domain:"variety.com"}] },
@@ -1758,7 +1759,7 @@ const COMPETITORS = [
 const COMP_WEEKLY_POV = {
   happened:"2026's defining competitor move is protein: Purely Elizabeth, Magic Spoon, and Catalina all launched protein lines, and Once Upon a Farm's February IPO proved the public market will pay for a founder-led organic story. Bob's Red Mill — the buckwheat incumbent — rebranded in May but still sells the seed raw.",
   coming:"Protein and gut-health/fiber are Innova's #1 and #2 trends for 2026, and Whole Foods put 'Focus on Fiber' on its marquee — the protein-and-fiber wedge plus the compounding regenerative buyer signal is the macro tailwind. Watch Seven Sundays closely — they share A-Frame Farm and could surface farm-storytelling any week.",
-  plays:"Three briefs anchor the week — a Monday frozen-yogurt-CLUSTER bowl-build riding the top viral recipe, a Whole Foods nationwide founder Reel cashing the 'Focus on Fiber' marquee, and a Luke + Ali soil-story leaning on the sprouting step (differentiated from Seven Sundays). Total signal-driven briefs this week: 12."
+  plays:"Three briefs anchor the week — a frozen-yogurt-CLUSTER bowl-build riding the top viral recipe, a Whole Foods nationwide founder Reel cashing the 'Focus on Fiber' marquee, and a Luke + Ali soil-story leaning on the sprouting step (differentiated from Seven Sundays). Total signal-driven briefs this week: 12."
 };
 
 // ===== AMBASSADORS — 7 entries =====
@@ -1785,7 +1786,7 @@ const TOP_PERFORMER_DNA = [
 
 // ===== BRIEFS — 12 entries for June 1–7, 2026 =====
 const BRIEFS = [
-  { id:"JUN1-IG-R1", platform:"IG Reel", pillar:"THE BOWL", flavor:"Cacao Crunchy Toppers", dna:"bowl-build", muse:"Graza", priority:"BIG SWING", timing:"Mon Jun 1 · 12pm",
+  { id:"JUN1-IG-R1", platform:"IG Reel", pillar:"THE BOWL", flavor:"Cacao Crunchy Toppers", dna:"bowl-build", muse:"Graza", priority:"BIG SWING", timing:"Wed Jun 3 · 12pm",
     concept:"\"the frozen-yogurt-cluster trend — with the crunch it's usually missing\" — a playful, on-brand bowl build",
     hooks:[
       {text:"everyone's making frozen yogurt clusters right now. the one thing they're often missing: a real crunch.", recommended:true},
@@ -1805,7 +1806,7 @@ const BRIEFS = [
     benefitShorthand:"the crunch the viral cluster forgot. sprouted, 5g fiber.",
     rideNow:true
   },
-  { id:"JUN1-TT-1", platform:"TikTok", pillar:"THE BOWL", flavor:"Cinnamon Crunchy Toppers", dna:"bowl-build", muse:"Graza", priority:"STANDARD", timing:"Tue Jun 2 · 9am",
+  { id:"JUN1-TT-1", platform:"TikTok", pillar:"THE BOWL", flavor:"Cinnamon Crunchy Toppers", dna:"bowl-build", muse:"Graza", priority:"STANDARD", timing:"Wed Jun 3 · 9am",
     concept:"\"summer bowls are so back 🥣\" — the finishing-crunch placement on the season's aesthetic smoothie bowl",
     hooks:[
       {text:"summer bowls are so back 🥣", recommended:true},
@@ -1824,7 +1825,7 @@ const BRIEFS = [
     benefitShorthand:"the finishing crunch on summer bowl season.",
     rideNow:false
   },
-  { id:"JUN1-IG-R2", platform:"IG Reel", pillar:"FUEL", flavor:"Original", dna:"fact-flip", muse:"Olipop (soft)", priority:"HIGH", timing:"Tue Jun 2 · 12pm",
+  { id:"JUN1-IG-R2", platform:"IG Reel", pillar:"FUEL", flavor:"Original", dna:"fact-flip", muse:"Olipop (soft)", priority:"HIGH", timing:"Thu Jun 4 · 12pm",
     concept:"\"fiber is the new protein. ours came in the seed — not a powder.\" — the gut-health flag against the fibermaxxing meme",
     hooks:[
       {text:"everyone's discovering fiber. we didn't add ours — the seed already had it.", recommended:true},
@@ -1843,7 +1844,7 @@ const BRIEFS = [
     benefitShorthand:"5g prebiotic fiber, from the seed — not a powder.",
     rideNow:true
   },
-  { id:"JUN1-TT-2", platform:"TikTok", pillar:"FUEL", flavor:"Everything Bucks", dna:"crunch-asmr", muse:"Fishwife", priority:"STANDARD", timing:"Wed Jun 3 · 10am",
+  { id:"JUN1-TT-2", platform:"TikTok", pillar:"FUEL", flavor:"Everything Bucks", dna:"crunch-asmr", muse:"Fishwife", priority:"STANDARD", timing:"Thu Jun 4 · 10am",
     concept:"\"texture is the trend.\" — savory crunch ASMR riding the savoury-maxxing / chili-crunch-on-everything wave",
     hooks:[
       {text:"2026's food trend is just… texture. say less.", recommended:true},
@@ -1862,7 +1863,7 @@ const BRIEFS = [
     benefitShorthand:"savory sprouted crunch for the texture era.",
     rideNow:false
   },
-  { id:"JUN1-IG-R3", platform:"IG Reel", pillar:"SOIL", flavor:"Original", dna:"soil-story", muse:"Kiss the Ground + Patagonia", priority:"BIG SWING", timing:"Wed Jun 3 · 6pm",
+  { id:"JUN1-IG-R3", platform:"IG Reel", pillar:"SOIL", flavor:"Original", dna:"soil-story", muse:"Kiss the Ground + Patagonia", priority:"BIG SWING", timing:"Sat Jun 6 · 11am",
     concept:"\"it starts as a flower. then we sprout it.\" — A-Frame Farm in bloom + the sprouting step as the proprietary move",
     hooks:[
       {text:"this is your snack… as a flower. meet luke + ali.", recommended:true},
@@ -1882,7 +1883,7 @@ const BRIEFS = [
     benefitShorthand:"flower → sprout → crunch. the sprouting step is ours.",
     rideNow:false
   },
-  { id:"JUN1-IG-R4", platform:"IG Reel", pillar:"CRUNCH BUNCH", flavor:"Original", dna:"founder-emily", muse:"Once Upon a Farm", priority:"BIG SWING", timing:"Thu Jun 4 · 12pm",
+  { id:"JUN1-IG-R4", platform:"IG Reel", pillar:"CRUNCH BUNCH", flavor:"Original", dna:"founder-emily", muse:"Once Upon a Farm", priority:"BIG SWING", timing:"Sun Jun 7 · 12pm",
     concept:"\"whole foods' 2026 trends line up with what we've been making — a warm nation-wide-at-Whole-Foods founder moment + start of summer\"",
     hooks:[
       {text:"whole foods named its 2026 trends: fiber, sprouted, regenerative. …which is a pretty good description of what we make 🤎", recommended:true},
@@ -1920,7 +1921,7 @@ const BRIEFS = [
     benefitShorthand:"the pocket fest-snack. sweet-salty crunch, no crash.",
     rideNow:true
   },
-  { id:"JUN1-IG-F1", platform:"IG Feed Carousel", pillar:"THE BOWL", flavor:"Cacao Crunchy Toppers", dna:"bowl-build", muse:"Graza", priority:"STANDARD", timing:"Thu Jun 4 · 5pm",
+  { id:"JUN1-IG-F1", platform:"IG Feed Carousel", pillar:"THE BOWL", flavor:"Cacao Crunchy Toppers", dna:"bowl-build", muse:"Graza", priority:"STANDARD", timing:"Sat Jun 6 · 5pm",
     concept:"\"the high-protein summer bowl — fiber-forward + actually crunchy.\" — 6-slide recipe carousel",
     hooks:[
       {text:"the summer bowl everyone's saving — high-fiber + actually crunchy. recipe ⬇️", recommended:true},
@@ -1934,7 +1935,7 @@ const BRIEFS = [
     benefitShorthand:"fiber-forward, finishing crunch. saveable recipe.",
     rideNow:false
   },
-  { id:"JUN1-IG-R5", platform:"IG Reel", pillar:"FUEL", flavor:"Original", dna:"founder-emily", muse:"Partake Foods", priority:"STANDARD", timing:"Sat Jun 6 · 11am",
+  { id:"JUN1-IG-R5", platform:"IG Reel", pillar:"FUEL", flavor:"Original", dna:"founder-emily", muse:"Partake Foods", priority:"STANDARD", timing:"Mon Jun 8 · 11am",
     concept:"\"a complete protein, from a seed — nothing added.\" — Emily's calm, food-first take while everyone's adding protein powder",
     hooks:[
       {text:"everyone's racing to add protein powder. buckwheat just… has all nine amino acids.", recommended:true},
@@ -1953,7 +1954,7 @@ const BRIEFS = [
     benefitShorthand:"complete plant protein, grown not added. all 9 aminos.",
     rideNow:false
   },
-  { id:"JUN1-TT-4", platform:"TikTok", pillar:"CRUNCH BUNCH", flavor:"Multi", dna:"shelf-spotted", muse:"Once Upon a Farm", priority:"STANDARD", timing:"Sat Jun 6 · 1pm",
+  { id:"JUN1-TT-4", platform:"TikTok", pillar:"CRUNCH BUNCH", flavor:"Multi", dna:"shelf-spotted", muse:"Once Upon a Farm", priority:"STANDARD", timing:"Mon Jun 8 · 1pm",
     concept:"\"spotted in the wild this week 💛\" — Crunch Bunch UGC compilation across retail + kitchens",
     hooks:[
       {text:"the crunch bunch is on the move 💛", recommended:true},
@@ -1990,7 +1991,7 @@ const BRIEFS = [
     benefitShorthand:"the cozy donut-day treat that still has fiber.",
     rideNow:true
   },
-  { id:"JUN1-IG-R6", platform:"IG Reel", pillar:"CRUNCH BUNCH", flavor:"Multi", dna:"founder-emily", muse:"Partake Foods", priority:"STANDARD", timing:"Sun Jun 7 · 11am",
+  { id:"JUN1-IG-R6", platform:"IG Reel", pillar:"CRUNCH BUNCH", flavor:"Multi", dna:"founder-emily", muse:"Partake Foods", priority:"STANDARD", timing:"Tue Jun 9 · 11am",
     concept:"\"the comedy of running a tiny snack brand in summer.\" — founder-honesty BTS, the logistics lane",
     hooks:[
       {text:"summer for a tiny snack brand is not the beach. it's a warehouse and a heat advisory.", recommended:true},
@@ -2311,7 +2312,7 @@ const AMPLIFY_PLANS = {
   "JUN1-IG-R1": {
     headline: "Frozen-yogurt CLUSTER bowl-build · ride a top summer recipe format with the cluster-namesake fit",
     totalBudget: 340,
-    testWindow: "5 days (Mon Jun 1 → Fri Jun 5)",
+    testWindow: "5 days (Wed Jun 3 → Sun Jun 7)",
     objective: "Saves + Profile Visits",
     guardrail: "Auto-pause if CPM > $11 or save-rate < 1.0% at 18h",
     why: "Frozen-yogurt clusters are one of June's top viral food formats, and it's a natural fit since Clusterbucks are clusters — a strong brand-fit moment. Paid amplifies what's already pulling; the 'snap a frozen cluster in half' crunch reveal is the share engine. Decay-sensitive — front-load spend early in the week.",
@@ -2333,7 +2334,7 @@ const AMPLIFY_PLANS = {
   "JUN1-IG-R3": {
     headline: "A-Frame bloom + sprouting soil-story · ride the regenerative buyer-signal surge",
     totalBudget: 220,
-    testWindow: "6 days (Wed Jun 3 → Mon Jun 8)",
+    testWindow: "6 days (Sat Jun 6 → Thu Jun 11)",
     objective: "Profile Visits + Saves (long-tail discovery)",
     guardrail: "Lower performance bar — soil-story content compounds 60–90 days out, not first-week",
     why: "ROC is the fastest-growing label on shelf (+22% buyers) and A-Frame is in early-June bloom — prime time for the discovery loop. Reels build long-tail brand depth, not immediate conversion. ⚠ A-Frame content also pumps Seven Sundays, so the asset must lead on the proprietary SPROUTING step, not just the farm.",
@@ -2354,7 +2355,7 @@ const AMPLIFY_PLANS = {
   "JUN1-IG-R4": {
     headline: "Whole Foods nationwide founder Reel · cash the 'Focus on Fiber' marquee with a brand-heritage moment",
     totalBudget: 300,
-    testWindow: "5 days (Thu Jun 4 → Mon Jun 8)",
+    testWindow: "5 days (Sun Jun 7 → Thu Jun 11)",
     objective: "Saves + Profile Visits",
     guardrail: "Auto-pause if CPM > $11 or sentiment drops below 0.85",
     why: "Whole Foods just put fiber + sprouted + regenerative on its 2026 marquee — closely aligned with the Lil Bucks story — and a nationwide-at-Whole-Foods founder moment is high earned-pickup potential. Emily's face + the 'this lines up with our story' realization is the share engine. Start-of-summer timing compounds the discovery.",
@@ -2403,8 +2404,8 @@ const TICKER = [
 ];
 
 const DECISIONS = [
-  { id:"D1", action:"PROMOTED · Frozen-yogurt CLUSTER bowl-build to BIG SWING", reason:"Frozen-yogurt clusters are the week's top viral food format (Canadian Grocer, May 28). The format is literally 'clusters' and the trend is missing a crunch — Lil Bucks is the obvious answer. Monday bowl-build Reel with Cacao Crunchy Toppers. Highest-conviction brief of the week; ride it now." },
-  { id:"D2", action:"PROMOTED · Whole Foods nationwide founder Reel to BIG SWING", reason:"Whole Foods named Focus on Fiber + sprouted + regenerative its 2026 marquee — Lil Bucks sits on all three. A founder-voice 'this lines up with our story' moment, tied to start of summer. Consumer-safe (public). Thursday." },
+  { id:"D1", action:"PROMOTED · Frozen-yogurt CLUSTER bowl-build to BIG SWING", reason:"Frozen-yogurt clusters are the week's top viral food format (Canadian Grocer, May 28). The format is literally 'clusters' and the trend is missing a crunch — Lil Bucks is the obvious answer. Bowl-build Reel with Cacao Crunchy Toppers. Highest-conviction brief of the week; ride it now." },
+  { id:"D2", action:"PROMOTED · Whole Foods nationwide founder Reel to BIG SWING", reason:"Whole Foods named Focus on Fiber + sprouted + regenerative its 2026 marquee — Lil Bucks sits on all three. A founder-voice 'this lines up with our story' moment, tied to start of summer. Consumer-safe (public)." },
   { id:"D3", action:"PROMOTED · A-Frame bloom + sprouting soil-story to BIG SWING", reason:"ROC is the fastest-growing label on shelf (+22% buyers) and A-Frame Farm is in early-June bloom. Lead with the flower → sprout → crunch arc. ⚠ Seven Sundays shares this farm — the brief differentiates on the sprouting step + founder relationship, not implied exclusivity." },
   { id:"D4", action:"KILLED · 'fiber girl' archetype angle", reason:"Engine searched for a distinct 'fiber girl' trend and could not source one — it doesn't exist as a named unit. The real, sourced cultural energy is 'regular girl' / gut-tok. The fiber fact-flip rides that language instead. No source = no ship." },
   { id:"D5", action:"KILLED · indie-album-drop tie-in for this window", reason:"The marquee indie names (Olivia Dean, Laufey, Lorde) all released earlier; verified Jun 5 releases are off-lane. The music-moment lane is carried by Governors Ball (Jun 5–7) instead — a real, in-window cultural anchor." },
@@ -2770,18 +2771,20 @@ function InactiveBanner({label, body}){
 
 // ===== CALENDAR PREVIEW — FPO mock so Emily sees the surface even though it's inactive =====
 function CalendarPreview(){
-  const days = ["Mon Jun 1","Tue Jun 2","Wed Jun 3","Thu Jun 4","Fri Jun 5","Sat Jun 6","Sun Jun 7"];
+  // Engine delivers Monday AM → the team needs Mon–Tue to digest, shoot + schedule,
+  // so the posting calendar always starts WEDNESDAY (Wed Jun 3 → Tue Jun 9 here).
+  const days = ["Wed Jun 3","Thu Jun 4","Fri Jun 5","Sat Jun 6","Sun Jun 7","Mon Jun 8","Tue Jun 9"];
   const slotsByDay = {
-    "Mon Jun 1":[{time:"12pm",platform:"IG",pillar:"BOWL",label:"Frozen-yogurt CLUSTER bowl-build · Cacao Toppers",priority:"big"}],
-    "Tue Jun 2":[{time:"9am",platform:"TT",pillar:"BOWL",label:"Summer smoothie bowl · Cinnamon Toppers",priority:"standard"},{time:"12pm",platform:"IG",pillar:"FUEL",label:"Fiber-from-the-seed fact-flip",priority:"high"}],
-    "Wed Jun 3":[{time:"10am",platform:"TT",pillar:"FUEL",label:"Savory crunch-ASMR · Everything Bucks",priority:"standard"},{time:"6pm",platform:"IG",pillar:"SOIL",label:"A-Frame in bloom + the sprouting step",priority:"big"}],
-    "Thu Jun 4":[{time:"12pm",platform:"IG",pillar:"CRUNCH",label:"Nation-wide @ Whole Foods · founder-emily",priority:"big"},{time:"5pm",platform:"IG",pillar:"BOWL",label:"Summer bowl recipe carousel",priority:"standard"}],
+    "Wed Jun 3":[{time:"12pm",platform:"IG",pillar:"BOWL",label:"Frozen-yogurt CLUSTER bowl-build · Cacao Toppers",priority:"big"},{time:"9am",platform:"TT",pillar:"BOWL",label:"Summer smoothie bowl · Cinnamon Toppers",priority:"standard"}],
+    "Thu Jun 4":[{time:"12pm",platform:"IG",pillar:"FUEL",label:"Fiber-from-the-seed fact-flip",priority:"high"},{time:"10am",platform:"TT",pillar:"FUEL",label:"Savory crunch-ASMR · Everything Bucks",priority:"standard"}],
     "Fri Jun 5":[{time:"9am",platform:"TT",pillar:"CRUNCH",label:"Gov Ball fest-bag meme · Choc Sea Salt",priority:"high"},{time:"3pm",platform:"TT",pillar:"BOWL",label:"National Donut Day counter-treat · Snickerdoodle",priority:"standard"}],
-    "Sat Jun 6":[{time:"11am",platform:"IG",pillar:"FUEL",label:"Complete-protein founder · all 9 aminos",priority:"standard"},{time:"1pm",platform:"TT",pillar:"CRUNCH",label:"Crunch Bunch UGC · spotted in the wild",priority:"standard"}],
-    "Sun Jun 7":[{time:"11am",platform:"IG",pillar:"CRUNCH",label:"Founder-honesty BTS · summer logistics",priority:"standard"}]
+    "Sat Jun 6":[{time:"11am",platform:"IG",pillar:"SOIL",label:"A-Frame in bloom + the sprouting step",priority:"big"},{time:"5pm",platform:"IG",pillar:"BOWL",label:"Summer bowl recipe carousel",priority:"standard"}],
+    "Sun Jun 7":[{time:"12pm",platform:"IG",pillar:"CRUNCH",label:"Nation-wide @ Whole Foods · founder-emily",priority:"big"}],
+    "Mon Jun 8":[{time:"11am",platform:"IG",pillar:"FUEL",label:"Complete-protein founder · all 9 aminos",priority:"standard"},{time:"1pm",platform:"TT",pillar:"CRUNCH",label:"Crunch Bunch UGC · spotted in the wild",priority:"standard"}],
+    "Tue Jun 9":[{time:"11am",platform:"IG",pillar:"CRUNCH",label:"Founder-honesty BTS · summer logistics",priority:"standard"}]
   };
   return (<>
-    <InactiveBanner label="🚧 UNDER CONSTRUCTION" body="A preview of what's coming · auto-built calendar from each week's brief mix · drag-drop reschedule · paid-amp markers. Below is FPO content so you can see the shape." />
+    <InactiveBanner label="🚧 UNDER CONSTRUCTION" body="A preview of what's coming · auto-built from each week's brief mix · drag-drop reschedule · paid-amp markers. Posting starts WEDNESDAY — the engine lands Monday AM, leaving Mon–Tue to digest, shoot + schedule. Below is FPO so you can see the shape." />
     <div className="cal-grid">
       {days.map(d=>(<div key={d} className="cal-col">
         <div className="cal-col-head">{d}</div>
@@ -3091,10 +3094,10 @@ function DiagnosticInboxModal({onClose}){
 const CULTURE_MOMENTUM = {
   asOf: "June 1–7, 2026",
   popping: [
-    { signal:"Savoury-maxxing / the savory snack plate", momentum:"+++", since:"late May", canRide:"The week's real spike (Canadian Grocer, May 28). Everything Bucks savory crunch-ASMR Wednesday — the crunch layer on the plate." },
+    { signal:"Savoury-maxxing / the savory snack plate", momentum:"+++", since:"late May", canRide:"The week's real spike (Canadian Grocer, May 28). Everything Bucks savory crunch-ASMR — the crunch layer on the plate." },
     { signal:"Governors Ball weekend (Jun 5–7)", momentum:"+++", since:"Jun 5–7", canRide:"'What's in my fest bag' — pocketable Chocolate Sea Salt Clusterbucks. Friday meme-payload, indie-act audio." },
-    { signal:"Frozen-yogurt CLUSTERS (summer re-surge)", momentum:"++", since:"late May", canRide:"Re-surging format — a natural fit, since Clusterbucks are clusters. Monday bowl-build Reel with Cacao Crunchy Toppers." },
-    { signal:"The yogurt-bowl 'crunch gap' (Reddit demand)", momentum:"++", since:"ongoing", canRide:"People keep asking for a non-granola crunch (r/foodhacks, r/Volumeeating). Crunchy Toppers are a natural answer. Tuesday bowl-build + carousel." },
+    { signal:"Frozen-yogurt CLUSTERS (summer re-surge)", momentum:"++", since:"late May", canRide:"Re-surging format — a natural fit, since Clusterbucks are clusters. Bowl-build Reel with Cacao Crunchy Toppers." },
+    { signal:"The yogurt-bowl 'crunch gap' (Reddit demand)", momentum:"++", since:"ongoing", canRide:"People keep asking for a non-granola crunch (r/foodhacks, r/Volumeeating). Crunchy Toppers are a natural answer. bowl-build + carousel." },
     { signal:"'Regular girl' / gut-tok archetype", momentum:"++", since:"now", canRide:"The cultural side of the fiber moment — soft-ride it in the fact-flip caption (lowercase, real), don't chase the gram-count meme." },
     { signal:"'Rich in Life' comfort meme (#richinlife)", momentum:"+", since:"June", canRide:"Warm 'rich in life because…' montage format — fits the founder-honesty post. Tone cue, not a forced trend-ride." }
   ],
@@ -3592,7 +3595,7 @@ const COUNTER_STRIKE_LOG = [
     status: "shipped",
     summary: "PE just claimed the lane next door. Counter-position on source story (whole-seed protein) over spec story (protein number). Don't engage on number — they win that.",
     briefs: [
-      { id:"CS-A", platform:"IG Reel", pillar:"FUEL", flavor:"Original Clusterbucks", dna:"founder-emily", timing:"Mon Jun 1 · 12pm",
+      { id:"CS-A", platform:"IG Reel", pillar:"FUEL", flavor:"Original Clusterbucks", dna:"founder-emily", timing:"Wed Jun 3 · 12pm",
         hook:"they added protein. we added a soul.",
         concept:"founder-emily Reel naming the source-story difference without naming the competitor — Emily on counter, lowercase warmth, Xx Emily sign-off",
         visual:"kitchen light, soft morning. Emily mid-shot with Original Clusterbucks. wooden bowl half-filled. one eyebrow raise on the hook beat. lands on the pouch + the bowl.",
