@@ -571,7 +571,11 @@ a{color:inherit;text-decoration:none}
 .mmm-move-why{font-family:'Fraunces';font-size:12.5px;line-height:1.45;color:var(--ink-soft);font-weight:500;letter-spacing:-0.005em}
 .mmm-signals{display:flex;flex-direction:column;gap:8px}
 .mmm-signal{background:#fff;border:1px solid var(--cobalt-light);border-radius:10px;padding:12px 14px;display:flex;gap:12px;align-items:flex-start}
-.mmm-signal-stat{font-family:'Lilita One',serif;font-weight:400;font-size:18px;line-height:1.05;color:var(--magenta-deep);flex-shrink:0;min-width:60px}
+.mmm-signal-lead{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;width:64px;text-align:center}
+.mmm-signal-glyph{font-size:27px;line-height:1}
+.mmm-signal-stat{font-family:'Lilita One',serif;font-weight:400;font-size:12px;line-height:1.15;color:var(--magenta-deep)}
+.mmm-hero-toprow{display:flex;align-items:center;gap:10px;margin-bottom:10px;position:relative;z-index:2}
+.mmm-hero-toprow .mmm-hero-date{margin-bottom:0}
 .mmm-signal-body{flex:1;min-width:0}
 .mmm-signal-label{font-family:'Fraunces';font-size:13.5px;line-height:1.35;color:var(--cobalt-deep);font-weight:600;letter-spacing:-0.005em;margin-bottom:4px}
 .mmm-signal-detail{font-family:'Inter',sans-serif;font-size:11.5px;line-height:1.5;color:var(--ink-soft);font-weight:500;margin-bottom:5px}
@@ -1668,11 +1672,11 @@ const PILLAR_GLYPH = { "FUEL":"⚡", "THE BOWL":"🥣", "SOIL":"🌾", "CRUNCH B
 
 // ===== WELCOME HIGHLIGHTS — drive the Monday Memo modal =====
 const WELCOME_HIGHLIGHTS = [
-  { stat:"summer re-surge", label:"Frozen-yogurt CLUSTERS are back as a top 2026 format — and 'clusters' is literally our name", detail:"Yogurt + fruit clusters, frozen and dipped, are named a current top format in Canadian Grocer's late-May 2026 viral roundup. Honest read: it's re-surging for summer, not a brand-new spike — but the semantic ownership is the gift. The format is clusters and we make Clusterbucks; the one thing it's missing is real crunch. (Our version runs dairy-free.)", src:"canadiangrocer.com", url:"https://canadiangrocer.com/most-viral-tiktok-food-trends-2026-so-far" },
-  { stat:"#1 + #2", label:"Innova's two biggest 2026 trends are Powerhouse Protein (#1) and Gut Health (#2) — that one-two IS Lil Bucks", detail:"Innova's official Top Ten ranks Powerhouse Protein #1 and Gut Health Hub #2 for 2026 — protein and fiber, the exact wedge a sprouted-buckwheat snack owns. Datassential has fiber poised to overtake protein (60% of Gen Z chasing it). The durable play is whole-food prebiotic fiber, not the 'count grams' meme. Lil Bucks is 5g prebiotic fiber + a complete plant protein, from the seed.", src:"innovamarketinsights.com", url:"https://www.innovamarketinsights.com/press-releases/innovas-top-ten-trends-2026-shaping-the-future-of-food-beverage/" },
-  { stat:"+22%", label:"Regenerative Organic Certified is the fastest-growing label on shelf", detail:"ROC buyers grew +22% in 2025, ~3x USDA Organic (+6.6%) and Fair Trade (+10.7%); Whole Foods is actively merchandising regenerative + sprouted. The soil story isn't a values footnote anymore — it's a buyer signal. A-Frame Farm is in bloom this week.", src:"foodnavigator-usa.com", url:"https://www.foodnavigator-usa.com/Article/2026/03/10/regenerative-organic-certified-gains-momentum-in-food/" },
-  { stat:"top-8", label:"Whole Foods put 'Focus on Fiber' on its 2026 marquee", detail:"Whole Foods' official 2026 Trends Council names Focus on Fiber a top-8 trend and is spotlighting sprouted power-bowls. Lil Bucks sits at the intersection of three named trends — fiber, sprouted, regenerative — inside its #1 BFY retailer. A nationwide-at-Whole-Foods founder moment is wide open.", src:"wholefoodsmarket.com", url:"https://www.wholefoodsmarket.com/trends/the-next-big-things-our-top-8-food-trend-predictions-for-2026" },
-  { stat:"Jun 5–7", label:"Governors Ball is the in-window cultural moment", detail:"NYC's Gov Ball (Lorde, Stray Kids, A$AP Rocky up top; indie undercard Wet Leg, Japanese Breakfast, Geese) runs Fri–Sun this week — and Reddit's already in outfit/logistics mode. The 'what's in my fest bag' lane is live; a pocketable Chocolate Sea Salt Clusterbucks fest-snack Reel lands on the weekend, in the brand's indie-music register.", src:"reddit.com", url:"https://www.reddit.com/r/governorsball/comments/1spb1rz/what_are_we_wearing_to_2026_govball/" }
+  { glyph:"🥣", stat:"summer re-surge", label:"Frozen-yogurt CLUSTERS are back as a top 2026 format — and 'clusters' is literally our name", detail:"Yogurt + fruit clusters, frozen and dipped, are named a current top format in Canadian Grocer's late-May 2026 viral roundup. Honest read: it's re-surging for summer, not a brand-new spike — but the semantic ownership is the gift. The format is clusters and we make Clusterbucks; the one thing it's missing is real crunch. (Our version runs dairy-free.)", src:"canadiangrocer.com", url:"https://canadiangrocer.com/most-viral-tiktok-food-trends-2026-so-far" },
+  { glyph:"💪", stat:"#1 + #2", label:"Innova's two biggest 2026 trends are Powerhouse Protein (#1) and Gut Health (#2) — that one-two IS Lil Bucks", detail:"Innova's official Top Ten ranks Powerhouse Protein #1 and Gut Health Hub #2 for 2026 — protein and fiber, the exact wedge a sprouted-buckwheat snack owns. Datassential has fiber poised to overtake protein (60% of Gen Z chasing it). The durable play is whole-food prebiotic fiber, not the 'count grams' meme. Lil Bucks is 5g prebiotic fiber + a complete plant protein, from the seed.", src:"innovamarketinsights.com", url:"https://www.innovamarketinsights.com/press-releases/innovas-top-ten-trends-2026-shaping-the-future-of-food-beverage/" },
+  { glyph:"🌱", stat:"+22%", label:"Regenerative Organic Certified is the fastest-growing label on shelf", detail:"ROC buyers grew +22% in 2025, ~3x USDA Organic (+6.6%) and Fair Trade (+10.7%); Whole Foods is actively merchandising regenerative + sprouted. The soil story isn't a values footnote anymore — it's a buyer signal. A-Frame Farm is in bloom this week.", src:"foodnavigator-usa.com", url:"https://www.foodnavigator-usa.com/Article/2026/03/10/regenerative-organic-certified-gains-momentum-in-food/" },
+  { glyph:"🛒", stat:"top-8", label:"Whole Foods put 'Focus on Fiber' on its 2026 marquee", detail:"Whole Foods' official 2026 Trends Council names Focus on Fiber a top-8 trend and is spotlighting sprouted power-bowls. Lil Bucks sits at the intersection of three named trends — fiber, sprouted, regenerative — inside its #1 BFY retailer. A nationwide-at-Whole-Foods founder moment is wide open.", src:"wholefoodsmarket.com", url:"https://www.wholefoodsmarket.com/trends/the-next-big-things-our-top-8-food-trend-predictions-for-2026" },
+  { glyph:"🎡", stat:"Jun 5–7", label:"Governors Ball is the in-window cultural moment", detail:"NYC's Gov Ball (Lorde, Stray Kids, A$AP Rocky up top; indie undercard Wet Leg, Japanese Breakfast, Geese) runs Fri–Sun this week — and Reddit's already in outfit/logistics mode. The 'what's in my fest bag' lane is live; a pocketable Chocolate Sea Salt Clusterbucks fest-snack Reel lands on the weekend, in the brand's indie-music register.", src:"reddit.com", url:"https://www.reddit.com/r/governorsball/comments/1spb1rz/what_are_we_wearing_to_2026_govball/" }
 ];
 
 const WELCOME_THESIS = {
@@ -1682,9 +1686,9 @@ const WELCOME_THESIS = {
 };
 
 const WELCOME_MOVES = [
-  { verb:"Own the cluster moment.", why:"Frozen-yogurt clusters are back as a top 2026 summer format (Canadian Grocer, May 28) — and the format is literally our name. Monday bowl-build Reel: Cacao Crunchy Toppers as the crunch the trend is missing, on dairy-free yogurt. Pair it with the savory snack plate, which is the harder spike this week." },
-  { verb:"Plant the fiber flag.", why:"Protein (#1) and gut health (#2) are Innova's two biggest 2026 trends, and 'fiber is the new protein.' Fact-flip Reel: '5g of prebiotic fiber — from the seed, not a powder.' Soft-ride the gut-tok 'regular girl' energy without chasing the gram-counting meme." },
-  { verb:"Name the soil.", why:"ROC is the fastest-growing label and A-Frame Farm is in bloom. Luke + Ali soil-story Reel, founder-warm, signed Xx Emily — lean on the sprouting step + relationship depth. ⚠ Seven Sundays sources the same farm; differentiate, don't imply exclusivity." }
+  { verb:"Own the cluster moment.", why:"Monday bowl-build Reel — Cacao Crunchy Toppers as the crunch the viral frozen-yogurt-cluster trend is missing. The format is literally our name." },
+  { verb:"Plant the fiber flag.", why:"Tuesday fact-flip — “5g prebiotic fiber, from the seed, not a powder.” Ride the gut-health moment without the gram-count meme." },
+  { verb:"Name the soil.", why:"Wednesday soil-story with Luke + Ali at A-Frame in bloom — lead with the sprouting step. (⚠ Seven Sundays shares the farm; differentiate.)" }
 ];
 
 // ===== TRENDS (Category + Policy) — 6 entries, every one fresh-sourced for the week of Jun 1 =====
@@ -2695,8 +2699,10 @@ function MondayMemoModal({onClose, onShipIt}){
     <div className="mmm-card" onClick={e=>e.stopPropagation()}>
       <button className="mmm-close" onClick={onClose} aria-label="close">×</button>
       <div className="mmm-hero">
-        <div style={{position:'absolute',top:18,right:20,zIndex:2}}><SmilingSun size={42} /></div>
-        <div className="mmm-hero-date">{BRAND.weekRange}</div>
+        <div className="mmm-hero-toprow">
+          <SmilingSun size={36} />
+          <div className="mmm-hero-date">{BRAND.weekRange}</div>
+        </div>
         <h2 className="mmm-hero-title">The Monday Memo</h2>
         <div className="mmm-hero-sig">— The Strategist</div>
       </div>
@@ -2704,25 +2710,16 @@ function MondayMemoModal({onClose, onShipIt}){
         <div className="mmm-section">
           <div className="mmm-section-eye">// THE READ</div>
           <div className="mmm-pullquote">summer opened and the whole feed wants two things — real whole-food fiber and a real crunch. that's the entire bag.</div>
-          <div className="mmm-read-block">
-            <div className="mmm-read-sub-eye">What's happening</div>
-            <p className="mmm-read">{WELCOME_THESIS.happening}</p>
-          </div>
-          <div className="mmm-read-block">
-            <div className="mmm-read-sub-eye">Lil Bucks' edge</div>
-            <p className="mmm-read">{WELCOME_THESIS.edge}</p>
-          </div>
-          <div className="mmm-read-block">
-            <div className="mmm-read-sub-eye">This week's job</div>
-            <p className="mmm-read">{WELCOME_THESIS.job}</p>
-          </div>
         </div>
         <div className="mmm-section">
           <div className="mmm-section-eye">// 5 SIGNALS DRIVING THE WEEK</div>
           <div className="mmm-signals">
             {WELCOME_HIGHLIGHTS.map((h,i)=>(
               <div key={i} className="mmm-signal">
-                <div className="mmm-signal-stat">{h.stat}</div>
+                <div className="mmm-signal-lead">
+                  <div className="mmm-signal-glyph">{h.glyph}</div>
+                  <div className="mmm-signal-stat">{h.stat}</div>
+                </div>
                 <div className="mmm-signal-body">
                   <div className="mmm-signal-label">{h.label}</div>
                   <div className="mmm-signal-detail">{h.detail}</div>
