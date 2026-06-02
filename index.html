@@ -462,6 +462,7 @@ a{color:inherit;text-decoration:none}
 .cs-brief{background:#fff;border:1px solid var(--cobalt-light);border-radius:10px;padding:14px 16px}
 .cs-brief-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
 .cs-brief-id{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--cobalt);background:rgba(53,133,224,0.12);padding:3px 8px;border-radius:99px;font-weight:700}
+.cs-brief-flavor{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:0.02em;color:var(--cobalt-deep);background:rgba(53,133,224,0.12);padding:3px 9px;border-radius:99px;font-weight:700}
 .cs-brief-platform{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;color:var(--cobalt-deep);font-weight:700;text-transform:uppercase}
 .cs-brief-dna{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;color:var(--magenta-deep);background:rgba(234,126,154,0.14);padding:3px 8px;border-radius:99px;font-weight:600}
 .cs-brief-timing{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);margin-left:auto;letter-spacing:0.04em}
@@ -2592,7 +2593,7 @@ function App(){
     {briefOpen && <BriefDetailModal brief={briefOpen} onClose={()=>setBriefOpen(null)} onDrop={()=>{
       const b = briefOpen;
       const hook = b.hooks?.find(h=>h.recommended)?.text || b.hooks?.[0]?.text || b.concept;
-      openStudioWith(`I want to sharpen brief ${b.id}: "${b.concept}".\n\nRecommended hook: "${hook}"\nPlatform: ${b.platform} · Pillar: ${b.pillar} · Flavor: ${b.flavor}\n\nWhere can this land harder?`);
+      openStudioWith(`I want to sharpen this brief: "${b.concept}".\n\nRecommended hook: "${hook}"\nPlatform: ${b.platform} · Pillar: ${b.pillar} · Flavor: ${b.flavor}\n\nWhere can this land harder?`);
       setBriefOpen(null);
     }} onIntelNavigate={(tab)=>{setBriefOpen(null);setSection('intel');setIntelTab(tab);}} />}
     {diagOpen && <DiagnosticInboxModal onClose={()=>setDiagOpen(false)} />}
@@ -3738,7 +3739,7 @@ function CounterStrikeView({openStudio}){
 function CounterStrikeBrief({brief}){
   return (<div className="cs-brief">
     <div className="cs-brief-head">
-      <span className="cs-brief-id">{brief.id}</span>
+      {brief.flavor && <span className="cs-brief-flavor">{brief.flavor}</span>}
       <span className="cs-brief-platform">{brief.platform}</span>
       <span className="cs-brief-dna">{brief.dna}</span>
       {brief.timing && <span className="cs-brief-timing">{brief.timing}</span>}
