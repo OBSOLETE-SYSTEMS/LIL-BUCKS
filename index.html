@@ -1690,7 +1690,13 @@ const WELCOME_HIGHLIGHTS = [
 const WELCOME_MOVES = [
   { verb:"Ride the cluster moment.", why:"Monday bowl-build Reel — Cacao Crunchy Toppers as the crunch the viral frozen-yogurt-cluster trend tends to miss. A natural fit, since Clusterbucks are clusters." },
   { verb:"Plant the fiber flag.", why:"Tuesday fact-flip — “5g prebiotic fiber, from the seed, not a powder.” Ride the gut-health moment without the gram-count meme." },
-  { verb:"Name the soil.", why:"Wednesday soil-story with Luke + Ali at A-Frame in bloom — lead with the sprouting step. (⚠ Seven Sundays shares the farm; differentiate.)" }
+  { verb:"Pack the fest bag.", why:"Governors Ball is in NYC this weekend (Jun 5–7) — a fun 'what's in my fest bag' Reel with pocket-size Chocolate Sea Salt Clusterbucks, right in the brand's indie-music lane." }
+];
+// Soft brand-palette tints so each Monday-Memo move card reads as its own card.
+const MMM_MOVE_TINTS = [
+  { background:"rgba(244,183,62,0.14)", borderColor:"rgba(244,183,62,0.5)" },
+  { background:"rgba(127,168,111,0.14)", borderColor:"rgba(127,168,111,0.5)" },
+  { background:"rgba(234,126,154,0.14)", borderColor:"rgba(234,126,154,0.5)" }
 ];
 
 // ===== TRENDS (Category + Policy) — 6 entries, every one fresh-sourced for the week of Jun 1 =====
@@ -2025,7 +2031,7 @@ const CAPTION_VARIANTS = {
     punchy:"fest fuel that isn't a melted protein bar."
   },
   "JUN1-IG-F1": {
-    direct:"the summer bowl everyone keeps saving — dairy-free, fiber-forward, and actually crunchy. save this one 🥣\n\nthe build:\n— dairy-free yogurt base\n— frozen banana + mango + a splash of dairy-free milk, blended thick\n— sliced fruit + a chia layer\n— a generous line of Cacao Crunchy Toppers (sprouted buckwheat, 5g prebiotic fiber)\n— spoon through and listen for the crunch\n\ngut-health bowl season is officially open.",
+    direct:"a summer bowl worth saving — dairy-free, fiber-forward, and actually crunchy 🥣\n\nthe build:\n— dairy-free yogurt base\n— frozen banana + mango + a splash of dairy-free milk, blended thick\n— sliced fruit + a chia layer\n— a generous line of Cacao Crunchy Toppers (sprouted buckwheat, 5g prebiotic fiber)\n— spoon through and listen for the crunch\n\ngut-health bowl season is officially open.",
     warm:"the dairy-free, fiber-forward summer bowl — with the crunch on top that everyone forgets. recipe in the carousel ⬇️ 🥣",
     punchy:"save this for every hot morning in june."
   },
@@ -2064,7 +2070,7 @@ const FOOTAGE_INSPO = {
       "Canadian Grocer 'most viral 2026 TikTok food' screenshot as caption-context overlay"
     ],
     memes: [
-      "'POV: the trend is literally your brand name' text-overlay format",
+      "'POV: the trend happens to share your brand name' text-overlay format",
       "Satisfying freeze-reveal / snap-in-half ASMR format paired with a lo-fi indie bed"
     ],
     archive: [
@@ -2707,7 +2713,7 @@ function MondayMemoModal({onClose, onShipIt}){
                 <div className="mmm-signal-body">
                   <div className="mmm-signal-label">{h.label}</div>
                   <div className="mmm-signal-detail">{h.detail}</div>
-                  {h.url && <a className="mmm-signal-src" href={h.url} target="_blank" rel="noreferrer">{h.src}</a>}
+                  {h.url && <a className="mmm-signal-src" href={h.url} target="_blank" rel="noreferrer" title={h.src}>source →</a>}
                 </div>
               </div>
             ))}
@@ -2717,7 +2723,7 @@ function MondayMemoModal({onClose, onShipIt}){
           <div className="mmm-section-eye">// 3 RECOMMENDED MOVES</div>
           <div className="mmm-moves">
             {WELCOME_MOVES.map((m,i)=>(
-              <div key={i} className="mmm-move">
+              <div key={i} className="mmm-move" style={MMM_MOVE_TINTS[i%MMM_MOVE_TINTS.length]}>
                 <div className="mmm-move-num">{String(i+1).padStart(2,"0")}</div>
                 <div className="mmm-move-body">
                   <div className="mmm-move-verb">{m.verb}</div>
@@ -5012,7 +5018,7 @@ function AuthGate({children}){
   const [pw, setPw] = useState("");
   const [err, setErr] = useState(false);
   function tryLogin(){
-    if (pw.trim().toLowerCase() === "lil maazah") {
+    if (pw.trim().toLowerCase() === "buckwild") {
       try { localStorage.setItem("lilbucks-auth-ok", "1"); } catch {}
       setAuthed(true);
     } else { setErr(true); }
