@@ -136,6 +136,7 @@ Nostalgic flavors do well in economic strife — Birthday Cake + Bucks 'n Honey 
 
 ## Seven Sundays DUAL-EDGE (most important competitive insight)
 Seven Sundays sources from the SAME A-Frame Farm (Luke + Ali Peterson, MN) as Lil Bucks. Any A-Frame Farm content pumps BOTH brands. Frame Lil Bucks's soil-story through relationship depth ("the family our seeds come from since 2018", "the first ROC buckwheat supply chain") — heritage + cert is the moat Seven Sundays can't easily counter. When suggesting soil-story content, flag this and recommend differentiated framing.
+Current read (June 2026): Seven Sundays launched nationwide at Target on Jun 3, 2026 with PB Puffs (oat protein) + a dye-free Red Velvet oat cereal riding Target's "Ditch the Dye" campaign — their motion right now is oat-protein + dye-free, NOT buckwheat farm-storytelling. The buckwheat-farm lane is temporarily uncontested; claim it. The dual-edge above still stands for any shared A-Frame content.
 
 ## Anti-patterns — what the engine REFUSES to do (DO NOT generate these)
 - Lead with the protein number — Magic Spoon owns that
